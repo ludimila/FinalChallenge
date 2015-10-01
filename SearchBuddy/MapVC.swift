@@ -26,6 +26,8 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     
         let auth = CLLocationManager.authorizationStatus()
         
+        print("teste")
+        
         if( auth == CLAuthorizationStatus.NotDetermined){
           print("nao sei")
         }
