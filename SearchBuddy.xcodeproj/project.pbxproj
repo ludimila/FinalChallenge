@@ -15,6 +15,7 @@
 		19229D3F1BBDA55600143F81 /* SearchBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D3E1BBDA55600143F81 /* SearchBuddyUITests.swift */; };
 		19229D531BBDA60B00143F81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D521BBDA60B00143F81 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		19229D551BBDA66100143F81 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D541BBDA66100143F81 /* MapVC.swift */; settings = {ASSET_TAGS = (); }; };
+		19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D5D1BBDC6D900143F81 /* Annotation.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		19229D401BBDA55600143F81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19229D521BBDA60B00143F81 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		19229D541BBDA66100143F81 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		19229D5D1BBDC6D900143F81 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		19229D1D1BBDA55600143F81 /* SearchBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				19229D561BBDC53600143F81 /* Annotation */,
 				19229D511BBDA5F500143F81 /* StoryBoard */,
 				19229D4F1BBDA59C00143F81 /* CRUD */,
 				19229D4E1BBDA56D00143F81 /* DAO */,
@@ -166,6 +169,14 @@
 				19229D521BBDA60B00143F81 /* Main.storyboard */,
 			);
 			name = StoryBoard;
+			sourceTree = "<group>";
+		};
+		19229D561BBDC53600143F81 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				19229D5D1BBDC6D900143F81 /* Annotation.swift */,
+			);
+			name = Annotation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +311,7 @@
 			files = (
 				19229D211BBDA55600143F81 /* ViewController.swift in Sources */,
 				19229D551BBDA66100143F81 /* MapVC.swift in Sources */,
+				19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */,
 				19229D1F1BBDA55600143F81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

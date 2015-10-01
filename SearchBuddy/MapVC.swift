@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 
+
+
 class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
 
     var locationManager : CLLocationManager!
@@ -18,28 +20,66 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        // Configurações iniciais do mapa
         map.delegate = self
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
     
+        // Verifica se autorização dada pela usuário para captar localização
         let auth = CLLocationManager.authorizationStatus()
         
-        print("teste")
-        
         if( auth == CLAuthorizationStatus.NotDetermined){
-          print("nao sei")
+          print("Autorização indeterminada")
         }
  
-        
+        // Localização do usuário no mapa
         map.showsUserLocation = true;
         
+        // Pede autorização pro usuário para obter sua localização
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        var pontoMapa = CLLocationCoordinate2D()
+        
+        
+        pontoMapa.latitude = 0;
+        pontoMapa.longitude = 0;
+        
+        let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
+        
+        
+        map.addAnnotation(myAnn)
+        
+        
+        print("\(map.annotations.count)")
+        
+    }
+    
+    
+    // Método para adicionar Pins no mapa
+    /*
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        var pinAnn = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        
+        if ( pinAnn.isMemberOfClass(MKUserLocation)){
+            print("Deu ruim")
+        }
+        
+        pinAnn.pinTintColor = MKPinAnnotationView.redPinColor()
+        pinAnn.animatesDrop = true
+        
+        return pinAnn
+    }
+    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
