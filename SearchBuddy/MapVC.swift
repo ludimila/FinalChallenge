@@ -90,13 +90,16 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
         pontoMapa.latitude = 0;
         pontoMapa.longitude = 0;
         
-        let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
         
+        
+        // Pinos
+        /*
+        
+        let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
         
         map.addAnnotation(myAnn)
         
-        
-        print("\(map.annotations.count)")
+        */
         
     }
     
