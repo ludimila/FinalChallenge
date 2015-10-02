@@ -30,10 +30,11 @@ class MainTabBarVC: UITabBarController {
     
     func initTabBar(){
        
-        let feedSB = createStoryBoard("Map", imageName: "MedalGoals")
+        let mapSB = createStoryBoard("Map", imageName: "MedalGoals")
         let perfilSB = createStoryBoard("Perfil", imageName: "PerfilBar")
+        let feedSB = createStoryBoard("Feed", imageName: "FeedBar")
         
-        self.viewControllers = [perfilSB,feedSB]
+        self.viewControllers = [mapSB,feedSB,perfilSB]
         self.selectedIndex = 1
         
         

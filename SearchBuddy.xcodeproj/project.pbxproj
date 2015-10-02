@@ -29,6 +29,7 @@
 		417CA53A1BBECA5900C37AF1 /* TypeAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5391BBECA5900C37AF1 /* TypeAnimal.swift */; settings = {ASSET_TAGS = (); }; };
 		417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53B1BBECD3100C37AF1 /* Animal.swift */; settings = {ASSET_TAGS = (); }; };
 		417CA53E1BBED18E00C37AF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53D1BBED18E00C37AF1 /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */; settings = {ASSET_TAGS = (); }; };
 		BFEF11C5C77A58C39961175C /* Pods_SearchBuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3090F107B224336BDFA0C548 /* Pods_SearchBuddyTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		417CA53D1BBED18E00C37AF1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		431F059C386E18A89FCF4BCE /* Pods-SearchBuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddy/Pods-SearchBuddy.debug.xcconfig"; sourceTree = "<group>"; };
 		785A7800B65145638DDC654A /* Pods_SearchBuddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBuddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		D01E436DB98E83578F0B791A /* Pods-SearchBuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddy/Pods-SearchBuddy.release.xcconfig"; sourceTree = "<group>"; };
 		DE0AFD3261A2F89A3B283297 /* Pods-SearchBuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddyTests/Pods-SearchBuddyTests.release.xcconfig"; sourceTree = "<group>"; };
 		FE331FD5FF735885DA5E804D /* Pods-SearchBuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddyTests/Pods-SearchBuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				19229D521BBDA60B00143F81 /* Map.storyboard */,
 				19229D5F1BBF024400143F81 /* Main.storyboard */,
 				19229D641BBF085D00143F81 /* Perfil.storyboard */,
+				BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 			files = (
 				19229D531BBDA60B00143F81 /* Map.storyboard in Resources */,
 				19229D291BBDA55600143F81 /* LaunchScreen.storyboard in Resources */,
+				BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */,
 				19229D651BBF085D00143F81 /* Perfil.storyboard in Resources */,
 				19229D261BBDA55600143F81 /* Assets.xcassets in Resources */,
 				19229D601BBF024400143F81 /* Main.storyboard in Resources */,
