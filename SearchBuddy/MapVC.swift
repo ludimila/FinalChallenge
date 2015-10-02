@@ -9,8 +9,6 @@
 import UIKit
 import MapKit
 
-
-
 class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
 
     var locationManager : CLLocationManager!
@@ -20,6 +18,45 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    // --------------------------------------------------
+        
+        let user = User()
+        user.username = "Lucas Veras"
+        user.password = "MinhaSenha"
+        user.userPhoneNumber = "(61) 9295-0471"
+        user.signUpInBackgroundWithBlock { (succeeded, error) -> Void in
+            if let error = error {
+                let errorString = error.userInfo["error"] as? NSString
+                print(errorString)
+            } else {
+                print("CADASTROU O USUARIO")
+                
+                let status = StatusAnimal()
+                status.situation = "Perdido"
+                try! status.save()
+                
+                let tipo = TypeAnimal()
+                tipo.typeDescription = "Cachorro"
+                try! tipo.save()
+                
+                let animal = Animal()
+                animal.animalName = "Dudu"
+                animal.breed = "Vira-lata"
+                animal.vaccinated = NSNumber(bool: true)
+                animal.animalDescription = "Corre mais que Usain Bolt"
+                animal.animalType = tipo
+                animal.animalStatus = status
+                animal.animalOwner = user
+                try! animal.save()
+
+            }
+        }
+        
+    // --------------------------------------------------
+        
+
+        
+        
         
         // Configurações iniciais do mapa
         map.delegate = self
