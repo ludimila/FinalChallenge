@@ -45,7 +45,7 @@ class AnimalDAO: SBDAO {
             if error != nil {
                 print("\(error?.description)")
             }
-            print("\(animals)")
+            print("DAO: \(animals)")
             for oneAnimal in animals! {
                     let animal: Animal = Animal()
                     animal.animalName = oneAnimal["animalName"] as? String

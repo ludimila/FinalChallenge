@@ -9,9 +9,12 @@
 import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var animalsArray = Array<Animal>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
 
         // Do any additional setup after loading the view.
     }
@@ -30,12 +33,23 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.animalsArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
+        
+       let currentAnimal : Animal = self.animalsArray[indexPath.row]
+        
+        cell.animalName.text = currentAnimal.animalName
+        //cell.animalStatus.text = currentAnimal.animalStatus?.situation
+       // cell.animalPicture.image = currentAnimal.animalPicture
+        
         return cell
+    }
+    
+    func getData(){
+        self.animalsArray = AnimalDAO.sharedInstance().allAnimals
     }
     
     

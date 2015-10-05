@@ -30,7 +30,7 @@ class MainTabBarVC: UITabBarController {
     
     func initTabBar(){
        
-        print("\( AnimalDAO.sharedInstance().allAnimals)")
+        print("Tab bar: \( AnimalDAO.sharedInstance().allAnimals)")
         let mapSB = createStoryBoard("Map", imageName: "MedalGoals")
         let perfilSB = createStoryBoard("Perfil", imageName: "PerfilBar")
         let feedSB = createStoryBoard("Feed", imageName: "FeedBar")
