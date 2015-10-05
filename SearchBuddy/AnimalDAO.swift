@@ -7,10 +7,18 @@
 //
 
 import UIKit
+import Parse
 
 class AnimalDAO: SBDAO {
     
     static private var instance: AnimalDAO?
+    private var animalsArray = Array<Animal>()
+    
+    var allAnimals : Array<Animal> {
+        get{
+            return Array<Animal>(self.animalsArray)
+        }
+    }
         
     override init () {
         NSException(name: "Singleton", reason: "Use AnimalDAO.sharedInstance()", userInfo: nil).raise()
@@ -18,7 +26,7 @@ class AnimalDAO: SBDAO {
     
     private init(singleton: Bool!) {
         super.init()
-        
+        self.getAllAnimals()        
     }
     
     static func sharedInstance() -> AnimalDAO {
@@ -27,6 +35,26 @@ class AnimalDAO: SBDAO {
         }
         return instance!
     }
-
-
+    
+    private func getAllAnimals() -> Void{
+        let query = PFQuery(className:"Animal")
+        query.orderByDescending("createdAt")
+        
+        query.findObjectsInBackgroundWithBlock {
+            (animals: [PFObject]?, error: NSError?) -> Void in
+            if error != nil {
+                print("\(error?.description)")
+            }
+            print("DAO: \(animals)")
+            for oneAnimal in animals! {
+                    let animal: Animal = Animal()
+                    animal.animalName = oneAnimal["animalName"] as? String
+                    animal.breed = oneAnimal["breed"] as? String
+                    animal.vaccinated = oneAnimal["vacinated"] as? NSNumber
+                    animal.animalDescription = oneAnimal["animalDescription"] as? String
+                    
+                    self.animalsArray.append(animal)
+                }
+        }
+    }
 }
