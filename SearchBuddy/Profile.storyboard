@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1iC-5G-HTh">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Perfil-->
+        <scene sceneID="71i-GQ-377">
+            <objects>
+                <viewController title="Perfil" id="Dyt-3E-duC" customClass="ProfileVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mX6-VY-erv"/>
+                        <viewControllerLayoutGuide type="bottom" id="bxq-Eq-Cqz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wg7-xN-qGi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZA-UQ-Dwc">
+                                <rect key="frame" x="281" y="459" width="38" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="login:" destination="Dyt-3E-duC" eventType="touchUpInside" id="nie-kb-MY7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Perfil" id="Bya-I9-qKm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qkn-0j-a1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1973" y="289"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9eQ-0Z-fbw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1iC-5G-HTh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0oR-1s-9a1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dyt-3E-duC" kind="relationship" relationship="rootViewController" id="vHs-FJ-Atm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KTi-bo-0GU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1161" y="289"/>
+        </scene>
+    </scenes>
+</document>
