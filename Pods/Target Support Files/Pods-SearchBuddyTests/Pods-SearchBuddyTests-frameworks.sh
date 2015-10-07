@@ -54,10 +54,20 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-SearchBuddyTests/Alamofire.framework'
   install_framework 'Pods-SearchBuddyTests/Bolts.framework'
+  install_framework 'Pods-SearchBuddyTests/FBSDKCoreKit.framework'
+  install_framework 'Pods-SearchBuddyTests/FBSDKLoginKit.framework'
+  install_framework 'Pods-SearchBuddyTests/FBSDKMessengerShareKit.framework'
+  install_framework 'Pods-SearchBuddyTests/FBSDKShareKit.framework'
   install_framework 'Pods-SearchBuddyTests/Parse.framework'
+  install_framework 'Pods-SearchBuddyTests/ParseFacebookUtilsV4.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-SearchBuddyTests/Alamofire.framework'
   install_framework 'Pods-SearchBuddyTests/Bolts.framework'
+  install_framework 'Pods-SearchBuddyTests/FBSDKCoreKit.framework'
+  install_framework 'Pods-SearchBuddyTests/FBSDKLoginKit.framework'
+  install_framework 'Pods-SearchBuddyTests/FBSDKMessengerShareKit.framework'
+  install_framework 'Pods-SearchBuddyTests/FBSDKShareKit.framework'
   install_framework 'Pods-SearchBuddyTests/Parse.framework'
+  install_framework 'Pods-SearchBuddyTests/ParseFacebookUtilsV4.framework'
 fi
