@@ -8,11 +8,13 @@
 
 import UIKit
 import Parse
+import ParseFacebookUtilsV4
 
 class SBDAO: NSObject {
     
-    class func setupParse() {
+    static func setupParse(options:[NSObject: AnyObject]?) {
         Parse.setApplicationId("rImNRnbETYGRjs9LotPmKIxD483RymlWk3BYJnKt", clientKey: "cJfXcVYG5VyLfLuAirXaCS5U9AdYKukhmA8HFfz1")
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(options)
     }
-    
+
 }
