@@ -11,50 +11,22 @@ import Parse
 
 class AnimalDAO: SBDAO {
     
-    static private var instance: AnimalDAO?
-    private var animalsArray = Array<Animal>()
-    
-    var allAnimals : Array<Animal> {
-        get{
-            return Array<Animal>(self.animalsArray)
-        }
-    }
-        
-    override init () {
-        NSException(name: "Singleton", reason: "Use AnimalDAO.sharedInstance()", userInfo: nil).raise()
-    }
-    
-    private init(singleton: Bool!) {
-        super.init()
-        self.getAllAnimals()        
-    }
-    
-    static func sharedInstance() -> AnimalDAO {
-        if instance == nil {
-            instance = AnimalDAO(singleton: true)
-        }
-        return instance!
-    }
-    
-    private func getAllAnimals() -> Void{
-        let query = PFQuery(className:"Animal")
+    class func getLostAnimals(completion: (Array<Animal>?, error: NSError?) -> Void){
+        let query = Animal.query()!
+//        query?.whereKey("autor", equalTo: usuario)
         query.orderByDescending("createdAt")
         
-        query.findObjectsInBackgroundWithBlock {
-            (animals: [PFObject]?, error: NSError?) -> Void in
-            if error != nil {
-                print("\(error?.description)")
+        query.includeKey("animalStatus")
+        query.includeKey("animalType")
+        query.includeKey("animalOwner")
+    
+        query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
+            if let animalsNN = animals as? Array<Animal> {
+                completion(animalsNN, error: error)
+            }else{
+                completion(nil, error: error)
             }
-            print("DAO: \(animals)")
-            for oneAnimal in animals! {
-                    let animal: Animal = Animal()
-                    animal.animalName = oneAnimal["animalName"] as? String
-                    animal.breed = oneAnimal["breed"] as? String
-                    animal.vaccinated = oneAnimal["vacinated"] as? NSNumber
-                    animal.animalDescription = oneAnimal["animalDescription"] as? String
-                    
-                    self.animalsArray.append(animal)
-                }
-        }
+        })
     }
+    
 }

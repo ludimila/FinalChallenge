@@ -10,8 +10,9 @@ import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
     var animalsArray = Array<Animal>()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
@@ -42,14 +43,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
        let currentAnimal : Animal = self.animalsArray[indexPath.row]
         
         cell.animalName.text = currentAnimal.animalName
-        //cell.animalStatus.text = currentAnimal.animalStatus?.situation
-       // cell.animalPicture.image = currentAnimal.animalPicture
+        let status = currentAnimal.animalStatus!
+        print(status["situation"])
+        
+        cell.animalStatus.text = String(status["situation"])
+        // cell.animalPicture.image = currentAnimal.animalPicture
         
         return cell
     }
     
     func getData(){
-        self.animalsArray = AnimalDAO.sharedInstance().allAnimals
+        AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
+            self.animalsArray = animalsArray!
+            
+            self.tableView.reloadData()
+        }
     }
     
     
