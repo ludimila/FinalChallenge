@@ -11,20 +11,25 @@ import ParseFacebookUtilsV4
 
 class FacebookParse: NSObject {
     
-    class func facebookLogin(){
+    class func facebookLoginWithResult()->Bool{
+        var result = true
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile"]) {
             (user: PFUser?, error: NSError?) -> Void in
             print("\(user)")
-            if let user = user {
-                if user.isNew {
-                    print("User signed up and logged in through Facebook!")
-                } else {
-                    print("User logged in through Facebook!")
-                }
-            } else {
-                print("Uh oh. The user cancelled the Facebook login.")
+            
+            if error == nil {
+                    if user!.isNew {
+                        print("User signed up and logged in through Facebook!")
+                        
+                    } else {
+                        print("User logged in through Facebook!")
+                    }
+            }else{
+                print("\(error?.description)")
+                result = false
             }
         }
+        return result
     }
     
     class func unlinkUserToFacebook(user: PFUser){

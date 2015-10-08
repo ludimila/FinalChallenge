@@ -16,19 +16,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZA-UQ-Dwc">
-                                <rect key="frame" x="281" y="459" width="38" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZA-UQ-Dwc">
+                                <rect key="frame" x="266" y="474" width="68" height="30"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="J4e-C6-K7S"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="68" id="qHa-xP-poC"/>
+                                </constraints>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="Dyt-3E-duC" eventType="touchUpInside" id="nie-kb-MY7"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olá Usuário" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mf3-WS-rAd">
+                                <rect key="frame" x="255" y="115" width="90" height="20.5"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="cH0-md-zhG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mf3-WS-rAd" firstAttribute="centerX" secondItem="Wg7-xN-qGi" secondAttribute="centerX" id="Wwu-wX-xVY"/>
+                            <constraint firstItem="mf3-WS-rAd" firstAttribute="top" secondItem="mX6-VY-erv" secondAttribute="bottom" constant="51" id="jwg-K3-FUo"/>
+                            <constraint firstItem="bxq-Eq-Cqz" firstAttribute="top" secondItem="TZA-UQ-Dwc" secondAttribute="bottom" constant="96" id="kaP-Dn-Xab"/>
+                            <constraint firstItem="TZA-UQ-Dwc" firstAttribute="centerX" secondItem="Wg7-xN-qGi" secondAttribute="centerX" id="wZF-gK-o61"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Perfil" id="Bya-I9-qKm"/>
+                    <connections>
+                        <outlet property="helloUser" destination="mf3-WS-rAd" id="suv-bT-zLA"/>
+                        <outlet property="loginButton" destination="TZA-UQ-Dwc" id="B1R-oB-KSq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qkn-0j-a1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

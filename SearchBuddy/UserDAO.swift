@@ -7,25 +7,15 @@
 //
 
 import UIKit
+import Parse
 
-class UserDAO: SBDAO {
-    static private var instance: UserDAO?
+class UserDAO: NSObject {
     
-    var currentUser: User!
-    
-    override init () {
-        NSException(name: "Singleton", reason: "Use UserDAO.sharedInstance()", userInfo: nil).raise()
+    class func getCurrentUser()-> PFUser? {
+        return PFUser.currentUser()
     }
     
-    private init(singleton: Bool!) {
-        super.init()
+    class func userLogout(){
+        PFUser.logOut()
     }
-    
-    static func sharedInstance() -> UserDAO {
-        if instance == nil {
-            instance = UserDAO(singleton: true)
-        }
-        return instance!
-    }
-    
 }
