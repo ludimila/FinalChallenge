@@ -17,7 +17,10 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    override func viewWillAppear(animated: Bool) {
         print("\(UserDAO.isLogged())")
+        self.reloadInputViews()
     }
 
     @IBAction func login(sender: AnyObject) {

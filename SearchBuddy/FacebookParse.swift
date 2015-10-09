@@ -15,11 +15,12 @@ class FacebookParse: NSObject {
     
     var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
     let fileManager = NSFileManager.defaultManager()
+    
+    
 
     
     static func loginClick(viewController: UIViewController)->Void{
         let readPermissions = ["public_profile","email"]
-        
         FBSDKLoginManager().logInWithReadPermissions(readPermissions, fromViewController: viewController, handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
             if error != nil{
                 print("\(error.description)")
