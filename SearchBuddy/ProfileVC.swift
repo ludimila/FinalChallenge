@@ -20,22 +20,11 @@ class ProfileVC: UIViewController {
     }
 
     @IBAction func login(sender: AnyObject) {
-        if UserDAO.getCurrentUser() == nil{
-            let result = FacebookParse.facebookLoginWithResult()
-            if result{
-                loginButton.titleLabel?.text = "Logout"
-                currentUserName = (UserDAO.getCurrentUser()?.username)!
-                helloUser.text = "Olá " + currentUserName
-            }else{
-                //Do nothing
-            }
-        }else{
-            UserDAO.userLogout()
-            currentUserName = "Anonimo"
-            loginButton.titleLabel?.text = "Login"
-            helloUser.text = "Olá " + currentUserName
-            
-        }
+        FacebookParse.loginClick(self)
+    }
+    
+    func changeTextIfLogged(){
+        
     }
     
 }

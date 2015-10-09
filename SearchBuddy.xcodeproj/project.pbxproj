@@ -164,7 +164,6 @@
 				19229D4D1BBDA56900143F81 /* Model */,
 				19229D4C1BBDA56300143F81 /* Controllers */,
 				19229D1E1BBDA55600143F81 /* AppDelegate.swift */,
-				19229D201BBDA55600143F81 /* ViewController.swift */,
 				19229D251BBDA55600143F81 /* Assets.xcassets */,
 				19229D271BBDA55600143F81 /* LaunchScreen.storyboard */,
 				19229D2A1BBDA55600143F81 /* Info.plist */,
@@ -194,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				19229D541BBDA66100143F81 /* MapVC.swift */,
+				19229D201BBDA55600143F81 /* ViewController.swift */,
 				19229D611BBF02A300143F81 /* MainTabBarVC.swift */,
 				9374333D1BC1B97400F0C7DF /* FeedVC.swift */,
 				BBFF571E1BC59BC900DBCEE6 /* ProfileVC.swift */,

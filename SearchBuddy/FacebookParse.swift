@@ -8,28 +8,26 @@
 
 import UIKit
 import ParseFacebookUtilsV4
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class FacebookParse: NSObject {
     
-    class func facebookLoginWithResult()->Bool{
-        var result = true
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile"]) {
-            (user: PFUser?, error: NSError?) -> Void in
-            print("\(user)")
-            
-            if error == nil {
-                    if user!.isNew {
-                        print("User signed up and logged in through Facebook!")
-                        
-                    } else {
-                        print("User logged in through Facebook!")
-                    }
+    var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
+    let fileManager = NSFileManager.defaultManager()
+
+    
+    static func loginClick(viewController: UIViewController)->Void{
+        let readPermissions = ["public_profile","email"]
+        
+        FBSDKLoginManager().logInWithReadPermissions(readPermissions, fromViewController: viewController, handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+            if error != nil{
+                print("\(error.description)")
             }else{
-                print("\(error?.description)")
-                result = false
+                print("\(result.token.userID)")
+                self.getFBUserData()
             }
-        }
-        return result
+        })
     }
     
     class func unlinkUserToFacebook(user: PFUser){
@@ -54,4 +52,33 @@ class FacebookParse: NSObject {
             print("Oh man, this user is already linked to facebook!!!")
         }
     }
+    
+    internal func getFBUserData() -> Void {
+        if((FBSDKAccessToken.currentAccessToken()) != nil){
+            
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email, friends"]).startWithCompletionHandler({ (connection, result, error) -> Void in
+                if error == nil {
+                    
+                    
+//                    var idFB = result.objectForKey("id") as! String
+//                    // Get the user's profile picture.
+//                    var picture = result.objectForKey("picture") as! NSDictionary
+//                    var data = picture.objectForKey("data") as! NSDictionary
+//                    var url = data.objectForKey("url") as! String
+//                    
+//                    var pictureURL : NSURL = NSURL(string: url)!
+//                    var pictureImage = UIImage(data: NSData(contentsOfURL: pictureURL)!)
+//                    
+//                    
+//                    var filePathToWrite = "\(self.paths)/\(idFB)"
+//                    var imageData: NSData = UIImagePNGRepresentation(pictureImage!)!
+//                    self.fileManager.createFileAtPath(filePathToWrite, contents: imageData, attributes: nil)
+                    
+                } else {
+                    print("\(error)")
+                }
+            })
+        }
+    }
+
 }
