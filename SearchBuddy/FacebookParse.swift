@@ -25,7 +25,21 @@ class FacebookParse: NSObject {
                 print("\(error.description)")
             }else{
                 print("\(result.token.userID)")
-                self.getFBUserData()
+            }
+        })
+    }
+    
+    class func login(){
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile"], block: {
+            (user: PFUser?, error: NSError?) -> Void in
+            if let user = user {
+                if user.isNew {
+                    print("User signed up and logged in through Facebook!")
+                } else {
+                    print("User logged in through Facebook!")
+                }
+            } else {
+                print("Uh oh. The user cancelled the Facebook login.")
             }
         })
     }

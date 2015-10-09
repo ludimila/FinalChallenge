@@ -17,10 +17,11 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\(UserDAO.isLogged())")
     }
 
     @IBAction func login(sender: AnyObject) {
-        FacebookParse.loginClick(self)
+        FacebookParse.login()
     }
     
     func changeTextIfLogged(){

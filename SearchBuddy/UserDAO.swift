@@ -11,6 +11,18 @@ import Parse
 
 class UserDAO: NSObject {
     
+    class func isLogged() -> Bool {
+        var result = true
+        
+        if PFUser.currentUser()?.username == nil{
+            result = false
+        }else{
+            // Do nothing
+        }
+        
+        return result
+    }
+    
     class func getCurrentUser()-> PFUser? {
         return PFUser.currentUser()
     }
