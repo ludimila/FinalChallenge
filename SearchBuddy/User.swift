@@ -13,6 +13,9 @@ class User: PFUser {
     
     @NSManaged var userPicture: UIImage?
     @NSManaged var userPhoneNumber: String?
+    @NSManaged var name: String?
+    @NSManaged var state: String?
+    @NSManaged var city: String?
     
     override class func initialize() {
         struct Static {
