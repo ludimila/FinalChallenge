@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileVC: UIViewController {
+class LoginVC: UIViewController {
     
     var currentUserName = "Anonimo" as String
     
