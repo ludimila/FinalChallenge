@@ -40,7 +40,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
-       let currentAnimal : Animal = self.animalsArray[indexPath.row]
+        let currentAnimal : Animal = self.animalsArray[indexPath.row]
         
         cell.animalName.text = currentAnimal.animalName
         let status = currentAnimal.animalStatus!
