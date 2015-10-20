@@ -13,7 +13,8 @@ class ProfileVC: UIViewController {
     var currentUserName = "Anonimo" as String
     
     @IBOutlet weak var helloUser: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,14 @@ class ProfileVC: UIViewController {
         self.reloadInputViews()
     }
 
-    @IBAction func login(sender: AnyObject) {
+
+    @IBAction func loginInterno(sender: AnyObject) {
+    }
+    
+    @IBAction func twitterLogin(sender: AnyObject) {
+    }
+    
+    @IBAction func facebookLogin(sender: AnyObject) {
         FacebookParse.login()
     }
     

@@ -25,11 +25,11 @@
                                 </constraints>
                                 <state key="normal" title="Login com o facebook"/>
                                 <connections>
-                                    <action selector="login:" destination="Dyt-3E-duC" eventType="touchUpInside" id="nie-kb-MY7"/>
+                                    <action selector="facebookLogin:" destination="Dyt-3E-duC" eventType="touchUpInside" id="gir-Jo-nKX"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olá Usuário" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mf3-WS-rAd">
-                                <rect key="frame" x="255" y="115" width="90" height="20.5"/>
+                                <rect key="frame" x="255" y="115" width="90" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="cH0-md-zhG"/>
@@ -46,6 +46,9 @@
                                     <constraint firstAttribute="height" constant="30" id="Ula-Wt-3Wr"/>
                                 </constraints>
                                 <state key="normal" title="Login com o Twitter"/>
+                                <connections>
+                                    <action selector="twitterLogin:" destination="Dyt-3E-duC" eventType="touchUpInside" id="Gbq-f3-aq1"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UG0-j4-Ox3">
                                 <rect key="frame" x="127" y="228" width="84" height="21"/>
@@ -87,6 +90,9 @@
                                 <rect key="frame" x="256" y="309" width="89" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Login normal"/>
+                                <connections>
+                                    <action selector="loginInterno:" destination="Dyt-3E-duC" eventType="touchUpInside" id="DqV-e9-z1k"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i15-AN-Mks">
                                 <rect key="frame" x="226" y="224" width="148" height="30"/>
@@ -122,12 +128,11 @@
                             <constraint firstItem="TZA-UQ-Dwc" firstAttribute="centerX" secondItem="Wg7-xN-qGi" secondAttribute="centerX" id="wZF-gK-o61"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Perfil" id="Bya-I9-qKm">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="BDz-YS-Xaj"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Perfil" id="Bya-I9-qKm"/>
                     <connections>
                         <outlet property="helloUser" destination="mf3-WS-rAd" id="suv-bT-zLA"/>
-                        <outlet property="loginButton" destination="TZA-UQ-Dwc" id="B1R-oB-KSq"/>
+                        <outlet property="passwordField" destination="q4I-se-kVg" id="UsX-lO-ArA"/>
+                        <outlet property="usernameField" destination="i15-AN-Mks" id="nMG-r7-PqX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qkn-0j-a1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
