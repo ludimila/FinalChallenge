@@ -32,7 +32,7 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func facebookLogin(sender: AnyObject) {
-        FacebookParse.login()
+        FacebookParse.loginClick(self)
     }
     
     func changeTextIfLogged(){

@@ -92,17 +92,20 @@ class RegisterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         
         UserDAO.signUpUser(user) { (sucessed,error) -> Void in
             if sucessed{
-                print("FoI")
-                self.navigationController?.popToRootViewControllerAnimated(true)
+
+                let alert = UIAlertController(title: "Cadastro Realizado", message: "Bem-vindo \(user.name). Seu cadastro foi realizado com sucesso", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                }
+                alert.addAction(action)
+                self.presentViewController(alert, animated: true, completion: {})
             }else{
                 let errorString = error!.userInfo["error"] as? NSString
-                print("\(errorString)")
+                let alert = UIAlertController(title: "Cadastro Realizado", message: "Erro: \(errorString). Seu cadastro foi realizado com sucesso", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Default) { _ in }
+                alert.addAction(action)
             }
         }
-        
-        
-        
-        
     }
 
 }
