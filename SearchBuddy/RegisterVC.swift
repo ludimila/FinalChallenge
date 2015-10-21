@@ -93,9 +93,10 @@ class RegisterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         UserDAO.signUpUser(user) { (sucessed,error) -> Void in
             if sucessed{
                 print("FoI")
+                self.navigationController?.popToRootViewControllerAnimated(true)
             }else{
                 let errorString = error!.userInfo["error"] as? NSString
-                print("\(errorString)"
+                print("\(errorString)")
             }
         }
         
