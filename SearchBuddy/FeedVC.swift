@@ -8,7 +8,9 @@
 
 import UIKit
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+    
+    var teste = Int()
     
     @IBOutlet weak var tableView: UITableView!
     var animalsArray = Array<Animal>()
@@ -40,19 +42,20 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
-       let currentAnimal : Animal = self.animalsArray[indexPath.row]
+        let currentAnimal : Animal = self.animalsArray[indexPath.row]
         
         cell.animalName.text = currentAnimal.animalName
         let status = currentAnimal.animalStatus!
-        print(status["situation"])
+        let description = currentAnimal.animalDescription!
         
         cell.animalStatus.text = String(status["situation"])
-        // cell.animalPicture.image = currentAnimal.animalPicture
+        cell.animalDescription.text = description
         
         return cell
     }
     
     func getData(){
+        
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
             self.animalsArray = animalsArray!
             
@@ -60,15 +63,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
-    /*
-    // MARK: - Navigation
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let centerPoint = view.superview!.convertPoint(view.center, toView: tableView)
+        let indexPath = tableView.indexPathForRowAtPoint(centerPoint)
+        
+        
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+    
+        
 }
