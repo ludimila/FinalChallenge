@@ -8,26 +8,26 @@
 
 import UIKit
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+    
+    var teste = Int()
     
     @IBOutlet weak var tableView: UITableView!
     var animalsArray = Array<Animal>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         getData()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
-    
-    // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -44,15 +44,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         cell.animalName.text = currentAnimal.animalName
         let status = currentAnimal.animalStatus!
-        print(status["situation"])
+        let description = currentAnimal.animalDescription!
         
         cell.animalStatus.text = String(status["situation"])
-        // cell.animalPicture.image = currentAnimal.animalPicture
+        cell.animalDescription.text = description
         
         return cell
     }
     
     func getData(){
+        
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
             self.animalsArray = animalsArray!
             
@@ -61,14 +62,28 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    /*
-    // MARK: - Navigation
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let centerPoint = view.superview!.convertPoint(view.center, toView: tableView)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if let cellIndex = tableView.indexPathForRowAtPoint(centerPoint){
+            print(cellIndex.row)
+            let cell = tableView.cellForRowAtIndexPath(cellIndex) as! FeedTableViewCell
+            print(cell.animalName.text)
+
+            cell.hiddenBlackView()
+
+        }
+
     }
-    */
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
+        
+        cell.hiddenBlackView()
 
+    }
+    
 }
