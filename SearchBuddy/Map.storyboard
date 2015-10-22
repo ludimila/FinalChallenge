@@ -17,8 +17,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="47v-Sb-ktx">
-                                <rect key="frame" x="0.0" y="100" width="600" height="291"/>
+                                <rect key="frame" x="0.0" y="109" width="600" height="367"/>
                             </mapView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LXB-DP-Bca">
+                                <rect key="frame" x="0.0" y="66" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7RE-sh-tBM">
+                                <rect key="frame" x="0.0" y="475" width="600" height="63"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eey-Ez-kLO">
+                                        <rect key="frame" x="94" y="24" width="436" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -26,12 +42,14 @@
                     <navigationItem key="navigationItem" id="kRq-Ed-7Ul"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="Location" destination="Eey-Ez-kLO" id="S31-Yl-hdH"/>
                         <outlet property="map" destination="47v-Sb-ktx" id="g1g-Gc-17a"/>
+                        <outlet property="searchBar" destination="LXB-DP-Bca" id="zyO-zK-aon"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aue-qa-AXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1938" y="315"/>
+            <point key="canvasLocation" x="1936" y="305"/>
         </scene>
         <!--Item-->
         <scene sceneID="YvN-4i-KU1">
