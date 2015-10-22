@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="z03-Ff-Nrc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -119,16 +120,16 @@
                                                     <exclude reference="laW-II-3zv"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="4h3-d5-4WF"/>
+                                                    <exclude reference="KNJ-J2-zUh"/>
+                                                    <exclude reference="8O2-ZV-E6u"/>
+                                                    <exclude reference="bMT-0M-iiA"/>
                                                     <exclude reference="B8L-iW-Ky8"/>
                                                     <exclude reference="FYl-EG-hHq"/>
                                                     <exclude reference="QfY-wH-OUB"/>
                                                     <exclude reference="ySa-Mj-FhE"/>
                                                     <exclude reference="1Xu-Oc-KrV"/>
                                                     <exclude reference="ryn-SY-dIY"/>
-                                                    <exclude reference="4h3-d5-4WF"/>
-                                                    <exclude reference="KNJ-J2-zUh"/>
-                                                    <exclude reference="8O2-ZV-E6u"/>
-                                                    <exclude reference="bMT-0M-iiA"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -141,16 +142,16 @@
                                                     <include reference="laW-II-3zv"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="4h3-d5-4WF"/>
+                                                    <include reference="KNJ-J2-zUh"/>
+                                                    <include reference="8O2-ZV-E6u"/>
+                                                    <include reference="bMT-0M-iiA"/>
                                                     <include reference="B8L-iW-Ky8"/>
                                                     <include reference="FYl-EG-hHq"/>
                                                     <include reference="QfY-wH-OUB"/>
                                                     <include reference="ySa-Mj-FhE"/>
                                                     <include reference="1Xu-Oc-KrV"/>
                                                     <include reference="ryn-SY-dIY"/>
-                                                    <include reference="4h3-d5-4WF"/>
-                                                    <include reference="KNJ-J2-zUh"/>
-                                                    <include reference="8O2-ZV-E6u"/>
-                                                    <include reference="bMT-0M-iiA"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

@@ -21,7 +21,6 @@ class FeedTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         self.blackView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
         self.blackView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)
@@ -33,6 +32,13 @@ class FeedTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     
+    }
+    
+    func hiddenBlackView(){
+    
+        self.blackView.hidden = true
+        self.layoutIfNeeded()
+        
     }
     
 }

@@ -17,19 +17,17 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         getData()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
-    
-    // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -63,14 +61,37 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         }
     }
     
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        let centerPoint = view.superview!.convertPoint(view.center, toView: tableView)
-        let indexPath = tableView.indexPathForRowAtPoint(centerPoint)
+        if let cellIndex = tableView.indexPathForRowAtPoint(self.tableView.center){
+            print(cellIndex.row)
+            let cell = tableView.cellForRowAtIndexPath(cellIndex) as! FeedTableViewCell
+            print(cell.animalName.text)
+
+            cell.hiddenBlackView()
+
+        }        
         
         
+//        var centerPoint = cell.frame.origin
+//        centerPoint = cell.convertPoint(centerPoint, fromCoordinateSpace: self.tableView)
+//        let halfScreen = self.view.center.y
+//        
+//        if ((centerPoint.y * -1) == halfScreen){
+//            
+//            
+//        }
+//        print(halfScreen)
+//        print(centerPoint)
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
+        
+        cell.hiddenBlackView()
 
     }
     
-        
 }
