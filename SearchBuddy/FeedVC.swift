@@ -10,6 +10,7 @@ import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
+    
     var teste = Int()
     
     @IBOutlet weak var tableView: UITableView!
@@ -18,7 +19,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+//        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         getData()
 
     }
@@ -40,7 +41,20 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
+        
+        
+        let indexes = self.tableView.indexPathsForVisibleRows as Array!
+        
+        for var index in indexes {
+            let cellTeste = self.tableView.cellForRowAtIndexPath(index)
+            
+//            cellTeste?.alpha = 0.1
+        }
+        
+        
+        
         let currentAnimal : Animal = self.animalsArray[indexPath.row]
+        
         
         cell.animalName.text = currentAnimal.animalName
         let status = currentAnimal.animalStatus!
@@ -62,28 +76,46 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     }
     
     
+    
+    
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        let indexes = self.tableView.indexPathsForVisibleRows as Array!
         
-        let centerPoint = view.superview!.convertPoint(view.center, toView: tableView)
-
         
-        if let cellIndex = tableView.indexPathForRowAtPoint(centerPoint){
-            print(cellIndex.row)
-            let cell = tableView.cellForRowAtIndexPath(cellIndex) as! FeedTableViewCell
-            print(cell.animalName.text)
-
-            cell.hiddenBlackView()
-
+        var valores = Array<CGFloat>()
+        var valoresIndex = Array<Int>()
+        
+        for var index in indexes {
+            
+            let cellTeste = self.tableView.cellForRowAtIndexPath(index)
+            let rectInTableView = self.tableView.rectForRowAtIndexPath(index)
+            let rectInSuperview = self.tableView.convertRect(rectInTableView, toView: self.tableView.superview)
+            
+            var cellAmoutTela = (-30 + rectInSuperview.origin.y + (cellTeste?.frame.size.height)!)
+            
+            
+            if cellAmoutTela > cellTeste?.frame.size.height{
+                cellAmoutTela = (self.tableView.frame.size.height - (-30 + rectInSuperview.origin.y))
+            }
+            
+            
+            valoresIndex.append(index.row)
+            valores.append(cellAmoutTela)
         }
-
-    }
-    
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
-        cell.hiddenBlackView()
-
+        
+        for var index in indexes {
+            let cell = self.tableView.cellForRowAtIndexPath(index)
+            
+      
+            
+            if valoresIndex[(valores.indexOf(valores.maxElement()!))!] == index.row{
+                cell?.alpha = 1
+            }else{
+                cell?.alpha = 0.5
+            }
+        }
     }
     
 }

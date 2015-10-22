@@ -22,10 +22,10 @@ class FeedTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.blackView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
-        self.blackView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)
+//        self.blackView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
+//        self.blackView.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)
         
-        self.addSubview(self.blackView)
+//        self.addSubview(self.blackView)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
