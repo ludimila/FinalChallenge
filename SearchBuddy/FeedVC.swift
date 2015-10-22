@@ -64,26 +64,18 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        if let cellIndex = tableView.indexPathForRowAtPoint(self.tableView.center){
+        let centerPoint = view.superview!.convertPoint(view.center, toView: tableView)
+
+        
+        if let cellIndex = tableView.indexPathForRowAtPoint(centerPoint){
             print(cellIndex.row)
             let cell = tableView.cellForRowAtIndexPath(cellIndex) as! FeedTableViewCell
             print(cell.animalName.text)
 
             cell.hiddenBlackView()
 
-        }        
-        
-        
-//        var centerPoint = cell.frame.origin
-//        centerPoint = cell.convertPoint(centerPoint, fromCoordinateSpace: self.tableView)
-//        let halfScreen = self.view.center.y
-//        
-//        if ((centerPoint.y * -1) == halfScreen){
-//            
-//            
-//        }
-//        print(halfScreen)
-//        print(centerPoint)
+        }
+
     }
     
     
