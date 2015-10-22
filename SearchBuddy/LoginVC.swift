@@ -26,17 +26,39 @@ class LoginVC: UIViewController {
 
 
     @IBAction func loginInterno(sender: AnyObject) {
+        
     }
     
     @IBAction func twitterLogin(sender: AnyObject) {
     }
     
     @IBAction func facebookLogin(sender: AnyObject) {
-        FacebookParse.loginClick(self)
+        UserDAO.loginInFacebook() { (sucessed,isNew,error) -> Void in
+            if sucessed{
+                if isNew{
+                    let alert = UIAlertController(title: "Cadastro Realizado", message: "Bem-vindo. Seu cadastro foi realizado com o Facebook", preferredStyle: .Alert)
+                    let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                        self.navigationController?.popToRootViewControllerAnimated(true)
+                    }
+                    alert.addAction(action)
+                    self.presentViewController(alert, animated: true, completion: {})
+                }else{
+                    let alert = UIAlertController(title: "Login realizado", message: "Bem vindo de volta", preferredStyle: .Alert)
+                    let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                        self.navigationController?.popToRootViewControllerAnimated(true)
+                    }
+                    alert.addAction(action)
+                    self.presentViewController(alert, animated: true, completion: {})
+                }
+                
+            }else{
+                let alert = UIAlertController(title: "Erro no Login", message: "O login foi cancelado", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Default) { _ in }
+                alert.addAction(action)
+            }
+        }
     }
-    
     func changeTextIfLogged(){
         
     }
-    
 }

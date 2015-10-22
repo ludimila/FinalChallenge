@@ -16,35 +16,6 @@ class FacebookParse: NSObject {
     var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
     let fileManager = NSFileManager.defaultManager()
     
-    
-
-    
-    static func loginClick(viewController: UIViewController)->Void{
-        let readPermissions = ["public_profile","email"]
-        FBSDKLoginManager().logInWithReadPermissions(readPermissions, fromViewController: viewController, handler: { (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
-            if error != nil{
-                print("\(error.description)")
-            }else{
-                print("\(result.token.userID)")
-            }
-        })
-    }
-    
-    class func login(){
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile"], block: {
-            (user: PFUser?, error: NSError?) -> Void in
-            if let user = user {
-                if user.isNew {
-                    print("User signed up and logged in through Facebook!")
-                } else {
-                    print("User logged in through Facebook!")
-                }
-            } else {
-                print("Uh oh. The user cancelled the Facebook login.")
-            }
-        })
-    }
-    
     class func unlinkUserToFacebook(user: PFUser){
         PFFacebookUtils.unlinkUserInBackground(user, block: {
             (succeeded: Bool, error: NSError?) -> Void in
