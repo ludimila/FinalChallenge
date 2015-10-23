@@ -29,6 +29,24 @@ class LoginVC: UIViewController {
 
     @IBAction func loginInterno(sender: AnyObject) {
         
+        UserDAO.loginInternal(usernameField.text!, password: passwordField.text!) { (sucessed, error) -> Void in
+            if sucessed{
+                let alert = UIAlertController(title: "Login Realizado", message: "Bem vindo de volta", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                    self.tableViewToReload!.reloadData()
+                }
+                alert.addAction(action)
+                self.presentViewController(alert, animated: true, completion: {})
+            }else{
+                print("TEM QUE TA")
+                let alert = UIAlertController(title: "Erro no Login", message: "O login foi cancelado", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Default) { _ in }
+                alert.addAction(action)
+                self.presentViewController(alert, animated: true, completion: {})
+
+            }
+        }
     }
     
     @IBAction func twitterLogin(sender: AnyObject) {
@@ -59,6 +77,7 @@ class LoginVC: UIViewController {
                 let alert = UIAlertController(title: "Erro no Login", message: "O login foi cancelado", preferredStyle: .Alert)
                 let action = UIAlertAction(title: "OK", style: .Default) { _ in }
                 alert.addAction(action)
+                self.presentViewController(alert, animated: true, completion: {})
             }
         }
     }
