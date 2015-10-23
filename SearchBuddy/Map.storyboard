@@ -24,8 +24,12 @@
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7RE-sh-tBM">
                                 <rect key="frame" x="0.0" y="475" width="600" height="63"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eey-Ez-kLO">
-                                        <rect key="frame" x="94" y="24" width="436" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eey-Ez-kLO">
+                                        <rect key="frame" x="82" y="21" width="436" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="436" id="F2P-40-Mk7"/>
+                                            <constraint firstAttribute="height" constant="21" id="LaR-nz-qES"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -34,6 +38,8 @@
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="OcQ-pK-9ST"/>
+                                    <constraint firstItem="Eey-Ez-kLO" firstAttribute="centerY" secondItem="7RE-sh-tBM" secondAttribute="centerY" id="aOA-lh-HIs"/>
+                                    <constraint firstItem="Eey-Ez-kLO" firstAttribute="centerX" secondItem="7RE-sh-tBM" secondAttribute="centerX" id="jAg-YC-OzH"/>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="47v-Sb-ktx">
