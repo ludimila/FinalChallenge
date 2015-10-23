@@ -9,17 +9,18 @@
 import UIKit
 import MapKit
 
-class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate {
+class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UISearchControllerDelegate, UITableViewDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var Location: UILabel!
+    
+    
     var pontoMapa: CLLocationCoordinate2D!
     var geocoder: CLGeocoder!
     var locationManager : CLLocationManager!
     var userLocation: CLLocationCoordinate2D!
-    var searchActive: Bool = false
-    var filtered:[String] = []
+    var tableViewSearch: UISearchDisplayController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,32 +90,14 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     }
     
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-         searchActive = true
-    }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchActive = false
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchActive = false
-    }
-   
-    /*
-    func filterContentForSearchText:
-    */
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = (manager.location?.coordinate)!
         
         getAddresFromLatitude()
     }
-
+    
     func addRadiusCircle(location: CLLocation){
         let circle = MKCircle(centerCoordinate: location.coordinate, radius: 150 as CLLocationDistance)
         map.addOverlay(circle)
@@ -144,7 +127,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         if var locationTeste : CLLocation = location {
             addRadiusCircle(locationTeste)
         }
-
+        
         
         // Pinos
         let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
@@ -156,7 +139,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     
     // Método para adicionar Pins no mapa
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    
+        
         
         print("\(userLocation)")
         let locUser: CLLocationCoordinate2D = userLocation
@@ -197,7 +180,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
                 anView!.frame = lbl.frame
                 
             }else {
-            
+                
                 anView?.annotation = annotation
                 
             }
@@ -256,19 +239,22 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         
         let currentLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
         geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
-        
+            
             if error != nil {
-               print("Reverse geocoder deu ruim com esse erro \(error?.localizedDescription)")
-               return
+                print("Reverse geocoder deu ruim com esse erro \(error?.localizedDescription)")
+                return
             }
             
             if placemarks!.count > 0 {
                 let pm = placemarks![0]
                 self.Location.text = "\(pm.name!)"
             }
-        
+            
         })
     }
+    
+    
+
     
     /*
     // MARK: - Navigation
