@@ -16,6 +16,8 @@ class RegisterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var statePicker: UIPickerView!
     @IBOutlet weak var cityPicker: UIPickerView!
     
+    var tableViewToReload:UITableView?
+    
     var stateArray: [String] = [String]()
     var cityArray: [String] = [String]()
     
@@ -95,6 +97,7 @@ class RegisterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
 
                 let alert = UIAlertController(title: "Cadastro Realizado", message: "Bem-vindo \(user.name). Seu cadastro foi realizado com sucesso", preferredStyle: .Alert)
                 let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                    self.tableViewToReload?.reloadData()
                     self.navigationController?.popToRootViewControllerAnimated(true)
                 }
                 alert.addAction(action)

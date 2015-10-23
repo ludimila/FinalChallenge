@@ -16,6 +16,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    var tableViewToReload:UITableView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -39,6 +41,7 @@ class LoginVC: UIViewController {
                     let alert = UIAlertController(title: "Cadastro Realizado", message: "Bem-vindo. Seu cadastro foi realizado com o Facebook", preferredStyle: .Alert)
                     let action = UIAlertAction(title: "OK", style: .Default) { _ in
                         self.navigationController?.popToRootViewControllerAnimated(true)
+                        self.tableViewToReload!.reloadData()
                     }
                     alert.addAction(action)
                     self.presentViewController(alert, animated: true, completion: {})
@@ -46,6 +49,7 @@ class LoginVC: UIViewController {
                     let alert = UIAlertController(title: "Login realizado", message: "Bem vindo de volta", preferredStyle: .Alert)
                     let action = UIAlertAction(title: "OK", style: .Default) { _ in
                         self.navigationController?.popToRootViewControllerAnimated(true)
+                        self.tableViewToReload!.reloadData()
                     }
                     alert.addAction(action)
                     self.presentViewController(alert, animated: true, completion: {})
@@ -57,8 +61,5 @@ class LoginVC: UIViewController {
                 alert.addAction(action)
             }
         }
-    }
-    func changeTextIfLogged(){
-        
     }
 }

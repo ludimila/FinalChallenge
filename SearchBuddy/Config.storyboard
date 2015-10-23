@@ -8,7 +8,7 @@
         <!--Apresentação-->
         <scene sceneID="pfA-Ye-NBv">
             <objects>
-                <viewController title="Apresentação" id="e5n-e3-27U" sceneMemberID="viewController">
+                <viewController title="Apresentação" id="e5n-e3-27U" customClass="PresentationVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Jd-qL-yUw"/>
                         <viewControllerLayoutGuide type="bottom" id="p9f-xn-CHJ"/>
@@ -22,7 +22,7 @@
                                 <animations/>
                                 <state key="normal" title="Cadastrar"/>
                                 <connections>
-                                    <segue destination="JMI-hZ-D9V" kind="show" id="TNI-Sf-aDO"/>
+                                    <segue destination="JMI-hZ-D9V" kind="show" identifier="registerScreen" id="TNI-Sf-aDO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpc-fe-lK4">
@@ -30,7 +30,7 @@
                                 <animations/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <segue destination="Dyt-3E-duC" kind="show" id="Uco-5W-yqV"/>
+                                    <segue destination="Dyt-3E-duC" kind="show" identifier="loginScreen" id="Uco-5W-yqV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -208,14 +208,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVU-z8-evU">
-                                <rect key="frame" x="20" y="180" width="83.5" height="20.5"/>
+                                <rect key="frame" x="20" y="180" width="84" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senha:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1J-B7-8fZ">
-                                <rect key="frame" x="51" y="220" width="53" height="20.5"/>
+                                <rect key="frame" x="51" y="220" width="53" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -358,18 +358,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Bs-1I-9ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4661" y="-163"/>
+            <point key="canvasLocation" x="4675" y="101"/>
         </scene>
         <!--ConfigVC-->
         <scene sceneID="9PT-Ec-twm">
             <objects>
                 <tableViewController id="hKz-tG-hyN" customClass="ConfigVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="v1c-YO-uTy">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="v1c-YO-uTy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <sections/>
+                        <sections>
+                            <tableViewSection id="SIw-Ew-SE7">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CnG-Zf-dn8">
+                                        <rect key="frame" x="0.0" y="99" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CnG-Zf-dn8" id="CbD-HB-Gmj">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <segue destination="e5n-e3-27U" kind="show" identifier="toLogin" id="1iR-NG-fRq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="hKz-tG-hyN" id="PkJ-dg-nsa"/>
                             <outlet property="delegate" destination="hKz-tG-hyN" id="Xcb-GU-DpS"/>

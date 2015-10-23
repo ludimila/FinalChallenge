@@ -57,7 +57,27 @@ class ConfigVC: UITableViewController {
             }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        code
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch(indexPath.row) {
+        case 0:
+            if UserDAO.isLogged() {
+                print("LOGUI AUTI")
+                UserDAO.userLogout()
+                tableView.reloadData()
+            }else{
+                print("LOGUI IN")
+                performSegueWithIdentifier("toLogin", sender: self)
+            }
+        default: fatalError("Unknown row in section 0")
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toLogin"{
+            if let nextController = segue.destinationViewController as? PresentationVC{
+                nextController.tableViewToReload = self.tableView
+            }
+        }
     }
 }
