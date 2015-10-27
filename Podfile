@@ -10,6 +10,8 @@ target 'SearchBuddy' do
     pod 'FBSDKShareKit'
     pod 'FBSDKMessengerShareKit'
     pod 'ParseFacebookUtilsV4'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 target 'SearchBuddyTests' do

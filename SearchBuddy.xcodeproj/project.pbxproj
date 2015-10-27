@@ -168,7 +168,7 @@
 			children = (
 				9374333A1BC1AB6300F0C7DF /* View */,
 				19EAA0BC1BC84B3B0091DB47 /* MKCircle */,
-				19229D561BBDC53600143F81 /* Annotation */,
+				19229D561BBDC53600143F81 /* Services */,
 				19229D511BBDA5F500143F81 /* StoryBoard */,
 				19229D4F1BBDA59C00143F81 /* CRUD */,
 				19229D4E1BBDA56D00143F81 /* DAO */,
@@ -314,6 +314,7 @@
 				19229D191BBDA55600143F81 /* Resources */,
 				3CBB0D222C0B1B4A67978D0A /* Embed Pods Frameworks */,
 				2B4B552D553DDAC494E07BDA /* Copy Pods Resources */,
+				BB1DADFD1BDF9FC9008223E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -511,6 +512,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SearchBuddyTests/Pods-SearchBuddyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BB1DADFD1BDF9FC9008223E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" c726ffd03bb1a50bf257e9f90284aebc1b967675 e116dc1ba7c3cb8db1290abd5abe2b02ebfaa0f4d4cc2021295a7f596a4e8d48";
 		};
 		F7FBA59526020C6BD5DDB6B2 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
