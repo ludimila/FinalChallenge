@@ -43,13 +43,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         
         
-        let indexes = self.tableView.indexPathsForVisibleRows as Array!
-        
-        for var index in indexes {
-            let cellTeste = self.tableView.cellForRowAtIndexPath(index)
-            
-//            cellTeste?.alpha = 0.1
-        }
+//        let indexes = self.tableView.indexPathsForVisibleRows as Array!
+//        
+//        for var index in indexes {
+//            let cellTeste = self.tableView.cellForRowAtIndexPath(index)
+//            
+////            cellTeste?.alpha = 0.1
+//        }
         
         
         
@@ -86,7 +86,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         var valores = Array<CGFloat>()
         var valoresIndex = Array<Int>()
         
-        for var index in indexes {
+        for index in indexes {
             
             let cellTeste = self.tableView.cellForRowAtIndexPath(index)
             let rectInTableView = self.tableView.rectForRowAtIndexPath(index)
@@ -105,7 +105,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         }
         
         
-        for var index in indexes {
+        for index in indexes {
             let cell = self.tableView.cellForRowAtIndexPath(index)
             
       

@@ -123,8 +123,8 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         pontoMapa.latitude = -15.864000;
         pontoMapa.longitude = -48.028995;
         
-        var location : CLLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
-        if var locationTeste : CLLocation = location {
+        let location : CLLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
+        if let locationTeste : CLLocation = location {
             addRadiusCircle(locationTeste)
         }
         
