@@ -33,7 +33,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         self.index = 0
         
         // Animais do Singleton
-        self.animals = AnimalSingleton.sharedInstance().animalsArray
+        self.animals = AnimalDAO.sharedInstance().animalsArray
         
         // Inicializa o geocoder
         self.geocoder = CLGeocoder()

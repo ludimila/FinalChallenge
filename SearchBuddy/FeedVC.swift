@@ -72,7 +72,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
             self.animalsArray = animalsArray!
-            AnimalSingleton.sharedInstance().animalsArray = animalsArray!
+            AnimalDAO.sharedInstance().animalsArray = animalsArray!
             self.tableView.reloadData()
         }
         
