@@ -15,82 +15,53 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var Location: UILabel!
     
-    
+    // Variáveis do Mapa
     var pontoMapa: CLLocationCoordinate2D!
     var geocoder: CLGeocoder!
     var locationManager : CLLocationManager!
     var userLocation: CLLocationCoordinate2D!
-    var tableViewSearch: UISearchDisplayController!
+    var pontoProximo: CLLocationCoordinate2D!
+    var index: Int!
+    // View
+    var vW: UIView!
+    // Variáveis dos Animais
+    var animals = Array<Animal>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // --------------------------------------------------
+        self.index = 0
         
-        let user = User()
-        user.username = "Lucas Veras"
-        user.password = "MinhaSenha"
-        user.userPhoneNumber = "(61) 9295-0471"
-        user.signUpInBackgroundWithBlock { (succeeded, error) -> Void in
-            if let error = error {
-                let errorString = error.userInfo["error"] as? NSString
-                print(errorString)
-            } else {
-                print("CADASTROU O USUARIO")
-                
-                let status = StatusAnimal()
-                status.situation = "Perdido"
-                try! status.save()
-                
-                let tipo = TypeAnimal()
-                tipo.typeDescription = "Cachorro"
-                try! tipo.save()
-                
-                let animal = Animal()
-                animal.animalName = "Dudu"
-                animal.breed = "Vira-lata"
-                animal.vaccinated = NSNumber(bool: true)
-                animal.animalDescription = "Corre mais que Usain Bolt"
-                animal.animalType = tipo
-                animal.animalStatus = status
-                animal.animalOwner = user
-                try! animal.save()
-                
-            }
-        }
+        // Animais do Singleton
+        self.animals = AnimalSingleton.sharedInstance().animalsArray
+        
         // Inicializa o geocoder
-        geocoder = CLGeocoder()
+        self.geocoder = CLGeocoder()
         
         // Configurações iniciais do mapa
-        map.delegate = self
+        self.map.delegate = self
+        self.map.showsUserLocation = true;
         
+        // Location Manager
         locationManager = CLLocationManager()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.distanceFilter = kCLDistanceFilterNone
-            
-        }
-        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
         //Personalizar searchBar
-        searchBar.delegate = self
-        searchBar.barStyle = UIBarStyle.BlackOpaque
-        searchBar.barTintColor = UIColor.brownColor()
-        searchBar.placeholder = "Animal";
+        self.searchBar.delegate = self
+        self.searchBar.barStyle = UIBarStyle.BlackOpaque
+        self.searchBar.barTintColor = UIColor.brownColor()
+        self.searchBar.placeholder = "Animal";
         
-        userLocation = locationManager.location?.coordinate
-        
-        
-        self.map.showsUserLocation = true;
+        // Verifica a user location
+        self.userLocation = self.locationManager.location?.coordinate
+        if (self.userLocation == nil){
+            self.userLocation = CLLocationCoordinate2D()
+        }
         
     }
-    
-    
-    
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = (manager.location?.coordinate)!
@@ -115,99 +86,69 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         }
     }
     
-    
     override func viewWillAppear(animated: Bool) {
         
-        pontoMapa = CLLocationCoordinate2D()
+        self.map.removeAnnotations(self.map.annotations)
         
-        pontoMapa.latitude = -15.864000;
-        pontoMapa.longitude = -48.028995;
+        var lat  = -15.863500
+        var long = -48.028995
         
-        var location : CLLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
-        if var locationTeste : CLLocation = location {
-            addRadiusCircle(locationTeste)
+        
+        for var index in self.animals {
+            
+            pontoMapa = randomPositions(lat, long: long)
+            
+            lat = lat + 1;
+            long = long + 1;
+            
+            // Pino
+            
+            let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
+            myAnn.title = index.animalName
+            myAnn.subtitle = index.animalDescription
+            map.addAnnotation(myAnn)
+            
+            let location : CLLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
+            if let locationTeste : CLLocation = location {
+                addRadiusCircle(locationTeste)
+            }
         }
-        
-        
-        // Pinos
-        let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
-        myAnn.title = "Cachorro bla"
-        myAnn.subtitle = "Cachorro louco"
-        map.addAnnotation(myAnn)
-        
     }
+    
     
     // Método para adicionar Pins no mapa
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        
-        print("\(userLocation)")
         let locUser: CLLocationCoordinate2D = userLocation
         
-        if locUser.latitude == annotation.coordinate.latitude && locUser.longitude == annotation.coordinate.longitude {
+        if annotation.isMemberOfClass(MKUserLocation){
+            return nil;
             
-            return nil
-            
-        }else {
-            
-            var anView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin")
-            
-            if anView == nil {
-                
-                anView = MKAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-                let lbl = UILabel(frame: CGRectMake(0, 0, 100, 30)) as UILabel!
-                
-                lbl.backgroundColor = UIColor.blackColor()
-                lbl.textColor = UIColor.whiteColor()
-                lbl.font = UIFont.systemFontOfSize(10)
-                lbl.text = "Last Time Seen"
-                lbl.alpha = 0.5
-                lbl.tag = 10
-                
-                
-                // Pin annotation
-                let pinAnn = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-                
-                pinAnn.draggable = true
-                pinAnn.canShowCallout = true
-                pinAnn.pinTintColor = MKPinAnnotationView.purplePinColor()
-                pinAnn.animatesDrop = true
-                pinAnn.enabled = true
-                
-                anView?.addSubview(pinAnn)
-                anView!.addSubview(lbl)
-                anView!.canShowCallout = true
-                anView!.frame = lbl.frame
-                
-            }else {
-                
-                anView?.annotation = annotation
-                
-            }
-            
-            
-            /*
-            
+        } else {
             let pinAnn = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-            
-            if annotation is Annotation {
-            if ( pinAnn.isMemberOfClass(MKUserLocation)){
-            print("Deu ruim")
-            }
             
             pinAnn.draggable = true
             pinAnn.canShowCallout = true
-            pinAnn.pinTintColor = MKPinAnnotationView.purplePinColor()
             pinAnn.animatesDrop = true
             pinAnn.enabled = true
+            changePinColor(pinAnn)
             
+            let button = UIButton(type: UIButtonType.Custom)
+            button.frame.size.width = 44
+            button.frame.size.height = 44
+            button.setImage(UIImage(named: "inf"), forState: .Normal)
+            pinAnn.leftCalloutAccessoryView = button
+            
+            if self.index == 0 {
+                self.index = 1
+            } else if self.index == 1 {
+                self.index = 2
+            } else {
+                self.index = 0
             }
-            return pinAnn
             
-            */
-            return anView;
+            return pinAnn
         }
-        
     }
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
@@ -217,27 +158,66 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         
         span.latitudeDelta = 0.005
         span.longitudeDelta = 0.005
-        
         var location = CLLocationCoordinate2D()
-        
         location.latitude = userLocation.coordinate.latitude
         location.longitude = userLocation.coordinate.longitude
-        
         region.span = span
         region.center = location
         
-        
         mapView.setRegion(region, animated: true)
     }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        for var animal in self.animals {
+            
+            if ((view.annotation?.title)! == animal.animalName){
+                
+                self.vW = UIView(frame: CGRectMake(10, self.view.frame.height, 300, 300))
+                self.vW.backgroundColor = UIColor.blackColor()
+                self.vW.alpha = 0.7
+                self.vW.addSubview(makeLabel(animal.animalName!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.3))
+                self.vW.addSubview(makeLabel(animal.animalDescription!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.4))
+                self.vW.addSubview(makeImage("dog.jpg", x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.1))
+                
+                // Botão
+                
+                let botao = UIButton(type: UIButtonType.Custom)
+                
+                botao.frame.size.width = 120
+                botao.backgroundColor = UIColor.redColor()
+                botao.frame.size.height = 60
+                botao.center.x = self.vW.frame.width * 0.4
+                botao.center.y = self.vW.frame.height * 0.8
+                botao.addSubview(makeLabel("Voltar", x: 0, y: 0 ))
+                
+                self.vW.addSubview(botao)
+                
+                botao.addTarget(self, action: "dismissView", forControlEvents: UIControlEvents.TouchUpInside)
+            }
+        }
+        
+        self.view.addSubview(self.vW)
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.vW.center.x = self.view.frame.width * 0.5
+            self.vW.center.y = self.view.frame.height * 0.5
+        })
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func dismissView(){
+        self.vW.removeFromSuperview()
+    }
+    
     func getAddresFromLatitude(){
         
-        let currentLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
+        let currentLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
         geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
             
             if error != nil {
@@ -252,9 +232,49 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             
         })
     }
+   
+    func randomPositions(lat : CLLocationDegrees, long: CLLocationDegrees) -> CLLocationCoordinate2D {
+        var newPosition = CLLocationCoordinate2D()
+        
+        newPosition.latitude = lat;
+        newPosition.longitude = long;
+        
+        
+        return newPosition
+    }
     
+    func changePinColor(pin : MKPinAnnotationView) {
+        
+        if self.index == 0 {
+            pin.pinTintColor = MKPinAnnotationView.redPinColor()
+        } else if self.index == 1 {
+            pin.pinTintColor = MKPinAnnotationView.greenPinColor()
+        } else {
+            pin.pinTintColor = MKPinAnnotationView.purplePinColor()
+        }
+        
+    }
     
-
+    func makeLabel(string : String, x: CGFloat, y: CGFloat )-> UILabel{
+        
+        let lbl = UILabel(frame: CGRectMake(x, y, 200, 60)) as UILabel!
+        
+        lbl.textColor = UIColor.whiteColor()
+        lbl.font = UIFont.systemFontOfSize(25)
+        lbl.text = string
+        
+        return lbl
+    }
+    
+    func makeImage(name: String, x: CGFloat, y: CGFloat )->UIImageView {
+        
+        let image = UIImage(named: name)
+        let imageView = UIImageView(frame: CGRectMake(x, y, 100, 50))
+        imageView.image = image
+        
+        
+        return imageView
+    }
     
     /*
     // MARK: - Navigation
