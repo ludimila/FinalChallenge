@@ -20,6 +20,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         super.viewDidLoad()
         
 //        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+<<<<<<< HEAD
         if Reachability.testConnection(){
             getData()
             print("Com conexao")
@@ -27,6 +28,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             print("Sem conexao")
         }
         
+=======
+          getData()
+
+>>>>>>> 04aec30f5835acd5e02aeb6f50e4a04d5336cbb9
         
     }
 
@@ -34,7 +39,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         super.didReceiveMemoryWarning()
     }
     
-
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -47,8 +51,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
-        
-        
 //        let indexes = self.tableView.indexPathsForVisibleRows as Array!
 //        
 //        for var index in indexes {
@@ -56,8 +58,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 //            
 ////            cellTeste?.alpha = 0.1
 //        }
-        
-        
         
         let currentAnimal : Animal = self.animalsArray[indexPath.row]
         
@@ -76,14 +76,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
             self.animalsArray = animalsArray!
-            
+            AnimalSingleton.sharedInstance().animalsArray = animalsArray!
             self.tableView.reloadData()
         }
+        
+    
+        
     }
-    
-    
-    
-    
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let indexes = self.tableView.indexPathsForVisibleRows as Array!
@@ -110,11 +109,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             valores.append(cellAmoutTela)
         }
         
-        
-        for index in indexes {
+        for var index in indexes {
             let cell = self.tableView.cellForRowAtIndexPath(index)
-            
-      
             
             if valoresIndex[(valores.indexOf(valores.maxElement()!))!] == index.row{
                 cell?.alpha = 1
