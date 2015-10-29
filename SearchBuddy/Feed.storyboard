@@ -27,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="409"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Qs-AS-nDe" id="xUv-dO-dNZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="408.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="409"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Feed" translatesAutoresizingMaskIntoConstraints="NO" id="Mp3-AS-jHm">
@@ -213,6 +213,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Feed" width="1440" height="1414"/>
+        <image name="Feed" width="720" height="707"/>
     </resources>
 </document>

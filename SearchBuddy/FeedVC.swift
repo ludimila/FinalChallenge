@@ -20,8 +20,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         super.viewDidLoad()
         
 //        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
-        getData()
-
+        if Reachability.testConnection(){
+            getData()
+            print("Com conexao")
+        }else{
+            print("Sem conexao")
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
