@@ -19,17 +19,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        if Reachability.testConnection(){
-            self.getData()
-        }else{
-            print("Não há sinal de conexão")
-        }
-        
-        
-        
 //        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
-  
+        getData()
 
     }
 
@@ -54,7 +45,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         let indexes = self.tableView.indexPathsForVisibleRows as Array!
         
-        for index in indexes {
+        for var index in indexes {
             let cellTeste = self.tableView.cellForRowAtIndexPath(index)
             
 //            cellTeste?.alpha = 0.1
