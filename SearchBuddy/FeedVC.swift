@@ -20,7 +20,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         super.viewDidLoad()
         
 //        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
-<<<<<<< HEAD
         if Reachability.testConnection(){
             getData()
             print("Com conexao")
@@ -28,10 +27,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             print("Sem conexao")
         }
         
-=======
-          getData()
 
->>>>>>> 04aec30f5835acd5e02aeb6f50e4a04d5336cbb9
         
     }
 
@@ -109,7 +105,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             valores.append(cellAmoutTela)
         }
         
-        for var index in indexes {
+        for index in indexes {
             let cell = self.tableView.cellForRowAtIndexPath(index)
             
             if valoresIndex[(valores.indexOf(valores.maxElement()!))!] == index.row{
