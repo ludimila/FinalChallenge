@@ -9,16 +9,23 @@
 import UIKit
 import MapKit
 
-class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
-
-    var locationManager : CLLocationManager!
-    @IBOutlet weak var map: MKMapView!
+class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UISearchControllerDelegate, UITableViewDelegate {
     
+    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var Location: UILabel!
+    
+    
+    var pontoMapa: CLLocationCoordinate2D!
+    var geocoder: CLGeocoder!
+    var locationManager : CLLocationManager!
+    var userLocation: CLLocationCoordinate2D!
+    var tableViewSearch: UISearchDisplayController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    // --------------------------------------------------
+        
+        // --------------------------------------------------
         
         let user = User()
         user.username = "Lucas Veras"
@@ -48,82 +55,159 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
                 animal.animalStatus = status
                 animal.animalOwner = user
                 try! animal.save()
-
+                
             }
         }
-        
-    // --------------------------------------------------
-        
-
-        
-        
+        // Inicializa o geocoder
+        geocoder = CLGeocoder()
         
         // Configurações iniciais do mapa
         map.delegate = self
+        
         locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
-    
-        // Verifica se autorização dada pela usuário para captar localização
-        let auth = CLLocationManager.authorizationStatus()
         
-        if( auth == CLAuthorizationStatus.NotDetermined){
-          print("Autorização indeterminada")
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.distanceFilter = kCLDistanceFilterNone
+            
         }
- 
-        // Localização do usuário no mapa
-        map.showsUserLocation = true;
         
-        // Pede autorização pro usuário para obter sua localização
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
-        // Do any additional setup after loading the view.
+        //Personalizar searchBar
+        searchBar.delegate = self
+        searchBar.barStyle = UIBarStyle.BlackOpaque
+        searchBar.barTintColor = UIColor.brownColor()
+        searchBar.placeholder = "Animal";
+        
+        userLocation = locationManager.location?.coordinate
+        
+        
+        self.map.showsUserLocation = true;
+        
     }
+    
+    
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = (manager.location?.coordinate)!
+        
+        getAddresFromLatitude()
+    }
+    
+    func addRadiusCircle(location: CLLocation){
+        let circle = MKCircle(centerCoordinate: location.coordinate, radius: 150 as CLLocationDistance)
+        map.addOverlay(circle)
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if overlay is MKCircle {
+            let circle = MKCircleRenderer(overlay: overlay)
+            circle.strokeColor = UIColor.blackColor()
+            circle.fillColor = UIColor(red: 255, green: 0, blue: 155, alpha: 0.1)
+            circle.lineWidth = 1
+            return circle
+        } else {
+            return nil
+        }
+    }
+    
     
     override func viewWillAppear(animated: Bool) {
         
-        var pontoMapa = CLLocationCoordinate2D()
+        pontoMapa = CLLocationCoordinate2D()
         
+        pontoMapa.latitude = -15.864000;
+        pontoMapa.longitude = -48.028995;
         
-        pontoMapa.latitude = 0;
-        pontoMapa.longitude = 0;
-        
+        let location : CLLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
+        if let locationTeste : CLLocation = location {
+            addRadiusCircle(locationTeste)
+        }
         
         
         // Pinos
-        /*
-        
         let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
-        
+        myAnn.title = "Cachorro bla"
+        myAnn.subtitle = "Cachorro louco"
         map.addAnnotation(myAnn)
         
-        */
-        
     }
-    
     
     // Método para adicionar Pins no mapa
-    /*
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        var pinAnn = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
         
-        if ( pinAnn.isMemberOfClass(MKUserLocation)){
+        print("\(userLocation)")
+        let locUser: CLLocationCoordinate2D = userLocation
+        
+        if locUser.latitude == annotation.coordinate.latitude && locUser.longitude == annotation.coordinate.longitude {
+            
+            return nil
+            
+        }else {
+            
+            var anView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin")
+            
+            if anView == nil {
+                
+                anView = MKAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+                let lbl = UILabel(frame: CGRectMake(0, 0, 100, 30)) as UILabel!
+                
+                lbl.backgroundColor = UIColor.blackColor()
+                lbl.textColor = UIColor.whiteColor()
+                lbl.font = UIFont.systemFontOfSize(10)
+                lbl.text = "Last Time Seen"
+                lbl.alpha = 0.5
+                lbl.tag = 10
+                
+                
+                // Pin annotation
+                let pinAnn = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+                
+                pinAnn.draggable = true
+                pinAnn.canShowCallout = true
+                pinAnn.pinTintColor = MKPinAnnotationView.purplePinColor()
+                pinAnn.animatesDrop = true
+                pinAnn.enabled = true
+                
+                anView?.addSubview(pinAnn)
+                anView!.addSubview(lbl)
+                anView!.canShowCallout = true
+                anView!.frame = lbl.frame
+                
+            }else {
+                
+                anView?.annotation = annotation
+                
+            }
+            
+            
+            /*
+            
+            let pinAnn = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+            
+            if annotation is Annotation {
+            if ( pinAnn.isMemberOfClass(MKUserLocation)){
             print("Deu ruim")
+            }
+            
+            pinAnn.draggable = true
+            pinAnn.canShowCallout = true
+            pinAnn.pinTintColor = MKPinAnnotationView.purplePinColor()
+            pinAnn.animatesDrop = true
+            pinAnn.enabled = true
+            
+            }
+            return pinAnn
+            
+            */
+            return anView;
         }
         
-        pinAnn.pinTintColor = MKPinAnnotationView.redPinColor()
-        pinAnn.animatesDrop = true
-        
-        return pinAnn
-    }
-    */
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
@@ -136,7 +220,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
         
         var location = CLLocationCoordinate2D()
         
-        
         location.latitude = userLocation.coordinate.latitude
         location.longitude = userLocation.coordinate.longitude
         
@@ -145,17 +228,42 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate {
         
         
         mapView.setRegion(region, animated: true)
-        
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func getAddresFromLatitude(){
+        
+        let currentLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
+        geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
+            
+            if error != nil {
+                print("Reverse geocoder deu ruim com esse erro \(error?.localizedDescription)")
+                return
+            }
+            
+            if placemarks!.count > 0 {
+                let pm = placemarks![0]
+                self.Location.text = "\(pm.name!)"
+            }
+            
+        })
+    }
+    
+    
 
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

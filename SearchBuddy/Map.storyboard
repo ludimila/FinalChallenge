@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3wr-Uf-NsC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3wr-Uf-NsC">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--MapVC-->
@@ -16,22 +17,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="47v-Sb-ktx">
-                                <rect key="frame" x="0.0" y="100" width="600" height="291"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="LXB-DP-Bca">
+                                <rect key="frame" x="0.0" y="66" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7RE-sh-tBM">
+                                <rect key="frame" x="0.0" y="475" width="600" height="63"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eey-Ez-kLO">
+                                        <rect key="frame" x="82" y="21" width="436" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="436" id="F2P-40-Mk7"/>
+                                            <constraint firstAttribute="height" constant="21" id="LaR-nz-qES"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="OcQ-pK-9ST"/>
+                                    <constraint firstItem="Eey-Ez-kLO" firstAttribute="centerY" secondItem="7RE-sh-tBM" secondAttribute="centerY" id="aOA-lh-HIs"/>
+                                    <constraint firstItem="Eey-Ez-kLO" firstAttribute="centerX" secondItem="7RE-sh-tBM" secondAttribute="centerX" id="jAg-YC-OzH"/>
+                                </constraints>
+                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="47v-Sb-ktx">
+                                <rect key="frame" x="0.0" y="109" width="600" height="367"/>
                             </mapView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fBU-Zr-EU9" firstAttribute="top" secondItem="7RE-sh-tBM" secondAttribute="bottom" constant="18" id="3hz-Ca-yU7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7RE-sh-tBM" secondAttribute="trailing" constant="-20" id="4RL-be-OmY"/>
+                            <constraint firstItem="47v-Sb-ktx" firstAttribute="top" secondItem="LXB-DP-Bca" secondAttribute="bottom" constant="-1" id="CB1-At-R3O"/>
+                            <constraint firstItem="LXB-DP-Bca" firstAttribute="top" secondItem="bKv-4B-eXX" secondAttribute="bottom" constant="2" id="Eki-Pv-NbP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="47v-Sb-ktx" secondAttribute="trailing" constant="-20" id="LcG-ry-NCr"/>
+                            <constraint firstItem="47v-Sb-ktx" firstAttribute="leading" secondItem="Pr1-IQ-feE" secondAttribute="leadingMargin" constant="-20" id="MSv-xp-Iea"/>
+                            <constraint firstItem="7RE-sh-tBM" firstAttribute="leading" secondItem="Pr1-IQ-feE" secondAttribute="leadingMargin" constant="-20" id="Wkw-3I-U90"/>
+                            <constraint firstItem="LXB-DP-Bca" firstAttribute="leading" secondItem="Pr1-IQ-feE" secondAttribute="leadingMargin" constant="-20" id="gAc-E0-Ezj"/>
+                            <constraint firstItem="7RE-sh-tBM" firstAttribute="top" secondItem="47v-Sb-ktx" secondAttribute="bottom" constant="-1" id="iAV-Ib-FhG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LXB-DP-Bca" secondAttribute="trailing" constant="-20" id="t9R-ik-Q8l"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kRq-Ed-7Ul"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="Location" destination="Eey-Ez-kLO" id="S31-Yl-hdH"/>
                         <outlet property="map" destination="47v-Sb-ktx" id="g1g-Gc-17a"/>
+                        <outlet property="searchBar" destination="LXB-DP-Bca" id="zyO-zK-aon"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aue-qa-AXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1938" y="315"/>
+            <point key="canvasLocation" x="1936" y="305"/>
         </scene>
         <!--Item-->
         <scene sceneID="YvN-4i-KU1">
@@ -42,6 +83,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mpe-z6-vgL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -50,7 +92,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LDX-IW-5Zz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1126" y="315"/>
+            <point key="canvasLocation" x="1128" y="322"/>
         </scene>
     </scenes>
 </document>

@@ -14,24 +14,31 @@
 		19229D291BBDA55600143F81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D271BBDA55600143F81 /* LaunchScreen.storyboard */; };
 		19229D341BBDA55600143F81 /* SearchBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D331BBDA55600143F81 /* SearchBuddyTests.swift */; };
 		19229D3F1BBDA55600143F81 /* SearchBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D3E1BBDA55600143F81 /* SearchBuddyUITests.swift */; };
-		19229D531BBDA60B00143F81 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D521BBDA60B00143F81 /* Map.storyboard */; settings = {ASSET_TAGS = (); }; };
-		19229D551BBDA66100143F81 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D541BBDA66100143F81 /* MapVC.swift */; settings = {ASSET_TAGS = (); }; };
-		19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D5D1BBDC6D900143F81 /* Annotation.swift */; settings = {ASSET_TAGS = (); }; };
-		19229D601BBF024400143F81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D5F1BBF024400143F81 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		19229D621BBF02A300143F81 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D611BBF02A300143F81 /* MainTabBarVC.swift */; settings = {ASSET_TAGS = (); }; };
-		19229D651BBF085D00143F81 /* Perfil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D641BBF085D00143F81 /* Perfil.storyboard */; settings = {ASSET_TAGS = (); }; };
-		4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		4160C95F1BBEECD700D837C2 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95E1BBEECD700D837C2 /* UserDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		4160C9611BBEECE100D837C2 /* AnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9601BBEECE100D837C2 /* AnimalDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		4160C9631BBEECEA00D837C2 /* TypeAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9621BBEECEA00D837C2 /* TypeAnimalDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA5361BBEC55900C37AF1 /* SBDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5351BBEC55900C37AF1 /* SBDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA5381BBEC62400C37AF1 /* StatusAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5371BBEC62400C37AF1 /* StatusAnimal.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA53A1BBECA5900C37AF1 /* TypeAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5391BBECA5900C37AF1 /* TypeAnimal.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53B1BBECD3100C37AF1 /* Animal.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA53E1BBED18E00C37AF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53D1BBED18E00C37AF1 /* User.swift */; settings = {ASSET_TAGS = (); }; };
-		9374333C1BC1AB7B00F0C7DF /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		9374333E1BC1B97400F0C7DF /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333D1BC1B97400F0C7DF /* FeedVC.swift */; settings = {ASSET_TAGS = (); }; };
-		BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */; settings = {ASSET_TAGS = (); }; };
+		19229D531BBDA60B00143F81 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D521BBDA60B00143F81 /* Map.storyboard */; };
+		19229D551BBDA66100143F81 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D541BBDA66100143F81 /* MapVC.swift */; };
+		19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D5D1BBDC6D900143F81 /* Annotation.swift */; };
+		19229D601BBF024400143F81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D5F1BBF024400143F81 /* Main.storyboard */; };
+		19229D621BBF02A300143F81 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D611BBF02A300143F81 /* MainTabBarVC.swift */; };
+		19229D651BBF085D00143F81 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D641BBF085D00143F81 /* Config.storyboard */; };
+		4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */; };
+		4160C95F1BBEECD700D837C2 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95E1BBEECD700D837C2 /* UserDAO.swift */; };
+		4160C9611BBEECE100D837C2 /* AnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9601BBEECE100D837C2 /* AnimalDAO.swift */; };
+		4160C9631BBEECEA00D837C2 /* TypeAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9621BBEECEA00D837C2 /* TypeAnimalDAO.swift */; };
+		417CA5361BBEC55900C37AF1 /* SBDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5351BBEC55900C37AF1 /* SBDAO.swift */; };
+		417CA5381BBEC62400C37AF1 /* StatusAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5371BBEC62400C37AF1 /* StatusAnimal.swift */; };
+		417CA53A1BBECA5900C37AF1 /* TypeAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5391BBECA5900C37AF1 /* TypeAnimal.swift */; };
+		417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53B1BBECD3100C37AF1 /* Animal.swift */; };
+		417CA53E1BBED18E00C37AF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53D1BBED18E00C37AF1 /* User.swift */; };
+		9374333C1BC1AB7B00F0C7DF /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */; };
+		9374333E1BC1B97400F0C7DF /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333D1BC1B97400F0C7DF /* FeedVC.swift */; };
+		BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */; };
+		BBBD4A9D1BD67C360038E54D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBD4A9C1BD67C360038E54D /* ProfileVC.swift */; };
+		BBBD4A9F1BD67C760038E54D /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBD4A9E1BD67C760038E54D /* RegisterVC.swift */; };
+		BBFA97B61BDAB6EF00A7897D /* PresentationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA97B51BDAB6EF00A7897D /* PresentationVC.swift */; };
+		BBFF571D1BC59A4F00DBCEE6 /* FacebookParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF571C1BC59A4F00DBCEE6 /* FacebookParse.swift */; };
+		BBFF571F1BC59BC900DBCEE6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF571E1BC59BC900DBCEE6 /* LoginVC.swift */; };
+		BBFF80791BD94A0200CB0BBB /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBFF80781BD94A0200CB0BBB /* Profile.storyboard */; };
+		BBFF807B1BD9563400CB0BBB /* ConfigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF807A1BD9563400CB0BBB /* ConfigVC.swift */; };
 		BFEF11C5C77A58C39961175C /* Pods_SearchBuddyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3090F107B224336BDFA0C548 /* Pods_SearchBuddyTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -70,7 +77,7 @@
 		19229D5D1BBDC6D900143F81 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		19229D5F1BBF024400143F81 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		19229D611BBF02A300143F81 /* MainTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
-		19229D641BBF085D00143F81 /* Perfil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Perfil.storyboard; sourceTree = "<group>"; };
+		19229D641BBF085D00143F81 /* Config.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Config.storyboard; sourceTree = "<group>"; };
 		3090F107B224336BDFA0C548 /* Pods_SearchBuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusAnimalDAO.swift; sourceTree = "<group>"; };
 		4160C95E1BBEECD700D837C2 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
@@ -86,6 +93,13 @@
 		9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		9374333D1BC1B97400F0C7DF /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
+		BBBD4A9C1BD67C360038E54D /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		BBBD4A9E1BD67C760038E54D /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		BBFA97B51BDAB6EF00A7897D /* PresentationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationVC.swift; sourceTree = "<group>"; };
+		BBFF571C1BC59A4F00DBCEE6 /* FacebookParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookParse.swift; sourceTree = "<group>"; };
+		BBFF571E1BC59BC900DBCEE6 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		BBFF80781BD94A0200CB0BBB /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		BBFF807A1BD9563400CB0BBB /* ConfigVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigVC.swift; sourceTree = "<group>"; };
 		D01E436DB98E83578F0B791A /* Pods-SearchBuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddy/Pods-SearchBuddy.release.xcconfig"; sourceTree = "<group>"; };
 		DE0AFD3261A2F89A3B283297 /* Pods-SearchBuddyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddyTests/Pods-SearchBuddyTests.release.xcconfig"; sourceTree = "<group>"; };
 		FE331FD5FF735885DA5E804D /* Pods-SearchBuddyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddyTests/Pods-SearchBuddyTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,14 +167,14 @@
 			isa = PBXGroup;
 			children = (
 				9374333A1BC1AB6300F0C7DF /* View */,
-				19229D561BBDC53600143F81 /* Annotation */,
+				19EAA0BC1BC84B3B0091DB47 /* MKCircle */,
+				19229D561BBDC53600143F81 /* Services */,
 				19229D511BBDA5F500143F81 /* StoryBoard */,
 				19229D4F1BBDA59C00143F81 /* CRUD */,
 				19229D4E1BBDA56D00143F81 /* DAO */,
 				19229D4D1BBDA56900143F81 /* Model */,
 				19229D4C1BBDA56300143F81 /* Controllers */,
 				19229D1E1BBDA55600143F81 /* AppDelegate.swift */,
-				19229D201BBDA55600143F81 /* ViewController.swift */,
 				19229D251BBDA55600143F81 /* Assets.xcassets */,
 				19229D271BBDA55600143F81 /* LaunchScreen.storyboard */,
 				19229D2A1BBDA55600143F81 /* Info.plist */,
@@ -189,7 +203,10 @@
 		19229D4C1BBDA56300143F81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBBD4A9B1BD67C1C0038E54D /* Config */,
 				19229D541BBDA66100143F81 /* MapVC.swift */,
+				BBBD4A9C1BD67C360038E54D /* ProfileVC.swift */,
+				19229D201BBDA55600143F81 /* ViewController.swift */,
 				19229D611BBF02A300143F81 /* MainTabBarVC.swift */,
 				9374333D1BC1B97400F0C7DF /* FeedVC.swift */,
 			);
@@ -231,18 +248,27 @@
 			children = (
 				19229D521BBDA60B00143F81 /* Map.storyboard */,
 				19229D5F1BBF024400143F81 /* Main.storyboard */,
-				19229D641BBF085D00143F81 /* Perfil.storyboard */,
+				19229D641BBF085D00143F81 /* Config.storyboard */,
 				BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */,
+				BBFF80781BD94A0200CB0BBB /* Profile.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
 		};
-		19229D561BBDC53600143F81 /* Annotation */ = {
+		19229D561BBDC53600143F81 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				19229D5D1BBDC6D900143F81 /* Annotation.swift */,
+				BBFF571C1BC59A4F00DBCEE6 /* FacebookParse.swift */,
 			);
-			name = Annotation;
+			name = Services;
+			sourceTree = "<group>";
+		};
+		19EAA0BC1BC84B3B0091DB47 /* MKCircle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MKCircle;
 			sourceTree = "<group>";
 		};
 		49AD96A407B270585DBCBF75 /* Pods */ = {
@@ -264,6 +290,17 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		BBBD4A9B1BD67C1C0038E54D /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				BBFF571E1BC59BC900DBCEE6 /* LoginVC.swift */,
+				BBFA97B51BDAB6EF00A7897D /* PresentationVC.swift */,
+				BBBD4A9E1BD67C760038E54D /* RegisterVC.swift */,
+				BBFF807A1BD9563400CB0BBB /* ConfigVC.swift */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,6 +314,7 @@
 				19229D191BBDA55600143F81 /* Resources */,
 				3CBB0D222C0B1B4A67978D0A /* Embed Pods Frameworks */,
 				2B4B552D553DDAC494E07BDA /* Copy Pods Resources */,
+				BB1DADFD1BDF9FC9008223E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -376,8 +414,9 @@
 				19229D531BBDA60B00143F81 /* Map.storyboard in Resources */,
 				19229D291BBDA55600143F81 /* LaunchScreen.storyboard in Resources */,
 				BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */,
-				19229D651BBF085D00143F81 /* Perfil.storyboard in Resources */,
+				19229D651BBF085D00143F81 /* Config.storyboard in Resources */,
 				19229D261BBDA55600143F81 /* Assets.xcassets in Resources */,
+				BBFF80791BD94A0200CB0BBB /* Profile.storyboard in Resources */,
 				19229D601BBF024400143F81 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +513,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SearchBuddyTests/Pods-SearchBuddyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BB1DADFD1BDF9FC9008223E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" c726ffd03bb1a50bf257e9f90284aebc1b967675 e116dc1ba7c3cb8db1290abd5abe2b02ebfaa0f4d4cc2021295a7f596a4e8d48";
+		};
 		F7FBA59526020C6BD5DDB6B2 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,14 +551,20 @@
 				19229D211BBDA55600143F81 /* ViewController.swift in Sources */,
 				417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */,
 				19229D551BBDA66100143F81 /* MapVC.swift in Sources */,
+				BBBD4A9D1BD67C360038E54D /* ProfileVC.swift in Sources */,
 				19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */,
+				BBFF571D1BC59A4F00DBCEE6 /* FacebookParse.swift in Sources */,
 				9374333E1BC1B97400F0C7DF /* FeedVC.swift in Sources */,
 				417CA5381BBEC62400C37AF1 /* StatusAnimal.swift in Sources */,
 				417CA53E1BBED18E00C37AF1 /* User.swift in Sources */,
+				BBBD4A9F1BD67C760038E54D /* RegisterVC.swift in Sources */,
 				4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */,
+				BBFF807B1BD9563400CB0BBB /* ConfigVC.swift in Sources */,
 				417CA5361BBEC55900C37AF1 /* SBDAO.swift in Sources */,
 				9374333C1BC1AB7B00F0C7DF /* FeedTableViewCell.swift in Sources */,
+				BBFA97B61BDAB6EF00A7897D /* PresentationVC.swift in Sources */,
 				4160C9631BBEECEA00D837C2 /* TypeAnimalDAO.swift in Sources */,
+				BBFF571F1BC59BC900DBCEE6 /* LoginVC.swift in Sources */,
 				4160C9611BBEECE100D837C2 /* AnimalDAO.swift in Sources */,
 				4160C95F1BBEECD700D837C2 /* UserDAO.swift in Sources */,
 				19229D621BBF02A300143F81 /* MainTabBarVC.swift in Sources */,

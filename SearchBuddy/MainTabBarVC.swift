@@ -32,10 +32,11 @@ class MainTabBarVC: UITabBarController {
        
 //        print("Tab bar: \( AnimalDAO.sharedInstance().allAnimals)")
         let mapSB = createStoryBoard("Map", imageName: "MedalGoals")
-        let perfilSB = createStoryBoard("Perfil", imageName: "PerfilBar")
+        let perfilSB = createStoryBoard("Profile", imageName: "PerfilBar")
         let feedSB = createStoryBoard("Feed", imageName: "FeedBar")
+        let configSB = createStoryBoard("Config", imageName: "MedalGoals")
         
-        self.viewControllers = [mapSB,feedSB,perfilSB]
+        self.viewControllers = [mapSB,feedSB,perfilSB,configSB]
         self.selectedIndex = 1
         
         

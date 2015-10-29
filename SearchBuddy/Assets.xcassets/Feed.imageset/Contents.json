@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "can.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "be-kind-always.jpg",
+      "filename" : "can.jpg",
       "scale" : "2x"
     },
     {
