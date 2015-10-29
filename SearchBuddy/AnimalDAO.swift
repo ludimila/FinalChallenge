@@ -20,13 +20,17 @@ class AnimalDAO: SBDAO {
         query.includeKey("animalType")
         query.includeKey("animalOwner")
     
-        query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
-            if let animalsNN = animals as? Array<Animal> {
-                completion(animalsNN, error: error)
-            }else{
-                completion(nil, error: error)
-            }
-        })
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            
+            query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
+                if let animalsNN = animals as? Array<Animal> {
+                    completion(animalsNN, error: error)
+                }else{
+                    completion(nil, error: error)
+                }
+            })
+        }
+        
     }
     
 }
