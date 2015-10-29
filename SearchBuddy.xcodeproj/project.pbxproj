@@ -29,6 +29,9 @@
 		417CA53A1BBECA5900C37AF1 /* TypeAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5391BBECA5900C37AF1 /* TypeAnimal.swift */; };
 		417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53B1BBECD3100C37AF1 /* Animal.swift */; };
 		417CA53E1BBED18E00C37AF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53D1BBED18E00C37AF1 /* User.swift */; };
+		9373E0FC1BDFE8B700795EC6 /* AnimalProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9373E0FB1BDFE8B700795EC6 /* AnimalProfile.storyboard */; };
+		9373E1001BDFF68800795EC6 /* AnimalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */; };
+		9373E1021BDFF72600795EC6 /* AnimalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9373E1011BDFF72600795EC6 /* AnimalTableViewCell.swift */; };
 		9374333C1BC1AB7B00F0C7DF /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */; };
 		9374333E1BC1B97400F0C7DF /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333D1BC1B97400F0C7DF /* FeedVC.swift */; };
 		BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */; };
@@ -90,6 +93,9 @@
 		417CA53D1BBED18E00C37AF1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		431F059C386E18A89FCF4BCE /* Pods-SearchBuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddy/Pods-SearchBuddy.debug.xcconfig"; sourceTree = "<group>"; };
 		785A7800B65145638DDC654A /* Pods_SearchBuddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBuddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9373E0FB1BDFE8B700795EC6 /* AnimalProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnimalProfile.storyboard; sourceTree = "<group>"; };
+		9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalVC.swift; sourceTree = "<group>"; };
+		9373E1011BDFF72600795EC6 /* AnimalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTableViewCell.swift; sourceTree = "<group>"; };
 		9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		9374333D1BC1B97400F0C7DF /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
@@ -209,6 +215,7 @@
 				19229D201BBDA55600143F81 /* ViewController.swift */,
 				19229D611BBF02A300143F81 /* MainTabBarVC.swift */,
 				9374333D1BC1B97400F0C7DF /* FeedVC.swift */,
+				9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -251,6 +258,7 @@
 				19229D641BBF085D00143F81 /* Config.storyboard */,
 				BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */,
 				BBFF80781BD94A0200CB0BBB /* Profile.storyboard */,
+				9373E0FB1BDFE8B700795EC6 /* AnimalProfile.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */,
+				9373E1011BDFF72600795EC6 /* AnimalTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -413,6 +422,7 @@
 			files = (
 				19229D531BBDA60B00143F81 /* Map.storyboard in Resources */,
 				19229D291BBDA55600143F81 /* LaunchScreen.storyboard in Resources */,
+				9373E0FC1BDFE8B700795EC6 /* AnimalProfile.storyboard in Resources */,
 				BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */,
 				19229D651BBF085D00143F81 /* Config.storyboard in Resources */,
 				19229D261BBDA55600143F81 /* Assets.xcassets in Resources */,
@@ -550,12 +560,14 @@
 			files = (
 				19229D211BBDA55600143F81 /* ViewController.swift in Sources */,
 				417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */,
+				9373E1001BDFF68800795EC6 /* AnimalVC.swift in Sources */,
 				19229D551BBDA66100143F81 /* MapVC.swift in Sources */,
 				BBBD4A9D1BD67C360038E54D /* ProfileVC.swift in Sources */,
 				19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */,
 				BBFF571D1BC59A4F00DBCEE6 /* FacebookParse.swift in Sources */,
 				9374333E1BC1B97400F0C7DF /* FeedVC.swift in Sources */,
 				417CA5381BBEC62400C37AF1 /* StatusAnimal.swift in Sources */,
+				9373E1021BDFF72600795EC6 /* AnimalTableViewCell.swift in Sources */,
 				417CA53E1BBED18E00C37AF1 /* User.swift in Sources */,
 				BBBD4A9F1BD67C760038E54D /* RegisterVC.swift in Sources */,
 				4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */,

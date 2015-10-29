@@ -19,7 +19,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+       tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         getData()
 
     }
@@ -41,18 +41,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
-        
-        
-//        let indexes = self.tableView.indexPathsForVisibleRows as Array!
-//        
-//        for var index in indexes {
-//            let cellTeste = self.tableView.cellForRowAtIndexPath(index)
-//            
-////            cellTeste?.alpha = 0.1
-//        }
-        
-        
-        
         let currentAnimal : Animal = self.animalsArray[indexPath.row]
         
         
@@ -66,6 +54,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         return cell
     }
     
+    
     func getData(){
         
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
@@ -74,9 +63,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             self.tableView.reloadData()
         }
     }
-    
-    
-    
     
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
