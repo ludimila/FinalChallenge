@@ -16,8 +16,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     @IBOutlet weak var tableView: UITableView!
     var animalsArray = Array<Animal>()
     
+//    RefreshControl
+    let refreshTableView = UIRefreshControl()
+    var customView: UIView!
+    var labelsArray: Array<UILabel> = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refreshTableView.backgroundColor = UIColor.redColor()
+        self.refreshTableView.addTarget(self, action: "reloadTableView", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(self.refreshTableView)
+        
+        loadCustomRefreshContent()
+        
         
 //        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         if Reachability.testConnection(){
@@ -33,6 +46,25 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func reloadTableView() {
+        print("RELOAD")
+        
+        self.refreshTableView.endRefreshing()
+    }
+    
+    func loadCustomRefreshContent() {
+        let refreshContets = NSBundle.mainBundle().loadNibNamed("RefreshContents", owner: self, options: nil)
+        
+        self.customView = refreshContets[0] as! UIView
+        self.customView.frame = self.refreshTableView.bounds
+        
+        for var i=0; i<customView.subviews.count; i++ {
+            labelsArray.append(self.customView.viewWithTag(i + 1) as! UILabel)
+        }
+        
+        self.refreshTableView.addSubview(self.customView)
     }
     
     
