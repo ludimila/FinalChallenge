@@ -52,4 +52,17 @@ class AnimalDAO: SBDAO {
         
     }
     
+    
+    class func signUpAnimal(animal: Animal, completion: (sucessed:Bool, error:NSError?) -> Void){
+        
+        animal.saveInBackgroundWithBlock({
+            (succeeded: Bool, error: NSError?) -> Void in
+            completion(sucessed: succeeded,error:error)
+        })
+        
+
+    
+    
+    
+    }
 }

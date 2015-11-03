@@ -39,9 +39,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         }else{
             print("Sem conexao")
         }
-        
-
-        
 
     }
 
@@ -89,6 +86,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 ////            cellTeste?.alpha = 0.1
 //        }
         
+
         let currentAnimal : Animal = self.animalsArray[indexPath.row]
         
         
@@ -102,6 +100,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         return cell
     }
     
+    
     func getData(){
         
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
@@ -109,10 +108,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             AnimalDAO.sharedInstance().animalsArray = animalsArray!
             self.tableView.reloadData()
         }
-        
-    
-        
+
     }
+    
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let indexes = self.tableView.indexPathsForVisibleRows as Array!
