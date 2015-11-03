@@ -64,6 +64,17 @@ class UserDAO: NSObject {
         PFUser.logOut()
     }
     
+    class func updateUserData(user: PFUser, data: Dictionary<String,String>)-> Void{
+        
+        let user = self.getCurrentUser()
+                
+        user!["name"] = data["name"]
+        user!["email"] = data["email"]
+        
+        user?.saveInBackground()
+        
+    }
+    
     class func signUpUser(user: User, completion: (sucessed:Bool, error:NSError?) -> Void){
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in

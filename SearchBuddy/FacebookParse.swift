@@ -39,7 +39,7 @@ class FacebookParse: NSObject {
         }
     }
     
-    class func getFBUserData() -> Dictionary<String,String> {
+    class func getFBUserData(completion: (sucessed:Bool,data:Dictionary<String,String>, error:NSError?) -> Void){
         var userData = [String:String]()
         if((FBSDKAccessToken.currentAccessToken()) != nil){
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email, friends"]).startWithCompletionHandler({ (connection, result, error) -> Void in
@@ -47,13 +47,13 @@ class FacebookParse: NSObject {
                     userData["name"] = result.objectForKey("name") as? String
                     userData["email"] = result.objectForKey("email") as? String
                     let picture = result.objectForKey("picture") as! NSDictionary
-                    let data = picture.objectForKey("data") as! NSDictionary
-                    let url = data.objectForKey("url") as! String
+                    let dataImage = picture.objectForKey("data") as! NSDictionary
+                    let url = dataImage.objectForKey("url") as! String
                     userData["photoUrl"] = url
                     
                     
-                    userData["error"] = "nil"
                     
+                    completion(sucessed: true, data: userData, error: nil)
 //                    // Get the user's profile picture.
 //                    var pictureURL : NSURL = NSURL(string: url)!
 //                    var pictureImage = UIImage(data: NSData(contentsOfURL: pictureURL)!)
@@ -62,12 +62,10 @@ class FacebookParse: NSObject {
 //                    self.fileManager.createFileAtPath(filePathToWrite, contents: imageData, attributes: nil)
                     
                 } else {
-                    userData["error"] = "\(error.description)"
+                    completion(sucessed: false, data: userData, error: error)
                 }
             })
         }
-        
-        return userData
     }
 
 }
