@@ -73,12 +73,12 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 animal.vaccinated = true
             case 3:
                 
-                var type = TypeAnimal()
+                let type = TypeAnimal()
                 type.typeDescription = i.dataTextField.text
                 animal.animalType = type
                 
             case 4:
-                var status = StatusAnimal()
+                let status = StatusAnimal()
                 status.situation = i.dataTextField.text
                 animal.animalStatus = status
                 
