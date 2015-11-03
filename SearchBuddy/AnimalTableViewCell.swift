@@ -10,6 +10,9 @@ import UIKit
 
 class AnimalTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var dataTextField: UITextField!
+    @IBOutlet weak var dataLabel: UILabel!
+
     
     
 
