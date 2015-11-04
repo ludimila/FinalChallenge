@@ -42,6 +42,7 @@ class FacebookParse: NSObject {
     internal func getFBUserData() -> Void {
         if((FBSDKAccessToken.currentAccessToken()) != nil){
             
+            
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email, friends"]).startWithCompletionHandler({ (connection, result, error) -> Void in
                 if error == nil {
                     
@@ -61,6 +62,7 @@ class FacebookParse: NSObject {
 //                    self.fileManager.createFileAtPath(filePathToWrite, contents: imageData, attributes: nil)
                     
                 } else {
+                    print("Resultado -> \(result)")
                     print("\(error)")
                 }
             })
