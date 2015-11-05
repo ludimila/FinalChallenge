@@ -213,6 +213,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Feed" width="720" height="707"/>
+        <image name="Feed" width="1920" height="1200"/>
     </resources>
 </document>

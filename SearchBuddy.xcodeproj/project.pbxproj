@@ -14,28 +14,32 @@
 		19229D291BBDA55600143F81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D271BBDA55600143F81 /* LaunchScreen.storyboard */; };
 		19229D341BBDA55600143F81 /* SearchBuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D331BBDA55600143F81 /* SearchBuddyTests.swift */; };
 		19229D3F1BBDA55600143F81 /* SearchBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D3E1BBDA55600143F81 /* SearchBuddyUITests.swift */; };
-		19229D531BBDA60B00143F81 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D521BBDA60B00143F81 /* Map.storyboard */; settings = {ASSET_TAGS = (); }; };
-		19229D551BBDA66100143F81 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D541BBDA66100143F81 /* MapVC.swift */; settings = {ASSET_TAGS = (); }; };
-		19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D5D1BBDC6D900143F81 /* Annotation.swift */; settings = {ASSET_TAGS = (); }; };
-		19229D601BBF024400143F81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D5F1BBF024400143F81 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		19229D621BBF02A300143F81 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D611BBF02A300143F81 /* MainTabBarVC.swift */; settings = {ASSET_TAGS = (); }; };
-		19229D651BBF085D00143F81 /* Perfil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D641BBF085D00143F81 /* Perfil.storyboard */; settings = {ASSET_TAGS = (); }; };
-		195F7C101BDFE733008AF749 /* AnimalSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F7C0F1BDFE733008AF749 /* AnimalSingleton.swift */; settings = {ASSET_TAGS = (); }; };
-		195F7C121BE13B08008AF749 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 195F7C111BE13B08008AF749 /* dog.jpg */; settings = {ASSET_TAGS = (); }; };
-		195F7C141BE28F52008AF749 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 195F7C131BE28F52008AF749 /* Config.storyboard */; settings = {ASSET_TAGS = (); }; };
+		19229D531BBDA60B00143F81 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D521BBDA60B00143F81 /* Map.storyboard */; };
+		19229D551BBDA66100143F81 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D541BBDA66100143F81 /* MapVC.swift */; };
+		19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D5D1BBDC6D900143F81 /* Annotation.swift */; };
+		19229D601BBF024400143F81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D5F1BBF024400143F81 /* Main.storyboard */; };
+		19229D621BBF02A300143F81 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19229D611BBF02A300143F81 /* MainTabBarVC.swift */; };
+		19229D651BBF085D00143F81 /* Perfil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D641BBF085D00143F81 /* Perfil.storyboard */; };
 		195F7C161BE29182008AF749 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F7C151BE29182008AF749 /* UserVC.swift */; settings = {ASSET_TAGS = (); }; };
-		4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		4160C95F1BBEECD700D837C2 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95E1BBEECD700D837C2 /* UserDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		4160C9611BBEECE100D837C2 /* AnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9601BBEECE100D837C2 /* AnimalDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		4160C9631BBEECEA00D837C2 /* TypeAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9621BBEECEA00D837C2 /* TypeAnimalDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA5361BBEC55900C37AF1 /* SBDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5351BBEC55900C37AF1 /* SBDAO.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA5381BBEC62400C37AF1 /* StatusAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5371BBEC62400C37AF1 /* StatusAnimal.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA53A1BBECA5900C37AF1 /* TypeAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5391BBECA5900C37AF1 /* TypeAnimal.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53B1BBECD3100C37AF1 /* Animal.swift */; settings = {ASSET_TAGS = (); }; };
-		417CA53E1BBED18E00C37AF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53D1BBED18E00C37AF1 /* User.swift */; settings = {ASSET_TAGS = (); }; };
-		9374333C1BC1AB7B00F0C7DF /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		9374333E1BC1B97400F0C7DF /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333D1BC1B97400F0C7DF /* FeedVC.swift */; settings = {ASSET_TAGS = (); }; };
-		BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */; settings = {ASSET_TAGS = (FeedVC, ); }; };
+		19665D601BEA7E6000BC81E0 /* arches-945495_1920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19665D5F1BEA7E6000BC81E0 /* arches-945495_1920.jpg */; settings = {ASSET_TAGS = (); }; };
+		4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */; };
+		4160C95F1BBEECD700D837C2 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95E1BBEECD700D837C2 /* UserDAO.swift */; };
+		4160C9611BBEECE100D837C2 /* AnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9601BBEECE100D837C2 /* AnimalDAO.swift */; };
+		4160C9631BBEECEA00D837C2 /* TypeAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9621BBEECEA00D837C2 /* TypeAnimalDAO.swift */; };
+		417CA5361BBEC55900C37AF1 /* SBDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5351BBEC55900C37AF1 /* SBDAO.swift */; };
+		417CA5381BBEC62400C37AF1 /* StatusAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5371BBEC62400C37AF1 /* StatusAnimal.swift */; };
+		417CA53A1BBECA5900C37AF1 /* TypeAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA5391BBECA5900C37AF1 /* TypeAnimal.swift */; };
+		417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53B1BBECD3100C37AF1 /* Animal.swift */; };
+		417CA53E1BBED18E00C37AF1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CA53D1BBED18E00C37AF1 /* User.swift */; };
+		418E76DA1BE3D89600FDA20B /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418E76D91BE3D89600FDA20B /* RefreshContents.xib */; };
+		41A58B861BE286DD00793A96 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A58B851BE286DD00793A96 /* Reachability.swift */; };
+		41A58B8B1BE292C100793A96 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41A58B8A1BE292C100793A96 /* Config.storyboard */; };
+		9373E0FC1BDFE8B700795EC6 /* AnimalProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9373E0FB1BDFE8B700795EC6 /* AnimalProfile.storyboard */; };
+		9373E1001BDFF68800795EC6 /* AnimalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */; };
+		9373E1021BDFF72600795EC6 /* AnimalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9373E1011BDFF72600795EC6 /* AnimalTableViewCell.swift */; };
+		9374333C1BC1AB7B00F0C7DF /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */; };
+		9374333E1BC1B97400F0C7DF /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9374333D1BC1B97400F0C7DF /* FeedVC.swift */; };
+		BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */; };
 		BBBD4A9D1BD67C360038E54D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBD4A9C1BD67C360038E54D /* ProfileVC.swift */; };
 		BBBD4A9F1BD67C760038E54D /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBD4A9E1BD67C760038E54D /* RegisterVC.swift */; };
 		BBFA97B61BDAB6EF00A7897D /* PresentationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA97B51BDAB6EF00A7897D /* PresentationVC.swift */; };
@@ -82,10 +86,9 @@
 		19229D5F1BBF024400143F81 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		19229D611BBF02A300143F81 /* MainTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
 		19229D641BBF085D00143F81 /* Perfil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Perfil.storyboard; sourceTree = "<group>"; };
-		195F7C0F1BDFE733008AF749 /* AnimalSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalSingleton.swift; sourceTree = "<group>"; };
 		195F7C111BE13B08008AF749 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
-		195F7C131BE28F52008AF749 /* Config.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Config.storyboard; sourceTree = "<group>"; };
 		195F7C151BE29182008AF749 /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
+		19665D5F1BEA7E6000BC81E0 /* arches-945495_1920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "arches-945495_1920.jpg"; sourceTree = "<group>"; };
 		3090F107B224336BDFA0C548 /* Pods_SearchBuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusAnimalDAO.swift; sourceTree = "<group>"; };
 		4160C95E1BBEECD700D837C2 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
@@ -96,8 +99,14 @@
 		417CA5391BBECA5900C37AF1 /* TypeAnimal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAnimal.swift; sourceTree = "<group>"; };
 		417CA53B1BBECD3100C37AF1 /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
 		417CA53D1BBED18E00C37AF1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		418E76D91BE3D89600FDA20B /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
+		41A58B851BE286DD00793A96 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		41A58B8A1BE292C100793A96 /* Config.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Config.storyboard; sourceTree = "<group>"; };
 		431F059C386E18A89FCF4BCE /* Pods-SearchBuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddy/Pods-SearchBuddy.debug.xcconfig"; sourceTree = "<group>"; };
 		785A7800B65145638DDC654A /* Pods_SearchBuddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBuddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9373E0FB1BDFE8B700795EC6 /* AnimalProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnimalProfile.storyboard; sourceTree = "<group>"; };
+		9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalVC.swift; sourceTree = "<group>"; };
+		9373E1011BDFF72600795EC6 /* AnimalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTableViewCell.swift; sourceTree = "<group>"; };
 		9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		9374333D1BC1B97400F0C7DF /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
@@ -152,6 +161,7 @@
 		19229D121BBDA55600143F81 = {
 			isa = PBXGroup;
 			children = (
+				418E76D91BE3D89600FDA20B /* RefreshContents.xib */,
 				19229D1D1BBDA55600143F81 /* SearchBuddy */,
 				19229D321BBDA55600143F81 /* SearchBuddyTests */,
 				19229D3D1BBDA55600143F81 /* SearchBuddyUITests */,
@@ -174,7 +184,7 @@
 		19229D1D1BBDA55600143F81 /* SearchBuddy */ = {
 			isa = PBXGroup;
 			children = (
-				195F7C0E1BDFE6B8008AF749 /* Singleton */,
+				41A58B871BE286E100793A96 /* Network */,
 				9374333A1BC1AB6300F0C7DF /* View */,
 				19229D561BBDC53600143F81 /* Services */,
 				19229D511BBDA5F500143F81 /* StoryBoard */,
@@ -184,6 +194,7 @@
 				19229D1E1BBDA55600143F81 /* AppDelegate.swift */,
 				19229D251BBDA55600143F81 /* Assets.xcassets */,
 				195F7C111BE13B08008AF749 /* dog.jpg */,
+				19665D5F1BEA7E6000BC81E0 /* arches-945495_1920.jpg */,
 				19229D271BBDA55600143F81 /* LaunchScreen.storyboard */,
 				19229D2A1BBDA55600143F81 /* Info.plist */,
 			);
@@ -218,6 +229,7 @@
 				19229D611BBF02A300143F81 /* MainTabBarVC.swift */,
 				9374333D1BC1B97400F0C7DF /* FeedVC.swift */,
 				195F7C151BE29182008AF749 /* UserVC.swift */,
+				9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -248,12 +260,13 @@
 		19229D511BBDA5F500143F81 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				195F7C131BE28F52008AF749 /* Config.storyboard */,
+				41A58B8A1BE292C100793A96 /* Config.storyboard */,
 				19229D521BBDA60B00143F81 /* Map.storyboard */,
 				19229D5F1BBF024400143F81 /* Main.storyboard */,
 				19229D641BBF085D00143F81 /* Perfil.storyboard */,
 				BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */,
 				BBFF80781BD94A0200CB0BBB /* Profile.storyboard */,
+				9373E0FB1BDFE8B700795EC6 /* AnimalProfile.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
@@ -267,12 +280,12 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		195F7C0E1BDFE6B8008AF749 /* Singleton */ = {
+		41A58B871BE286E100793A96 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				195F7C0F1BDFE733008AF749 /* AnimalSingleton.swift */,
+				41A58B851BE286DD00793A96 /* Reachability.swift */,
 			);
-			name = Singleton;
+			name = Network;
 			sourceTree = "<group>";
 		};
 		49AD96A407B270585DBCBF75 /* Pods */ = {
@@ -290,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				9374333B1BC1AB7B00F0C7DF /* FeedTableViewCell.swift */,
+				9373E1011BDFF72600795EC6 /* AnimalTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -418,14 +432,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				195F7C121BE13B08008AF749 /* dog.jpg in Resources */,
 				19229D531BBDA60B00143F81 /* Map.storyboard in Resources */,
-				195F7C141BE28F52008AF749 /* Config.storyboard in Resources */,
 				19229D291BBDA55600143F81 /* LaunchScreen.storyboard in Resources */,
+				418E76DA1BE3D89600FDA20B /* RefreshContents.xib in Resources */,
+				9373E0FC1BDFE8B700795EC6 /* AnimalProfile.storyboard in Resources */,
+				19665D601BEA7E6000BC81E0 /* arches-945495_1920.jpg in Resources */,
 				BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */,
 				19229D651BBF085D00143F81 /* Perfil.storyboard in Resources */,
 				19229D261BBDA55600143F81 /* Assets.xcassets in Resources */,
 				BBFF80791BD94A0200CB0BBB /* Profile.storyboard in Resources */,
+				41A58B8B1BE292C100793A96 /* Config.storyboard in Resources */,
 				19229D601BBF024400143F81 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,6 +575,7 @@
 			files = (
 				19229D211BBDA55600143F81 /* ViewController.swift in Sources */,
 				417CA53C1BBECD3100C37AF1 /* Animal.swift in Sources */,
+				9373E1001BDFF68800795EC6 /* AnimalVC.swift in Sources */,
 				19229D551BBDA66100143F81 /* MapVC.swift in Sources */,
 				BBBD4A9D1BD67C360038E54D /* ProfileVC.swift in Sources */,
 				19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */,
@@ -566,14 +583,15 @@
 				9374333E1BC1B97400F0C7DF /* FeedVC.swift in Sources */,
 				195F7C161BE29182008AF749 /* UserVC.swift in Sources */,
 				417CA5381BBEC62400C37AF1 /* StatusAnimal.swift in Sources */,
+				9373E1021BDFF72600795EC6 /* AnimalTableViewCell.swift in Sources */,
 				417CA53E1BBED18E00C37AF1 /* User.swift in Sources */,
 				BBBD4A9F1BD67C760038E54D /* RegisterVC.swift in Sources */,
 				4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */,
 				BBFF807B1BD9563400CB0BBB /* ConfigVC.swift in Sources */,
-				195F7C101BDFE733008AF749 /* AnimalSingleton.swift in Sources */,
 				417CA5361BBEC55900C37AF1 /* SBDAO.swift in Sources */,
 				9374333C1BC1AB7B00F0C7DF /* FeedTableViewCell.swift in Sources */,
 				BBFA97B61BDAB6EF00A7897D /* PresentationVC.swift in Sources */,
+				41A58B861BE286DD00793A96 /* Reachability.swift in Sources */,
 				4160C9631BBEECEA00D837C2 /* TypeAnimalDAO.swift in Sources */,
 				BBFF571F1BC59BC900DBCEE6 /* LoginVC.swift in Sources */,
 				4160C9611BBEECE100D837C2 /* AnimalDAO.swift in Sources */,

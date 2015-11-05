@@ -49,20 +49,31 @@ class LoginVC: UIViewController {
         }
     }
     
-    @IBAction func twitterLogin(sender: AnyObject) {
-    }
     
     @IBAction func facebookLogin(sender: AnyObject) {
         UserDAO.loginInFacebook() { (sucessed,isNew,error) -> Void in
             if sucessed{
                 if isNew{
-                    let alert = UIAlertController(title: "Cadastro Realizado", message: "Bem-vindo. Seu cadastro foi realizado com o Facebook", preferredStyle: .Alert)
-                    let action = UIAlertAction(title: "OK", style: .Default) { _ in
-                        self.navigationController?.popToRootViewControllerAnimated(true)
-                        self.tableViewToReload!.reloadData()
-                    }
-                    alert.addAction(action)
-                    self.presentViewController(alert, animated: true, completion: {})
+                    var userData = Dictionary<String,String>()
+                    FacebookParse.getFBUserData({ (sucessed, data, error) -> Void in
+                        if error == nil{
+                            userData = data
+                            print("AEEEEHOOOOOOOOOO")
+                            
+                            let user = UserDAO.getCurrentUser()
+                            
+                            UserDAO.updateUserData(user!, data: userData)
+                            
+                            let alert = UIAlertController(title: "Cadastro Realizado", message: "Bem-vindo. Seu cadastro foi realizado com o Facebook", preferredStyle: .Alert)
+                            let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                                self.navigationController?.popToRootViewControllerAnimated(true)
+                                self.tableViewToReload!.reloadData()
+                            }
+                            alert.addAction(action)
+                            self.presentViewController(alert, animated: true, completion: {})
+
+                        }
+                    })
                 }else{
                     let alert = UIAlertController(title: "Login realizado", message: "Bem vindo de volta", preferredStyle: .Alert)
                     let action = UIAlertAction(title: "OK", style: .Default) { _ in

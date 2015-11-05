@@ -11,6 +11,25 @@ import Parse
 
 class AnimalDAO: SBDAO {
     
+    static private var instance : AnimalDAO?
+    
+    var animalsArray = Array<Animal>()
+    
+    override init () {
+        NSException(name: "Singleton", reason: "Use AnimalSingleton.sharedInstance()", userInfo: nil).raise()
+    }
+    
+    private init(singleton: Bool!) {
+        super.init()
+    }
+    
+    static func sharedInstance() -> AnimalDAO {
+        if instance == nil {
+            instance = AnimalDAO(singleton: true)
+        }
+        return instance!
+    }
+    
     class func getLostAnimals(completion: (Array<Animal>?, error: NSError?) -> Void){
         let query = Animal.query()!
 //        query?.whereKey("autor", equalTo: usuario)
@@ -33,4 +52,17 @@ class AnimalDAO: SBDAO {
         
     }
     
+    
+    class func signUpAnimal(animal: Animal, completion: (sucessed:Bool, error:NSError?) -> Void){
+        
+        animal.saveInBackgroundWithBlock({
+            (succeeded: Bool, error: NSError?) -> Void in
+            completion(sucessed: succeeded,error:error)
+        })
+        
+
+    
+    
+    
+    }
 }

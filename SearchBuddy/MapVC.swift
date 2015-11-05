@@ -33,7 +33,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         self.index = 0
         
         // Animais do Singleton
-        self.animals = AnimalSingleton.sharedInstance().animalsArray
+        self.animals = AnimalDAO.sharedInstance().animalsArray
         
         // Inicializa o geocoder
         self.geocoder = CLGeocoder()
@@ -64,8 +64,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = (manager.location?.coordinate)!
-        
         getAddresFromLatitude()
     }
     
@@ -94,7 +92,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         var long = -48.028995
         
         
-        for var index in self.animals {
+        for index in self.animals {
             
             pontoMapa = randomPositions(lat, long: long)
             
@@ -118,8 +116,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     
     // Método para adicionar Pins no mapa
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let locUser: CLLocationCoordinate2D = userLocation
         
         if annotation.isMemberOfClass(MKUserLocation){
             return nil;
@@ -169,7 +165,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        for var animal in self.animals {
+        for animal in self.animals {
             
             if ((view.annotation?.title)! == animal.animalName){
                 

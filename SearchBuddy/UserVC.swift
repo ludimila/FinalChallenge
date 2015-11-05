@@ -85,52 +85,7 @@ class UserVC: UIViewController, UIImagePickerControllerDelegate,UITextFieldDeleg
     
     @IBAction func saveUser(sender: AnyObject) {
         
-        /* Necessário recuperar o usuário do FaceBook ou já logado
-        e verificar como apenas editar o usuário
         
-        
-        
-        */
-        
-        // Usuário a partir do Parse
-        let currentUser = User.currentUser()
-        
-        currentUser?.refreshInBackgroundWithBlock({ (object,error) -> Void in
-            
-            
-            print("Refreshed")
-            currentUser?.fetchIfNeededInBackgroundWithBlock({ (result, error) -> Void in
-                
-                
-                currentUser?.name = self.nome.text
-                currentUser?.userPhoneNumber = self.telefone.text
-                currentUser?.userPicture = self.imageView.image
-                
-                
-                print("Updated")
-            })
-            
-        })
-        
-        
-        /*
-        let user = User()
-        
-        
-        user.name = nome.text
-        user.userPhoneNumber = telefone.text
-        user.userPicture = imageView.image
-        user.city = "";
-        user.state = "";
-        
-        
-        */
-        
-        
-        
-        
-        
-        print("Salvei usuário");
         
     }
     
