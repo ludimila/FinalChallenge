@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "feedBar @x1.png",
+      "filename" : "Imported Layers.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "feedBar @x2.png",
+      "filename" : "Imported Layers@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "feedBar @x3.png",
+      "filename" : "Imported Layers@3x.png",
       "scale" : "3x"
     }
   ],

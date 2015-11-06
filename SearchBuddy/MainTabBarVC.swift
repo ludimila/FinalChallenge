@@ -30,11 +30,14 @@ class MainTabBarVC: UITabBarController {
     
     func initTabBar(){
        
+        self.tabBar.barTintColor = UIColor(red:0.25, green:0.71, blue:0.81, alpha:1.0)
+        self.tabBar.tintColor = UIColor.whiteColor()
+        
 //        print("Tab bar: \( AnimalDAO.sharedInstance().allAnimals)")
-        let mapSB = createStoryBoard("Map", imageName: "MedalGoals")
+        let mapSB = createStoryBoard("Map", imageName: "MapBar")
         let perfilSB = createStoryBoard("Profile", imageName: "PerfilBar")
         let feedSB = createStoryBoard("Feed", imageName: "FeedBar")
-        let configSB = createStoryBoard("Config", imageName: "MedalGoals")
+        let configSB = createStoryBoard("Config", imageName: "ConfigBar")
         let animalProfile = createStoryBoard("AnimalProfile", imageName: "PerfilBar")
         
         self.viewControllers = [mapSB,feedSB,perfilSB,configSB,animalProfile]
