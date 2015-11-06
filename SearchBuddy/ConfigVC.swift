@@ -62,6 +62,9 @@ class ConfigVC: UITableViewController {
                     if UserDAO.isLogged() == false{
                         self.deleteCell.hidden = true
                     }
+                    else{
+                        self.deleteCell.hidden = false
+                    }
                     return deleteCell
                 
                 default: fatalError("Unknown row in section 0")
