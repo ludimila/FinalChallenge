@@ -60,6 +60,17 @@ class UserDAO: NSObject {
         })
     }
     
+    class func deleteCurrentUser(completion: (sucessed:Bool,error:NSError?) -> Void){
+        let user = self.getCurrentUser()
+                
+        user?.deleteInBackgroundWithBlock{ (success: Bool, error: NSError?) -> Void in
+            completion(sucessed: success, error: error)
+        }
+    }
+    
+    
+    
+    
     class func userLogout(){
         PFUser.logOut()
     }
