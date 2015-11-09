@@ -14,7 +14,7 @@ class MainTabBarVC: UITabBarController {
         super.viewDidLoad()
 
         
-        
+        self.navigationController!.navigationBar.barTintColor = UIColor(red: 0.25, green: 0.71, blue: 0.81, alpha: 1)
         
         self.initTabBar()
         
@@ -30,6 +30,8 @@ class MainTabBarVC: UITabBarController {
     
     func initTabBar(){
        
+        self.tabBar.barTintColor = UIColor(red:0.25, green:0.71, blue:0.81, alpha:1.0)
+        
 //        print("Tab bar: \( AnimalDAO.sharedInstance().allAnimals)")
         let mapSB = createStoryBoard("Map", imageName: "MedalGoals")
         let perfilSB = createStoryBoard("Profile", imageName: "PerfilBar")

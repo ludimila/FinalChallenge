@@ -22,9 +22,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     var labelsArray: Array<UILabel> = []
     
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "Feed"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.tableView.allowsSelection = false
         self.refreshTableView!.backgroundColor = UIColor.redColor()
         self.refreshTableView!.addTarget(self, action: "reloadTableView", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshTableView!)
@@ -32,14 +39,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         loadCustomRefreshContent()
         
         
-//        tableView.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         if Reachability.testConnection(){
             getData()
             print("Com conexao")
         }else{
             print("Sem conexao")
         }
-
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,31 +85,28 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
-//        let indexes = self.tableView.indexPathsForVisibleRows as Array!
-//        
-//        for var index in indexes {
-//            let cellTeste = self.tableView.cellForRowAtIndexPath(index)
-//            
-////            cellTeste?.alpha = 0.1
-//        }
         
 
         let currentAnimal : Animal = self.animalsArray[indexPath.row]
+        print(currentAnimal.animalOwner)
         
+//        cell.animalName.text = currentAnimal.animalName
+//        let status = currentAnimal.animalStatus!
+//        let description = currentAnimal.animalDescription!
+//        
+//        cell.animalStatus.text = String(status["situation"])
+//        cell.animalDescription.text = description
         
-        cell.animalName.text = currentAnimal.animalName
-        let status = currentAnimal.animalStatus!
-        let description = currentAnimal.animalDescription!
+        cell.fotoPerfilDono.image = UIImage(named: "dog")
+        cell.nomeDono.text = currentAnimal.animalOwner?.name
         
-        cell.animalStatus.text = String(status["situation"])
-        cell.animalDescription.text = description
+        cell.nameAnimal.text = currentAnimal.animalName
         
         return cell
     }
     
     
     func getData(){
-        
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
             self.animalsArray = animalsArray!
             AnimalDAO.sharedInstance().animalsArray = animalsArray!

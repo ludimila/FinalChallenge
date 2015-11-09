@@ -43,7 +43,7 @@ class UserDAO: NSObject {
     }
     
     class func loginInFacebook(completion: (sucessed:Bool,isNew:Bool, error:NSError?) -> Void){
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile"], block: {
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: {
             (user: PFUser?, error: NSError?) -> Void in
             var succeded = false
             var isNew = false
@@ -66,9 +66,12 @@ class UserDAO: NSObject {
     
     class func updateUserData(user: PFUser, data: Dictionary<String,String>)-> Void{
         
+        print(data)
+        
         let user = self.getCurrentUser()
                 
         user!["name"] = data["name"]
+        
         user!["email"] = data["email"]
         
         user?.saveInBackground()

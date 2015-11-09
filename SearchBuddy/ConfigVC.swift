@@ -33,6 +33,10 @@ class ConfigVC: UITableViewController {
 
     }
 
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "Configurações"
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

@@ -30,6 +30,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.index = 0
         
         // Animais do Singleton
@@ -62,6 +63,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         }
         
     }
+
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         getAddresFromLatitude()
@@ -85,6 +87,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "Mapa"
         
         self.map.removeAnnotations(self.map.annotations)
 
