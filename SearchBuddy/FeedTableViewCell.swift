@@ -16,11 +16,15 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var fotoPerfilDono: UIImageView!
     @IBOutlet weak var nomeDono: UILabel!
     @IBOutlet weak var fotoAnimal: UIImageView!
+    @IBOutlet weak var nameAnimal: UILabel!
     @IBOutlet weak var descricao: UILabel!
+    @IBOutlet weak var animalSituation: UILabel!
+    
+    @IBOutlet weak var shareAnimalButton: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var phoneButton: UIButton!
     
     @IBOutlet weak var viewBlur: UIView!
-    
-    @IBOutlet weak var nameAnimal: UILabel!
     
     
     override func awakeFromNib() {

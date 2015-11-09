@@ -90,12 +90,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         let currentAnimal : Animal = self.animalsArray[indexPath.row]
         print(currentAnimal.animalOwner)
         
-//        cell.animalName.text = currentAnimal.animalName
-//        let status = currentAnimal.animalStatus!
-//        let description = currentAnimal.animalDescription!
-//        
-//        cell.animalStatus.text = String(status["situation"])
-//        cell.animalDescription.text = description
         
         cell.fotoPerfilDono.image = UIImage(named: "dog")
         cell.nomeDono.text = currentAnimal.animalOwner?.name
@@ -152,4 +146,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         }
     }
     
+    @IBAction func compartilharAnimal(sender: AnyObject) {
+        print("Compartilhou o mano!!!!")
+    }
+    
+    
+    @IBAction func abrirChat(sender: AnyObject) {
+        print("Abrir chat com o dono do mano")
+    }
+    
+    @IBAction func abrirContatoDono(sender: AnyObject) {
+        print("Abrir contato do dono do mano")
+    }
 }

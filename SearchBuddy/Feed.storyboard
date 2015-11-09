@@ -68,9 +68,8 @@
                                                     <rect key="frame" x="8" y="267" width="584" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSt-P2-nm6">
-                                                            <rect key="frame" x="10" y="10" width="180" height="27"/>
+                                                            <rect key="frame" x="10" y="10" width="180" height="26.5"/>
                                                             <animations/>
-                                                            <color key="backgroundColor" red="0.25490196079999999" green="0.72156862749999995" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -82,14 +81,50 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4t-ql-tUL">
+                                                            <rect key="frame" x="473" y="13" width="93" height="43"/>
+                                                            <animations/>
+                                                            <state key="normal" image="Phone"/>
+                                                            <connections>
+                                                                <action selector="abrirContatoDono:" destination="z03-Ff-Nrc" eventType="touchUpInside" id="JcG-Wz-uQm"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLx-8l-V27">
+                                                            <rect key="frame" x="205" y="16" width="99" height="37"/>
+                                                            <animations/>
+                                                            <state key="normal" image="Share"/>
+                                                            <connections>
+                                                                <action selector="compartilharAnimal:" destination="z03-Ff-Nrc" eventType="touchUpInside" id="1DG-36-IJB"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syC-Gw-zzt">
+                                                            <rect key="frame" x="338" y="13" width="102" height="43"/>
+                                                            <animations/>
+                                                            <state key="normal" image="Chat"/>
+                                                            <connections>
+                                                                <action selector="abrirChat:" destination="z03-Ff-Nrc" eventType="touchUpInside" id="1s3-mH-QOJ"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.90980392156862744" green="0.41176470588235292" blue="0.019607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="vSt-P2-nm6" firstAttribute="leading" secondItem="qpd-T3-y0B" secondAttribute="leading" constant="10" id="92A-sG-vE8"/>
-                                                        <constraint firstItem="vSt-P2-nm6" firstAttribute="width" secondItem="qpd-T3-y0B" secondAttribute="width" multiplier="0.3" id="MjQ-es-qfR"/>
+                                                        <constraint firstAttribute="trailing" secondItem="y4t-ql-tUL" secondAttribute="trailing" constant="10" id="E7N-qg-dXo"/>
+                                                        <constraint firstAttribute="bottom" secondItem="syC-Gw-zzt" secondAttribute="bottom" constant="10" id="Jmm-02-3V1"/>
+                                                        <constraint firstItem="vSt-P2-nm6" firstAttribute="width" relation="greaterThanOrEqual" secondItem="qpd-T3-y0B" secondAttribute="width" multiplier="0.3" id="MjQ-es-qfR"/>
+                                                        <constraint firstItem="syC-Gw-zzt" firstAttribute="leading" secondItem="cLx-8l-V27" secondAttribute="trailing" constant="10" id="Mka-6N-2uo"/>
                                                         <constraint firstAttribute="height" constant="70" id="Zos-QP-ss5"/>
+                                                        <constraint firstAttribute="bottom" secondItem="y4t-ql-tUL" secondAttribute="bottom" constant="10" id="bDb-nh-WSI"/>
+                                                        <constraint firstItem="y4t-ql-tUL" firstAttribute="leading" secondItem="syC-Gw-zzt" secondAttribute="trailing" constant="10" id="cTT-Bx-mVt"/>
+                                                        <constraint firstItem="syC-Gw-zzt" firstAttribute="width" secondItem="cLx-8l-V27" secondAttribute="width" id="dMx-xf-xIe"/>
+                                                        <constraint firstItem="cLx-8l-V27" firstAttribute="leading" secondItem="vSt-P2-nm6" secondAttribute="trailing" constant="10" id="hYQ-jt-vnc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="cLx-8l-V27" secondAttribute="bottom" constant="10" id="jd2-fz-z2k"/>
+                                                        <constraint firstItem="cLx-8l-V27" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" constant="10" id="mkf-Yx-CvY"/>
+                                                        <constraint firstItem="syC-Gw-zzt" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" constant="10" id="p6F-MB-Shd"/>
+                                                        <constraint firstItem="y4t-ql-tUL" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" constant="10" id="pDU-Wp-ToS"/>
                                                         <constraint firstItem="vSt-P2-nm6" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" constant="10" id="vxk-gg-W0Q"/>
+                                                        <constraint firstItem="y4t-ql-tUL" firstAttribute="width" secondItem="cLx-8l-V27" secondAttribute="width" id="y7c-dO-mGF"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -114,11 +149,15 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
+                                            <outlet property="animalSituation" destination="2vj-jb-g5z" id="g3I-lo-8lj"/>
+                                            <outlet property="chatButton" destination="syC-Gw-zzt" id="Ujg-1A-0iO"/>
                                             <outlet property="descricao" destination="T4u-SM-wEQ" id="asl-WL-ZeX"/>
                                             <outlet property="fotoAnimal" destination="syY-XS-pGz" id="tOr-u7-Tcu"/>
                                             <outlet property="fotoPerfilDono" destination="wHj-CS-TRf" id="vIT-XD-8xL"/>
                                             <outlet property="nameAnimal" destination="vSt-P2-nm6" id="BjJ-vK-uOI"/>
                                             <outlet property="nomeDono" destination="VBy-qI-mLB" id="XMV-1w-9Ae"/>
+                                            <outlet property="phoneButton" destination="y4t-ql-tUL" id="eR1-VT-T9l"/>
+                                            <outlet property="shareAnimalButton" destination="cLx-8l-V27" id="ltC-GW-3Ym"/>
                                             <outlet property="viewBlur" destination="qpd-T3-y0B" id="Mtr-yK-arJ"/>
                                         </connections>
                                     </tableViewCell>
@@ -149,6 +188,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Chat" width="48" height="43"/>
+        <image name="Phone" width="39" height="43"/>
+        <image name="Share" width="45" height="37"/>
         <image name="sadPuppy" width="1920" height="1200"/>
     </resources>
 </document>
