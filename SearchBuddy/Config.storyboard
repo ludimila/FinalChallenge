@@ -83,18 +83,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVE-bF-AhU">
-                                <rect key="frame" x="233" y="427" width="135" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="Ksy-c8-F2S"/>
-                                    <constraint firstAttribute="height" constant="30" id="Ula-Wt-3Wr"/>
-                                </constraints>
-                                <state key="normal" title="Login com o Twitter"/>
-                                <connections>
-                                    <action selector="twitterLogin:" destination="Dyt-3E-duC" eventType="touchUpInside" id="Gbq-f3-aq1"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UG0-j4-Ox3">
                                 <rect key="frame" x="127" y="228" width="84" height="21"/>
                                 <animations/>
@@ -157,7 +145,6 @@
                             <constraint firstItem="mLG-Zf-mnv" firstAttribute="top" secondItem="UG0-j4-Ox3" secondAttribute="bottom" constant="13" id="9Sp-dc-gEG"/>
                             <constraint firstItem="cR8-7O-aRv" firstAttribute="top" secondItem="q4I-se-kVg" secondAttribute="bottom" constant="21" id="DYT-SG-69k"/>
                             <constraint firstItem="i15-AN-Mks" firstAttribute="centerX" secondItem="Wg7-xN-qGi" secondAttribute="centerX" id="E7T-Je-rMH"/>
-                            <constraint firstItem="TZA-UQ-Dwc" firstAttribute="top" secondItem="mVE-bF-AhU" secondAttribute="bottom" constant="17" id="LiI-xO-NYQ"/>
                             <constraint firstItem="UG0-j4-Ox3" firstAttribute="top" secondItem="mX6-VY-erv" secondAttribute="bottom" constant="164" id="OBJ-Tq-aBO"/>
                             <constraint firstItem="q4I-se-kVg" firstAttribute="centerX" secondItem="Wg7-xN-qGi" secondAttribute="centerX" id="T4j-1Y-FmS"/>
                             <constraint firstItem="mf3-WS-rAd" firstAttribute="centerX" secondItem="Wg7-xN-qGi" secondAttribute="centerX" id="Wwu-wX-xVY"/>
@@ -169,7 +156,6 @@
                             <constraint firstItem="mf3-WS-rAd" firstAttribute="top" secondItem="mX6-VY-erv" secondAttribute="bottom" constant="51" id="jwg-K3-FUo"/>
                             <constraint firstItem="bxq-Eq-Cqz" firstAttribute="top" secondItem="TZA-UQ-Dwc" secondAttribute="bottom" constant="96" id="kaP-Dn-Xab"/>
                             <constraint firstItem="q4I-se-kVg" firstAttribute="top" secondItem="i15-AN-Mks" secondAttribute="bottom" constant="4" id="lyt-WO-DzD"/>
-                            <constraint firstItem="mVE-bF-AhU" firstAttribute="centerX" secondItem="Wg7-xN-qGi" secondAttribute="centerX" id="oJQ-Hj-MVv"/>
                             <constraint firstItem="TZA-UQ-Dwc" firstAttribute="centerX" secondItem="Wg7-xN-qGi" secondAttribute="centerX" id="wZF-gK-o61"/>
                         </constraints>
                     </view>
