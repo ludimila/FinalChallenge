@@ -46,6 +46,9 @@ class FacebookParse: NSObject {
                 if error == nil {
                     userData["name"] = result.objectForKey("name") as? String
                     userData["email"] = result.objectForKey("email") as? String
+                    
+                    print(userData)
+                    
                     let picture = result.objectForKey("picture") as! NSDictionary
                     let dataImage = picture.objectForKey("data") as! NSDictionary
                     let url = dataImage.objectForKey("url") as! String

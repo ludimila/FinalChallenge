@@ -77,9 +77,12 @@ class UserDAO: NSObject {
     
     class func updateUserData(user: PFUser, data: Dictionary<String,String>)-> Void{
         
+        print(data)
+        
         let user = self.getCurrentUser()
                 
         user!["name"] = data["name"]
+        
         user!["email"] = data["email"]
         
         user?.saveInBackground()

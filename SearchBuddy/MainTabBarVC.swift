@@ -14,7 +14,7 @@ class MainTabBarVC: UITabBarController {
         super.viewDidLoad()
 
         
-        
+        self.navigationController!.navigationBar.barTintColor = UIColor(red: 0.25, green: 0.71, blue: 0.81, alpha: 1)
         
         self.initTabBar()
         
@@ -31,6 +31,7 @@ class MainTabBarVC: UITabBarController {
     func initTabBar(){
        
         self.tabBar.barTintColor = UIColor(red:0.25, green:0.71, blue:0.81, alpha:1.0)
+
         self.tabBar.tintColor = UIColor.whiteColor()
         
 //        print("Tab bar: \( AnimalDAO.sharedInstance().allAnimals)")

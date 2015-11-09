@@ -19,6 +19,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Status: ", "Descrição:"]
     var arrayCell = Array<AnimalTableViewCell>()
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "Perfil Animal"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,8 +46,6 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! AnimalTableViewCell
         
         cell.dataLabel.text = data[indexPath.row]
