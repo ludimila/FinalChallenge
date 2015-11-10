@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate {
     
     @IBOutlet weak var animalPicture: UIImageView!
     @IBOutlet weak var animalName: UILabel!
@@ -66,24 +66,24 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             switch(i.dataTextField.tag){
                 
             case 0 :
-                animal.animalName = i.dataTextField.text
+                animal.animalName = i.dataTextField.text!
             case 1 :
-                animal.breed = i.dataTextField.text
+                animal.breed = i.dataTextField.text!
             case 2:
                 animal.vaccinated = true
             case 3:
                 
                 let type = TypeAnimal()
-                type.typeDescription = i.dataTextField.text
+                type.typeDescription = i.dataTextField.text!
                 animal.animalType = type
                 
             case 4:
                 let status = StatusAnimal()
-                status.situation = i.dataTextField.text
+                status.situation = i.dataTextField.text!
                 animal.animalStatus = status
                 
             case 5:
-                animal.animalDescription = i.dataTextField.text
+                animal.animalDescription = i.dataTextField.text!
                 
             default:
                 print("nada")
@@ -92,21 +92,45 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         }
         
-        AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
-            if sucessed {
-                
-                print("E NOIZ")
-                
-            }else {
-                
-               print("Deu ruim fi")
-                
+        
+        print("Nome -> \(animal.animalName!)")
+        print("Breed -> \(animal.breed!)")
+        print("Vaccinated -> \(animal.vaccinated!)")
+        print("Status -> \(animal.animalStatus!)")
+        
+        
+        
+        
+        
+        
+        
+        
+        if ( animal.animalName != "" && animal.breed != "" && animal.vaccinated != nil && animal.animalStatus?.situation != "" && animal.animalDescription != ""){
+            
+            
+            print("Animal nao ta vazio")
+            
+            AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
+                if sucessed {
+                    
+                    print("E NOIZ")
+                    
+                }else {
+                    
+                    print("Deu ruim fi")
+                    
+                    
+                }
                 
             }
-    
+            print(animal)
+        }else {
+            
+            let alert = UIAlertView(title: "Alerta", message: "Há algum campo vazio, verifique!", delegate: self, cancelButtonTitle: "Sair")
+            
+            alert.show()
+            
         }
-        print(animal)
-        
     }
     
     

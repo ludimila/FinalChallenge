@@ -12,8 +12,6 @@ class UserVC: UIViewController, UIImagePickerControllerDelegate,UITextFieldDeleg
     
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nome: UITextField!
-    @IBOutlet weak var telefone: UITextField!
     
     
     override func viewDidLoad() {
@@ -21,8 +19,6 @@ class UserVC: UIViewController, UIImagePickerControllerDelegate,UITextFieldDeleg
         
         // Do any additional setup after loading the view.
         
-        self.nome.delegate = self
-        self.telefone.delegate = self
         
     }
     
@@ -65,7 +61,7 @@ class UserVC: UIViewController, UIImagePickerControllerDelegate,UITextFieldDeleg
         if ( string == "") {
             return true
         }
-        
+        /*
         if (textField .isEqual(self.telefone)){
             
             if(textField.text?.characters.count == 4){
@@ -80,18 +76,13 @@ class UserVC: UIViewController, UIImagePickerControllerDelegate,UITextFieldDeleg
             
             
         }
+        */
         return true
     }
     
     @IBAction func saveUser(sender: AnyObject) {
         
         
-        
-    }
-    
-    @IBAction func backUser(sender: AnyObject) {
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
         
     }
     

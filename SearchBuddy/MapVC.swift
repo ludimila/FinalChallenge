@@ -22,8 +22,10 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     var userLocation: CLLocationCoordinate2D!
     var pontoProximo: CLLocationCoordinate2D!
     var index: Int!
+    
     // View
     var vW: UIView!
+    
     // Variáveis dos Animais
     var animals = Array<Animal>()
     
@@ -73,13 +75,17 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        
         if overlay is MKCircle {
+            
             let circle = MKCircleRenderer(overlay: overlay)
             circle.strokeColor = UIColor.blackColor()
             circle.fillColor = UIColor(red: 255, green: 0, blue: 155, alpha: 0.1)
             circle.lineWidth = 1
             return circle
+        
         } else {
+        
             return nil
         }
     }
@@ -91,7 +97,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         var lat  = -15.863500
         var long = -48.028995
         
-        
         for index in self.animals {
             
             pontoMapa = randomPositions(lat, long: long)
@@ -100,7 +105,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             long = long + 1;
             
             // Pino
-            
             let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
             myAnn.title = index.animalName
             myAnn.subtitle = index.animalDescription
@@ -110,9 +114,9 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             if let locationTeste : CLLocation = location {
                 addRadiusCircle(locationTeste)
             }
+        
         }
     }
-    
     
     // Método para adicionar Pins no mapa
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -170,23 +174,25 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             if ((view.annotation?.title)! == animal.animalName){
                 
                 self.vW = UIView(frame: CGRectMake(10, self.view.frame.height, 300, 300))
-                self.vW.backgroundColor = UIColor.blackColor()
-                self.vW.alpha = 0.7
-                self.vW.addSubview(makeLabel(animal.animalName!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.3))
-                self.vW.addSubview(makeLabel(animal.animalDescription!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.4))
-                self.vW.addSubview(makeImage("dog.jpg", x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.1))
+                //self.vW.backgroundColor = UIColor.blackColor()
+                self.vW.backgroundColor = UIColor(netHex: 0x41B6CF)
+                self.vW.alpha = 0.9
+
+                self.vW.addSubview(makeLabel(animal.animalName!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.4, size: 28))
+                self.vW.addSubview(makeLabel(animal.animalDescription!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.5, size: 17))
+                self.vW.addSubview(makeImage("sadPuppy", x: self.vW.frame.width * 0.4, y: self.vW.frame.height * 0.1))
                 
                 // Botão
                 
                 let botao = UIButton(type: UIButtonType.Custom)
                 
-                botao.frame.size.width = 120
-                botao.backgroundColor = UIColor.redColor()
-                botao.frame.size.height = 60
-                botao.center.x = self.vW.frame.width * 0.4
-                botao.center.y = self.vW.frame.height * 0.8
-                botao.addSubview(makeLabel("Voltar", x: 0, y: 0 ))
                 
+                botao.frame.size.width = 120
+                botao.backgroundColor = UIColor(netHex: 0xE86905)
+                botao.frame.size.height = 60
+                botao.center.x = self.vW.frame.width * 0.3
+                botao.center.y = self.vW.frame.height * 0.8
+                botao.addSubview(makeLabel("Voltar", x: 0, y: 0 ,size: 28))
                 self.vW.addSubview(botao)
                 
                 botao.addTarget(self, action: "dismissView", forControlEvents: UIControlEvents.TouchUpInside)
@@ -217,14 +223,20 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
             
             if error != nil {
-                print("Reverse geocoder deu ruim com esse erro \(error?.localizedDescription)")
-                return
+                print("Reverse geocoder with this error ->  \(error?.localizedDescription)")
+                self.Location.text = ""
+                //return
             }
             
             if placemarks!.count > 0 {
                 let pm = placemarks![0]
                 self.Location.text = "\(pm.name!)"
+            } else{
+                
+                print("Problems with data received...")
+                self.Location.text = ""
             }
+            
             
         })
     }
@@ -251,12 +263,12 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         
     }
     
-    func makeLabel(string : String, x: CGFloat, y: CGFloat )-> UILabel{
+    func makeLabel(string : String, x: CGFloat, y: CGFloat, size: CGFloat)-> UILabel{
         
         let lbl = UILabel(frame: CGRectMake(x, y, 200, 60)) as UILabel!
         
         lbl.textColor = UIColor.whiteColor()
-        lbl.font = UIFont.systemFontOfSize(25)
+        lbl.font = UIFont.systemFontOfSize(size)
         lbl.text = string
         
         return lbl
@@ -265,12 +277,18 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     func makeImage(name: String, x: CGFloat, y: CGFloat )->UIImageView {
         
         let image = UIImage(named: name)
-        let imageView = UIImageView(frame: CGRectMake(x, y, 100, 50))
+        let imageView = UIImageView(frame: CGRectMake(x, y, 80, 80))
         imageView.image = image
         
+        imageView.layer.borderWidth = 2.0
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        imageView.layer.cornerRadius = 40
         
         return imageView
     }
+    
+    
     
     /*
     // MARK: - Navigation
