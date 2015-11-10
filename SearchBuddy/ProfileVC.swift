@@ -19,7 +19,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
        
@@ -39,6 +39,10 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         
         
         //self.collectionView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "Perfil"
     }
 
     
