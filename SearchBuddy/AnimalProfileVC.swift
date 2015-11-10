@@ -39,30 +39,33 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = AnimalTableViewCell()
+        var cell = AnimalProfileTableViewCell()
+        let marray:NSArray = NSArray()
+        let obj = marray[indexPath.row]
         
-        if indexPath.row == 0{
+        if obj  == 0{
             
-            cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalTableViewCell
+            cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
         }
         
         if indexPath.row == 1{
         
-           cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalTableViewCell
+           cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
             
         }
         
         if indexPath.row == 2{
             
-         cell = tableView.dequeueReusableCellWithIdentifier("aboutCell", forIndexPath: indexPath) as! AnimalTableViewCell
+         cell = tableView.dequeueReusableCellWithIdentifier("aboutCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
             
         
         }
         
         if indexPath.row == 3{
-            cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! AnimalTableViewCell
+            cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
 
         }
+        
         
         return cell
     }

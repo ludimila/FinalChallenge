@@ -133,7 +133,7 @@
                                 <rect key="frame" x="0.0" y="258" width="600" height="342"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="97" id="Gde-bC-82o" customClass="AnimalTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="97" id="Gde-bC-82o" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="49.5" width="600" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gde-bC-82o" id="sRO-TF-owO">
@@ -159,7 +159,7 @@
                                             <outlet property="lastLocation" destination="CJY-lp-V4p" id="P6C-dL-WGg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ownerCell" rowHeight="59" id="Q63-gB-3SU" customClass="AnimalTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ownerCell" rowHeight="59" id="Q63-gB-3SU" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="146.5" width="600" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q63-gB-3SU" id="iFC-wU-TAJ">
@@ -182,7 +182,7 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="aboutCell" id="DqT-0x-GAa" customClass="AnimalTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="aboutCell" id="DqT-0x-GAa" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="205.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DqT-0x-GAa" id="A9Z-y6-AOu">
@@ -199,7 +199,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="273" id="AbX-1M-e0e" customClass="AnimalTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="273" id="AbX-1M-e0e" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="249.5" width="600" height="273"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AbX-1M-e0e" id="A4O-sk-Z18">
