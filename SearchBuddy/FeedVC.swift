@@ -96,6 +96,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         cell.nameAnimal.text = currentAnimal.animalName
         
+        
+        cell.shareAnimalButton.tag = indexPath.row
+        
         return cell
     }
     
@@ -148,6 +151,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     
     @IBAction func compartilharAnimal(sender: AnyObject) {
         print("Compartilhou o mano!!!!")
+        
+        let button = sender as! UIButton
+        let indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
+        
+        
+        let cellAnimalSelecionado = self.tableView.cellForRowAtIndexPath(indexPath) as! FeedTableViewCell
+        
+        print(cellAnimalSelecionado.nameAnimal.text)
+        
     }
     
     
