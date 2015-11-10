@@ -139,12 +139,19 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         }
         
         for index in indexes {
-            let cell = self.tableView.cellForRowAtIndexPath(index)
+            let cell = self.tableView.cellForRowAtIndexPath(index) as! FeedTableViewCell
             
             if valoresIndex[(valores.indexOf(valores.maxElement()!))!] == index.row{
-                cell?.alpha = 1
+               UIView.animateWithDuration(3000, animations: { () -> Void in
+                cell.theBlur.hidden = true
+               })
+                
+                
             }else{
-                cell?.alpha = 0.5
+                UIView.animateWithDuration(3000, animations: { () -> Void in
+                    cell.theBlur.hidden = false
+                })
+
             }
         }
     }
