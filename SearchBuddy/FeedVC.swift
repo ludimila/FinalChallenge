@@ -88,16 +88,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
 
         let currentAnimal : Animal = self.animalsArray[indexPath.row]
-        print(currentAnimal.animalOwner)
         
         
+            
         cell.fotoPerfilDono.image = UIImage(named: "dog")
-        cell.nomeDono.text = currentAnimal.animalOwner?.name
-        
+        cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
+            
         cell.nameAnimal.text = currentAnimal.animalName
-        
-        
+            
+            
         cell.shareAnimalButton.tag = indexPath.row
+
+        
+        
+//        print(currentAnimal.animalOwner?.name)
+        
+        
         
         return cell
     }
