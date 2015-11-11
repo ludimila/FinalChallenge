@@ -10,7 +10,6 @@ import UIKit
 
 class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-        
     
     @IBOutlet weak var animalPicture: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -45,6 +44,9 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         if indexPath.row == 0{
             
             let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
+            
+            cell.loadScroll()
+            
             return cell
         }
         
