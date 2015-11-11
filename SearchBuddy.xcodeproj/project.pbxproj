@@ -90,7 +90,6 @@
 		19229D5F1BBF024400143F81 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		19229D611BBF02A300143F81 /* MainTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
 		19229D641BBF085D00143F81 /* Perfil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Perfil.storyboard; sourceTree = "<group>"; };
-		195F7C111BE13B08008AF749 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
 		3090F107B224336BDFA0C548 /* Pods_SearchBuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusAnimalDAO.swift; sourceTree = "<group>"; };
 		4160C95E1BBEECD700D837C2 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
@@ -201,7 +200,6 @@
 				19229D4C1BBDA56300143F81 /* Controllers */,
 				19229D1E1BBDA55600143F81 /* AppDelegate.swift */,
 				19229D251BBDA55600143F81 /* Assets.xcassets */,
-				195F7C111BE13B08008AF749 /* dog.jpg */,
 				19229D271BBDA55600143F81 /* LaunchScreen.storyboard */,
 				19229D2A1BBDA55600143F81 /* Info.plist */,
 			);

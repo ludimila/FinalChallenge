@@ -51,9 +51,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         arrayCell.append(cell)
         
         cell.dataTextField.tag = indexPath.row
-        
-        print(cell.dataTextField.tag)
-        
+                
         return cell
     }
     
