@@ -10,6 +10,8 @@ import UIKit
 
 class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+        
+    
     @IBOutlet weak var animalPicture: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var animalName: UILabel!
@@ -39,34 +41,38 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = AnimalProfileTableViewCell()
-        let marray:NSArray = NSArray()
-        let obj = marray[indexPath.row]
         
-        if obj  == 0{
+        if indexPath.row == 0{
             
-            cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("profileCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
+            return cell
         }
         
-        if indexPath.row == 1{
+        else if indexPath.row == 1{
         
-           cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
+           let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
+            return cell
             
         }
         
-        if indexPath.row == 2{
+       else if indexPath.row == 2{
             
-         cell = tableView.dequeueReusableCellWithIdentifier("aboutCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
+         let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
+            return cell
             
         
         }
         
-        if indexPath.row == 3{
-            cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! AnimalProfileTableViewCell
+        else if indexPath.row == 3{
+            let cell = tableView.dequeueReusableCellWithIdentifier("aboutCell", forIndexPath: indexPath) as! AnimalAboutTableViewCell
+            return cell
 
+        }else{
+            let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
+            return cell
+
+        
         }
         
-        
-        return cell
     }
 }

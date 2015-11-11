@@ -130,14 +130,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="22j-SM-YFu" userLabel="TableProfile">
-                                <rect key="frame" x="0.0" y="258" width="600" height="342"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="97" id="Gde-bC-82o" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49.5" width="600" height="97"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" rowHeight="248" id="dwn-sM-uA5" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="600" height="248"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dwn-sM-uA5" id="zvH-jb-Ilq">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="247.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pmE-tr-eX8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="248"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadPuppy" translatesAutoresizingMaskIntoConstraints="NO" id="4MF-V8-kXZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="600" height="248"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="4MF-V8-kXZ" secondAttribute="trailing" id="Mhh-hs-ZqD"/>
+                                                        <constraint firstItem="4MF-V8-kXZ" firstAttribute="leading" secondItem="pmE-tr-eX8" secondAttribute="leading" id="UUQ-Ke-FON"/>
+                                                        <constraint firstItem="4MF-V8-kXZ" firstAttribute="top" secondItem="pmE-tr-eX8" secondAttribute="top" id="lcz-HI-ZrG"/>
+                                                        <constraint firstItem="4MF-V8-kXZ" firstAttribute="centerY" secondItem="pmE-tr-eX8" secondAttribute="centerY" id="mDM-eA-wxS"/>
+                                                        <constraint firstItem="4MF-V8-kXZ" firstAttribute="centerX" secondItem="pmE-tr-eX8" secondAttribute="centerX" id="nKY-K6-DCn"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4MF-V8-kXZ" secondAttribute="bottom" id="pDF-VV-Oi9"/>
+                                                    </constraints>
+                                                </scrollView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pmE-tr-eX8" firstAttribute="leading" secondItem="zvH-jb-Ilq" secondAttribute="leading" id="80g-Hf-Mn4"/>
+                                                <constraint firstItem="pmE-tr-eX8" firstAttribute="top" secondItem="zvH-jb-Ilq" secondAttribute="top" id="DT2-AO-xNZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="pmE-tr-eX8" secondAttribute="trailing" id="XZY-sr-NWH"/>
+                                                <constraint firstAttribute="bottom" secondItem="pmE-tr-eX8" secondAttribute="bottom" id="nzU-fa-c5k"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="animalPicture" destination="4MF-V8-kXZ" id="yrw-2c-89T"/>
+                                            <outlet property="scrollView" destination="pmE-tr-eX8" id="t2f-Ys-FPH"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="64" id="Gde-bC-82o" customClass="AnimalLocationTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="297.5" width="600" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gde-bC-82o" id="sRO-TF-owO">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="96.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="63.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Visto pela última vez:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEU-6F-jnr">
@@ -154,13 +191,13 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="lastLocation" destination="CJY-lp-V4p" id="P6C-dL-WGg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ownerCell" rowHeight="59" id="Q63-gB-3SU" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="146.5" width="600" height="59"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ownerCell" rowHeight="59" id="Q63-gB-3SU" customClass="AnimalOwnerTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="361.5" width="600" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q63-gB-3SU" id="iFC-wU-TAJ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="58.5"/>
@@ -182,8 +219,8 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="aboutCell" id="DqT-0x-GAa" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="205.5" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="aboutCell" id="DqT-0x-GAa" customClass="AnimalAboutTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="420.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DqT-0x-GAa" id="A9Z-y6-AOu">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -199,8 +236,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="273" id="AbX-1M-e0e" customClass="AnimalProfileTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="249.5" width="600" height="273"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="descriptionCell" rowHeight="273" id="AbX-1M-e0e" customClass="DescriptionTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="464.5" width="600" height="273"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AbX-1M-e0e" id="A4O-sk-Z18">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="272.5"/>
@@ -214,57 +251,23 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="gwZ-sc-1dh" id="std-Rc-ePD"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadPuppy" translatesAutoresizingMaskIntoConstraints="NO" id="Mvh-n5-ZIR">
-                                <rect key="frame" x="20" y="20" width="560" height="193"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Raça:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SL-pa-kMW">
-                                <rect key="frame" x="20" y="192" width="43" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXG-CT-bgk">
-                                <rect key="frame" x="86" y="192" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pp-8H-rfi">
-                                <rect key="frame" x="20" y="163" width="51" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNy-JM-C6D">
-                                <rect key="frame" x="86" y="162" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="22j-SM-YFu" firstAttribute="width" secondItem="x2s-2d-oRo" secondAttribute="width" id="3RN-ue-XLe"/>
                             <constraint firstItem="22j-SM-YFu" firstAttribute="bottom" secondItem="dhV-0l-QTm" secondAttribute="top" id="A3C-vH-q4p"/>
-                            <constraint firstItem="22j-SM-YFu" firstAttribute="height" secondItem="x2s-2d-oRo" secondAttribute="height" constant="-258" id="B4W-cO-9cq"/>
-                            <constraint firstItem="Mvh-n5-ZIR" firstAttribute="top" secondItem="iyV-af-dyh" secondAttribute="bottom" id="Fn8-Vy-zc7"/>
+                            <constraint firstItem="22j-SM-YFu" firstAttribute="height" secondItem="x2s-2d-oRo" secondAttribute="height" id="B4W-cO-9cq"/>
                             <constraint firstItem="22j-SM-YFu" firstAttribute="leading" secondItem="x2s-2d-oRo" secondAttribute="leading" id="HxW-Nc-z7I"/>
-                            <constraint firstItem="22j-SM-YFu" firstAttribute="top" secondItem="Mvh-n5-ZIR" secondAttribute="bottom" constant="45" id="NPc-mh-xvB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Mvh-n5-ZIR" secondAttribute="trailing" id="XBt-aG-vMz"/>
-                            <constraint firstItem="Mvh-n5-ZIR" firstAttribute="leading" secondItem="x2s-2d-oRo" secondAttribute="leadingMargin" id="ed0-zf-4Br"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="animalBreed" destination="LXG-CT-bgk" id="R1m-Ib-ZJg"/>
-                        <outlet property="animalName" destination="lNy-JM-C6D" id="0zM-cP-4Mm"/>
-                        <outlet property="animalPicture" destination="Mvh-n5-ZIR" id="j0U-SK-Jc9"/>
                         <outlet property="tableView" destination="22j-SM-YFu" id="hkH-gE-Tgc"/>
                     </connections>
                 </viewController>
