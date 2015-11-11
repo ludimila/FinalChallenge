@@ -93,7 +93,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         for var i = 1; i < 3; i++ {
             
-            self.scrollView.frame = CGRectMake(0, 0, self.view.frame.width*CGFloat(i)+16, self.view.frame.height/2)
+            self.scrollView.frame = CGRectMake(0, 0, self.view.frame.width*CGFloat(i), self.view.frame.height/2)
           
             self.animalPicture = UIImageView(frame: self.scrollView.frame)
             self.animalPicture.contentMode = .ScaleAspectFit
@@ -108,12 +108,13 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     func configuraPageControl() {
         
         self.pageControl = UIPageControl(frame: CGRectMake(0, 0, 100, 50))
-        self.pageControl.center = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height-100)//50
+        self.pageControl.center = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height/2)
         self.pageControl.numberOfPages = 4
         self.pageControl.currentPage = 0
         self.pageControl.tintColor = UIColor.orangeColor()
-        self.pageControl.pageIndicatorTintColor = UIColor(white: 1, alpha: 0.7)
-        self.pageControl.currentPageIndicatorTintColor = UIColor(red: 204/255, green: 0/255, blue: 68/255, alpha: 1)
+        self.pageControl.pageIndicatorTintColor = UIColor(white: 1, alpha: 1)
+        self.pageControl.currentPageIndicatorTintColor = UIColor.orangeColor()
+        self.view.addSubview(self.pageControl)
     }
     
     
