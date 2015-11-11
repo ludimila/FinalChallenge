@@ -160,6 +160,9 @@
                                                         <constraint firstItem="Fl4-HU-I3h" firstAttribute="centerX" secondItem="4MF-V8-kXZ" secondAttribute="centerX" id="nLr-2y-97k"/>
                                                         <constraint firstAttribute="bottom" secondItem="4MF-V8-kXZ" secondAttribute="bottom" id="pDF-VV-Oi9"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="gwZ-sc-1dh" id="Air-RX-7LM"/>
+                                                    </connections>
                                                 </scrollView>
                                             </subviews>
                                             <constraints>
