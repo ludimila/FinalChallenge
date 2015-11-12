@@ -84,7 +84,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4t-ql-tUL">
                                                             <rect key="frame" x="473" y="13" width="93" height="43"/>
                                                             <animations/>
-                                                            <state key="normal" image="phone"/>
+                                                            <state key="normal" image="Phone"/>
                                                             <connections>
                                                                 <action selector="abrirContatoDono:" destination="z03-Ff-Nrc" eventType="touchUpInside" id="JcG-Wz-uQm"/>
                                                             </connections>
@@ -189,8 +189,8 @@
     </scenes>
     <resources>
         <image name="Chat" width="48" height="43"/>
+        <image name="Phone" width="39" height="43"/>
         <image name="Share" width="45" height="37"/>
-        <image name="phone" width="39" height="43"/>
         <image name="sadPuppy" width="1920" height="1200"/>
     </resources>
 </document>
