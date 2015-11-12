@@ -32,6 +32,10 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         // Do any additional setup after loading the view.
     }
 
+//    override func viewDidAppear(animated: Bool) {
+//        <#code#>
+//    }
+//    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,7 +83,6 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     
     
-    
     //scroll
     
     func loadScroll(){
@@ -91,17 +94,29 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.scrollView.pagingEnabled = true
         self.view.addSubview(self.scrollView)
         
-        for var i = 1; i < 3; i++ {
+        var tamanho = CGFloat()
+        
+        for var i = 1; i <= 3; i++ {
+           
+       
+            self.scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/2)
+            self.scrollView.bounces = false
             
-            self.scrollView.frame = CGRectMake(0, 0, self.view.frame.width*CGFloat(i), self.view.frame.height/2)
-          
-            self.animalPicture = UIImageView(frame: self.scrollView.frame)
+            if i == 1{
+                self.animalPicture = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/2))
+                tamanho = tamanho + self.animalPicture.frame.size.width
+            }else{
+                self.animalPicture = UIImageView(frame: CGRectMake(tamanho, 0, self.view.frame.width, self.view.frame.height/2))
+                tamanho = tamanho + self.animalPicture.frame.size.width
+            }
+            
+            
             self.animalPicture.contentMode = .ScaleAspectFit
             self.animalPicture.image = UIImage(named:"animal"+String(i))
             
             self.scrollView.addSubview(self.animalPicture)
         }
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 4 , self.scrollView.frame.size.height)
+        self.scrollView.contentSize = CGSizeMake(tamanho , self.scrollView.frame.size.height)
     }
     
     
