@@ -53,9 +53,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         arrayCell.append(cell)
         
         cell.dataTextField.tag = indexPath.row
-        
-        print(cell.dataTextField.tag)
-        
+                
         return cell
     }
     
@@ -94,18 +92,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             
         }
         
-        
         print("Nome -> \(animal.animalName!)")
         print("Breed -> \(animal.breed!)")
         print("Vaccinated -> \(animal.vaccinated!)")
         print("Status -> \(animal.animalStatus!)")
-        
-        
-        
-        
-        
-        
-        
         
         if ( animal.animalName != "" && animal.breed != "" && animal.vaccinated != nil && animal.animalStatus?.situation != "" && animal.animalDescription != ""){
             
@@ -121,7 +111,6 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                     
                     print("Deu ruim fi")
                     
-                    
                 }
                 
             }
@@ -133,6 +122,23 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             alert.show()
             
         }
+//        }
+        
+//        AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
+//            if sucessed {
+//                
+//                print("E NOIZ")
+//                
+//            }else {
+//                
+//               print("Deu ruim fi")
+//                
+//                
+//            }
+//    
+//        }
+//        print(animal)
+    
     }
     
     
