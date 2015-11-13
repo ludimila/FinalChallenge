@@ -24,6 +24,7 @@ class ConfigVC: UITableViewController {
     
     
     var isEnableControl: UISwitch = UISwitch()
+    var rangeSlider : UISlider = UISlider()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,28 +33,34 @@ class ConfigVC: UITableViewController {
         self.enableText.text = "Enable Notification"
         self.enableCell.addSubview(self.enableText)
         self.enableCell.addSubview(self.isEnableControl)
+        self.enableCell.selectionStyle = UITableViewCellSelectionStyle.None
         
         self.addConstraintsToEnableCell()
 
         
         self.rangeText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
         self.rangeText.text = "Edit range"
+        self.rangeCell.addSubview(self.rangeSlider)
         self.rangeCell.addSubview(self.rangeText)
+        self.rangeCell.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        self.addConstraintsToRangeCell()
+
+        
         self.loginText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
         self.loginText.text = "Login"
         self.loginCell.addSubview(self.loginText)
-        self.loginCell.backgroundColor = UIColor(red: 0, green: 1.0, blue: 0, alpha: 1)
+        self.loginCell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
         
         
         self.logoutText = UILabel(frame: CGRectInset(self.logoutCell.contentView.bounds, 15, 0))
         self.logoutText.text = "Logout"
         self.logoutCell.addSubview(self.logoutText)
-        self.logoutCell.backgroundColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1)
         
         self.deleteText = UILabel(frame: CGRectInset(self.deleteCell.contentView.bounds,15,9))
         self.deleteText.text = "Deletar conta"
         self.deleteCell.addSubview(self.deleteText)
-        self.deleteCell.backgroundColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1)
 
     }
 
@@ -117,8 +124,8 @@ class ConfigVC: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         switch(indexPath.section){
-        case 0:
-            print("NOP")
+        case 0: break
+            
         case 1:
             switch(indexPath.row) {
             case 0:
@@ -181,6 +188,23 @@ class ConfigVC: UITableViewController {
     }
     
     
+    func addConstraintsToRangeCell(){
+        self.rangeText.translatesAutoresizingMaskIntoConstraints = false
+        self.rangeSlider.translatesAutoresizingMaskIntoConstraints = false
+
+        let constLabel1 = NSLayoutConstraint(item: self.rangeText, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.rangeCell, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 10)
+        
+        let constLabel2 = NSLayoutConstraint(item: self.rangeText, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.rangeCell, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 10)
+        
+        let const1 = NSLayoutConstraint(item: self.rangeSlider, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.rangeCell, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: -20)
+        
+        let const2 = NSLayoutConstraint(item: self.rangeSlider, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.rangeCell, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0)
+
+        
+        NSLayoutConstraint.activateConstraints([constLabel1,constLabel2,const1,const2])
+
+    }
+    
     func addConstraintsToEnableCell(){
         self.isEnableControl.translatesAutoresizingMaskIntoConstraints = false
         self.enableText.translatesAutoresizingMaskIntoConstraints = false
@@ -189,14 +213,9 @@ class ConfigVC: UITableViewController {
         
         let constLabel2 = NSLayoutConstraint(item: self.enableText, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.enableCell, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 10)
         
-        
-        
-        
         let const1 = NSLayoutConstraint(item: self.enableCell, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.isEnableControl, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 10)
         
-        // top constraint
         let const2 = NSLayoutConstraint(item: self.enableCell, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.isEnableControl, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0)
-        // bottom constraint
         
         NSLayoutConstraint.activateConstraints([constLabel1,constLabel2,const1,const2])
     }
