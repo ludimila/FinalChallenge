@@ -28,7 +28,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="568"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Qs-AS-nDe" id="xUv-dO-dNZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="567.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wHj-CS-TRf" userLabel="fotoPerfilDono">
@@ -46,7 +46,7 @@
                                                     <color key="textColor" red="0.42352941176470588" green="0.25882352941176467" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadPuppy" translatesAutoresizingMaskIntoConstraints="NO" id="syY-XS-pGz">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="syY-XS-pGz">
                                                     <rect key="frame" x="0.0" y="18" width="522" height="522"/>
                                                     <animations/>
                                                     <constraints>
@@ -74,6 +74,9 @@
                                                             <rect key="frame" x="484" y="5" width="111" height="95"/>
                                                             <animations/>
                                                             <state key="normal" image="Phone"/>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="323" y="5" width="72" height="71"/>
+                                                            </variation>
                                                             <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                                                 <rect key="frame" x="324" y="5" width="71" height="71"/>
                                                             </variation>
@@ -85,6 +88,9 @@
                                                             <rect key="frame" x="367" y="5" width="112" height="95"/>
                                                             <animations/>
                                                             <state key="normal" image="Chat"/>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="246" y="5" width="72" height="71"/>
+                                                            </variation>
                                                             <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                                                 <rect key="frame" x="247" y="5" width="72" height="71"/>
                                                             </variation>
@@ -96,6 +102,9 @@
                                                             <rect key="frame" x="250" y="5" width="112" height="95"/>
                                                             <animations/>
                                                             <state key="normal" image="Share"/>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="170" y="5" width="72" height="71"/>
+                                                            </variation>
                                                             <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                                                 <rect key="frame" x="170" y="5" width="72" height="71"/>
                                                             </variation>
@@ -206,6 +215,5 @@
         <image name="Chat" width="48" height="43"/>
         <image name="Phone" width="39" height="43"/>
         <image name="Share" width="45" height="37"/>
-        <image name="sadPuppy" width="1920" height="1200"/>
     </resources>
 </document>

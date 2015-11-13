@@ -87,21 +87,49 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         
 
-        let currentAnimal : Animal = self.animalsArray[indexPath.row]
-        
-        
-            
-        cell.fotoPerfilDono.image = UIImage(named: "dog")
-        cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
-            
-        cell.nameAnimal.text = currentAnimal.animalName
+        if let currentAnimal : Animal = self.animalsArray[indexPath.row]{
+            currentAnimal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                if error == nil{
+                    cell.fotoAnimal.image = UIImage(data: data!)
+                }
+            })
             
             
-        cell.shareAnimalButton.tag = indexPath.row
+            
+            
+            cell.fotoPerfilDono.image = UIImage(named: "dog")
+            
+            cell.fotoPerfilDono.layer.borderWidth = 1
+            cell.fotoPerfilDono.layer.masksToBounds = true
+            cell.fotoPerfilDono.clipsToBounds = true
+            
+//            print(self.fotoPerfilDono.frame.size.height)
+            
+            
+            cell.fotoPerfilDono.layer.cornerRadius = cell.fotoPerfilDono.frame.width/2
+            cell.fotoPerfilDono.layer.borderColor = UIColor(red: 0.42, green: 0.26, blue: 0.13, alpha: 1).CGColor
+            
+            
+            
+            
+//            self.viewBlur.alpha = 0.8
 
+            
+            cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
+            
+            cell.nameAnimal.text = currentAnimal.animalName
+            
+            
+            cell.shareAnimalButton.tag = indexPath.row
+            
+            
+            
+            //        print(currentAnimal.animalOwner?.name)
+        }
         
         
-//        print(currentAnimal.animalOwner?.name)
+            
+        
         
         
         
@@ -162,9 +190,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         let indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
         
         
-        let cellAnimalSelecionado = self.tableView.cellForRowAtIndexPath(indexPath) as! FeedTableViewCell
-        
-        print(cellAnimalSelecionado.nameAnimal.text)
+        print(self.animalsArray[indexPath.row])
         
     }
     
