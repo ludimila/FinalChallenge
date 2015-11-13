@@ -9,7 +9,8 @@
 import UIKit
 
 class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
-
+    
+    
     //scroll
     var pageControl: UIPageControl!
     var scrollView: UIScrollView!
@@ -139,5 +140,9 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
 
+    
+    //foto de perfil animal
+    
+    
     
 }
