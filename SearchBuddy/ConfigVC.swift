@@ -22,17 +22,23 @@ class ConfigVC: UITableViewController {
     var rangeText: UILabel = UILabel()
     var enableText: UILabel = UILabel()
     
+    
+    var isEnableControl: UISwitch = UISwitch()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.enableText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
         self.enableText.text = "Enable Notification"
         self.enableCell.addSubview(self.enableText)
+        self.enableCell.addSubview(self.isEnableControl)
+        
+        self.addConstraintsToEnableCell()
+
         
         self.rangeText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
         self.rangeText.text = "Edit range"
         self.rangeCell.addSubview(self.rangeText)
-        
         self.loginText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
         self.loginText.text = "Login"
         self.loginCell.addSubview(self.loginText)
@@ -172,5 +178,26 @@ class ConfigVC: UITableViewController {
                 self.presentViewController(alert, animated: true, completion: {})
             }
         })
+    }
+    
+    
+    func addConstraintsToEnableCell(){
+        self.isEnableControl.translatesAutoresizingMaskIntoConstraints = false
+        self.enableText.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constLabel1 = NSLayoutConstraint(item: self.enableText, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.enableCell, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0)
+        
+        let constLabel2 = NSLayoutConstraint(item: self.enableText, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.enableCell, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 10)
+        
+        
+        
+        
+        let const1 = NSLayoutConstraint(item: self.enableCell, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.isEnableControl, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 10)
+        
+        // top constraint
+        let const2 = NSLayoutConstraint(item: self.enableCell, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self.isEnableControl, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0)
+        // bottom constraint
+        
+        NSLayoutConstraint.activateConstraints([constLabel1,constLabel2,const1,const2])
     }
 }
