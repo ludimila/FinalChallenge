@@ -150,6 +150,17 @@
                                                     <color key="textColor" red="0.42352941179999998" green="0.25882352939999997" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyK-L4-B6g">
+                                                    <rect key="frame" x="0.0" y="746" width="600" height="568"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="BZ8-ag-aAj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <animations/>
+                                                    </view>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <blurEffect style="light"/>
+                                                </visualEffectView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -173,6 +184,10 @@
                                         <animations/>
                                         <constraints>
                                             <constraint firstItem="syY-XS-pGz" firstAttribute="width" secondItem="3Qs-AS-nDe" secondAttribute="width" id="fc5-ry-lOC"/>
+                                            <constraint firstItem="dyK-L4-B6g" firstAttribute="centerX" secondItem="3Qs-AS-nDe" secondAttribute="centerX" id="6hh-zf-qhC"/>
+                                            <constraint firstItem="dyK-L4-B6g" firstAttribute="centerY" secondItem="3Qs-AS-nDe" secondAttribute="centerY" id="EgV-p9-IJk"/>
+                                            <constraint firstItem="dyK-L4-B6g" firstAttribute="width" secondItem="3Qs-AS-nDe" secondAttribute="width" id="FX8-MM-Pt0"/>
+                                            <constraint firstItem="dyK-L4-B6g" firstAttribute="height" secondItem="3Qs-AS-nDe" secondAttribute="height" id="kVf-98-ONo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="animalSituation" destination="2vj-jb-g5z" id="g3I-lo-8lj"/>
@@ -184,6 +199,7 @@
                                             <outlet property="nomeDono" destination="VBy-qI-mLB" id="XMV-1w-9Ae"/>
                                             <outlet property="phoneButton" destination="y4t-ql-tUL" id="eR1-VT-T9l"/>
                                             <outlet property="shareAnimalButton" destination="cLx-8l-V27" id="ltC-GW-3Ym"/>
+                                            <outlet property="theBlur" destination="dyK-L4-B6g" id="3Up-np-KHp"/>
                                             <outlet property="viewBlur" destination="qpd-T3-y0B" id="Mtr-yK-arJ"/>
                                         </connections>
                                     </tableViewCell>

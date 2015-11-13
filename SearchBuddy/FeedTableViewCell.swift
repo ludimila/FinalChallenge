@@ -19,6 +19,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var nameAnimal: UILabel!
     @IBOutlet weak var descricao: UILabel!
     @IBOutlet weak var animalSituation: UILabel!
+    @IBOutlet weak var theBlur: UIVisualEffectView!
     
     @IBOutlet weak var shareAnimalButton: UIButton!
     @IBOutlet weak var chatButton: UIButton!
