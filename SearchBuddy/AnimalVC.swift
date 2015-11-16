@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -60,6 +61,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         let animal = Animal()
         
+        let owner = UserDAO.getCurrentUser()
+        animal["animalOwner"] = owner
+        
+        
         for i in self.arrayCell {
             
             switch(i.dataTextField.tag){
@@ -99,8 +104,6 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         print("Status -> \(animal.animalStatus!)")
         
         if ( animal.animalName != "" && animal.breed != "" && animal.vaccinated != nil && animal.animalStatus?.situation != "" && animal.animalDescription != ""){
-            
-            
             print("Animal nao ta vazio")
             
             AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
@@ -115,31 +118,18 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 }
                 
             }
-            print(animal)
         }else {
+            //criando AlertController
+            let campoVazio: UIAlertController = UIAlertController(title: "Campo vazio", message: "Há algum campo vazio", preferredStyle: UIAlertControllerStyle.Alert)
             
-            let alert = UIAlertView(title: "Alerta", message: "Há algum campo vazio, verifique!", delegate: self, cancelButtonTitle: "Sair")
-            
-            alert.show()
-            
+            let action: UIAlertAction = UIAlertAction(title: "ok", style: .Default) { action -> Void in
+                
+            }
+            campoVazio.addAction(action)
+            //Present the AlertController
+            self.presentViewController(campoVazio, animated: true, completion: nil)
         }
-//        }
-        
-//        AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
-//            if sucessed {
-//                
-//                print("E NOIZ")
-//                
-//            }else {
-//                
-//               print("Deu ruim fi")
-//                
-//                
-//            }
-//    
-//        }
-//        print(animal)
-    
+
     }
     
     
