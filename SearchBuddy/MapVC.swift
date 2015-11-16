@@ -227,25 +227,25 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     func getAddresFromLatitude(){
         
         let currentLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
-            
-            if error != nil {
-                print("Reverse geocoder with this error ->  \(error?.localizedDescription)")
-                self.Location.text = ""
-                //return
-            }
-            
-            if placemarks!.count > 0 {
-                let pm = placemarks![0]
-                self.Location.text = "\(pm.name!)"
-            } else{
-                
-                print("Problems with data received...")
-                self.Location.text = ""
-            }
-            
-            
-        })
+//        geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
+//            
+//            if error != nil {
+//                print("Reverse geocoder with this error ->  \(error?.localizedDescription)")
+//                self.Location.text = ""
+//                //return
+//            }
+//            
+//            if placemarks!.count > 0 {
+//                let pm = placemarks![0]
+//                self.Location.text = "\(pm.name!)"
+//            } else{
+//                
+//                print("Problems with data received...")
+//                self.Location.text = ""
+//            }
+//            
+//            
+//        })
     }
    
     func randomPositions(lat : CLLocationDegrees, long: CLLocationDegrees) -> CLLocationCoordinate2D {
