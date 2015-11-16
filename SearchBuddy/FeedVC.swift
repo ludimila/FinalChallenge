@@ -1,3 +1,4 @@
+
 //
 //  FeedVC.swift
 //  SearchBuddy
@@ -142,6 +143,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             self.animalsArray = animalsArray!
             AnimalDAO.sharedInstance().animalsArray = animalsArray!
             self.tableView.reloadData()
+            
+            
         }
 
     }

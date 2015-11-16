@@ -91,6 +91,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             
         }
         
+        animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
+        
         print("Nome -> \(animal.animalName!)")
         print("Breed -> \(animal.breed!)")
         print("Vaccinated -> \(animal.vaccinated!)")
