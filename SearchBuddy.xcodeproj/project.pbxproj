@@ -25,6 +25,7 @@
 		19229D651BBF085D00143F81 /* Perfil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19229D641BBF085D00143F81 /* Perfil.storyboard */; };
 		195F7C161BE29182008AF749 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F7C151BE29182008AF749 /* UserVC.swift */; };
 		19665D601BEA7E6000BC81E0 /* arches-945495_1920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19665D5F1BEA7E6000BC81E0 /* arches-945495_1920.jpg */; };
+		410341E21BFA486F00527D48 /* ParseConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410341E11BFA486F00527D48 /* ParseConvertion.swift */; };
 		4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */; };
 		4160C95F1BBEECD700D837C2 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C95E1BBEECD700D837C2 /* UserDAO.swift */; };
 		4160C9611BBEECE100D837C2 /* AnimalDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C9601BBEECE100D837C2 /* AnimalDAO.swift */; };
@@ -101,8 +102,8 @@
 		195F7C111BE13B08008AF749 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
 		195F7C151BE29182008AF749 /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		19665D5F1BEA7E6000BC81E0 /* arches-945495_1920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "arches-945495_1920.jpg"; sourceTree = "<group>"; };
-
 		3090F107B224336BDFA0C548 /* Pods_SearchBuddyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBuddyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		410341E11BFA486F00527D48 /* ParseConvertion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvertion.swift; sourceTree = "<group>"; };
 		4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusAnimalDAO.swift; sourceTree = "<group>"; };
 		4160C95E1BBEECD700D837C2 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		4160C9601BBEECE100D837C2 /* AnimalDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDAO.swift; sourceTree = "<group>"; };
@@ -224,7 +225,6 @@
 				190ED4A01BED323C0067C1FB /* add.png */,
 				195F7C111BE13B08008AF749 /* dog.jpg */,
 				19665D5F1BEA7E6000BC81E0 /* arches-945495_1920.jpg */,
-
 				19229D271BBDA55600143F81 /* LaunchScreen.storyboard */,
 				19229D2A1BBDA55600143F81 /* Info.plist */,
 			);
@@ -307,6 +307,7 @@
 			children = (
 				19229D5D1BBDC6D900143F81 /* Annotation.swift */,
 				BBFF571C1BC59A4F00DBCEE6 /* FacebookParse.swift */,
+				410341E11BFA486F00527D48 /* ParseConvertion.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -631,6 +632,7 @@
 				934A588D1BF112EF00CF077E /* AnimalProfileVC.swift in Sources */,
 				4160C95D1BBEECB100D837C2 /* StatusAnimalDAO.swift in Sources */,
 				BBFF807B1BD9563400CB0BBB /* ConfigVC.swift in Sources */,
+				410341E21BFA486F00527D48 /* ParseConvertion.swift in Sources */,
 				93ACC45C1BF37781009C583A /* DescriptionTableViewCell.swift in Sources */,
 				93ACC45E1BF377C7009C583A /* AnimalOwnerTableViewCell.swift in Sources */,
 				417CA5361BBEC55900C37AF1 /* SBDAO.swift in Sources */,

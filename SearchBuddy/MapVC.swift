@@ -36,7 +36,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         self.index = 0
         
         // Animais do Singleton
-        self.animals = AnimalDAO.sharedInstance().animalsArray
         
         // Inicializa o geocoder
         self.geocoder = CLGeocoder()
@@ -93,6 +92,11 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     }
     
     override func viewWillAppear(animated: Bool) {
+        print(AnimalDAO.sharedInstance().animalsArray)
+        
+        self.animals = AnimalDAO.sharedInstance().animalsArray
+
+        
         self.navigationController?.navigationBar.topItem?.title = "Mapa"
         
         self.map.removeAnnotations(self.map.annotations)
