@@ -30,8 +30,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         
         self.backImage.image = UIImage(named: "arches-945495_1920.jpg")
         
-        self.background.backgroundColor = UIColor(red: CGFloat(48)/255.0, green: CGFloat(253)/255.0, blue: CGFloat(224)/255.0, alpha: 0.7)
-        
+        self.background.backgroundColor = UIColor(red:0.49, green:0.91, blue:1.00, alpha:0.8)
         self.nome.text = "Ludimila Castro"
         self.ocupacao.text = "Personal Trainer"
         
