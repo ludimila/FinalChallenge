@@ -21,7 +21,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
+        self.tableView.bounces = false
        
         self.imageView.layer.borderWidth = 2.0
         self.imageView.layer.masksToBounds = true
