@@ -17,31 +17,53 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var ocupacao: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    
+    @IBOutlet weak var telefoneDonoLb: UILabel!
+    @IBOutlet weak var localizacaoDonoLb: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.tableView.bounces = false
        
-        self.imageView.layer.borderWidth = 2.0
+        self.imageView.layer.borderWidth = 2
         self.imageView.layer.masksToBounds = true
+        self.imageView.layer.cornerRadius = self.imageView.frame.width/2
         self.imageView.layer.borderColor = UIColor.whiteColor().CGColor
-        self.imageView.layer.cornerRadius = 60
+        
+        
         
         self.backImage.image = UIImage(named: "arches-945495_1920.jpg")
         
         self.background.backgroundColor = UIColor(red:0.49, green:0.91, blue:1.00, alpha:0.8)
-        self.nome.text = "Ludimila Castro"
-        self.ocupacao.text = "Personal Trainer"
         
         self.tableView.separatorColor = UIColor.orangeColor()
-        
-        
-        //self.collectionView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil"
+        
+        
+        if let nomeUsuario = UserDAO.getCurrentUser()!["name"] {
+            self.nome.text = nomeUsuario as? String
+        }else{
+            self.nome.text = "Sem nome"
+        }
+        
+        if let telefoneUsuario = UserDAO.getCurrentUser()!["userPhoneNumber"] {
+            self.telefoneDonoLb.text = telefoneUsuario as? String
+        }else{
+            self.telefoneDonoLb.text = ""
+        }
+        
+        
+        self.localizacaoDonoLb.text = "Brasilia"
+        
+        
+        AnimalDAO.getAnimalsFromUser { () -> Void in
+            self.tableView.reloadData()
+        }
     }
 
     
@@ -50,49 +72,43 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return AnimalDAO.sharedInstance().allAnimalsUser.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        let animal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProfileTableViewCell
         
         
-        if (  indexPath.row == 0 ){
-            
-            cell.img.image = UIImage(named: "phone")
-            cell.label.text = "(61) 9999-6999"
-            
+        if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.preservesSuperviewLayoutMargins = false
         }
         
-        if ( indexPath.row == 1 ){
-            
-            cell.img.image = UIImage(named: "pin")
-            cell.label.text = "Brasilia"
-            
-        }
         
-        if ( indexPath.row == 2 ){
-            
-            cell.backgroundColor = UIColor.orangeColor()
-            cell.label.text = "Animais:"
-            
-        }
         
-        if ( indexPath.row > 2 ) {
-            
-            cell.img.layer.borderWidth = 1.0
-            cell.img.layer.masksToBounds = true
-            cell.img.layer.borderColor = UIColor.orangeColor().CGColor
-            cell.img.layer.cornerRadius = 25
-            cell.img.image = UIImage(named: "sadPuppy")
-            cell.label.text = "Godinho"
-            
-        }
+        
+        animal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
+            if error == nil{
+                cell.img.image = UIImage(data: data!)
+            }
+        })
+        
+        cell.label.text = animal.animalName
+        
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UIScreen.mainScreen().bounds.height * 0.075
+    }
+    
+        
+    
     
     /*
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -137,15 +153,12 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        
         print(" Identificador -> \(segue.identifier)")
         
         if (segue.identifier == "addAnimal") {
             var uVC = segue.destinationViewController as! UserVC
             uVC = UserVC()
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

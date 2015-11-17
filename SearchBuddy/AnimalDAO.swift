@@ -20,6 +20,14 @@ class AnimalDAO: SBDAO {
             return Array<Animal>(self.animalsArray)
         }
     }
+    
+    var animalsUser = Array<Animal>()
+    
+    var allAnimalsUser: Array<Animal>{
+        get {
+            return Array<Animal>(self.animalsUser)
+        }
+    }
 
     
     override init () {
@@ -56,6 +64,31 @@ class AnimalDAO: SBDAO {
                     completion(nil, error: error)
                 }
             })
+        }
+    }
+    
+    
+    class func getAnimalsFromUser(completion: () -> Void){
+        
+        let query = PFQuery(className:"Animal")
+        query.whereKey("animalOwner", equalTo: UserDAO.getCurrentUser()!)
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                print("Successfully retrieved \(objects!.count) scores.")
+                if let objects = objects {
+                    for object in objects {
+                        let animal = object as! Animal
+                        
+                        AnimalDAO.sharedInstance().animalsUser.append(animal)
+                    }
+                }
+                completion()
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
         }
     }
     
