@@ -15,12 +15,20 @@ class AnimalDAO: SBDAO {
     
     var animalsArray = Array<Animal>()
     
+    var allAnimals: Array<Animal>{
+        get {
+            return Array<Animal>(self.animalsArray)
+        }
+    }
+
+    
     override init () {
         NSException(name: "Singleton", reason: "Use AnimalSingleton.sharedInstance()", userInfo: nil).raise()
     }
     
     private init(singleton: Bool!) {
         super.init()
+        self.updateAnimalArray()
     }
     
     static func sharedInstance() -> AnimalDAO {
@@ -49,20 +57,20 @@ class AnimalDAO: SBDAO {
                 }
             })
         }
-        
     }
     
     
     class func signUpAnimal(animal: Animal, completion: (sucessed:Bool, error:NSError?) -> Void){
-        
         animal.saveInBackgroundWithBlock({
             (succeeded: Bool, error: NSError?) -> Void in
             completion(sucessed: succeeded,error:error)
         })
-        
-
-    
-    
-    
     }
+    
+    func updateAnimalArray(){
+        AnimalDAO.getLostAnimals{ (animals,error)-> Void in
+            self.animalsArray = animals!
+        }
+    }
+
 }

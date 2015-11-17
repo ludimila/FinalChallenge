@@ -37,10 +37,9 @@ class TypeAnimalDAO: SBDAO {
     
     
     class func getTypes(completion: (Array<TypeAnimal>?, error: NSError?) -> Void){
-        let query = StatusAnimal.query()!
-        query.orderByDescending("createdAt")
-        
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        let query = TypeAnimal.query()!
+        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+        dispatch_async(dispatch_get_global_queue(priority, 0)) { () -> Void in
             query.findObjectsInBackgroundWithBlock ({ (types, error) -> Void in
                 if let typesNN = types as? Array<TypeAnimal>  {
                     completion(typesNN,error: error)
