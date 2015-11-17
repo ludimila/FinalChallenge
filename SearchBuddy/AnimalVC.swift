@@ -53,7 +53,15 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         arrayCell.append(cell)
         
         cell.dataTextField.tag = indexPath.row
-                
+        
+        
+        if indexPath.row == 2 {
+            cell.addSubview(cell.switchVaccinated)
+        }
+        
+        if indexPath.row == 4{
+            cell.addSubview(cell.segmentStatus)
+        }
         return cell
     }
     
