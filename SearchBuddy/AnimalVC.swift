@@ -18,6 +18,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Status: ", "Descrição:"]
     var arrayCell = Array<AnimalTableViewCell>()
+    let animal = Animal()
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil Animal"
@@ -54,7 +55,6 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         cell.dataTextField.tag = indexPath.row
         
-        
         if indexPath.row == 2 {
             cell.addSubview(cell.switchVaccinated)
         }
@@ -67,10 +67,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBAction func saveData(sender: AnyObject) {
         
-        let animal = Animal()
-        
         let owner = UserDAO.getCurrentUser()
-        animal["animalOwner"] = owner
+        self.animal["animalOwner"] = owner
         
         
         for i in self.arrayCell {
@@ -78,24 +76,24 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             switch(i.dataTextField.tag){
                 
             case 0 :
-                animal.animalName = i.dataTextField.text!
+                self.animal.animalName = i.dataTextField.text!
             case 1 :
-                animal.breed = i.dataTextField.text!
+                self.animal.breed = i.dataTextField.text!
             case 2:
-                animal.vaccinated = true
+                self.animal.vaccinated = true
             case 3:
                 
                 let type = TypeAnimal()
                 type.typeDescription = i.dataTextField.text!
-                animal.animalType = type
+                self.animal.animalType = type
                 
             case 4:
                 let status = StatusAnimal()
                 status.situation = i.dataTextField.text!
-                animal.animalStatus = status
+                self.animal.animalStatus = status
                 
             case 5:
-                animal.animalDescription = i.dataTextField.text!
+                self.animal.animalDescription = i.dataTextField.text!
                 
             default:
                 print("nada")
@@ -104,14 +102,14 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             
         }
         
-        animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
         
-        print("Nome -> \(animal.animalName!)")
-        print("Breed -> \(animal.breed!)")
-        print("Vaccinated -> \(animal.vaccinated!)")
-        print("Status -> \(animal.animalStatus!)")
+    }
+    
+    func savaDataInParse(){
+    
+        self.animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
         
-        if ( animal.animalName != "" && animal.breed != "" && animal.vaccinated != nil && animal.animalStatus?.situation != "" && animal.animalDescription != ""){
+        if ( self.animal.animalName != "" && self.animal.breed != "" && self.animal.vaccinated != nil && self.animal.animalStatus?.situation != "" && self.animal.animalDescription != ""){
             print("Animal nao ta vazio")
             
             AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
@@ -127,11 +125,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 
             }
         }else {
-            //criando AlertController
             let campoVazio: UIAlertController = UIAlertController(title: "Campo vazio", message: "Há algum campo vazio", preferredStyle: UIAlertControllerStyle.Alert)
-            
             let action: UIAlertAction = UIAlertAction(title: "ok", style: .Default) { action -> Void in
-                
             }
             campoVazio.addAction(action)
             //Present the AlertController

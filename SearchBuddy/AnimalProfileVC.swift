@@ -141,7 +141,6 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
 
     
-    //foto de perfil animal
     
     
     
