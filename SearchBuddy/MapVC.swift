@@ -35,12 +35,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         
         self.index = 0
         
-        // Animais do Singleton
-        self.animals = AnimalDAO.sharedInstance().animalsArray
-        
-        // Inicializa o geocoder
-        self.geocoder = CLGeocoder()
-        
         // Configurações iniciais do mapa
         self.map.delegate = self
         self.map.showsUserLocation = true;
@@ -55,7 +49,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         //Personalizar searchBar
         self.searchBar.delegate = self
         self.searchBar.barStyle = UIBarStyle.BlackOpaque
-        self.searchBar.barTintColor = UIColor.brownColor()
+        self.searchBar.barTintColor = UIColor(netHex: 0x1E7A8D)
         self.searchBar.placeholder = "Animal";
         
         // Verifica a user location
@@ -65,7 +59,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         }
         
     }
-
+    
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         getAddresFromLatitude()
@@ -85,9 +79,9 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             circle.fillColor = UIColor(red: 255, green: 0, blue: 155, alpha: 0.1)
             circle.lineWidth = 1
             return circle
-        
+            
         } else {
-        
+            
             return nil
         }
     }
@@ -95,8 +89,9 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Mapa"
         
+        self.animals = AnimalDAO.sharedInstance().animalsArray
         self.map.removeAnnotations(self.map.annotations)
-
+        
         var lat  = -15.863500
         var long = -48.028995
         
@@ -117,7 +112,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             if let locationTeste : CLLocation = location {
                 addRadiusCircle(locationTeste)
             }
-        
+            
         }
     }
     
@@ -137,6 +132,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             changePinColor(pinAnn)
             
             let button = UIButton(type: UIButtonType.Custom)
+            button.backgroundColor = UIColor(netHex: 0xE86905)
             button.frame.size.width = 44
             button.frame.size.height = 44
             button.setImage(UIImage(named: "inf"), forState: .Normal)
@@ -180,7 +176,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
                 //self.vW.backgroundColor = UIColor.blackColor()
                 self.vW.backgroundColor = UIColor(netHex: 0x41B6CF)
                 self.vW.alpha = 0.9
-
+                
                 self.vW.addSubview(makeLabel(animal.animalName!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.4, size: 28))
                 self.vW.addSubview(makeLabel(animal.animalDescription!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.5, size: 17))
                 self.vW.addSubview(makeImage("sadPuppy", x: self.vW.frame.width * 0.4, y: self.vW.frame.height * 0.1))
@@ -222,28 +218,35 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     
     func getAddresFromLatitude(){
         
+        self.geocoder = CLGeocoder()
+        var local: String!
         let currentLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
+        
+        if (self.geocoder.geocoding == false){
             
-            if error != nil {
-                print("Reverse geocoder with this error ->  \(error?.localizedDescription)")
-                self.Location.text = ""
-                //return
-            }
-            
-            if placemarks!.count > 0 {
-                let pm = placemarks![0]
-                self.Location.text = "\(pm.name!)"
-            } else{
+            geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
                 
-                print("Problems with data received...")
-                self.Location.text = ""
-            }
+                if placemarks != nil {
+                    
+                    if placemarks!.count > 0 {
+                        let pm = placemarks![0]
+                        local = "\(pm.name!)"
+                    }
+                    dispatch_async(
+                        dispatch_get_main_queue(), {
+                            self.Location.text = local
+                    })
+                    
+                    self.geocoder.cancelGeocode()
+                    
+                }
+            })
             
-            
-        })
+
+        }
+        
     }
-   
+    
     func randomPositions(lat : CLLocationDegrees, long: CLLocationDegrees) -> CLLocationCoordinate2D {
         var newPosition = CLLocationCoordinate2D()
         

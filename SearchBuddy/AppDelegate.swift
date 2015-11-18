@@ -22,6 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         SBDAO.setupParse(launchOptions)
         
+        
+        
+        
+        
+        
+        
+        
+        
         return true
     }
     
