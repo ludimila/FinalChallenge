@@ -33,6 +33,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.configuraPageControl()
         
         // Do any additional setup after loading the view.
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
 
  
@@ -81,6 +82,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
     
+    
     //scroll
     
     func loadScroll(){
@@ -113,7 +115,6 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             self.animalPicture.image = UIImage(named:"animal"+String(i))
             self.configuraGradiente()
             self.scrollView.addSubview(self.animalPicture)
-            
 
         }//fim for
         self.scrollView.contentSize = CGSizeMake(tamanho , self.scrollView.frame.size.height)
@@ -147,10 +148,16 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let frame = UIScreen.mainScreen().bounds
         gradient.frame = CGRectMake(0, 0 ,frame.width*(frame.width/10), frame.height/2)
         self.animalPicture.addSubview(gradient)
-
+ 
         
     }
     
     
-    
+    func addNameAndBreed(){
+        let name = UILabel()
+        let breed = UILabel()
+        
+        name.text = "Nome do cachorro"
+        breed.text = "Raça do cachorro"
+    }
 }
