@@ -22,21 +22,20 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     //algo
     @IBOutlet weak var animalName: UILabel!
     @IBOutlet weak var animalBreed: UILabel!
+
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-          configuraPageControl()
-          loadScroll()
+        self.loadScroll()
+        self.configuraPageControl()
+        
         // Do any additional setup after loading the view.
     }
 
-//    override func viewDidAppear(animated: Bool) {
-//        <#code#>
-//    }
-//    
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -82,8 +81,6 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
     
-    
-    
     //scroll
     
     func loadScroll(){
@@ -109,28 +106,31 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             }else{
                 self.animalPicture = UIImageView(frame: CGRectMake(tamanho, 0, self.view.frame.width, self.view.frame.height/2))
                 tamanho = tamanho + self.animalPicture.frame.size.width
-            }
+            }//fim else
             
             
             self.animalPicture.contentMode = .ScaleAspectFit
             self.animalPicture.image = UIImage(named:"animal"+String(i))
-            
+            self.configuraGradiente()
             self.scrollView.addSubview(self.animalPicture)
-        }
+            
+
+        }//fim for
         self.scrollView.contentSize = CGSizeMake(tamanho , self.scrollView.frame.size.height)
-    }
+    }//fim funcao
     
     
     func configuraPageControl() {
         
         self.pageControl = UIPageControl(frame: CGRectMake(0, 0, 100, 50))
-        self.pageControl.center = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height/2)
+        self.pageControl.center = CGPointMake(UIScreen.mainScreen().bounds.width/2, UIScreen.mainScreen().bounds.height/CGFloat(3))
         self.pageControl.numberOfPages = 3
         self.pageControl.currentPage = 0
-        self.pageControl.tintColor = UIColor.orangeColor()
+        self.pageControl.tintColor = UIColor.whiteColor()
         self.pageControl.pageIndicatorTintColor = UIColor(white: 1, alpha: 1)
         self.pageControl.currentPageIndicatorTintColor = UIColor.orangeColor()
-        self.view.addSubview(self.pageControl)
+        
+        self.view.insertSubview(self.pageControl, aboveSubview: self.animalPicture)
     }
     
     
@@ -140,7 +140,16 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
 
-    
+    func configuraGradiente(){
+        
+        let gradientPicture = UIImage(named: "gradiente")
+        let gradient = UIImageView.init(image: gradientPicture)
+        let frame = UIScreen.mainScreen().bounds
+        gradient.frame = CGRectMake(0, 0 ,frame.width*(frame.width/10), frame.height/2)
+        self.animalPicture.addSubview(gradient)
+
+        
+    }
     
     
     

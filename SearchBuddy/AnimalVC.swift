@@ -67,8 +67,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBAction func saveData(sender: AnyObject) {
         
-        let owner = UserDAO.getCurrentUser()
-        self.animal["animalOwner"] = owner
+       // let owner = UserDAO.getCurrentUser()
+       // self.animal["animalOwner"] = owner
         
         
         for i in self.arrayCell {
@@ -98,10 +98,11 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             default:
                 print("nada")
                 
-            }
+            }//fim swicth
             
-        }
+        }//fim for
         
+        self.savaDataInParse()
         
     }
     
@@ -114,15 +115,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             
             AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
                 if sucessed {
-                    
-                    print("E NOIZ")
-                    
+                    print("salvou")
                 }else {
-                    
-                    print("Deu ruim fi")
-                    
+                    print("nao salvou")
                 }
-                
             }
         }else {
             let campoVazio: UIAlertController = UIAlertController(title: "Campo vazio", message: "Há algum campo vazio", preferredStyle: UIAlertControllerStyle.Alert)
@@ -134,8 +130,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }
 
     }
-    
-    
+
     //foto de perfil do animal
     
     @IBAction func editPicture(sender: AnyObject) {
@@ -166,7 +161,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.presentViewController(actionSheetController, animated: true, completion: nil)
         
     }
-    
+
     
     //tirar foto
     func takePicture(){
