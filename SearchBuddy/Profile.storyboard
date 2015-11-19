@@ -20,14 +20,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozw-LP-jjL" userLabel="localizacaoLabel">
-                                <rect key="frame" x="59" y="264.5" width="42" height="20.5"/>
+                                <rect key="frame" x="59" y="264" width="42" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wjz-6D-G7Y" userLabel="telefoneLabel">
-                                <rect key="frame" x="59" y="219.5" width="42" height="20.5"/>
+                                <rect key="frame" x="59" y="219" width="42" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -70,13 +70,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tl8-tQ-c1f">
                                 <rect key="frame" x="0.0" y="20" width="600" height="186"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadPuppy" translatesAutoresizingMaskIntoConstraints="NO" id="pxW-UR-qdx">
-                                        <rect key="frame" x="255.5" y="20" width="89" height="89"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="pxW-UR-qdx" secondAttribute="height" multiplier="1:1" id="9Gk-sm-k21"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zaa-Us-2G0">
                                         <rect key="frame" x="279" y="124" width="42" height="21"/>
                                         <animations/>
@@ -105,6 +98,13 @@
                                             <segue destination="NWt-ni-QoB" kind="show" identifier="addAnimal" id="eEc-B3-Wnd"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadPuppy" translatesAutoresizingMaskIntoConstraints="NO" id="pxW-UR-qdx">
+                                        <rect key="frame" x="256" y="20" width="89" height="89"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="pxW-UR-qdx" secondAttribute="height" multiplier="1:1" id="9Gk-sm-k21"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.28235294119999998" green="0.42352941179999998" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -141,7 +141,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMI-68-lYA">
-                                                    <rect key="frame" x="117" y="35.5" width="42" height="20.5"/>
+                                                    <rect key="frame" x="117" y="35" width="42" height="20.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -175,7 +175,7 @@
                                 <rect key="frame" x="0.0" y="296" width="600" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animais: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPz-ZZ-bnM">
-                                        <rect key="frame" x="15" y="5.5" width="69.5" height="20.5"/>
+                                        <rect key="frame" x="15" y="5" width="69.5" height="20.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -189,6 +189,13 @@
                                     <constraint firstItem="lPz-ZZ-bnM" firstAttribute="centerY" secondItem="iix-dX-vfE" secondAttribute="centerY" id="fuu-fm-YRc"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Você não possui nenhum bicinho cadastrado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh9-5l-bYn">
+                                <rect key="frame" x="126.5" y="376" width="347.5" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -198,6 +205,8 @@
                             <constraint firstItem="aDY-hs-3CY" firstAttribute="leading" secondItem="b3A-dE-lNt" secondAttribute="leading" id="AmV-4b-Mqt"/>
                             <constraint firstItem="Tl8-tQ-c1f" firstAttribute="width" secondItem="aDY-hs-3CY" secondAttribute="width" id="CJJ-Qt-vJe"/>
                             <constraint firstItem="iix-dX-vfE" firstAttribute="width" secondItem="b3A-dE-lNt" secondAttribute="width" id="Cfb-kL-zBy"/>
+                            <constraint firstItem="bh9-5l-bYn" firstAttribute="centerX" secondItem="b3A-dE-lNt" secondAttribute="centerX" id="Hzx-60-3lR"/>
+                            <constraint firstItem="bh9-5l-bYn" firstAttribute="top" secondItem="iix-dX-vfE" secondAttribute="bottom" constant="50" id="IVK-96-33g"/>
                             <constraint firstItem="h22-eU-RPa" firstAttribute="top" secondItem="xJc-Rh-NbI" secondAttribute="bottom" constant="10" id="LGH-Kc-3aP"/>
                             <constraint firstItem="iix-dX-vfE" firstAttribute="top" secondItem="Khu-tN-vWB" secondAttribute="bottom" constant="10" id="Lg1-EN-cPj"/>
                             <constraint firstAttribute="trailing" secondItem="jrX-MV-t2e" secondAttribute="trailing" id="MNY-Qf-CdN"/>
@@ -242,6 +251,7 @@
                         <outlet property="nome" destination="Zaa-Us-2G0" id="qkk-ZP-OkY"/>
                         <outlet property="ocupacao" destination="eRQ-vT-d7e" id="pUA-ur-ZYD"/>
                         <outlet property="tableView" destination="jrX-MV-t2e" id="UfZ-5F-ueE"/>
+                        <outlet property="tableviewIsEmptylb" destination="bh9-5l-bYn" id="fPV-ZU-yXh"/>
                         <outlet property="telefoneDonoLb" destination="Wjz-6D-G7Y" id="Bty-3e-9Ts"/>
                     </connections>
                 </viewController>
@@ -261,14 +271,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-zI-Mk8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-zI-Mk8">
                                 <rect key="frame" x="20" y="74" width="560" height="204"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="204" id="KtU-5P-9nG"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0D-XS-PG8">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0D-XS-PG8">
                                 <rect key="frame" x="278" y="491" width="34" height="30"/>
                                 <animations/>
                                 <constraints>

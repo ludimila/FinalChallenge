@@ -71,6 +71,7 @@ class AnimalDAO: SBDAO {
     class func getAnimalsFromUser(completion: () -> Void){
         
         let query = PFQuery(className:"Animal")
+        
         query.whereKey("animalOwner", equalTo: UserDAO.getCurrentUser()!)
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in

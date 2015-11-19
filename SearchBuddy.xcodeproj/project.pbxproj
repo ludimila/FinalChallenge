@@ -38,6 +38,7 @@
 		418E76DA1BE3D89600FDA20B /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418E76D91BE3D89600FDA20B /* RefreshContents.xib */; };
 		41A58B861BE286DD00793A96 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A58B851BE286DD00793A96 /* Reachability.swift */; };
 		41A58B8B1BE292C100793A96 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41A58B8A1BE292C100793A96 /* Config.storyboard */; };
+		41B9FCC61BFE3BBB00A89A05 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B9FCC51BFE3BBB00A89A05 /* Utilities.swift */; };
 		9340E6381BF25DB800D1F128 /* AnimalProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340E6371BF25DB800D1F128 /* AnimalProfileTableViewCell.swift */; };
 		934A588D1BF112EF00CF077E /* AnimalProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934A588C1BF112EF00CF077E /* AnimalProfileVC.swift */; };
 		9373E0FC1BDFE8B700795EC6 /* AnimalProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9373E0FB1BDFE8B700795EC6 /* AnimalProfile.storyboard */; };
@@ -116,6 +117,7 @@
 		418E76D91BE3D89600FDA20B /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
 		41A58B851BE286DD00793A96 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		41A58B8A1BE292C100793A96 /* Config.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Config.storyboard; sourceTree = "<group>"; };
+		41B9FCC51BFE3BBB00A89A05 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		431F059C386E18A89FCF4BCE /* Pods-SearchBuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBuddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchBuddy/Pods-SearchBuddy.debug.xcconfig"; sourceTree = "<group>"; };
 		785A7800B65145638DDC654A /* Pods_SearchBuddy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBuddy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9340E6371BF25DB800D1F128 /* AnimalProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				19229D5D1BBDC6D900143F81 /* Annotation.swift */,
 				BBFF571C1BC59A4F00DBCEE6 /* FacebookParse.swift */,
 				410341E11BFA486F00527D48 /* ParseConvertion.swift */,
+				41B9FCC51BFE3BBB00A89A05 /* Utilities.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				9373E1001BDFF68800795EC6 /* AnimalVC.swift in Sources */,
 				190ED49D1BED158C0067C1FB /* ProfileTableViewCell.swift in Sources */,
 				19229D551BBDA66100143F81 /* MapVC.swift in Sources */,
+				41B9FCC61BFE3BBB00A89A05 /* Utilities.swift in Sources */,
 				BBBD4A9D1BD67C360038E54D /* ProfileVC.swift in Sources */,
 				19229D5E1BBDC6D900143F81 /* Annotation.swift in Sources */,
 				BBFF571D1BC59A4F00DBCEE6 /* FacebookParse.swift in Sources */,

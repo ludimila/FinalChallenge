@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
 
+    @IBOutlet weak var tableviewIsEmptylb: UILabel!
+    
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var backImage: UIImageView!
@@ -17,22 +19,15 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var ocupacao: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    
     @IBOutlet weak var telefoneDonoLb: UILabel!
     @IBOutlet weak var localizacaoDonoLb: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.tableView.bounces = false
-       
-        self.imageView.layer.borderWidth = 2
-        self.imageView.layer.masksToBounds = true
-        self.imageView.layer.cornerRadius = self.imageView.frame.width/2
-        self.imageView.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        
         
         self.backImage.image = UIImage(named: "arches-945495_1920.jpg")
         
@@ -43,6 +38,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil"
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         
         if let nomeUsuario = UserDAO.getCurrentUser()!["name"] {
@@ -58,12 +55,30 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         }
         
         
+//        Aqui pegara a cidade a respeito do cgpoint presente no user
         self.localizacaoDonoLb.text = "Brasilia"
         
         
         AnimalDAO.getAnimalsFromUser { () -> Void in
             self.tableView.reloadData()
+            
+            if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
+                print("MAIOR")
+                self.tableView.hidden = false
+                self.tableviewIsEmptylb.hidden = true
+            }else{
+                print("MENOR")
+                self.tableView.hidden = true
+                self.tableviewIsEmptylb.hidden = false
+            }
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        Utilities.round(self.imageView, tamanhoBorda: 2)
+        self.imageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
     
@@ -89,11 +104,11 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         }
         
         
-        
-        
         animal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
             if error == nil{
                 cell.img.image = UIImage(data: data!)
+                Utilities.round(cell.img, tamanhoBorda: 1)
+                cell.img.layer.borderColor = UIColor.orangeColor().CGColor
             }
         })
         
@@ -107,50 +122,6 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         return UIScreen.mainScreen().bounds.height * 0.075
     }
     
-        
-    
-    
-    /*
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1;
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10;
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! Cell
-        
-        cell.picture.image = UIImage(named: "sadPuppy")
-        cell.picture.layer.borderWidth = 2.0
-        cell.picture.layer.masksToBounds = true
-        cell.picture.layer.borderColor = UIColor.whiteColor().CGColor
-        cell.picture.layer.cornerRadius = 25
-        
-
-        return cell
-        
-    }
-    
-    override func viewWillLayoutSubviews() {
-        
-        self.collectionView.reloadData()
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 0, 0, 0)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
-    }
-    */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(" Identificador -> \(segue.identifier)")
