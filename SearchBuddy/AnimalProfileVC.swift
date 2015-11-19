@@ -32,8 +32,9 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.loadScroll()
         self.configuraPageControl()
         
-        // Do any additional setup after loading the view.
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.separatorColor = UIColor.orangeColor()
+    
     }
 
  
@@ -57,27 +58,46 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         if indexPath.row == 0{
         
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
-            return cell
             
+            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+                cell.layoutMargins = UIEdgeInsetsZero
+                cell.preservesSuperviewLayoutMargins = false
+            }
+            
+            return cell
         }
         
        else if indexPath.row == 1{
             
          let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
-            return cell
             
-        
+            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+                cell.layoutMargins = UIEdgeInsetsZero
+                cell.preservesSuperviewLayoutMargins = false
+            }
+            
+            return cell
         }
         
         else if indexPath.row == 2{
             let cell = tableView.dequeueReusableCellWithIdentifier("aboutCell", forIndexPath: indexPath) as! AnimalAboutTableViewCell
+            
+            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+                cell.layoutMargins = UIEdgeInsetsZero
+                cell.preservesSuperviewLayoutMargins = false
+            }
+            
             return cell
 
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
+            
+            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+                cell.layoutMargins = UIEdgeInsetsZero
+                cell.preservesSuperviewLayoutMargins = false
+            }
+            
             return cell
-
-        
         }
         
     }
@@ -132,6 +152,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.pageControl.currentPageIndicatorTintColor = UIColor.orangeColor()
         
         self.view.insertSubview(self.pageControl, aboveSubview: self.animalPicture)
+        self.addNameAndBreed()
     }
     
     
@@ -159,5 +180,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         name.text = "Nome do cachorro"
         breed.text = "Raça do cachorro"
+        
+        self.view.insertSubview(name, aboveSubview: self.animalPicture)
     }
 }

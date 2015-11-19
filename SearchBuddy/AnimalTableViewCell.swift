@@ -33,7 +33,7 @@ class AnimalTableViewCell: UITableViewCell {
 
     func selectStatus(){
         
-        let items = ["Normal", "Perdido"]
+        let items = ["Estou em casa", "Estou perdido"]
         self.segmentStatus = UISegmentedControl(items: items)
         
         

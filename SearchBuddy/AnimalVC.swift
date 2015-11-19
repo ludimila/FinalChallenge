@@ -29,8 +29,9 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         self.animalPicture.layer.borderWidth = 2.0
         self.animalPicture.layer.masksToBounds = true
-        self.animalPicture.layer.borderColor = UIColor.brownColor().CGColor
+        self.animalPicture.layer.borderColor = UIColor.orangeColor().CGColor
         self.animalPicture.layer.cornerRadius = 60
+        self.tableView.separatorColor = UIColor.orangeColor()
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,14 +63,19 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         if indexPath.row == 4{
             cell.addSubview(cell.segmentStatus)
         }
+        
+        
+        if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        
         return cell
     }
     
     @IBAction func saveData(sender: AnyObject) {
         
-       // let owner = UserDAO.getCurrentUser()
-       // self.animal["animalOwner"] = owner
-        
+         
         
         for i in self.arrayCell {
             
@@ -80,7 +86,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             case 1 :
                 self.animal.breed = i.dataTextField.text!
             case 2:
-                self.animal.vaccinated = true
+                self.animal.vaccinated = self.returnVaccinated(i)
             case 3:
                 
                 let type = TypeAnimal()
@@ -89,7 +95,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 
             case 4:
                 let status = StatusAnimal()
-                status.situation = i.dataTextField.text!
+                status.situation = self.returnStatus(i)
                 self.animal.animalStatus = status
                 
             case 5:
@@ -201,11 +207,23 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         dismissViewControllerAnimated(true, completion: nil)
     }
 
+    func returnVaccinated(cell:AnimalTableViewCell)-> Bool{
     
+        if cell.switchVaccinated.on{
+            return true
+        }else{
+            return false
+        }//fim if
+    }//fim funcao
+
+func returnStatus(cell: AnimalTableViewCell) -> String{
     
-    
-    
-    
-    
-    
+    if cell.segmentStatus.selectedSegmentIndex == 1{
+        return "Estou em casa"
+    }else{
+        return "Estou Perdido"
+    }
 }
+
+
+}//fim controller
