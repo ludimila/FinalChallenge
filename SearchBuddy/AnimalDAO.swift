@@ -79,6 +79,7 @@ class AnimalDAO: SBDAO {
             if error == nil {
                 print("Successfully retrieved \(objects!.count) scores.")
                 if let objects = objects {
+                    AnimalDAO.sharedInstance().animalsUser = Array<Animal>()
                     for object in objects {
                         let animal = object as! Animal
                         

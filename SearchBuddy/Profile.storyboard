@@ -20,14 +20,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ozw-LP-jjL" userLabel="localizacaoLabel">
-                                <rect key="frame" x="59" y="264" width="42" height="20.5"/>
+                                <rect key="frame" x="59" y="264" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wjz-6D-G7Y" userLabel="telefoneLabel">
-                                <rect key="frame" x="59" y="219" width="42" height="20.5"/>
+                                <rect key="frame" x="59" y="219" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -130,7 +130,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nuq-bw-IcS" id="WsB-h4-MGM">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wXr-ta-pVK">
@@ -141,7 +141,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMI-68-lYA">
-                                                    <rect key="frame" x="117" y="35" width="42" height="20.5"/>
+                                                    <rect key="frame" x="117" y="35" width="42" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -162,6 +162,7 @@
                                         <connections>
                                             <outlet property="img" destination="wXr-ta-pVK" id="Wly-zn-plq"/>
                                             <outlet property="label" destination="LMI-68-lYA" id="jVL-AY-32A"/>
+                                            <segue destination="rEH-IF-Pfq" kind="show" identifier="showAnimalProfile" id="S6S-bJ-OPI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -175,7 +176,7 @@
                                 <rect key="frame" x="0.0" y="296" width="600" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animais: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPz-ZZ-bnM">
-                                        <rect key="frame" x="15" y="5" width="69.5" height="20.5"/>
+                                        <rect key="frame" x="15" y="5" width="70" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -190,7 +191,7 @@
                                 </constraints>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Você não possui nenhum bicinho cadastrado!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bh9-5l-bYn">
-                                <rect key="frame" x="126.5" y="376" width="347.5" height="20.5"/>
+                                <rect key="frame" x="127" y="376" width="347" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -258,6 +259,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tG3-kq-0Kf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3920" y="-686"/>
+        </scene>
+        <!--perfilAnimal-->
+        <scene sceneID="GIU-ne-HWc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AnimalProfile" referencedIdentifier="perfilAnimal" id="rEH-IF-Pfq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D0O-kH-6IW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3920" y="-211"/>
         </scene>
         <!--UserVC-->
         <scene sceneID="sTm-1N-K6z">
