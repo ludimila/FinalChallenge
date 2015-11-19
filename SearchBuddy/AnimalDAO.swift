@@ -60,6 +60,7 @@ class AnimalDAO: SBDAO {
             query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
                 if let animalsNN = animals as? Array<Animal> {
                     completion(animalsNN, error: error)
+                    
                 }else{
                     completion(nil, error: error)
                 }
