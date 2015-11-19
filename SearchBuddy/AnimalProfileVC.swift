@@ -23,6 +23,8 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var animalName: UILabel!
     @IBOutlet weak var animalBreed: UILabel!
     
+    var animal: Animal?
+    
     
     
     override func viewDidLoad() {
@@ -33,10 +35,10 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         // Do any additional setup after loading the view.
     }
 
-//    override func viewDidAppear(animated: Bool) {
-//        <#code#>
-//    }
-//    
+    override func viewDidAppear(animated: Bool) {
+        print(self.animal)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

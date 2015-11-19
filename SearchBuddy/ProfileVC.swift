@@ -23,6 +23,9 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var localizacaoDonoLb: UILabel!
     
     
+    var selectedRow: Int?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -114,6 +117,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
+        cell.tag = indexPath.row
         
         return cell
     }
@@ -122,18 +126,25 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         return UIScreen.mainScreen().bounds.height * 0.075
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        print(AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row])
-
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(" Identificador -> \(segue.identifier)")
         
         if (segue.identifier == "addAnimal") {
-            var uVC = segue.destinationViewController as! UserVC
-            uVC = UserVC()
+            if let uVC = segue.destinationViewController as? UserVC{
+//                    uVC = UserVC()
+            }
+            
+        }
+        
+        
+        if segue.identifier == "showAnimalProfile"{
+            if let animalProfile = segue.destinationViewController as? AnimalProfileVC{
+                let cell = sender as! UITableViewCell
+                let indexPath = NSIndexPath(forRow: cell.tag, inSection: 0)
+                
+                animalProfile.animal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
+            }
         }
     }
     
