@@ -86,8 +86,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
-        
-
         if let currentAnimal : Animal = self.animalsArray[indexPath.row]{
             currentAnimal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
                 if error == nil{
@@ -95,48 +93,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
                 }
             })
             
-            
-            
-            
             cell.fotoPerfilDono.image = UIImage(named: "dog")
+            Utilities.round(cell.fotoPerfilDono, tamanhoBorda: 1)
             
-            cell.fotoPerfilDono.layer.borderWidth = 1
-            cell.fotoPerfilDono.layer.masksToBounds = true
-            cell.fotoPerfilDono.clipsToBounds = true
-            
-//            print(self.fotoPerfilDono.frame.size.height)
-            
-            
-            cell.fotoPerfilDono.layer.cornerRadius = cell.fotoPerfilDono.frame.width/2
             cell.fotoPerfilDono.layer.borderColor = UIColor(red: 0.42, green: 0.26, blue: 0.13, alpha: 1).CGColor
-            
-            
-            
-            
-//            self.viewBlur.alpha = 0.8
-
             
             cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
             
             cell.nameAnimal.text = currentAnimal.animalName
             
+            cell.descricao.text = currentAnimal.animalDescription
             
             cell.shareAnimalButton.tag = indexPath.row
-            
-            
-            
-            //        print(currentAnimal.animalOwner?.name)
         }
-        
-        
-            
-        
-        
-        
         
         return cell
     }
-    
     
     func getData(){
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in

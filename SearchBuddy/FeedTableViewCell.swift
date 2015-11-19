@@ -32,15 +32,6 @@ class FeedTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         
-        
-        self.fotoPerfilDono.layer.borderWidth = 1
-        self.fotoPerfilDono.layer.masksToBounds = true
-        self.fotoPerfilDono.clipsToBounds = true
-        
-        print(self.fotoPerfilDono.frame.size.height)
-        
-        
-        self.fotoPerfilDono.layer.cornerRadius = self.fotoPerfilDono.frame.width/2
         self.fotoPerfilDono.layer.borderColor = UIColor(red: 0.42, green: 0.26, blue: 0.13, alpha: 1).CGColor
         
         

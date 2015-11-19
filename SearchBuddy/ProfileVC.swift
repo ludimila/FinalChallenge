@@ -63,11 +63,9 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
             self.tableView.reloadData()
             
             if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
-                print("MAIOR")
                 self.tableView.hidden = false
                 self.tableviewIsEmptylb.hidden = true
             }else{
-                print("MENOR")
                 self.tableView.hidden = true
                 self.tableviewIsEmptylb.hidden = false
             }
@@ -114,6 +112,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         
         cell.label.text = animal.animalName
         
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
         
         return cell
     }
@@ -122,6 +122,11 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         return UIScreen.mainScreen().bounds.height * 0.075
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        print(AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row])
+
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print(" Identificador -> \(segue.identifier)")

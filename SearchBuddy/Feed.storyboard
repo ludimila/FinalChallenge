@@ -19,16 +19,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="568" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eie-qU-aCL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="491" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eie-qU-aCL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="568" id="3Qs-AS-nDe" customClass="FeedTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="568"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="491" id="3Qs-AS-nDe" customClass="FeedTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="491"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Qs-AS-nDe" id="xUv-dO-dNZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="490.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wHj-CS-TRf" userLabel="fotoPerfilDono">
@@ -140,10 +140,9 @@
                                                         <constraint firstItem="syC-Gw-zzt" firstAttribute="width" secondItem="cLx-8l-V27" secondAttribute="width" id="wO0-hJ-eSR"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="17" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4u-SM-wEQ">
-                                                    <rect key="frame" x="18" y="550" width="564" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4u-SM-wEQ">
+                                                    <rect key="frame" x="18" y="526" width="564" height="24"/>
                                                     <animations/>
-                                                    <string key="text">falskjdfaskfhkasdjhfkasjfhksajdfhaksdjfhsadfsflkashdfaskhfkasdfhksadgjhsdkgjhsdkfjhasdkfjasdhkfjsadhfkjsgmsdvnaxkusaprflfklgjsldkfjsaljwlfjslfkjaslkfas</string>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <color key="textColor" red="0.42352941179999998" green="0.25882352939999997" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
