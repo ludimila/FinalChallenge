@@ -128,7 +128,6 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(" Identificador -> \(segue.identifier)")
         
         if (segue.identifier == "addAnimal") {
             if let uVC = segue.destinationViewController as? UserVC{

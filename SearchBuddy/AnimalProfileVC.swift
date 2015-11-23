@@ -37,6 +37,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.separatorColor = UIColor.orangeColor()
     
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -63,6 +64,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
             
+            
             if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
                 cell.layoutMargins = UIEdgeInsetsZero
                 cell.preservesSuperviewLayoutMargins = false
@@ -74,6 +76,9 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
        else if indexPath.row == 1{
             
          let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
+            
+          
+            
             
             if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
                 cell.layoutMargins = UIEdgeInsetsZero
