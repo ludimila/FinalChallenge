@@ -15,7 +15,7 @@ class Animal: PFObject, PFSubclassing{
     @NSManaged var breed: String?
     @NSManaged var vaccinated: NSNumber?
     @NSManaged var animalDescription: String?
-    @NSManaged var animalPicture: UIImage?
+    @NSManaged var animalPicture: PFFile?
     @NSManaged var animalType: TypeAnimal?
     @NSManaged var animalStatus: StatusAnimal?
     @NSManaged var animalOwner: User?

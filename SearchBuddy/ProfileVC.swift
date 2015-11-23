@@ -11,6 +11,8 @@ import Parse
 
 class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
 
+    @IBOutlet weak var tableviewIsEmptylb: UILabel!
+    
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var backImage: UIImageView!
@@ -18,32 +20,67 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var ocupacao: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var telefoneDonoLb: UILabel!
+    @IBOutlet weak var localizacaoDonoLb: UILabel!
+    
+    
+    var selectedRow: Int?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
-       
-        self.imageView.layer.borderWidth = 2.0
-        self.imageView.layer.masksToBounds = true
-        self.imageView.layer.borderColor = UIColor.whiteColor().CGColor
-        self.imageView.layer.cornerRadius = 60
+        self.tableView.bounces = false
         
         self.backImage.image = UIImage(named: "arches-945495_1920.jpg")
         
-        self.background.backgroundColor = UIColor(red: CGFloat(48)/255.0, green: CGFloat(253)/255.0, blue: CGFloat(224)/255.0, alpha: 0.7)
-        
-        self.nome.text = "Ludimila Castro"
-        self.ocupacao.text = "Personal Trainer"
+        self.background.backgroundColor = UIColor(red:0.49, green:0.91, blue:1.00, alpha:0.8)
         
         self.tableView.separatorColor = UIColor.orangeColor()
-        
-        
-        //self.collectionView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil"
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        
+        if let nomeUsuario = UserDAO.getCurrentUser()!["name"] {
+            self.nome.text = nomeUsuario as? String
+        }else{
+            self.nome.text = "Sem nome"
+        }
+        
+        if let telefoneUsuario = UserDAO.getCurrentUser()!["userPhoneNumber"] {
+            self.telefoneDonoLb.text = telefoneUsuario as? String
+        }else{
+            self.telefoneDonoLb.text = ""
+        }
+        
+        
+//        Aqui pegara a cidade a respeito do cgpoint presente no user
+        self.localizacaoDonoLb.text = "Brasilia"
+        
+        
+        AnimalDAO.getAnimalsFromUser { () -> Void in
+            self.tableView.reloadData()
+            
+            if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
+                self.tableView.hidden = false
+                self.tableviewIsEmptylb.hidden = true
+            }else{
+                self.tableView.hidden = true
+                self.tableviewIsEmptylb.hidden = false
+            }
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        Utilities.round(self.imageView, tamanhoBorda: 2)
+        self.imageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
     
@@ -52,95 +89,46 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return AnimalDAO.sharedInstance().allAnimalsUser.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        let animal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProfileTableViewCell
         
         
-        if (  indexPath.row == 0 ){
-            
-            cell.img.image = UIImage(named: "phone")
-            cell.label.text = "(61) 9999-6999"
-            
+        if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.preservesSuperviewLayoutMargins = false
         }
         
-        if ( indexPath.row == 1 ){
-            
-            cell.img.image = UIImage(named: "pin")
-            cell.label.text = "Brasilia"
-            
-        }
         
-        if ( indexPath.row == 2 ){
-            
-            cell.backgroundColor = UIColor.orangeColor()
-            cell.label.text = "Animais:"
-            
-        }
+        animal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
+            if error == nil{
+                cell.img.image = UIImage(data: data!)
+                Utilities.round(cell.img, tamanhoBorda: 1)
+                cell.img.layer.borderColor = UIColor.orangeColor().CGColor
+            }
+        })
         
-        if ( indexPath.row > 2 ) {
-            
-            cell.img.layer.borderWidth = 1.0
-            cell.img.layer.masksToBounds = true
-            cell.img.layer.borderColor = UIColor.orangeColor().CGColor
-            cell.img.layer.cornerRadius = 25
-            cell.img.image = UIImage(named: "sadPuppy")
-            cell.label.text = "Godinho"
-            
-        }
+        cell.label.text = animal.animalName
+        
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
+        cell.tag = indexPath.row
         
         return cell
     }
     
-    /*
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1;
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UIScreen.mainScreen().bounds.height * 0.075
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10;
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! Cell
-        
-        cell.picture.image = UIImage(named: "sadPuppy")
-        cell.picture.layer.borderWidth = 2.0
-        cell.picture.layer.masksToBounds = true
-        cell.picture.layer.borderColor = UIColor.whiteColor().CGColor
-        cell.picture.layer.cornerRadius = 25
-        
-
-        return cell
-        
-    }
-    
-    override func viewWillLayoutSubviews() {
-        
-        self.collectionView.reloadData()
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 0, 0, 0)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
-    }
-    */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        
         print(" Identificador -> \(segue.identifier)")
         
         if (segue.identifier == "addAnimal") {
@@ -152,9 +140,19 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
             
             PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "Hello World")
             
+
             
         }
         
+        
+        if segue.identifier == "showAnimalProfile"{
+            if let animalProfile = segue.destinationViewController as? AnimalProfileVC{
+                let cell = sender as! UITableViewCell
+                let indexPath = NSIndexPath(forRow: cell.tag, inSection: 0)
+                
+                animalProfile.animal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
@@ -39,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         currentInstalation.setDeviceTokenFromData(deviceToken)
         currentInstalation.channels = ["globals"]
         currentInstalation.saveInBackground()
-        
-        
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {

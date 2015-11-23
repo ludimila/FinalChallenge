@@ -29,7 +29,7 @@ class UserDAO: NSObject {
         return PFUser.currentUser()
     }
     
-    class func loginInternal(username:String, password:String,completion: (sucessed:Bool, error:NSError?) -> Void){
+    class func loginInternal(username:String, password:String, completion: (sucessed:Bool, error:NSError?) -> Void){
         PFUser.logInWithUsernameInBackground(username, password:password) {
             (user: PFUser?, error: NSError?) -> Void in
             var succeded = false

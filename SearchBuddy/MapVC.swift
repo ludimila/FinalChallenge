@@ -1,4 +1,4 @@
-//
+ //
 //  MapVC.swift
 //  SearchBuddy
 //
@@ -35,6 +35,11 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         
         self.index = 0
         
+        // Animais do Singleton
+        
+        // Inicializa o geocoder
+        self.geocoder = CLGeocoder()
+
         // Configurações iniciais do mapa
         self.map.delegate = self
         self.map.showsUserLocation = true;
@@ -87,6 +92,11 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     }
     
     override func viewWillAppear(animated: Bool) {
+        print(AnimalDAO.sharedInstance().animalsArray)
+        
+        self.animals = AnimalDAO.sharedInstance().animalsArray
+
+        
         self.navigationController?.navigationBar.topItem?.title = "Mapa"
         
         self.animals = AnimalDAO.sharedInstance().animalsArray
@@ -223,7 +233,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         let currentLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
         
         if (self.geocoder.geocoding == false){
-            
             geocoder.reverseGeocodeLocation(currentLocation, completionHandler: {(placemarks, error) -> Void in
                 
                 if placemarks != nil {
@@ -244,7 +253,6 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             
 
         }
-        
     }
     
     func randomPositions(lat : CLLocationDegrees, long: CLLocationDegrees) -> CLLocationCoordinate2D {

@@ -14,9 +14,14 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var label: UILabel!
     
+    override func prepareForReuse() {
+        self.img.image = nil
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

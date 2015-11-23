@@ -53,18 +53,6 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "loginScreen"{
-            if let nextController = segue.destinationViewController as? LoginVC{
-                nextController.tableViewToReload = self.tableViewToReload!
-            }
-        }else if segue.identifier == "registerScreen"{
-            if let nextController = segue.destinationViewController as? RegisterVC{
-                nextController.tableViewToReload = self.tableViewToReload
-            }
-        }
-    }
-    
     private func playVideo() throws {
         
         guard let path = NSBundle.mainBundle().pathForResource("video", ofType: "mp4") else {

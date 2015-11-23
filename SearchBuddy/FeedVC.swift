@@ -1,3 +1,4 @@
+
 //
 //  FeedVC.swift
 //  SearchBuddy
@@ -85,29 +86,37 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
-        
-
-        let currentAnimal : Animal = self.animalsArray[indexPath.row]
-        print(currentAnimal.animalOwner)
-        
-        
-        cell.fotoPerfilDono.image = UIImage(named: "dog")
-        cell.nomeDono.text = currentAnimal.animalOwner?.name
-        
-        cell.nameAnimal.text = currentAnimal.animalName
-        
-        
-        cell.shareAnimalButton.tag = indexPath.row
+        if let currentAnimal : Animal = self.animalsArray[indexPath.row]{
+            currentAnimal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                if error == nil{
+                    cell.fotoAnimal.image = UIImage(data: data!)
+                }
+            })
+            
+            cell.fotoPerfilDono.image = UIImage(named: "dog")
+            Utilities.round(cell.fotoPerfilDono, tamanhoBorda: 1)
+            
+            cell.fotoPerfilDono.layer.borderColor = UIColor(red: 0.42, green: 0.26, blue: 0.13, alpha: 1).CGColor
+            
+            cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
+            
+            cell.nameAnimal.text = currentAnimal.animalName
+            
+            cell.descricao.text = currentAnimal.animalDescription
+            
+            cell.shareAnimalButton.tag = indexPath.row
+        }
         
         return cell
     }
-    
     
     func getData(){
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
             self.animalsArray = animalsArray!
             AnimalDAO.sharedInstance().animalsArray = animalsArray!
             self.tableView.reloadData()
+            print("Passou")
+            
         }
 
     }
@@ -139,12 +148,19 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         }
         
         for index in indexes {
-            let cell = self.tableView.cellForRowAtIndexPath(index)
+            let cell = self.tableView.cellForRowAtIndexPath(index) as! FeedTableViewCell
             
             if valoresIndex[(valores.indexOf(valores.maxElement()!))!] == index.row{
-                cell?.alpha = 1
+               UIView.animateWithDuration(3000, animations: { () -> Void in
+                cell.theBlur.hidden = true
+               })
+                
+                
             }else{
-                cell?.alpha = 0.5
+                UIView.animateWithDuration(3000, animations: { () -> Void in
+                    cell.theBlur.hidden = false
+                })
+
             }
         }
     }
@@ -156,9 +172,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         let indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
         
         
-        let cellAnimalSelecionado = self.tableView.cellForRowAtIndexPath(indexPath) as! FeedTableViewCell
-        
-        print(cellAnimalSelecionado.nameAnimal.text)
+        print(self.animalsArray[indexPath.row])
         
     }
     
