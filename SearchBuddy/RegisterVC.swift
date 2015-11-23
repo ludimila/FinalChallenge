@@ -98,7 +98,8 @@ class RegisterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
                 let alert = UIAlertController(title: "Cadastro Realizado", message: "Bem-vindo \(user.name). Seu cadastro foi realizado com sucesso", preferredStyle: .Alert)
                 let action = UIAlertAction(title: "OK", style: .Default) { _ in
                     self.tableViewToReload?.reloadData()
-                    self.navigationController?.popToRootViewControllerAnimated(true)
+                    let profileController = UIStoryboard(name: "Profile", bundle: nil).instantiateInitialViewController() as! ViewController
+                    self.presentViewController(profileController, animated: false, completion: nil)
                 }
                 alert.addAction(action)
                 self.presentViewController(alert, animated: true, completion: {})
