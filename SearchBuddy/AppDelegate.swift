@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import Fabric
 import Crashlytics
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,18 +20,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
+        let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
         Fabric.with([Crashlytics.self])
         SBDAO.setupParse(launchOptions)
         
-        
-        
-        
-        
-        
-        
-        
-        
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        let currentInstalation = PFInstallation.currentInstallation()
+        
+        currentInstalation.setDeviceTokenFromData(deviceToken)
+        currentInstalation.channels = ["globals"]
+        currentInstalation.saveInBackground()
+        
+        
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
@@ -40,6 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sourceApplication: sourceApplication,
             annotation: annotation)
         
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        
+        PFPush.handlePush(userInfo)
     }
 
     func applicationWillResignActive(application: UIApplication) {

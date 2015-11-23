@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
 
@@ -145,6 +146,13 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         if (segue.identifier == "addAnimal") {
             var uVC = segue.destinationViewController as! UserVC
             uVC = UserVC()
+            
+            let pushQuery = PFInstallation.query()
+            pushQuery?.whereKey("deviceType", equalTo: "ios")
+            
+            PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "Hello World")
+            
+            
         }
         
     }
