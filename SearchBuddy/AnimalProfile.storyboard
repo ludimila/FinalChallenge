@@ -9,7 +9,7 @@
         <!--AnimalVC-->
         <scene sceneID="p4y-Hk-LIi">
             <objects>
-                <viewController id="uNO-pU-Oku" customClass="AnimalVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="animalVC" id="uNO-pU-Oku" customClass="AnimalVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GnH-CN-7np"/>
                         <viewControllerLayoutGuide type="bottom" id="L7b-vW-RdK"/>
@@ -133,6 +133,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="22j-SM-YFu" userLabel="TableProfile">
                                 <rect key="frame" x="0.0" y="265" width="600" height="335"/>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="84" id="Gde-bC-82o" customClass="AnimalLocationTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
@@ -296,4 +297,5 @@
     <resources>
         <image name="sadPuppy" width="1920" height="1200"/>
     </resources>
+    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
 
@@ -128,12 +129,17 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print(" Identificador -> \(segue.identifier)")
         
         if (segue.identifier == "addAnimal") {
-            if let uVC = segue.destinationViewController as? UserVC{
-//                    uVC = UserVC()
-            }
+            var uVC = segue.destinationViewController as! UserVC
+            uVC = UserVC()
+            
+            let pushQuery = PFInstallation.query()
+            pushQuery?.whereKey("deviceType", equalTo: "ios")
+            
+            PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "Hello World")
+            
+
             
         }
         

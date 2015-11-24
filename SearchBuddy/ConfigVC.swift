@@ -158,7 +158,7 @@ class ConfigVC: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toLogin"{
-            if let nextController = segue.destinationViewController as? PresentationVC{
+            if let nextController = segue.destinationViewController as? LoginVC{
                 nextController.tableViewToReload = self.tableView
             }
         }
