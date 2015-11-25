@@ -15,13 +15,41 @@ class MainTabBarVC: UITabBarController {
         
         self.initTabBar()
         
+        let buttonImage = UIImage(named: "patinha")
         
-        // Do any additional setup after loading the view.
-    }
+        addCenterButtonWithImage(buttonImage!, highlightImage: nil)
+        
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func addCenterButtonWithImage(buttonImage: UIImage, highlightImage: UIImage?){
+        let button = UIButton(type: .Custom) as UIButton
+        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)
+        button.setBackgroundImage(buttonImage, forState: UIControlState.Normal)
+        button.setBackgroundImage(highlightImage, forState: UIControlState.Highlighted)
+        button.addTarget(self, action: "buttonEvent", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        let heightDifference: CGFloat = buttonImage.size.height - self.tabBar.frame.size.height
+        
+        print("CENTER TAB = \(self.tabBar.frame.size.height) ------ CENTER IMAGE = \(buttonImage.size.height) --------- DIFERENÇA = \(heightDifference)")
+        
+        if (heightDifference < 0){
+            button.center = self.tabBar.center
+        }else{
+            var center: CGPoint = self.tabBar.center
+            center.y = center.y - heightDifference/2.0
+            button.center = center
+        }
+        self.view.addSubview(button)
+    }
+    
+    func buttonEvent() {
+        print("APERTOU CARAI")
     }
     
     
@@ -67,5 +95,4 @@ class MainTabBarVC: UITabBarController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
