@@ -52,7 +52,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ICC-Dc-L1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="664" y="1589"/>
+            <point key="canvasLocation" x="500" y="1665"/>
         </scene>
         <!--Main Tab BarVC-->
         <scene sceneID="Tsd-Jh-oMg">
@@ -80,7 +80,7 @@
         <scene sceneID="iee-3z-egg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xOs-RJ-O4e" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Perfil" image="perfilAtivo" selectedImage="perfilAtivo" id="IYa-61-rUY"/>
+                    <tabBarItem key="tabBarItem" title="Perfil" image="perfilDesativado" selectedImage="perfilAtivo" id="IYa-61-rUY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I5F-WC-KjE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -100,7 +100,7 @@
         <scene sceneID="VrN-BA-Q4b">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bA5-ot-Jam" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Perfil Animal" image="perfilAtivo" selectedImage="perfilAtivo" id="3La-sZ-k7I"/>
+                    <tabBarItem key="tabBarItem" title="Perfil Animal" image="perfilDesativado" selectedImage="perfilAtivo" id="3La-sZ-k7I"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FAs-6n-6gk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -160,7 +160,7 @@
         <scene sceneID="UW6-hG-MMv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZJd-hR-N2S" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mapa" image="mapAtivo" selectedImage="mapAtivo" id="oUf-ZQ-ujT"/>
+                    <tabBarItem key="tabBarItem" title="Mapa" image="mapaDesativado" selectedImage="mapAtivo" id="oUf-ZQ-ujT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tCQ-1I-cKD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -183,6 +183,8 @@
         <image name="configDesativado" width="29" height="29"/>
         <image name="feedDesativado" width="25" height="21"/>
         <image name="mapAtivo" width="29" height="29"/>
+        <image name="mapaDesativado" width="29" height="29"/>
         <image name="perfilAtivo" width="27" height="25"/>
+        <image name="perfilDesativado" width="28" height="26"/>
     </resources>
 </document>
