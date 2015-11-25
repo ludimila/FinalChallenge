@@ -29,7 +29,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZ7-dx-WDo">
                                 <rect key="frame" x="280" y="170" width="40" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Editar"/>
+                                <state key="normal" title="Editar">
+                                    <color key="titleColor" red="0.039215686270000001" green="0.30588235289999999" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="editPicture:" destination="uNO-pU-Oku" eventType="touchUpInside" id="2DB-51-nNi"/>
                                 </connections>
@@ -43,10 +45,12 @@
                                     <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <animations/>
-                                    <state key="normal" title="Salvar"/>
+                                    <state key="normal" title="Salvar">
+                                        <color key="titleColor" red="0.039215686270000001" green="0.30588235289999999" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="saveData:" destination="uNO-pU-Oku" eventType="touchUpInside" id="ZR3-m5-hDi"/>
-                                        <segue destination="gwZ-sc-1dh" kind="show" id="ga7-ml-cMm"/>
+                                        <segue destination="gwZ-sc-1dh" kind="show" identifier="showAnimalProfile" id="ga7-ml-cMm"/>
                                     </connections>
                                 </button>
                                 <prototypes>
@@ -132,7 +136,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="22j-SM-YFu" userLabel="TableProfile">
-                                <rect key="frame" x="0.0" y="265" width="600" height="335"/>
+                                <rect key="frame" x="0.0" y="331" width="600" height="269"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -281,7 +285,7 @@
                         <constraints>
                             <constraint firstItem="22j-SM-YFu" firstAttribute="width" secondItem="x2s-2d-oRo" secondAttribute="width" id="3RN-ue-XLe"/>
                             <constraint firstItem="22j-SM-YFu" firstAttribute="bottom" secondItem="dhV-0l-QTm" secondAttribute="top" id="A3C-vH-q4p"/>
-                            <constraint firstItem="22j-SM-YFu" firstAttribute="height" secondItem="x2s-2d-oRo" secondAttribute="height" constant="-265" id="B4W-cO-9cq"/>
+                            <constraint firstItem="22j-SM-YFu" firstAttribute="height" secondItem="x2s-2d-oRo" secondAttribute="height" constant="-331" id="B4W-cO-9cq"/>
                             <constraint firstItem="22j-SM-YFu" firstAttribute="leading" secondItem="x2s-2d-oRo" secondAttribute="leading" id="HxW-Nc-z7I"/>
                         </constraints>
                     </view>

@@ -451,7 +451,7 @@
 				TargetAttributes = {
 					19229D1A1BBDA55600143F81 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 6BD69EF9D7;
+						DevelopmentTeam = 7K58N8K4L5;
 					};
 					19229D2E1BBDA55600143F81 = {
 						CreatedOnToolsVersion = 7.0;
@@ -808,7 +808,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gh.SearchBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4c9642bc-d179-4124-b2e0-6823ae0f5ea0";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -823,7 +823,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gh.SearchBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4c9642bc-d179-4124-b2e0-6823ae0f5ea0";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

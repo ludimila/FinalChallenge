@@ -66,22 +66,14 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
             
             cell.lastLocation.text = "Parque da Cidade"
-            
-            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
-                cell.layoutMargins = UIEdgeInsetsZero
-                cell.preservesSuperviewLayoutMargins = false
-            }
+   
             return cell
         }
         
        else if indexPath.row == 1{
             
          let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
-            
-            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
-                cell.layoutMargins = UIEdgeInsetsZero
-                cell.preservesSuperviewLayoutMargins = false
-            }
+           
             return cell
         }
         

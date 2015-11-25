@@ -58,10 +58,13 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         if indexPath.row == 2 {
             cell.addSubview(cell.switchVaccinated)
+            cell.dataTextField.hidden = true
         }
         
         if indexPath.row == 4{
             cell.addSubview(cell.segmentStatus)
+            cell.dataTextField.hidden = true
+
         }
         
         
@@ -75,7 +78,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBAction func saveData(sender: AnyObject) {
         
-         
+        let owner = UserDAO.getCurrentUser()
+        animal["animalOwner"] = owner
         
         for i in self.arrayCell {
             
@@ -224,6 +228,23 @@ func returnStatus(cell: AnimalTableViewCell) -> String{
         return "Estou Perdido"
     }
 }
+    
+    
+    
+    
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "showAnimalProfile"{
+            if let animalProfile = segue.destinationViewController as? AnimalProfileVC{
+                animalProfile.animal = self.animal
+            }
+        }
+    }
 
+    
+   
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }//fim controller
