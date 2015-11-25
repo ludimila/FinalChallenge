@@ -9,6 +9,9 @@
 import UIKit
 
 class AnimalOwnerTableViewCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var ownerName: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

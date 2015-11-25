@@ -114,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="3957" y="-406"/>
         </scene>
-        <!--Feed-->
+        <!--Main-->
         <scene sceneID="Xcg-Mg-rcN">
             <objects>
-                <viewControllerPlaceholder storyboardName="Feed" id="lIl-Ac-sIA" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" id="lIl-Ac-sIA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="idq-0t-Q7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3839" y="74"/>
@@ -128,7 +128,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="LoginVC" storyboardName="Config" referencedIdentifier="LoginVC" id="7aT-p4-Ecs" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kk7-aB-BJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4119" y="52"/>
+            <point key="canvasLocation" x="4119" y="74"/>
         </scene>
     </scenes>
     <resources>

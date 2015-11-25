@@ -31,6 +31,8 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(self.animal)
+
         self.loadScroll()
         self.configuraPageControl()
         
@@ -41,7 +43,6 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
 
     override func viewDidAppear(animated: Bool) {
-        print(self.animal)
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,12 +65,12 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
             
+            cell.lastLocation.text = "Parque da Cidade"
             
             if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
                 cell.layoutMargins = UIEdgeInsetsZero
                 cell.preservesSuperviewLayoutMargins = false
             }
-            
             return cell
         }
         
@@ -77,35 +78,23 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             
          let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
             
-          
-            
-            
             if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
                 cell.layoutMargins = UIEdgeInsetsZero
                 cell.preservesSuperviewLayoutMargins = false
             }
-            
             return cell
         }
         
         else if indexPath.row == 2{
             let cell = tableView.dequeueReusableCellWithIdentifier("aboutCell", forIndexPath: indexPath) as! AnimalAboutTableViewCell
             
-            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
-                cell.layoutMargins = UIEdgeInsetsZero
-                cell.preservesSuperviewLayoutMargins = false
-            }
-            
             return cell
 
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
             
-            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
-                cell.layoutMargins = UIEdgeInsetsZero
-                cell.preservesSuperviewLayoutMargins = false
-            }
-            
+            cell.descriptionX.text = animal?.animalDescription
+    
             return cell
         }
         
@@ -161,7 +150,6 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.pageControl.currentPageIndicatorTintColor = UIColor.orangeColor()
         
         self.view.insertSubview(self.pageControl, aboveSubview: self.animalPicture)
-        self.addNameAndBreed()
     }
     
     
@@ -178,18 +166,13 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let frame = UIScreen.mainScreen().bounds
         gradient.frame = CGRectMake(0, 0 ,frame.width*(frame.width/10), frame.height/2)
         self.animalPicture.addSubview(gradient)
- 
-        
-    }
     
-    
-    func addNameAndBreed(){
         let name = UILabel()
         let breed = UILabel()
         
         name.text = "Nome do cachorro"
         breed.text = "Raça do cachorro"
         
-        self.view.insertSubview(name, aboveSubview: self.animalPicture)
+        self.view.insertSubview(name, aboveSubview: gradient)
     }
 }
