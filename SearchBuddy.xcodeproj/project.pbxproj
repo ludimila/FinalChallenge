@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10DE6DFB0C849181879F6A4F /* Pods_SearchBuddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785A7800B65145638DDC654A /* Pods_SearchBuddy.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		190BA8671C07764F005978A4 /* BuscaLocalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190BA8661C07764F005978A4 /* BuscaLocalVC.swift */; };
 		190ED49D1BED158C0067C1FB /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190ED49C1BED158C0067C1FB /* ProfileTableViewCell.swift */; };
 		190ED4A11BED323C0067C1FB /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 190ED4A01BED323C0067C1FB /* add.png */; };
 		190ED4A51BF261A60067C1FB /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190ED4A41BF261A60067C1FB /* UIColor.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		190BA8661C07764F005978A4 /* BuscaLocalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuscaLocalVC.swift; sourceTree = "<group>"; };
 		190ED49C1BED158C0067C1FB /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		190ED4A01BED323C0067C1FB /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		190ED4A41BF261A60067C1FB /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				195F7C151BE29182008AF749 /* UserVC.swift */,
 				9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */,
 				934A588C1BF112EF00CF077E /* AnimalProfileVC.swift */,
+				190BA8661C07764F005978A4 /* BuscaLocalVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				4160C95F1BBEECD700D837C2 /* UserDAO.swift in Sources */,
 				19229D621BBF02A300143F81 /* MainTabBarVC.swift in Sources */,
 				19229D1F1BBDA55600143F81 /* AppDelegate.swift in Sources */,
+				190BA8671C07764F005978A4 /* BuscaLocalVC.swift in Sources */,
 				93ACC45A1BF37781009C583A /* AnimalAboutTableViewCell.swift in Sources */,
 				417CA53A1BBECA5900C37AF1 /* TypeAnimal.swift in Sources */,
 				9340E6381BF25DB800D1F128 /* AnimalProfileTableViewCell.swift in Sources */,

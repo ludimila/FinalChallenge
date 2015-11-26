@@ -11,7 +11,6 @@ import UIKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
-    
     var teste = Int()
     
     @IBOutlet weak var tableView: UITableView!

@@ -99,6 +99,15 @@
                                     <outlet property="delegate" destination="uNO-pU-Oku" id="C7a-NA-9VV"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u42-Eg-rv6">
+                                <rect key="frame" x="284" y="191" width="33" height="37"/>
+                                <state key="normal" image="pin">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nKm-Nq-s0D" kind="show" id="VmG-tz-vE6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -297,9 +306,57 @@
             </objects>
             <point key="canvasLocation" x="831" y="690"/>
         </scene>
+        <!--Busca LocalVC-->
+        <scene sceneID="cjN-xa-sYo">
+            <objects>
+                <viewController id="nKm-Nq-s0D" customClass="BuscaLocalVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aaa-PP-sIG"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q8n-Wz-awd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ljm-kQ-M0Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KRx-c9-h6K">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="528"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zR4-k7-o9T">
+                                <rect key="frame" x="36" y="550" width="43" height="30"/>
+                                <state key="normal" title="Salvar">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uNO-pU-Oku" kind="show" identifier="saveLoc" id="Ztg-56-eoX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyj-km-PkP">
+                                <rect key="frame" x="119" y="550" width="41" height="30"/>
+                                <state key="normal" title="Voltar">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uNO-pU-Oku" kind="show" id="m8t-H6-8YQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mkMap" destination="KRx-c9-h6K" id="o8x-pe-Ono"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X7b-Wh-LLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7" y="1558"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="pin" width="24" height="29"/>
         <image name="sadPuppy" width="1920" height="1200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ztg-56-eoX"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

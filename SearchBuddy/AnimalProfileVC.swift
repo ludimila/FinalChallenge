@@ -36,6 +36,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.loadScroll()
         self.configuraPageControl()
         
+        
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.separatorColor = UIColor.orangeColor()
     

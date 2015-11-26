@@ -253,6 +253,8 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             
 
         }
+        locationManager.stopUpdatingLocation()
+        
     }
     
     func randomPositions(lat : CLLocationDegrees, long: CLLocationDegrees) -> CLLocationCoordinate2D {
