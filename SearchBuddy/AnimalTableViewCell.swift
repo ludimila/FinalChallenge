@@ -15,6 +15,7 @@ class AnimalTableViewCell: UITableViewCell {
     
     var switchVaccinated = UISwitch()
     var segmentStatus = UISegmentedControl()
+    var items = Array<StatusAnimal>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,8 +34,8 @@ class AnimalTableViewCell: UITableViewCell {
 
     func selectStatus(){
         
-        let items = ["Estou em casa", "Estou perdido"]
-        self.segmentStatus = UISegmentedControl(items: items)
+        let itemSegment = ["Casa", "Não Casa"]
+        self.segmentStatus = UISegmentedControl(items: itemSegment)
         
         
         // Set up Frame and SegmentedControl

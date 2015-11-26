@@ -12,7 +12,7 @@ class StatusAnimalDAO: SBDAO {
     
     static private var instance : StatusAnimalDAO?
     
-    private var statusArray = Array<StatusAnimal>()
+    var statusArray = Array<StatusAnimal>()
     
     var allStatus: Array<StatusAnimal>{
         get {

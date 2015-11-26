@@ -24,14 +24,14 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var animalBreed: UILabel!
 
     
-    var animal: Animal?
+    var currentAnimal: Animal?
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(self.animal)
+        print(self.currentAnimal)
 
         self.loadScroll()
         self.configuraPageControl()
@@ -73,19 +73,20 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
        else if indexPath.row == 1{
             
          let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
-           
+            
+            cell.ownerName.text = "Um dia terá o nome do dono"
+            
             return cell
         }
         
         else if indexPath.row == 2{
             let cell = tableView.dequeueReusableCellWithIdentifier("aboutCell", forIndexPath: indexPath) as! AnimalAboutTableViewCell
-            
             return cell
 
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
             
-            cell.descriptionX.text = animal?.animalDescription
+            cell.descriptionX.text = currentAnimal?.animalDescription
     
             return cell
         }
@@ -162,8 +163,8 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let name = UILabel()
         let breed = UILabel()
         
-        name.text = "Nome do cachorro"
-        breed.text = "Raça do cachorro"
+        name.text = currentAnimal?.animalName
+        breed.text = currentAnimal?.breed
         
         self.view.insertSubview(name, aboveSubview: gradient)
     }

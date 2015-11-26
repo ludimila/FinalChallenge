@@ -18,10 +18,13 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Status: ", "Descrição:"]
     var arrayCell = Array<AnimalTableViewCell>()
+    var arrayStatus = Array<StatusAnimal>()
     let animal = Animal()
+    
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil Animal"
+
     }
     
     override func viewDidLoad() {
@@ -32,6 +35,9 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animalPicture.layer.borderColor = UIColor.orangeColor().CGColor
         self.animalPicture.layer.cornerRadius = 60
         self.tableView.separatorColor = UIColor.orangeColor()
+        
+        self.getData()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,8 +69,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         if indexPath.row == 4{
             cell.addSubview(cell.segmentStatus)
+            cell.items = self.arrayStatus
             cell.dataTextField.hidden = true
-
         }
         
         
@@ -99,7 +105,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 
             case 4:
                 let status = StatusAnimal()
-                status.situation = self.returnStatus(i)
+                status.situation = self.returnStatus(i).situation
                 self.animal.animalStatus = status
                 
             case 5:
@@ -220,15 +226,24 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }//fim if
     }//fim funcao
 
-func returnStatus(cell: AnimalTableViewCell) -> String{
+func returnStatus(cell: AnimalTableViewCell) -> StatusAnimal{
     
     if cell.segmentStatus.selectedSegmentIndex == 1{
-        return "Estou em casa"
+        return arrayStatus[0];
     }else{
-        return "Estou Perdido"
+        return arrayStatus[1];
     }
 }
     
+func getData(){
+        
+       StatusAnimalDAO.getStatus { (statusArray, error) -> Void in
+        self.arrayStatus = statusArray!
+        StatusAnimalDAO.sharedInstance().statusArray = self.arrayStatus
+        self.tableView.reloadData()
+        
+        }
+    }
     
     
     
@@ -236,13 +251,12 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showAnimalProfile"{
             if let animalProfile = segue.destinationViewController as? AnimalProfileVC{
-                animalProfile.animal = self.animal
+                animalProfile.currentAnimal = self.animal
             }
         }
     }
 
     
-   
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
