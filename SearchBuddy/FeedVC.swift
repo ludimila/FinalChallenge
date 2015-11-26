@@ -31,6 +31,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.estimatedRowHeight = 700
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
         
         self.tableView.allowsSelection = false
         self.refreshTableView!.backgroundColor = UIColor.redColor()
@@ -122,48 +125,48 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     }
     
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let indexes = self.tableView.indexPathsForVisibleRows as Array!
-        
-        
-        var valores = Array<CGFloat>()
-        var valoresIndex = Array<Int>()
-        
-        for index in indexes {
-            
-            let cellTeste = self.tableView.cellForRowAtIndexPath(index)
-            let rectInTableView = self.tableView.rectForRowAtIndexPath(index)
-            let rectInSuperview = self.tableView.convertRect(rectInTableView, toView: self.tableView.superview)
-            
-            var cellAmoutTela = (-30 + rectInSuperview.origin.y + (cellTeste?.frame.size.height)!)
-            
-            
-            if cellAmoutTela > cellTeste?.frame.size.height{
-                cellAmoutTela = (self.tableView.frame.size.height - (-30 + rectInSuperview.origin.y))
-            }
-            
-            
-            valoresIndex.append(index.row)
-            valores.append(cellAmoutTela)
-        }
-        
-        for index in indexes {
-            let cell = self.tableView.cellForRowAtIndexPath(index) as! FeedTableViewCell
-            
-            if valoresIndex[(valores.indexOf(valores.maxElement()!))!] == index.row{
-               UIView.animateWithDuration(3000, animations: { () -> Void in
-                cell.theBlur.hidden = true
-               })
-                
-                
-            }else{
-                UIView.animateWithDuration(3000, animations: { () -> Void in
-                    cell.theBlur.hidden = false
-                })
-
-            }
-        }
-    }
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        let indexes = self.tableView.indexPathsForVisibleRows as Array!
+//        
+//        
+//        var valores = Array<CGFloat>()
+//        var valoresIndex = Array<Int>()
+//        
+//        for index in indexes {
+//            
+//            let cellTeste = self.tableView.cellForRowAtIndexPath(index)
+//            let rectInTableView = self.tableView.rectForRowAtIndexPath(index)
+//            let rectInSuperview = self.tableView.convertRect(rectInTableView, toView: self.tableView.superview)
+//            
+//            var cellAmoutTela = (-30 + rectInSuperview.origin.y + (cellTeste?.frame.size.height)!)
+//            
+//            
+//            if cellAmoutTela > cellTeste?.frame.size.height{
+//                cellAmoutTela = (self.tableView.frame.size.height - (-30 + rectInSuperview.origin.y))
+//            }
+//            
+//            
+//            valoresIndex.append(index.row)
+//            valores.append(cellAmoutTela)
+//        }
+//        
+//        for index in indexes {
+//            let cell = self.tableView.cellForRowAtIndexPath(index) as! FeedTableViewCell
+//            
+//            if valoresIndex[(valores.indexOf(valores.maxElement()!))!] == index.row{
+//               UIView.animateWithDuration(3000, animations: { () -> Void in
+//                cell.theBlur.hidden = true
+//               })
+//                
+//                
+//            }else{
+//                UIView.animateWithDuration(3000, animations: { () -> Void in
+//                    cell.theBlur.hidden = false
+//                })
+//
+//            }
+//        }
+//    }
     
     @IBAction func compartilharAnimal(sender: AnyObject) {
         print("Compartilhou o mano!!!!")

@@ -256,15 +256,15 @@
 		19229D4C1BBDA56300143F81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				934A588C1BF112EF00CF077E /* AnimalProfileVC.swift */,
+				9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */,
 				BBBD4A9B1BD67C1C0038E54D /* Config */,
+				9374333D1BC1B97400F0C7DF /* FeedVC.swift */,
+				19229D611BBF02A300143F81 /* MainTabBarVC.swift */,
 				19229D541BBDA66100143F81 /* MapVC.swift */,
 				BBBD4A9C1BD67C360038E54D /* ProfileVC.swift */,
-				19229D201BBDA55600143F81 /* ViewController.swift */,
-				19229D611BBF02A300143F81 /* MainTabBarVC.swift */,
-				9374333D1BC1B97400F0C7DF /* FeedVC.swift */,
 				195F7C151BE29182008AF749 /* UserVC.swift */,
-				9373E0FF1BDFF68800795EC6 /* AnimalVC.swift */,
-				934A588C1BF112EF00CF077E /* AnimalProfileVC.swift */,
+				19229D201BBDA55600143F81 /* ViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -272,9 +272,9 @@
 		19229D4D1BBDA56900143F81 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				417CA53B1BBECD3100C37AF1 /* Animal.swift */,
 				417CA5371BBEC62400C37AF1 /* StatusAnimal.swift */,
 				417CA5391BBECA5900C37AF1 /* TypeAnimal.swift */,
-				417CA53B1BBECD3100C37AF1 /* Animal.swift */,
 				417CA53D1BBED18E00C37AF1 /* User.swift */,
 			);
 			name = Model;
@@ -283,11 +283,11 @@
 		19229D4E1BBDA56D00143F81 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				4160C9601BBEECE100D837C2 /* AnimalDAO.swift */,
 				417CA5351BBEC55900C37AF1 /* SBDAO.swift */,
 				4160C95C1BBEECB100D837C2 /* StatusAnimalDAO.swift */,
-				4160C95E1BBEECD700D837C2 /* UserDAO.swift */,
-				4160C9601BBEECE100D837C2 /* AnimalDAO.swift */,
 				4160C9621BBEECEA00D837C2 /* TypeAnimalDAO.swift */,
+				4160C95E1BBEECD700D837C2 /* UserDAO.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -295,13 +295,13 @@
 		19229D511BBDA5F500143F81 /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				1914E9F91C037ED7000F0BE6 /* Presentation.storyboard */,
-				19229D521BBDA60B00143F81 /* Map.storyboard */,
-				19229D5F1BBF024400143F81 /* Main.storyboard */,
-				BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */,
-				BBFF80781BD94A0200CB0BBB /* Profile.storyboard */,
 				9373E0FB1BDFE8B700795EC6 /* AnimalProfile.storyboard */,
 				BBD7480A1BFE49D300A68DE4 /* Config.storyboard */,
+				BB66764E1BBF0DDA00F3D7F9 /* Feed.storyboard */,
+				19229D5F1BBF024400143F81 /* Main.storyboard */,
+				19229D521BBDA60B00143F81 /* Map.storyboard */,
+				1914E9F91C037ED7000F0BE6 /* Presentation.storyboard */,
+				BBFF80781BD94A0200CB0BBB /* Profile.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
