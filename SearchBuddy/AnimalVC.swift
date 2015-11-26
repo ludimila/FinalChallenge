@@ -8,12 +8,14 @@
 
 import UIKit
 import Parse
+import MapKit
 
 class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     
     @IBOutlet weak var animalPicture: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    var ponto: CLLocationCoordinate2D!
     
     
     var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Status: ", "Descrição:"]
@@ -22,6 +24,12 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil Animal"
+        
+        if ( self.ponto != nil) {
+            
+            print("Ponto -> \(self.ponto)")
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -33,6 +41,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animalPicture.layer.cornerRadius = 60
         self.tableView.separatorColor = UIColor.orangeColor()
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -75,7 +84,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBAction func saveData(sender: AnyObject) {
         
-         
+        
         
         for i in self.arrayCell {
             
@@ -108,12 +117,22 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             
         }//fim for
         
+        
+        if ( self.ponto != nil ){
+            
+            self.animal.local = PFGeoPoint()
+            self.animal.local!.longitude = self.ponto.longitude
+            self.animal.local!.latitude = self.ponto.latitude
+        }
+        
+        
+        
         self.savaDataInParse()
         
     }
     
     func savaDataInParse(){
-    
+        
         self.animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
         
         if ( self.animal.animalName != "" && self.animal.breed != "" && self.animal.vaccinated != nil && self.animal.animalStatus?.situation != "" && self.animal.animalDescription != ""){
@@ -134,20 +153,20 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             //Present the AlertController
             self.presentViewController(campoVazio, animated: true, completion: nil)
         }
-
+        
     }
-
+    
     //foto de perfil do animal
     
     @IBAction func editPicture(sender: AnyObject) {
         
-
+        
         //criando AlertController
         let actionSheetController: UIAlertController = UIAlertController(title: "Foto", message: "Selecione a opção", preferredStyle: .ActionSheet)
         
         //cancelar a ação
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Cancel) { action -> Void in
-        
+            
         }
         actionSheetController.addAction(cancelAction)
         
@@ -167,11 +186,11 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.presentViewController(actionSheetController, animated: true, completion: nil)
         
     }
-
+    
     
     //tirar foto
     func takePicture(){
-    
+        
         let imagePicker = UIImagePickerController()
         
         if UIImagePickerController.isSourceTypeAvailable(.Camera){
@@ -185,17 +204,17 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     //escolher foto da biblioteca
     func chooseLibrary() {
+        
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
             
-            let imagePicker = UIImagePickerController()
-            
-            if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
-                
-                imagePicker.sourceType = .PhotoLibrary
-                imagePicker.delegate = self
-                imagePicker.allowsEditing = true //permitir a edição
-            }
-            presentViewController(imagePicker, animated: true, completion: nil)
+            imagePicker.sourceType = .PhotoLibrary
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true //permitir a edição
         }
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
     
     //seleciona a foto capturada e coloca na image view
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -206,24 +225,24 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         dismissViewControllerAnimated(true, completion: nil)
     }
-
-    func returnVaccinated(cell:AnimalTableViewCell)-> Bool{
     
+    func returnVaccinated(cell:AnimalTableViewCell)-> Bool{
+        
         if cell.switchVaccinated.on{
             return true
         }else{
             return false
         }//fim if
     }//fim funcao
-
-func returnStatus(cell: AnimalTableViewCell) -> String{
     
-    if cell.segmentStatus.selectedSegmentIndex == 1{
-        return "Estou em casa"
-    }else{
-        return "Estou Perdido"
+    func returnStatus(cell: AnimalTableViewCell) -> String{
+        
+        if cell.segmentStatus.selectedSegmentIndex == 1{
+            return "Estou em casa"
+        }else{
+            return "Estou Perdido"
+        }
     }
-}
-
-
+    
+    
 }//fim controller

@@ -19,6 +19,7 @@ class Animal: PFObject, PFSubclassing{
     @NSManaged var animalType: TypeAnimal?
     @NSManaged var animalStatus: StatusAnimal?
     @NSManaged var animalOwner: User?
+    @NSManaged var local: PFGeoPoint?
     
     
     override class func initialize() {
