@@ -30,7 +30,12 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(self.animal)
+
+        
+        print(self.animal?.animalOwner?.name)
+//        
+        
+        
 
         self.loadScroll()
         self.configuraPageControl()
@@ -93,7 +98,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
             
-            cell.descriptionX.text = animal?.animalDescription
+            cell.descriptionX.text = animal?.animalOwner?.name
     
             return cell
         }

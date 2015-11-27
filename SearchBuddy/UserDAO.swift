@@ -68,9 +68,6 @@ class UserDAO: NSObject {
         }
     }
     
-    
-    
-    
     class func userLogout(){
         PFUser.logOut()
     }

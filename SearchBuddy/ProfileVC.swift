@@ -148,6 +148,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
                 let indexPath = NSIndexPath(forRow: cell.tag, inSection: 0)
                 
                 animalProfile.animal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
+                
             }
         }
     }
