@@ -63,8 +63,7 @@ class AnimalDAO: SBDAO {
             
             query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
                 for animal in animals!{
-                    try! animal.fetchIfNeeded()
-
+                    animal.fetchIfNeededInBackground()
                 }
                 
                 
@@ -72,7 +71,7 @@ class AnimalDAO: SBDAO {
                 if let animalsNN = animals as? Array<Animal> {
                     print("ENTROU NO IF")
                     
-                    print(animalsNN)
+                    AnimalDAO.sharedInstance().animalsArray = animalsNN
                     completion(animalsNN, error: error)
                     
                 }else{
@@ -90,6 +89,7 @@ class AnimalDAO: SBDAO {
         
         let query = Animal.query()!
         
+        
         query.whereKey("animalOwner", equalTo: UserDAO.getCurrentUser()!)
         
         query.orderByDescending("createdAt")
@@ -102,8 +102,7 @@ class AnimalDAO: SBDAO {
         query.findObjectsInBackgroundWithBlock { (animals, error) -> Void in
             if error == nil {
                 for animal in animals!{
-                    try! animal.fetchIfNeeded()
-
+                    animal.fetchIfNeededInBackground()
                 }
                 
                 
