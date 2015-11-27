@@ -37,9 +37,7 @@ class MainTabBarVC: UITabBarController {
         button.addTarget(self, action: "buttonEvent", forControlEvents: UIControlEvents.TouchUpInside)
         
         let heightDifference: CGFloat = buttonImage.size.height - self.tabBar.frame.size.height
-        
-        print("CENTER TAB = \(self.tabBar.frame.size.height) ------ CENTER IMAGE = \(buttonImage.size.height) --------- DIFERENÇA = \(heightDifference)")
-        
+                
         if (heightDifference < 0){
             button.center = self.tabBar.center
         }else{
@@ -71,6 +69,7 @@ class MainTabBarVC: UITabBarController {
         let button2 = UIButton(type: .Custom) as UIButton
         button2.frame = CGRectMake(0, 0, (buttonImage2?.size.width)!, (buttonImage2?.size.height)!)
         button2.setBackgroundImage(buttonImage2, forState: .Normal)
+        button2.addTarget(self, action: "lostEvent", forControlEvents: UIControlEvents.TouchUpInside)
         button2.tag = 2
         
         button.center = self.tabBar.center
@@ -101,7 +100,18 @@ class MainTabBarVC: UITabBarController {
             }
         }
     }
-
+    
+    func lostEvent(){
+        print("PERDI")
+        let sb = UIStoryboard(name: "LoseAnimal", bundle: nil)
+        let lostVC = sb.instantiateViewControllerWithIdentifier("loseVC") as! LoseTableVC
+        
+        
+        
+        
+        self.presentViewController(lostVC, animated: true, completion: nil)
+        
+    }
     
     func initTabBar(){
        

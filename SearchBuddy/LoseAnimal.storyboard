@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3pq-rh-08O">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Selecionar Animal-->
+        <scene sceneID="G7c-5E-WKu">
+            <objects>
+                <tableViewController storyboardIdentifier="loseVC" title="Selecione o animal perdido" id="CMC-tw-rua" userLabel="Selecionar Animal" customClass="LoseTableVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="223" sectionHeaderHeight="28" sectionFooterHeight="28" id="RGf-Vp-i5P">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="223" id="XsE-md-LMJ" customClass="LoseCellTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="223"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XsE-md-LMJ" id="t3L-Av-8oB">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="223"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dNp-i5-gd6">
+                                            <rect key="frame" x="34" y="17" width="82" height="82"/>
+                                            <animations/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovb-Gu-S9H">
+                                            <rect key="frame" x="136" y="47" width="46" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovA-QF-ttL">
+                                            <rect key="frame" x="252" y="156" width="96" height="30"/>
+                                            <animations/>
+                                            <state key="normal" title="Perdi sá porra"/>
+                                        </button>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="img" destination="dNp-i5-gd6" id="j2l-Pt-kDK"/>
+                                    <outlet property="label" destination="ovb-Gu-S9H" id="vpQ-oD-vmq"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CMC-tw-rua" id="zu4-Kg-6me"/>
+                            <outlet property="delegate" destination="CMC-tw-rua" id="uWf-BG-dpd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="M3j-2I-u8y"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tja-Mx-jNe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="983" y="227"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qIy-bl-ZZl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3pq-rh-08O" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0lB-km-SrY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CMC-tw-rua" kind="relationship" relationship="rootViewController" id="sPh-kP-1Ep"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N5G-6u-g0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="171" y="227"/>
+        </scene>
+    </scenes>
+</document>
