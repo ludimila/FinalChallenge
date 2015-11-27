@@ -119,7 +119,7 @@
         <!--Ajustes-->
         <scene sceneID="Ylw-a2-o9E">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6mv-dH-10Z" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="configNC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6mv-dH-10Z" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ajustes" image="configDesativado" selectedImage="configAtivo" id="gVI-vy-TyO"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iox-Z4-ehc">

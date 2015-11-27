@@ -79,8 +79,16 @@ class LoginVC: UIViewController {
                 }else{
                     let alert = UIAlertController(title: "Login realizado", message: "Bem vindo de volta", preferredStyle: .Alert)
                     let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                        print(self.navigationController)
+                        
                         let storyBoard = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                         self.presentViewController(storyBoard!, animated: true, completion: nil)
+                        
+                        
+//                        let tabBar = self.navigationController?.parentViewController as! UITabBarController
+//                            tabBar.selectedIndex = 1
+                        
+                        
                         if self.tableViewToReload != nil{
                             self.tableViewToReload!.reloadData()
                         }

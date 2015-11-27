@@ -180,6 +180,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="animalSituation" destination="2vj-jb-g5z" id="g3I-lo-8lj"/>
                                             <outlet property="chatButton" destination="syC-Gw-zzt" id="Ujg-1A-0iO"/>
