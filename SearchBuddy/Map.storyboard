@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--MapVC-->
@@ -44,27 +45,64 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="429"/>
                                 <animations/>
                             </mapView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="jeF-vm-MuJ">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rvd-hl-dzQ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="simpleCell" textLabel="vtu-BC-s3h" detailTextLabel="aU6-NR-grN" style="IBUITableViewCellStyleSubtitle" id="T3N-xi-dZv">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3N-xi-dZv" id="PUU-Tf-YeR">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vtu-BC-s3h">
+                                                    <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aU6-NR-grN">
+                                                    <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <outlet property="delegate" destination="bge-Kv-Juu" id="NWA-C5-aCK"/>
+                                    <outlet property="dataSource" destination="bge-Kv-Juu" id="4xN-V8-IAI"/>
                                 </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="T17-fs-J0b">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="Jl2-Ut-COm"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Rvd-hl-dzQ" firstAttribute="height" secondItem="Pr1-IQ-feE" secondAttribute="height" multiplier="0.4" id="2JG-vH-wOz"/>
                             <constraint firstItem="fBU-Zr-EU9" firstAttribute="top" secondItem="7RE-sh-tBM" secondAttribute="bottom" id="3hz-Ca-yU7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7RE-sh-tBM" secondAttribute="trailing" constant="-20" id="4RL-be-OmY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jeF-vm-MuJ" secondAttribute="trailing" constant="-20" id="CaK-eC-r2b"/>
-                            <constraint firstItem="47v-Sb-ktx" firstAttribute="top" secondItem="jeF-vm-MuJ" secondAttribute="bottom" id="L0b-bV-eCV"/>
+                            <constraint firstItem="Rvd-hl-dzQ" firstAttribute="top" secondItem="T17-fs-J0b" secondAttribute="bottom" id="9at-2G-9UQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Rvd-hl-dzQ" secondAttribute="trailing" id="Agn-j4-Dek"/>
+                            <constraint firstItem="T17-fs-J0b" firstAttribute="leading" secondItem="Pr1-IQ-feE" secondAttribute="leadingMargin" constant="-20" id="Al7-Ng-sZv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="47v-Sb-ktx" secondAttribute="trailing" constant="-20" id="LcG-ry-NCr"/>
                             <constraint firstItem="47v-Sb-ktx" firstAttribute="leading" secondItem="Pr1-IQ-feE" secondAttribute="leadingMargin" constant="-20" id="MSv-xp-Iea"/>
-                            <constraint firstItem="jeF-vm-MuJ" firstAttribute="leading" secondItem="Pr1-IQ-feE" secondAttribute="leadingMargin" constant="-20" id="SyE-hB-hCa"/>
                             <constraint firstItem="7RE-sh-tBM" firstAttribute="leading" secondItem="Pr1-IQ-feE" secondAttribute="leadingMargin" constant="-20" id="Wkw-3I-U90"/>
+                            <constraint firstItem="T17-fs-J0b" firstAttribute="top" secondItem="bKv-4B-eXX" secondAttribute="bottom" id="avV-2i-5nV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T17-fs-J0b" secondAttribute="trailing" constant="-20" id="bgp-Kl-0cZ"/>
                             <constraint firstItem="7RE-sh-tBM" firstAttribute="top" secondItem="47v-Sb-ktx" secondAttribute="bottom" id="iAV-Ib-FhG"/>
-                            <constraint firstItem="jeF-vm-MuJ" firstAttribute="top" secondItem="bKv-4B-eXX" secondAttribute="bottom" id="uWM-ff-XS2"/>
+                            <constraint firstItem="47v-Sb-ktx" firstAttribute="top" secondItem="T17-fs-J0b" secondAttribute="bottom" id="iLq-JX-BlX"/>
+                            <constraint firstItem="Rvd-hl-dzQ" firstAttribute="leading" secondItem="Pr1-IQ-feE" secondAttribute="leading" id="oTh-QQ-hua"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -73,21 +111,11 @@
                     <connections>
                         <outlet property="Location" destination="Eey-Ez-kLO" id="S31-Yl-hdH"/>
                         <outlet property="map" destination="47v-Sb-ktx" id="g1g-Gc-17a"/>
-                        <outlet property="searchBar" destination="jeF-vm-MuJ" id="246-T4-fFc"/>
-                        <outlet property="searchDisplay" destination="Gq0-dh-G8V" id="CPU-RB-GCa"/>
-                        <outlet property="searchDisplayController" destination="Gq0-dh-G8V" id="SLg-bQ-H7p"/>
+                        <outlet property="searchBar" destination="T17-fs-J0b" id="gum-Qg-p5h"/>
+                        <outlet property="tV" destination="Rvd-hl-dzQ" id="qRI-q5-oi9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aue-qa-AXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Gq0-dh-G8V">
-                    <connections>
-                        <outlet property="delegate" destination="bge-Kv-Juu" id="6UF-UT-fzF"/>
-                        <outlet property="searchBar" destination="jeF-vm-MuJ" id="e9x-Sj-8gO"/>
-                        <outlet property="searchContentsController" destination="bge-Kv-Juu" id="C8H-cC-RIe"/>
-                        <outlet property="searchResultsDataSource" destination="bge-Kv-Juu" id="dhf-Ut-WB7"/>
-                        <outlet property="searchResultsDelegate" destination="bge-Kv-Juu" id="1aJ-bY-XqR"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1936" y="305"/>
         </scene>

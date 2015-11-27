@@ -9,13 +9,13 @@
  import UIKit
  import MapKit
  
- class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UISearchControllerDelegate, UITableViewDelegate {
+ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource  {
     
+    @IBOutlet weak var tV: UITableView!
     @IBOutlet weak var map: MKMapView!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var Location: UILabel!
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    @IBOutlet var searchDisplay: UISearchController!
     
     // Variáveis do Mapa
     var pontoMapa: CLLocationCoordinate2D!
@@ -24,6 +24,7 @@
     var userLocation: CLLocationCoordinate2D!
     var pontoProximo: CLLocationCoordinate2D!
     var index: Int!
+    var animaisSearchResult = Array<Animal>()
     
     // View
     var vW: UIView!
@@ -53,11 +54,14 @@
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
+        // TableView Searchbar
+        self.tV.delegate = self
+        
         //Personalizar searchBar
         self.searchBar.delegate = self
         self.searchBar.barStyle = UIBarStyle.BlackOpaque
         self.searchBar.barTintColor = UIColor(netHex: 0x1E7A8D)
-        self.searchBar.placeholder = "Animal";
+        self.searchBar.tintColor = UIColor.whiteColor()
         
         // Verifica a user location
         self.userLocation = self.locationManager.location?.coordinate
@@ -67,15 +71,35 @@
         
     }
     
+    
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        
+        return true
+    }
+    
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        self.tV.hidden = false
+        self.searchContent(self.searchBar.text!)
+        
+        self.tV.reloadData()
+        return true
+    }
+    
+    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
+        self.tV.hidden = true
+        
+        return true
+    }
+    
+    
     // Método do SearchController
-    
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.animaisSearchResult.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -88,11 +112,33 @@
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: tableItem)
         }
         
-        cell?.textLabel?.text = "TESTE"
-        cell?.detailTextLabel?.text = "Xablau"
+        var animal = self.animaisSearchResult[indexPath.row]
+        
+        cell?.textLabel?.text = animal.animalName
+        cell?.detailTextLabel?.text = animal.animalDescription
         
         return cell!
     }
+    
+    
+    func searchContent(searchText: String) {
+        for index in self.animals {
+            if ( (index.animalName?.uppercaseString)?.rangeOfString(searchText.uppercaseString) != nil ){
+                
+                if (self.animaisSearchResult.count > 0){
+                    for index2 in self.animaisSearchResult {
+                        if (index.animalName != index2.animalName){
+                            self.animaisSearchResult.append(index)
+                        }
+                    }
+                }else{
+                    self.animaisSearchResult.append(index)
+                }
+                
+            }
+        }
+    }
+    
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -101,6 +147,13 @@
         var myRegion = MKCoordinateRegion()
         var span = MKCoordinateSpan()
         var center = CLLocationCoordinate2D()
+        let animal = self.animaisSearchResult[indexPath.row]
+        
+        if (animal.local != nil) {
+            center.latitude = (animal.local?.latitude)!
+            center.longitude = (animal.local?.longitude)!
+        }
+        
         
         span.latitudeDelta = 0.05
         span.longitudeDelta = 0.01
@@ -108,8 +161,11 @@
         myRegion.span = span
         myRegion.center = center
         
-        self.searchDisplay.active = false
+        //self.searchDisplay.active = false
         self.map.setRegion(myRegion, animated: true)
+        
+        self.searchBar.endEditing(true)
+        self.tV.hidden = true
         
         
     }
