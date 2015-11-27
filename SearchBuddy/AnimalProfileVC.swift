@@ -15,6 +15,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     var pageControl: UIPageControl!
     var scrollView: UIScrollView!
     var animalPicture: UIImageView!
+    var endereco: String!
     
     //tableView
     @IBOutlet weak var tableView: UITableView!
@@ -26,13 +27,16 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     var currentAnimal: Animal!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print(self.currentAnimal)
 
+        
+    //    print(self.animal?.animalOwner?.name)
+       
+        
+        
         self.loadScroll()
         self.configuraPageControl()
         
@@ -67,6 +71,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
             
             cell.lastLocation.text = String(currentAnimal?.local)
+
             return cell
         }
         
@@ -86,7 +91,8 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
             
-            cell.descriptionX.text = currentAnimal?.animalDescription
+
+            cell.descriptionX.text = currentAnimal?.animalOwner?.name
     
             return cell
         }

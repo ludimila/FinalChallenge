@@ -1,19 +1,21 @@
  //
-//  MapVC.swift
-//  SearchBuddy
-//
-//  Created by Gustavo Henrique on 01/10/15.
-//  Copyright © 2015 Gustavo Henrique. All rights reserved.
-//
-
-import UIKit
-import MapKit
-
-class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UISearchControllerDelegate, UITableViewDelegate {
+ //  MapVC.swift
+ //  SearchBuddy
+ //
+ //  Created by Gustavo Henrique on 01/10/15.
+ //  Copyright © 2015 Gustavo Henrique. All rights reserved.
+ //
+ 
+ import UIKit
+ import MapKit
+ 
+ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UISearchControllerDelegate, UITableViewDelegate {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var Location: UILabel!
+    
+    @IBOutlet var searchDisplay: UISearchController!
     
     // Variáveis do Mapa
     var pontoMapa: CLLocationCoordinate2D!
@@ -39,7 +41,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         
         // Inicializa o geocoder
         self.geocoder = CLGeocoder()
-
+        
         // Configurações iniciais do mapa
         self.map.delegate = self
         self.map.showsUserLocation = true;
@@ -64,6 +66,55 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         }
         
     }
+    
+    // Método do SearchController
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let tableItem = "SimpleTableItem"
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier(tableItem)
+        
+        if (cell == nil){
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: tableItem)
+        }
+        
+        cell?.textLabel?.text = "TESTE"
+        cell?.detailTextLabel?.text = "Xablau"
+        
+        return cell!
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //implementar aproximação da localidade
+        
+        var myRegion = MKCoordinateRegion()
+        var span = MKCoordinateSpan()
+        var center = CLLocationCoordinate2D()
+        
+        span.latitudeDelta = 0.05
+        span.longitudeDelta = 0.01
+        
+        myRegion.span = span
+        myRegion.center = center
+        
+        self.searchDisplay.active = false
+        self.map.setRegion(myRegion, animated: true)
+        
+        
+    }
+    
+    // ========================================================
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -95,7 +146,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         print(AnimalDAO.sharedInstance().animalsArray)
         
         self.animals = AnimalDAO.sharedInstance().animalsArray
-
+        
         
         self.navigationController?.navigationBar.topItem?.title = "Mapa"
         
@@ -107,10 +158,17 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
         
         for index in self.animals {
             
-            pontoMapa = randomPositions(lat, long: long)
-            
-            lat = lat + 1;
-            long = long + 1;
+            if ( index.local != nil) {
+                pontoMapa = CLLocationCoordinate2D()
+                pontoMapa.latitude = (index.local?.latitude)!
+                pontoMapa.longitude = (index.local?.longitude)!
+            } else {
+                
+                pontoMapa = randomPositions(lat, long: long)
+                
+                lat = lat + 1;
+                long = long + 1;
+            }
             
             // Pino
             let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
@@ -122,6 +180,8 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             if let locationTeste : CLLocation = location {
                 addRadiusCircle(locationTeste)
             }
+            
+            
             
         }
     }
@@ -196,15 +256,29 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
                 let botao = UIButton(type: UIButtonType.Custom)
                 
                 
-                botao.frame.size.width = 120
+                botao.frame.size.width = 100
                 botao.backgroundColor = UIColor(netHex: 0xE86905)
                 botao.frame.size.height = 60
-                botao.center.x = self.vW.frame.width * 0.3
+                botao.center.x = self.vW.frame.width * 0.2
                 botao.center.y = self.vW.frame.height * 0.8
                 botao.addSubview(makeLabel("Voltar", x: 0, y: 0 ,size: 28))
                 self.vW.addSubview(botao)
                 
                 botao.addTarget(self, action: "dismissView", forControlEvents: UIControlEvents.TouchUpInside)
+                
+                let botaoPr = UIButton(type: UIButtonType.Custom)
+                
+                botaoPr.frame.size.width = 100
+                botaoPr.backgroundColor = UIColor(netHex: 0xE86905)
+                botaoPr.frame.size.height = 60
+                botaoPr.center.x = self.vW.frame.width * 0.8
+                botaoPr.center.y = self.vW.frame.height * 0.8
+                botaoPr.addSubview(makeLabel("Dono", x: 0, y: 0 ,size: 28))
+                self.vW.addSubview(botaoPr)
+                
+                botaoPr.addTarget(self, action: "profileVC", forControlEvents: UIControlEvents.TouchUpInside)
+                
+                
             }
         }
         
@@ -214,6 +288,16 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
             self.vW.center.x = self.view.frame.width * 0.5
             self.vW.center.y = self.view.frame.height * 0.5
         })
+    }
+    
+    func profileVC(){
+        
+        let sb = UIStoryboard(name: "Profile", bundle: nil)
+        let profileVC = sb.instantiateViewControllerWithIdentifier("profileVC") as! ProfileVC
+        
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        
+        
     }
     
     
@@ -251,7 +335,7 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
                 }
             })
             
-
+            
         }
         locationManager.stopUpdatingLocation()
         
@@ -316,4 +400,4 @@ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISear
     }
     */
     
-}
+ }

@@ -17,8 +17,8 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     var ponto: CLLocationCoordinate2D!
     var geocoder: CLGeocoder!
     var placemarks: CLPlacemark!
-    var address: String!
-    
+
+    var local: String!
     
     
     override func viewDidLoad() {
@@ -62,7 +62,7 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
             
         }
         
-        var longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        let longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
         
         longPress.minimumPressDuration = 0.5
         self.mkMap.addGestureRecognizer(longPress)
@@ -77,10 +77,10 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         }
         
         
-        var touchPoint = sender.locationInView(self.mkMap)
+        let touchPoint = sender.locationInView(self.mkMap)
         self.ponto = self.mkMap.convertPoint(touchPoint, toCoordinateFromView: self.mkMap)
         
-        var anot = Annotation(coordinate: self.ponto, title: "", subtitle: "")
+        let anot = Annotation(coordinate: self.ponto, title: "", subtitle: "")
         
         self.mkMap.removeAnnotations(self.mkMap.annotations)
         self.mkMap.addAnnotation(anot)
@@ -99,7 +99,9 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
                 if (error == nil && placemarks!.count > 0){
                     
                     self.placemarks = placemarks?.last
-                  //  self.address = (self.placemarks.thoroughfare!)
+
+                    print("Endereço -> \(self.placemarks.thoroughfare!)")
+                    self.local = self.placemarks.thoroughfare!
                     
                     
                 }else {
@@ -107,7 +109,6 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
                 }
             })
         }
-        
         locationManager.stopUpdatingLocation()
         
     }
@@ -152,6 +153,8 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
             let animalPVC = segue.destinationViewController as! AnimalVC
             
             animalPVC.ponto = CLLocationCoordinate2D(latitude: self.ponto.latitude, longitude: self.ponto.longitude)
+            
+            
         }
         
         

@@ -51,42 +51,74 @@ class AnimalDAO: SBDAO {
 //        query?.whereKey("autor", equalTo: usuario)
         query.orderByDescending("createdAt")
         
+        
+        
+        
         query.includeKey("animalStatus")
         query.includeKey("animalType")
         query.includeKey("animalOwner")
-    
+        
+        
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             
             query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
+                for animal in animals!{
+                    try! animal.fetchIfNeeded()
+
+                }
+                
+                
+            
                 if let animalsNN = animals as? Array<Animal> {
+                    print("ENTROU NO IF")
+                    
+                    print(animalsNN)
                     completion(animalsNN, error: error)
                     
                 }else{
+                    print("ENTROU NO ELSE")
                     completion(nil, error: error)
                 }
             })
+            
+            
         }
     }
     
     
     class func getAnimalsFromUser(completion: () -> Void){
         
-        let query = PFQuery(className:"Animal")
+        let query = Animal.query()!
         
         query.whereKey("animalOwner", equalTo: UserDAO.getCurrentUser()!)
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
+        
+        query.orderByDescending("createdAt")
+        
+        query.includeKey("animalStatus")
+        query.includeKey("animalType")
+        query.includeKey("animalOwner")
+        
+        
+        query.findObjectsInBackgroundWithBlock { (animals, error) -> Void in
             if error == nil {
-                print("Successfully retrieved \(objects!.count) scores.")
-                if let objects = objects {
+                for animal in animals!{
+                    try! animal.fetchIfNeeded()
+
+                }
+                
+                
+                print("Successfully retrieved \(animals!.count) scores.")
                     AnimalDAO.sharedInstance().animalsUser = Array<Animal>()
-                    for object in objects {
-                        let animal = object as! Animal
+                    for animal in animals! {
+                        let animal = animal as! Animal
+                        
+                      
                         
                         AnimalDAO.sharedInstance().animalsUser.append(animal)
                     }
-                }
+                
+//                print(AnimalDAO.sharedInstance().animalsUser)
+                
                 completion()
             } else {
                 // Log details of the failure
