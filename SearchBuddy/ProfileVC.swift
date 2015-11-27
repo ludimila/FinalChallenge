@@ -23,9 +23,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var telefoneDonoLb: UILabel!
     @IBOutlet weak var localizacaoDonoLb: UILabel!
     
-    
     var selectedRow: Int?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +44,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         
-        if let nomeUsuario = UserDAO.getCurrentUser()!["name"] {
+        if let nomeUsuario = UserDAO.getCurrentUser()?["name"] {
             self.nome.text = nomeUsuario as? String
         }else{
             self.nome.text = "Sem nome"

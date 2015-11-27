@@ -15,6 +15,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     var pageControl: UIPageControl!
     var scrollView: UIScrollView!
     var animalPicture: UIImageView!
+    var endereco: String!
     
     //tableView
     @IBOutlet weak var tableView: UITableView!
@@ -25,8 +26,6 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 
     
     var animal: Animal?
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +65,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
             
-            cell.lastLocation.text = "Parque da Cidade"
+            cell.lastLocation.text = self.endereco
             
             if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
                 cell.layoutMargins = UIEdgeInsetsZero

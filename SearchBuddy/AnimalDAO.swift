@@ -54,6 +54,7 @@ class AnimalDAO: SBDAO {
         query.includeKey("animalStatus")
         query.includeKey("animalType")
         query.includeKey("animalOwner")
+        //query.includeKey("local")
     
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             

@@ -16,6 +16,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var animalPicture: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     var ponto: CLLocationCoordinate2D!
+    var localizacao: String!
     
     
     var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Status: ", "Descrição:"]
@@ -242,6 +243,22 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }else{
             return "Estou Perdido"
         }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "saveAnimal") {
+            
+            
+            let aProfileVC = segue.destinationViewController as! AnimalProfileVC
+            
+            print("Local -> \(self.localizacao)")
+            aProfileVC.endereco = localizacao
+            
+        }
+        
+        
     }
     
     
