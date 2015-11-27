@@ -147,8 +147,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
                 let cell = sender as! UITableViewCell
                 let indexPath = NSIndexPath(forRow: cell.tag, inSection: 0)
                 
-                animalProfile.animal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
-                
+                animalProfile.currentAnimal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
+
             }
         }
     }

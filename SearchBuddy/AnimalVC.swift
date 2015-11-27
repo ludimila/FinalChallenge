@@ -21,16 +21,17 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Status: ", "Descrição:"]
     var arrayCell = Array<AnimalTableViewCell>()
+    var arrayStatus = Array<StatusAnimal>()
     let animal = Animal()
+    
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil Animal"
-        
+
         if ( self.ponto != nil) {
             
             print("Ponto -> \(self.ponto)")
         }
-        
     }
     
     override func viewDidLoad() {
@@ -41,6 +42,9 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animalPicture.layer.borderColor = UIColor.orangeColor().CGColor
         self.animalPicture.layer.cornerRadius = 60
         self.tableView.separatorColor = UIColor.orangeColor()
+        
+        self.getData()
+        
     }
     
     
@@ -68,10 +72,13 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         if indexPath.row == 2 {
             cell.addSubview(cell.switchVaccinated)
+            cell.dataTextField.hidden = true
         }
         
         if indexPath.row == 4{
             cell.addSubview(cell.segmentStatus)
+            cell.items = self.arrayStatus
+            cell.dataTextField.hidden = true
         }
         
         
@@ -85,7 +92,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBAction func saveData(sender: AnyObject) {
         
-        
+        let owner = UserDAO.getCurrentUser()
+        animal["animalOwner"] = owner
         
         for i in self.arrayCell {
             
@@ -235,31 +243,47 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             return false
         }//fim if
     }//fim funcao
+
+func returnStatus(cell: AnimalTableViewCell) -> String{
     
-    func returnStatus(cell: AnimalTableViewCell) -> String{
+    if cell.segmentStatus.selectedSegmentIndex == 1{
+        return "Estou em casa"
+    }else{
+        return  "Estou perdido"
+    }
+}
+    
+func getData(){
         
-        if cell.segmentStatus.selectedSegmentIndex == 1{
-            return "Estou em casa"
-        }else{
-            return "Estou Perdido"
+       StatusAnimalDAO.getStatus { (statusArray, error) -> Void in
+        self.arrayStatus = statusArray!
+        StatusAnimalDAO.sharedInstance().statusArray = self.arrayStatus
+        self.tableView.reloadData()
+        
         }
     }
     
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if segue.identifier == "showAnimalProfile"{
+            if let animalProfile = segue.destinationViewController as? AnimalProfileVC{
+                animalProfile.currentAnimal = self.animal
+            }
+            
         if (segue.identifier == "saveAnimal") {
             
-            
-            let aProfileVC = segue.destinationViewController as! AnimalProfileVC
-            
-            print("Local -> \(self.localizacao)")
-            aProfileVC.endereco = localizacao
-            
+                let aProfileVC = segue.destinationViewController as! AnimalProfileVC
+                
+                print("Local -> \(self.localizacao)")
+                aProfileVC.endereco = localizacao
+                
+            }
         }
-        
-        
     }
+
     
-    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
 }//fim controller

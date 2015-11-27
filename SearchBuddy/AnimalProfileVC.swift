@@ -25,18 +25,18 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var animalBreed: UILabel!
 
     
-    var animal: Animal?
+    var currentAnimal: Animal!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(self.currentAnimal)
 
         
-        print(self.animal?.animalOwner?.name)
-//        
+    //    print(self.animal?.animalOwner?.name)
+       
         
         
-
         self.loadScroll()
         self.configuraPageControl()
         
@@ -70,12 +70,8 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
             
-            cell.lastLocation.text = self.endereco
-            
-            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
-                cell.layoutMargins = UIEdgeInsetsZero
-                cell.preservesSuperviewLayoutMargins = false
-            }
+            cell.lastLocation.text = String(currentAnimal?.local)
+
             return cell
         }
         
@@ -83,22 +79,20 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             
          let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
             
-            if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
-                cell.layoutMargins = UIEdgeInsetsZero
-                cell.preservesSuperviewLayoutMargins = false
-            }
+            cell.ownerName.text = currentAnimal?.animalOwner?.name
+            
             return cell
         }
         
         else if indexPath.row == 2{
             let cell = tableView.dequeueReusableCellWithIdentifier("aboutCell", forIndexPath: indexPath) as! AnimalAboutTableViewCell
-            
             return cell
 
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
             
-            cell.descriptionX.text = animal?.animalOwner?.name
+
+            cell.descriptionX.text = currentAnimal?.animalDescription
     
             return cell
         }
@@ -175,8 +169,8 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let name = UILabel()
         let breed = UILabel()
         
-        name.text = "Nome do cachorro"
-        breed.text = "Raça do cachorro"
+        name.text = currentAnimal?.animalName
+        breed.text = currentAnimal?.breed
         
         self.view.insertSubview(name, aboveSubview: gradient)
     }
