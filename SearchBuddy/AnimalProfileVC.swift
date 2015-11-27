@@ -79,7 +79,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             
          let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
             
-            cell.ownerName.text = String(currentAnimal.animalOwner!["name"])
+            cell.ownerName.text = currentAnimal?.animalOwner?.name
             
             return cell
         }
@@ -92,7 +92,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
             
 
-            cell.descriptionX.text = currentAnimal?.animalOwner?.name
+            cell.descriptionX.text = currentAnimal?.animalDescription
     
             return cell
         }
