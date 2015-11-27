@@ -130,9 +130,22 @@ class ConfigVC: UITableViewController {
             switch(indexPath.row) {
             case 0:
                 if UserDAO.isLogged() {
-                    print("LOGUI AUTI")
-                    UserDAO.userLogout()
-                    tableView.reloadData()
+                    let alert = UIAlertController(title: "Deslogar", message: "Tem certeza que deseja sair?", preferredStyle: .Alert)
+                    
+                    let actionYes = UIAlertAction(title: "Sim", style: .Default) { _ in
+                        UserDAO.userLogout()
+                        
+                        let tabBar = self.navigationController?.parentViewController as! UITabBarController
+                        tabBar.selectedIndex = 1
+                        self.tableView.reloadData()
+                    }
+                    let actionNo = UIAlertAction(title: "Não", style: .Default, handler: nil)
+                    
+                    alert.addAction(actionYes)
+                    alert.addAction(actionNo)
+                    
+                    self.presentViewController(alert, animated: true, completion: {})
+                    
                 }else{
                     print("LOGUI IN")
                     performSegueWithIdentifier("toLogin", sender: self)

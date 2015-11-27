@@ -125,7 +125,7 @@
         <!--LoginVC-->
         <scene sceneID="K5S-3B-i2D">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="LoginVC" storyboardName="Config" referencedIdentifier="LoginVC" id="7aT-p4-Ecs" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="configNC" storyboardName="Config" referencedIdentifier="LoginVC" id="7aT-p4-Ecs" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kk7-aB-BJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4119" y="74"/>
