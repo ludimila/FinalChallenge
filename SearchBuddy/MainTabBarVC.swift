@@ -65,19 +65,27 @@ class MainTabBarVC: UITabBarController {
         let button = UIButton(type: .Custom) as UIButton
         button.frame = CGRectMake(0, 0, (buttonImage?.size.width)!, (buttonImage?.size.height)!)
         button.setBackgroundImage(buttonImage, forState: .Normal)
-        button.center = self.view.center
         button.tag = 1
-        button.center.y = button.center.y + 230
-        button.center.x = button.center.x - 50
-
+      
         let buttonImage2 = UIImage(named: "Lupa")
         let button2 = UIButton(type: .Custom) as UIButton
         button2.frame = CGRectMake(0, 0, (buttonImage2?.size.width)!, (buttonImage2?.size.height)!)
         button2.setBackgroundImage(buttonImage2, forState: .Normal)
-        button2.center = self.view.center
         button2.tag = 2
-        button2.center.y = button2.center.y + 230
-        button2.center.x = button2.center.x + 50
+        
+        button.center = self.tabBar.center
+        button2.center = self.tabBar.center
+        
+        UIView.animateWithDuration(0.5, animations: {
+            button.center = self.view.center
+            button.center.y = button.center.y + 230
+            button.center.x = button.center.x - 50
+
+            button2.center = self.view.center
+            button2.center.y = button2.center.y + 230
+            button2.center.x = button2.center.x + 50
+        })
+        
         
         self.view.addSubview(button2)
         self.view.addSubview(button)
