@@ -112,7 +112,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 
             case 4:
                 let status = StatusAnimal()
-                status.situation = self.returnStatus(i).situation
+                status.situation = self.returnStatus(i)
                 self.animal.animalStatus = status
                 
             case 5:
@@ -243,12 +243,12 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }//fim if
     }//fim funcao
 
-func returnStatus(cell: AnimalTableViewCell) -> StatusAnimal{
+func returnStatus(cell: AnimalTableViewCell) -> String{
     
     if cell.segmentStatus.selectedSegmentIndex == 1{
-        return arrayStatus[0];
+        return "Estou em casa"
     }else{
-        return arrayStatus[1];
+        return  "Estou perdido"
     }
 }
     

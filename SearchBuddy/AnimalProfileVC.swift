@@ -24,7 +24,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var animalBreed: UILabel!
 
     
-    var currentAnimal: Animal?
+    var currentAnimal: Animal!
     
     
     
@@ -66,8 +66,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
             
-            cell.lastLocation.text = "Parque da Cidade"
-   
+            cell.lastLocation.text = String(currentAnimal?.local)
             return cell
         }
         
@@ -75,7 +74,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             
          let cell = tableView.dequeueReusableCellWithIdentifier("ownerCell", forIndexPath: indexPath) as! AnimalOwnerTableViewCell
             
-            cell.ownerName.text = "Um dia terá o nome do dono"
+            cell.ownerName.text = String(currentAnimal.animalOwner!["name"])
             
             return cell
         }

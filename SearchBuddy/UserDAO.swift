@@ -98,3 +98,6 @@ class UserDAO: NSObject {
     }
     
 }
+
+//na query do animal botar o include keys pra pegar todos os dados do usuario passando o que será incluido
+//requisitar usuario pelo id

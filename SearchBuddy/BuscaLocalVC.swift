@@ -17,6 +17,7 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     var ponto: CLLocationCoordinate2D!
     var geocoder: CLGeocoder!
     var placemarks: CLPlacemark!
+    var address: String!
     
     
     
@@ -98,7 +99,7 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
                 if (error == nil && placemarks!.count > 0){
                     
                     self.placemarks = placemarks?.last
-                    print("Endereço -> \(self.placemarks.thoroughfare!)")
+                  //  self.address = (self.placemarks.thoroughfare!)
                     
                     
                 }else {
