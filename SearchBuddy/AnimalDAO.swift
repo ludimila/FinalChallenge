@@ -69,13 +69,10 @@ class AnimalDAO: SBDAO {
                 
             
                 if let animalsNN = animals as? Array<Animal> {
-                    print("ENTROU NO IF")
-                    
                     AnimalDAO.sharedInstance().animalsArray = animalsNN
                     completion(animalsNN, error: error)
                     
                 }else{
-                    print("ENTROU NO ELSE")
                     completion(nil, error: error)
                 }
             })
@@ -106,17 +103,12 @@ class AnimalDAO: SBDAO {
                 }
                 
                 
-                print("Successfully retrieved \(animals!.count) scores.")
-                    AnimalDAO.sharedInstance().animalsUser = Array<Animal>()
-                    for animal in animals! {
-                        let animal = animal as! Animal
-                        
-                      
-                        
-                        AnimalDAO.sharedInstance().animalsUser.append(animal)
-                    }
-                
-//                print(AnimalDAO.sharedInstance().animalsUser)
+                AnimalDAO.sharedInstance().animalsUser = Array<Animal>()
+                for animal in animals! {
+                    let animal = animal as! Animal
+                    
+                    AnimalDAO.sharedInstance().animalsUser.append(animal)
+                }
                 
                 completion()
             } else {

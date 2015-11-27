@@ -43,9 +43,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         if Reachability.testConnection(){
             getData()
-            print("Com conexao")
-        }else{
-            print("Sem conexao")
         }
         
         
@@ -61,9 +58,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 
         if Reachability.testConnection(){
             getData()
-            print("Com conexao")
-        }else{
-            print("Sem conexao")
         }
     }
     
@@ -127,11 +121,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     
     func getData(){
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
-//            self.animalsArray = animalsArray!
-//            AnimalDAO.sharedInstance().animalsArray = animalsArray!
-            print("ANTES DO RELOAD")
             self.tableView.reloadData()
-            print("Passou")
         }
 
     }
