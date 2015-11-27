@@ -56,7 +56,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     }
     
     func reloadTableView() {
-        print("RELOAD")
         
         self.refreshTableView!.endRefreshing()
 
@@ -94,9 +93,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
         if let currentAnimal : Animal = AnimalDAO.sharedInstance().allAnimals[indexPath.row]{
+            
             currentAnimal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
                 if error == nil{
                     cell.fotoAnimal.image = UIImage(data: data!)
+                }else{
+                    print(error?.description)
                 }
             })
             
@@ -106,6 +108,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             cell.fotoPerfilDono.layer.borderColor = UIColor(red: 0.42, green: 0.26, blue: 0.13, alpha: 1).CGColor
             
             cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
+            
             
             cell.nameAnimal.text = currentAnimal.animalName
             
@@ -125,7 +128,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func getData(){
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
 //            self.animalsArray = animalsArray!
-            AnimalDAO.sharedInstance().animalsArray = animalsArray!
+//            AnimalDAO.sharedInstance().animalsArray = animalsArray!
+            print("ANTES DO RELOAD")
             self.tableView.reloadData()
             print("Passou")
         }

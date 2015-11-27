@@ -29,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SBDAO.setupParse(launchOptions)
         
         
+        User.registerSubclass()
+        StatusAnimal.registerSubclass()
+        TypeAnimal.registerSubclass()
+        
         UINavigationBar.appearance().barTintColor = UIColor(red: 0.25, green: 0.71, blue: 0.81, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor(red: 0.25, green: 0.71, blue: 0.81, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
