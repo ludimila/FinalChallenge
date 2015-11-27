@@ -18,6 +18,20 @@ class LoseTableVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
+        AnimalDAO.getAnimalsFromUser { () -> Void in
+            self.tableView.reloadData()
+            
+            if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
+                self.tableView.hidden = false
+                //self.tableviewIsEmptylb.hidden = true
+            }else{
+                self.tableView.hidden = true
+                //self.tableviewIsEmptylb.hidden = false
+            }
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,14 +62,14 @@ class LoseTableVC: UITableViewController {
             cell.preservesSuperviewLayoutMargins = false
         }
         
-//        
-//        animal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
-//            if error == nil{
-//                cell.img.image = UIImage(data: data!)
-//                Utilities.round(cell.img, tamanhoBorda: 1)
-//                cell.img.layer.borderColor = UIColor.orangeColor().CGColor
-//            }
-//        })
+        
+        animal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
+            if error == nil{
+                cell.img.image = UIImage(data: data!)
+                Utilities.round(cell.img, tamanhoBorda: 1)
+                cell.img.layer.borderColor = UIColor.orangeColor().CGColor
+            }
+        })
         
         cell.label.text = animal.animalName
         
