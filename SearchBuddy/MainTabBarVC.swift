@@ -106,9 +106,6 @@ class MainTabBarVC: UITabBarController {
         let sb = UIStoryboard(name: "LoseAnimal", bundle: nil)
         let lostVC = sb.instantiateViewControllerWithIdentifier("loseVC") as! LoseTableVC
         
-        
-        
-        
         self.presentViewController(lostVC, animated: true, completion: nil)
         
     }

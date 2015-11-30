@@ -14,26 +14,50 @@ class LoseCellTableViewCell: UITableViewCell {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var label: UILabel!
     
-    @IBAction func callButton(sender: AnyObject) {
+    class var expandedHeight: CGFloat {get { return 215} }
+    class var defaultHeigth: CGFloat {get { return 120}}
+
+    @IBOutlet weak var loseButton: UIButton!
     
-        let pushQuery = PFInstallation.query()
-        pushQuery?.whereKey("deviceType", equalTo: "ios")
-        
-        PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "\(self.label.text!) está perdido." )
     
+//    @IBAction func callButton(sender: AnyObject) {
+//    
+//        let pushQuery = PFInstallation.query()
+//        pushQuery?.whereKey("deviceType", equalTo: "ios")
+//        
+//        PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "\(self.label.text!) está perdido." )
+//    
+//    }
+//    
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        self.selectionStyle = UITableViewCellSelectionStyle.None
     }
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
+    func hiddenItens(state: Bool){
+        loseButton.hidden = state
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func checkHeigth() {
+        let state = (frame.size.height < LoseCellTableViewCell.expandedHeight) as Bool
+        self.hiddenItens(state)
+    }
+    
+    func watchFrameChanges() {
+        addObserver(self, forKeyPath: "frame", options: .New, context: nil)
+    }
+    
+    func ignoreFrameChanges() {
+        if self.observationInfo != nil {
+            removeObserver(self, forKeyPath: "frame")
+        }
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "frame" {
+            self.checkHeigth()
+        }
     }
     
 }
