@@ -8,6 +8,8 @@
  
  import UIKit
  import MapKit
+ import CoreLocation
+
  
  class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource  {
     
@@ -112,7 +114,7 @@
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: tableItem)
         }
         
-        var animal = self.animaisSearchResult[indexPath.row]
+        let animal = self.animaisSearchResult[indexPath.row]
         
         cell?.textLabel?.text = animal.animalName
         cell?.detailTextLabel?.text = animal.animalDescription
@@ -177,25 +179,20 @@
         getAddresFromLatitude()
     }
     
-    func addRadiusCircle(location: CLLocation){
-        let circle = MKCircle(centerCoordinate: location.coordinate, radius: 150 as CLLocationDistance)
-        map.addOverlay(circle)
+    func addRadiusOverlayForGeotification(anot: Annotation) {
+        map?.addOverlay(MKCircle(centerCoordinate: anot.coordinate, radius: anot.radius))
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        
         if overlay is MKCircle {
-            
             let circle = MKCircleRenderer(overlay: overlay)
-            circle.strokeColor = UIColor.blackColor()
-            circle.fillColor = UIColor(red: 255, green: 0, blue: 155, alpha: 0.1)
-            circle.lineWidth = 1
+            circle.lineWidth = 1.0
+            circle.strokeColor = UIColor.purpleColor()
+            circle.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.4)
             return circle
-            
-        } else {
-            
-            return nil
         }
+        return nil
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -227,19 +224,20 @@
             }
             
             // Pino
-            let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
-            myAnn.title = index.animalName
-            myAnn.subtitle = index.animalDescription
+            //let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
+            let myAnn = Annotation(coordinate: pontoMapa, radius: 150, title: index.animalName!, eventType: EventType.OnEntry)
             map.addAnnotation(myAnn)
             
-            let location : CLLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
+            let location : CLLocation = CLLocation(latitude: myAnn.coordinate.latitude, longitude: myAnn.coordinate.longitude)
             if let locationTeste : CLLocation = location {
-                addRadiusCircle(locationTeste)
+               addRadiusOverlayForGeotification(myAnn)
+               startMonitoringAnnotation(myAnn)
+                
             }
             
             
-            
         }
+        
     }
     
     // Método para adicionar Pins no mapa
@@ -333,7 +331,8 @@
                 self.vW.addSubview(botaoPr)
                 
                 botaoPr.addTarget(self, action: "profileVC", forControlEvents: UIControlEvents.TouchUpInside)
-                
+                let anot = view.annotation as! Annotation
+                stopMonitoringGeotification(anot)
                 
             }
         }
@@ -444,8 +443,55 @@
         return imageView
     }
     
+    // Métodos GeoFencing
     
+    func regionWithAnnotation(annotation: Annotation) -> CLCircularRegion{
+        //1
+        let region = CLCircularRegion(center: annotation.coordinate, radius: annotation.radius, identifier: annotation.title!)
+        
+        //2
+        region.notifyOnEntry = (annotation.eventType == .OnEntry)
+        region.notifyOnExit = !region.notifyOnEntry
+        
+        return region
+    }
     
+    func startMonitoringAnnotation(annotation: Annotation) {
+        //1
+        
+        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+            print("Geofencing não funciona nesse device")
+            return
+        }
+        
+        //2
+        
+        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+            print("Sua notificação ta salva, porem só vai funcionar caso garanta que esteja autorizado no device")
+        }
+        
+        //3
+        let region = regionWithAnnotation(annotation)
+        locationManager.startMonitoringForRegion(region)
+    }
+    
+    func stopMonitoringGeotification(annotation: Annotation) {
+        for region in locationManager.monitoredRegions {
+            if let circularRegion = region as? CLCircularRegion {
+                if circularRegion.identifier == annotation.title {
+                    locationManager.stopMonitoringForRegion(circularRegion)
+                }
+            }
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager?!, monitoringDidFailForRegion region: CLRegion!, withError error: NSError!) {
+        print("Monitoring failed for region with identifier: \(region.identifier)")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Location Manager failed with the following error: \(error)")
+    }
     /*
     // MARK: - Navigation
     

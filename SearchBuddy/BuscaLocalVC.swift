@@ -80,7 +80,7 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         let touchPoint = sender.locationInView(self.mkMap)
         self.ponto = self.mkMap.convertPoint(touchPoint, toCoordinateFromView: self.mkMap)
         
-        let anot = Annotation(coordinate: self.ponto, title: "", subtitle: "")
+        let anot = Annotation(coordinate: self.ponto, radius: 150, title: "", eventType: EventType.OnEntry)
         
         self.mkMap.removeAnnotations(self.mkMap.annotations)
         self.mkMap.addAnnotation(anot)
