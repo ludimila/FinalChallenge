@@ -64,6 +64,7 @@ class MainTabBarVC: UITabBarController {
         let buttonImage = UIImage(named: "patinha")
         let button = UIButton(type: .Custom) as UIButton
         button.frame = CGRectMake(0, 0, (buttonImage?.size.width)!, (buttonImage?.size.height)!)
+           button.addTarget(self, action: "addAnimal", forControlEvents: UIControlEvents.TouchUpInside)
         button.setBackgroundImage(buttonImage, forState: .Normal)
         button.tag = 1
       
@@ -122,6 +123,16 @@ class MainTabBarVC: UITabBarController {
         
     }
     
+    func addAnimal(){
+        
+        let sb = UIStoryboard(name: "AnimalProfile", bundle: nil)
+
+       let animalVC = sb.instantiateInitialViewController() as! AnimalVC
+        
+        self.presentViewController(animalVC, animated: true, completion: nil)
+        
+        
+    }
     
     func createStoryBoard(name: String, imageName: String) -> UIViewController{
         

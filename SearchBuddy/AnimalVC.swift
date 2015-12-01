@@ -19,7 +19,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var localizacao: String!
     
     
-    var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Status: ", "Descrição:"]
+    var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Descrição:"]
     var arrayCell = Array<AnimalTableViewCell>()
     var arrayStatus = Array<StatusAnimal>()
     let animal = Animal()
@@ -44,6 +44,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.tableView.separatorColor = UIColor.orangeColor()
         
         self.getData()
+        self.getTypeAnimal()
         
     }
     
@@ -75,13 +76,6 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             cell.dataTextField.hidden = true
         }
         
-        if indexPath.row == 4{
-            cell.addSubview(cell.segmentStatus)
-            cell.items = self.arrayStatus
-            cell.dataTextField.hidden = true
-        }
-        
-        
         if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
             cell.layoutMargins = UIEdgeInsetsZero
             cell.preservesSuperviewLayoutMargins = false
@@ -106,17 +100,11 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             case 2:
                 self.animal.vaccinated = self.returnVaccinated(i)
             case 3:
-                
                 let type = TypeAnimal()
                 type.typeDescription = i.dataTextField.text!
                 self.animal.animalType = type
                 
             case 4:
-                let status = StatusAnimal()
-                status.situation = self.returnStatus(i)
-                self.animal.animalStatus = status
-                
-            case 5:
                 self.animal.animalDescription = i.dataTextField.text!
                 
             default:
@@ -133,11 +121,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
-        
-        
-        
         self.savaDataInParse()
-        
     }
     
     func savaDataInParse(){
@@ -243,15 +227,6 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             return false
         }//fim if
     }//fim funcao
-
-func returnStatus(cell: AnimalTableViewCell) -> String{
-    
-    if cell.segmentStatus.selectedSegmentIndex == 1{
-        return "Estou em casa"
-    }else{
-        return  "Estou perdido"
-    }
-}
     
 func getData(){
         
@@ -262,6 +237,16 @@ func getData(){
         
         }
     }
+    
+    
+func getTypeAnimal(){
+    
+ let queryType = TypeAnimal.query()!
+    
+    
+    
+}
+    
     
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

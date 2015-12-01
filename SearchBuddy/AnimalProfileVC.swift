@@ -30,7 +30,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(self.currentAnimal)
+      //  print(self.currentAnimal)
 
         
     //    print(self.animal?.animalOwner?.name)
