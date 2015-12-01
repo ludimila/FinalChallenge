@@ -21,8 +21,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Descrição:"]
     var arrayCell = Array<AnimalTableViewCell>()
-    var arrayStatus = Array<StatusAnimal>()
     let animal = Animal()
+    
+    var animalsDescription = Array<String>()
+
     
     
     override func viewWillAppear(animated: Bool) {
@@ -32,6 +34,15 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             
             print("Ponto -> \(self.ponto)")
         }
+        
+        TypeAnimalDAO.getTypes({ (animalsType, error) -> Void in
+            for animal in animalsType!{
+                self.animalsDescription.append(animal.typeDescription!)
+            }
+            self.tableView.reloadData()
+        })
+        
+
     }
     
     override func viewDidLoad() {
@@ -73,14 +84,20 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             cell.dataTextField.hidden = true
         }
         
-        
+        if indexPath.row == 3{
+            
+            cell.dataTextField.hidden = true
+            cell.arrayTypes = self.animalsDescription
+            cell.selectType()
+            cell.addSubview(cell.segmentType)
+        }
         
         return cell
     }
     
     @IBAction func saveData(sender: AnyObject) {
         
-        let owner = UserDAO.getCurrentUser()
+        let owner = User.currentUser()
         animal["animalOwner"] = owner
         
         for i in self.arrayCell {
@@ -123,13 +140,12 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
         
         if ( self.animal.animalName != "" && self.animal.breed != "" && self.animal.vaccinated != nil && self.animal.animalStatus?.situation != "" && self.animal.animalDescription != ""){
-            print("Animal nao ta vazio")
             
             AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
                 if sucessed {
-                    print("salvou")
+                    print("sucess")
                 }else {
-                    print("nao salvou")
+                    print("error")
                 }
             }
         }else {

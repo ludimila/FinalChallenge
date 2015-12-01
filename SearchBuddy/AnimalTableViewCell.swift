@@ -15,20 +15,18 @@ class AnimalTableViewCell: UITableViewCell {
     
     var switchVaccinated = UISwitch()
     var segmentType = UISegmentedControl()
-    var items = Array<StatusAnimal>()
+    var arrayTypes = Array<String>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.selectVaccinated()
         
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 
     
@@ -40,9 +38,9 @@ class AnimalTableViewCell: UITableViewCell {
     }
     
     
-    func selectStatus(){
+    func selectType(){
         
-        let itemSegment = ["Gato", "Cachorro", "Outro"]
+        let itemSegment = self.arrayTypes
         self.segmentType = UISegmentedControl(items: itemSegment)
         
         

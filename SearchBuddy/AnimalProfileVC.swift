@@ -28,14 +28,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     var currentAnimal: Animal!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-      //  print(self.currentAnimal)
-
-        
-    //    print(self.animal?.animalOwner?.name)
-       
-        
+        super.viewDidLoad()        
         
         self.loadScroll()
         self.configuraPageControl()

@@ -187,7 +187,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         let indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
         
         
-        print(AnimalDAO.sharedInstance().allAnimals[indexPath.row])
+        //print(AnimalDAO.sharedInstance().allAnimals[indexPath.row])
         
     }
     
