@@ -65,6 +65,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
                     self.userPicture.image = UIImage(data: data!)
                 }
             })
+        }else{
+           self.userPicture.image = UIImage(named: "FotoPerfilVazio")
         }
         
         if let nomeUsuario = User.currentUser()?.name {

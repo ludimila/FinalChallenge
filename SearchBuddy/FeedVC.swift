@@ -105,7 +105,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
                     }
                 })
             }else{
-                cell.fotoPerfilDono.image = UIImage(named: "dog")
+                cell.fotoPerfilDono.image = UIImage(named: "FotoPerfilVazio")
             }
             
             Utilities.round(cell.fotoPerfilDono, tamanhoBorda: 1)
