@@ -15,15 +15,8 @@ class LoseCellTableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     
     @IBAction func callButton(sender: AnyObject) {
-    
-        let pushQuery = PFInstallation.query()
-        pushQuery?.whereKey("deviceType", equalTo: "ios")
-        
-        PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "\(self.label.text!) está perdido." )
-    
+       
     }
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
