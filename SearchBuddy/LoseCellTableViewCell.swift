@@ -14,8 +14,8 @@ class LoseCellTableViewCell: UITableViewCell {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var label: UILabel!
     
-    class var expandedHeight: CGFloat {get { return 215} }
-    class var defaultHeigth: CGFloat {get { return 120}}
+    class var expandedHeight: CGFloat {get { return 120} }
+    class var defaultHeigth: CGFloat {get { return 80}}
 
     @IBOutlet weak var loseButton: UIButton!
     

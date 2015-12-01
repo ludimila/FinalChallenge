@@ -8,12 +8,19 @@
 
 import UIKit
 
-class LoseTableVC: UITableViewController {
-    var selectedIndex : NSIndexPath?
+class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var selectedCellIndexPath: NSIndexPath?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.separatorColor = UIColor.orangeColor()
+
         AnimalDAO.getAnimalsFromUser { () -> Void in
             self.tableView.reloadData()
             
@@ -35,17 +42,17 @@ class LoseTableVC: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return AnimalDAO.sharedInstance().allAnimalsUser.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let animal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! LoseCellTableViewCell
@@ -64,41 +71,49 @@ class LoseTableVC: UITableViewController {
 
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        let previousIndexPath = selectedIndex
-        if indexPath == selectedIndex {
-            selectedIndex = nil
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let selectedCellIndexPath = self.selectedCellIndexPath {
+            if selectedCellIndexPath == indexPath {
+                self.selectedCellIndexPath = nil
+            } else {
+                self.selectedCellIndexPath = indexPath
+            }
         } else {
-            selectedIndex = indexPath
+            selectedCellIndexPath = indexPath
         }
-        var indexPaths : Array<NSIndexPath> = []
-        if let previous = previousIndexPath {
-            indexPaths += [previous]
-        }
-        if let current = selectedIndex {
-            indexPaths += [current]
-        }
-        if indexPaths.count > 0 {
-            tableView.reloadRowsAtIndexPaths([selectedIndex!], withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
-        print(selectedIndex!.row)
-
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         (cell as! LoseCellTableViewCell).watchFrameChanges()
     }
     
-    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         (cell as! LoseCellTableViewCell).ignoreFrameChanges()
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let selectedCellIndexPath = self.selectedIndex {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if let selectedCellIndexPath = self.selectedCellIndexPath {
             if selectedCellIndexPath == indexPath {
                 return LoseCellTableViewCell.expandedHeight
             }
         }
         return LoseCellTableViewCell.defaultHeigth
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "lostLocation"{
+            
+            let vc = segue.destinationViewController as! BuscaLocalVC
+            let animal = AnimalDAO.sharedInstance().allAnimalsUser[(selectedCellIndexPath?.row)!]
+            
+            vc.animal = animal
+            
+            
+        }
+            
+            
     }
 }

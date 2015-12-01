@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -17,13 +18,12 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
     var ponto: CLLocationCoordinate2D!
     var geocoder: CLGeocoder!
     var placemarks: CLPlacemark!
-
+    var animal: Animal!
     var local: String!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.mkMap.delegate = self
         self.locationManager = CLLocationManager()
@@ -84,7 +84,11 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         
         self.mkMap.removeAnnotations(self.mkMap.annotations)
         self.mkMap.addAnnotation(anot)
-        
+        let geoPoint = PFGeoPoint()
+        geoPoint.latitude = self.ponto.latitude
+        geoPoint.longitude = self.ponto.longitude
+        self.animal.local = geoPoint
+        self.animal.saveInBackground()
     }
     
     
