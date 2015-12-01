@@ -43,9 +43,6 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animalPicture.layer.cornerRadius = 60
         self.tableView.separatorColor = UIColor.orangeColor()
         
-        self.getData()
-        self.getTypeAnimal()
-        
     }
     
     
@@ -76,10 +73,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             cell.dataTextField.hidden = true
         }
         
-        if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
-            cell.layoutMargins = UIEdgeInsetsZero
-            cell.preservesSuperviewLayoutMargins = false
-        }
+        
         
         return cell
     }
@@ -227,25 +221,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             return false
         }//fim if
     }//fim funcao
-    
-func getData(){
-        
-       StatusAnimalDAO.getStatus { (statusArray, error) -> Void in
-        self.arrayStatus = statusArray!
-        StatusAnimalDAO.sharedInstance().statusArray = self.arrayStatus
-        self.tableView.reloadData()
-        
-        }
-    }
-    
-    
-func getTypeAnimal(){
-    
- let queryType = TypeAnimal.query()!
-    
-    
-    
-}
+
+
     
     
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

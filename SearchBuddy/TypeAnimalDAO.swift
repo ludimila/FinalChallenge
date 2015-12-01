@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Parse
 
 class TypeAnimalDAO: SBDAO {
     static private var instance : TypeAnimalDAO?
     
+    private var arrayType = Array<TypeAnimal>()
     private var typeArray = Array<TypeAnimal>()
     
     var allTypes: Array<TypeAnimal>{
@@ -56,4 +58,26 @@ class TypeAnimalDAO: SBDAO {
         }
     }
 
+    
+    func getTypeAnimal(){
+        
+        let queryType = TypeAnimal.query()
+        queryType?.findObjectsInBackgroundWithBlock{
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                print("Successfully retrieved \(objects!.count) scores.")
+                if let objects = objects {
+                    for object in objects {
+                        let animalType = object as! TypeAnimal
+                        self.arrayType.append(animalType)
+                    }
+                }
+            } else {
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+            print(self.arrayType)
+            
+        }
+    }
 }

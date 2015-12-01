@@ -14,7 +14,7 @@ class AnimalTableViewCell: UITableViewCell {
     @IBOutlet weak var dataLabel: UILabel!
     
     var switchVaccinated = UISwitch()
-    var segmentStatus = UISegmentedControl()
+    var segmentType = UISegmentedControl()
     var items = Array<StatusAnimal>()
     
     override func awakeFromNib() {
@@ -39,4 +39,20 @@ class AnimalTableViewCell: UITableViewCell {
         self.switchVaccinated.frame = CGRectMake(frame.midX+(frame.midX/2), 10 ,frame.width/2, frame.height/20)
     }
     
+    
+    func selectStatus(){
+        
+        let itemSegment = ["Gato", "Cachorro", "Outro"]
+        self.segmentType = UISegmentedControl(items: itemSegment)
+        
+        
+        // Set up Frame and SegmentedControl
+        let frame = UIScreen.mainScreen().bounds
+        self.segmentType.frame = CGRectMake(frame.midX, 10 ,frame.width/2, frame.height/20)
+        
+        // Style the Segmented Control
+        self.segmentType.layer.cornerRadius = 5.0  // Don't let background bleed
+        self.segmentType.backgroundColor = UIColor.orangeColor()
+        self.segmentType.tintColor = UIColor.whiteColor()
+    }
 }
