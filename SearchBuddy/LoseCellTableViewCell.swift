@@ -18,18 +18,7 @@ class LoseCellTableViewCell: UITableViewCell {
     class var defaultHeigth: CGFloat {get { return 80}}
 
     @IBOutlet weak var loseButton: UIButton!
-    
-    
-//    @IBAction func callButton(sender: AnyObject) {
-//    
-//        let pushQuery = PFInstallation.query()
-//        pushQuery?.whereKey("deviceType", equalTo: "ios")
-//        
-//        PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "\(self.label.text!) está perdido." )
-//    
-//    }
-//    
-    
+        
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.selectionStyle = UITableViewCellSelectionStyle.None
