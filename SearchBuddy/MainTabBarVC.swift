@@ -59,13 +59,13 @@ class MainTabBarVC: UITabBarController {
     }
     
     func addButtons(){
-        let buttonImage = UIImage(named: "patinha")
+        let buttonImage = UIImage(named: "addPet")
         let button = UIButton(type: .Custom) as UIButton
         button.frame = CGRectMake(0, 0, (buttonImage?.size.width)!, (buttonImage?.size.height)!)
         button.setBackgroundImage(buttonImage, forState: .Normal)
         button.tag = 1
       
-        let buttonImage2 = UIImage(named: "Lupa")
+        let buttonImage2 = UIImage(named: "losePet")
         let button2 = UIButton(type: .Custom) as UIButton
         button2.frame = CGRectMake(0, 0, (buttonImage2?.size.width)!, (buttonImage2?.size.height)!)
         button2.setBackgroundImage(buttonImage2, forState: .Normal)
