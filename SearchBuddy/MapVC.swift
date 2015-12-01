@@ -26,6 +26,9 @@
     var index: Int!
     var animaisSearchResult = Array<Animal>()
     
+    
+    var animalOwner: User?
+    
     // View
     var vW: UIView!
     
@@ -316,6 +319,9 @@
             
             if ((view.annotation?.title)! == animal.animalName){
                 
+                self.animalOwner = animal.animalOwner
+                
+                
                 self.vW = UIView(frame: CGRectMake(10, self.view.frame.height, 300, 300))
                 //self.vW.backgroundColor = UIColor.blackColor()
                 self.vW.backgroundColor = UIColor(netHex: 0x41B6CF)
@@ -369,9 +375,9 @@
         let sb = UIStoryboard(name: "Profile", bundle: nil)
         let profileVC = sb.instantiateViewControllerWithIdentifier("profileVC") as! ProfileVC
         
+        profileVC.userProfile = self.animalOwner
+        
         self.navigationController?.pushViewController(profileVC, animated: true)
-        
-        
     }
     
     
@@ -464,14 +470,13 @@
     
     
     
-    /*
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        print("ENTROU NO PREPRARE")
+//    }
+// 
     
  }

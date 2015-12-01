@@ -8,9 +8,16 @@
 
 import UIKit
 
+// Protocolo para saber qual usuário é pra mostrar no perfil
+protocol ShowUserInProfileView{
+    func isCurrentUser()
+}
+
 class MainTabBarVC: UITabBarController {
     
     var clicked = false
+    
+    var delegateUserProfile: ShowUserInProfileView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +28,18 @@ class MainTabBarVC: UITabBarController {
         
         addCenterButtonWithImage(buttonImage!, highlightImage: nil)
         
+        let nvc = self.viewControllers![3] as! UINavigationController
+        let vc = nvc.viewControllers[0] as! ProfileVC
+        
+        self.delegateUserProfile = vc
+    }
+    
+    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        let index = tabBar.items?.indexOf(item)
+        if index == 3{
+            self.delegateUserProfile?.isCurrentUser()
         }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

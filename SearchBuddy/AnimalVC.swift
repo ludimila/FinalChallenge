@@ -261,7 +261,7 @@ func getData(){
         self.tableView.reloadData()
         
         }
-    }
+}
     
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
