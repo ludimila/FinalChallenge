@@ -89,8 +89,8 @@ class RegisterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
         user.name = nameField.text
         user.username = usernameField.text
         user.password = passwordField.text
-        user.city = selectedCity
-        user.state = selectedState
+//        user.city = selectedCity
+//        user.state = selectedState
         
         UserDAO.signUpUser(user) { (sucessed,error) -> Void in
             if sucessed{

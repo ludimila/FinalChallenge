@@ -59,7 +59,7 @@ class LoginVC: UIViewController {
                             userData = data
                             print("AEEEEHOOOOOOOOOO")
                             
-                            let user = UserDAO.getCurrentUser()
+                            let user = User.currentUser()
                             
                             UserDAO.updateUserData(user!, data: userData)
                             

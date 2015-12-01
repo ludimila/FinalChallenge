@@ -112,7 +112,7 @@
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: tableItem)
         }
         
-        var animal = self.animaisSearchResult[indexPath.row]
+        let animal = self.animaisSearchResult[indexPath.row]
         
         cell?.textLabel?.text = animal.animalName
         cell?.detailTextLabel?.text = animal.animalDescription
@@ -174,6 +174,24 @@
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if User.currentUser() != nil{
+            if User.currentUser()?.locationUser == nil{
+                User.currentUser()?.locationUser = ParseConvertion.getLocationUser(manager.location!)
+                
+                
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) { () -> Void in
+                    CLGeocoder().reverseGeocodeLocation(manager.location!) { (placemarks, error) -> Void in
+                        if let placemark = placemarks?[0]{
+                            User.currentUser()?.bairro = placemark.subLocality
+                            User.currentUser()?.cidade = placemark.locality
+                            
+                            User.currentUser()?.saveInBackground()
+                        }
+                    }
+                }
+            }
+        }
+        
         getAddresFromLatitude()
     }
     

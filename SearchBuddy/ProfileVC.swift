@@ -8,8 +8,9 @@
 
 import UIKit
 import Parse
+import MapKit
 
-class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
+class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate{
 
     @IBOutlet weak var tableviewIsEmptylb: UILabel!
     
@@ -17,16 +18,31 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var nome: UILabel!
-    @IBOutlet weak var ocupacao: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var userPicture: UIImageView!
     
     @IBOutlet weak var telefoneDonoLb: UILabel!
     @IBOutlet weak var localizacaoDonoLb: UILabel!
     
+    
+    var locationManager : CLLocationManager!
     var selectedRow: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if User.currentUser() != nil{
+            if User.currentUser()?.locationUser == nil{
+                // Location Manager
+                self.locationManager = CLLocationManager()
+                self.locationManager.delegate = self
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                self.locationManager.requestAlwaysAuthorization()
+                self.locationManager.startUpdatingLocation()
+            }
+        }
+        
+        
         
         // Do any additional setup after loading the view.
         self.tableView.bounces = false
@@ -43,22 +59,33 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
+        if User.currentUser()?.userPicture != nil{
+            User.currentUser()?.userPicture!.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                if error == nil {
+                    self.userPicture.image = UIImage(data: data!)
+                }
+            })
+        }
         
-        if let nomeUsuario = UserDAO.getCurrentUser()?["name"] {
-            self.nome.text = nomeUsuario as? String
+        if let nomeUsuario = User.currentUser()?.name {
+            self.nome.text = nomeUsuario
         }else{
             self.nome.text = "Sem nome"
         }
         
-        if let telefoneUsuario = UserDAO.getCurrentUser()!["userPhoneNumber"] {
-            self.telefoneDonoLb.text = telefoneUsuario as? String
+        if let telefoneUsuario = User.currentUser()?.userPhoneNumber {
+            self.telefoneDonoLb.text = telefoneUsuario
         }else{
-            self.telefoneDonoLb.text = ""
+            self.telefoneDonoLb.text = "Indefinido"
         }
         
         
 //        Aqui pegara a cidade a respeito do cgpoint presente no user
-        self.localizacaoDonoLb.text = "Brasilia"
+        if User.currentUser()?.locationUser != nil {
+            self.localizacaoDonoLb.text =  (User.currentUser()!.bairro! + ", " + User.currentUser()!.cidade!)
+        }else{
+            self.localizacaoDonoLb.text = "Indefinido"
+        }
         
         
         AnimalDAO.getAnimalsFromUser { () -> Void in
@@ -77,10 +104,43 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        Utilities.round(self.imageView, tamanhoBorda: 2)
-        self.imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        Utilities.round(self.userPicture, tamanhoBorda: 2)
+        self.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
+    
+//    MARK: CLLocationManager
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.locationManager.stopUpdatingLocation()
+        
+        self.armazenaLocationUser(manager.location!)
+    }
+    
+    func armazenaLocationUser(location: CLLocation) {
+        User.currentUser()?.locationUser = ParseConvertion.getLocationUser(location)
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) { () -> Void in
+            CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) -> Void in
+                if let placemark = placemarks?[0]{
+                    User.currentUser()?.bairro = placemark.subLocality
+                    User.currentUser()?.cidade = placemark.locality
+                    
+                    User.currentUser()?.saveInBackgroundWithBlock({ (success, error) -> Void in
+                        if success{
+                            self.localizacaoDonoLb.text =  (User.currentUser()!.bairro! + ", " + User.currentUser()!.cidade!)
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Error while updating location " + error.localizedDescription)
+    }
+    
+//    ----------------------
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -129,8 +189,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if (segue.identifier == "addAnimal") {
-            var uVC = segue.destinationViewController as! UserVC
-            uVC = UserVC()
+//            var uVC = segue.destinationViewController as! UserVC
+//            uVC = UserVC()
             
             let pushQuery = PFInstallation.query()
             pushQuery?.whereKey("deviceType", equalTo: "ios")
