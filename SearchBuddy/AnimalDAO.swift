@@ -82,12 +82,12 @@ class AnimalDAO: SBDAO {
     }
     
     
-    class func getAnimalsFromUser(completion: () -> Void){
+    class func getAnimalsFromUser(user: User, completion: () -> Void){
         
         let query = Animal.query()!
         
         
-        query.whereKey("animalOwner", equalTo: UserDAO.getCurrentUser()!)
+        query.whereKey("animalOwner", equalTo: user)
         
         query.orderByDescending("createdAt")
         

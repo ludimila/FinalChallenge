@@ -220,8 +220,6 @@
     }
     
     override func viewWillAppear(animated: Bool) {
-        print(AnimalDAO.sharedInstance().animalsArray)
-        
         self.animals = AnimalDAO.sharedInstance().animalsArray
         
         
@@ -376,6 +374,7 @@
         let profileVC = sb.instantiateViewControllerWithIdentifier("profileVC") as! ProfileVC
         
         profileVC.userProfile = self.animalOwner
+//        profileVC.userProfile?.fetchIfNeededInBackground()
         
         self.navigationController?.pushViewController(profileVC, animated: true)
     }

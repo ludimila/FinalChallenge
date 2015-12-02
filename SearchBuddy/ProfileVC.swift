@@ -24,6 +24,10 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     @IBOutlet weak var telefoneDonoLb: UILabel!
     @IBOutlet weak var localizacaoDonoLb: UILabel!
     
+    @IBOutlet weak var telefoneTF: UITextField!
+    @IBOutlet weak var nomeTF: UITextField!
+    
+    @IBOutlet weak var atualizarLocation: UIButton!
     
     var locationManager : CLLocationManager!
     var selectedRow: Int?
@@ -63,6 +67,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
         
         if (isCurrentUserFlag == true) {
             self.userProfile = User.currentUser()
+            self.addEditButton()
         }
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -98,7 +103,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
         }
         
         
-        AnimalDAO.getAnimalsFromUser { () -> Void in
+        AnimalDAO.getAnimalsFromUser(self.userProfile!, completion: { () -> Void in
             self.tableView.reloadData()
             
             if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
@@ -108,7 +113,9 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
                 self.tableView.hidden = true
                 self.tableviewIsEmptylb.hidden = false
             }
-        }
+        })
+            
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -126,6 +133,59 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     
 //    ---------------------------
     
+    
+    func addEditButton(){
+        let rightBarButton = UIBarButtonItem(image: UIImage(named: "Editar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("isEdittingProfile"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func isEdittingProfile(){
+        let rightBarButton = UIBarButtonItem(title: "Ok", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneEditProfile"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        self.telefoneDonoLb.hidden = true
+        self.telefoneTF.text = self.telefoneDonoLb.text
+        self.telefoneTF.hidden = false
+        
+        self.nome.hidden = true
+        self.nomeTF.text = self.nome.text
+        self.nomeTF.hidden = false
+        
+        self.atualizarLocation.hidden = false
+    }
+    
+    func doneEditProfile(){
+        self.addEditButton()
+        
+        self.telefoneTF.hidden = true
+        self.telefoneDonoLb.text = self.telefoneTF.text
+        self.telefoneDonoLb.hidden = false
+        
+        self.nomeTF.hidden = true
+        self.nome.text = self.nomeTF.text
+        self.nome.hidden = false
+        
+        
+        self.atualizarLocation.hidden = true
+        
+        
+        User.currentUser()?.userPhoneNumber = self.telefoneTF.text
+        User.currentUser()?.name = self.nomeTF.text
+        
+        UserDAO.salvarUserUpdate()
+    }
+    
+    @IBAction func atualizaLocation(sender: AnyObject) {
+        print("ATUALiZA")
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
 //    MARK: CLLocationManager
     

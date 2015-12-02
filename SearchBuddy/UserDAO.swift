@@ -100,6 +100,15 @@ class UserDAO: NSObject {
         
     }
     
+    class func salvarUserUpdate(){
+        User.currentUser()?.saveInBackgroundWithBlock({ (success, error) -> Void in
+            if success{
+            }else{
+                print(error?.description)
+            }
+        })
+    }
+    
 }
 
 //na query do animal botar o include keys pra pegar todos os dados do usuario passando o que será incluido
