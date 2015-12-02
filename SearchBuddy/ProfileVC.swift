@@ -30,6 +30,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     
     @IBOutlet weak var atualizarLocation: UIButton!
     
+    @IBOutlet weak var viewPhotoEdit: UIView!
+    
     var locationManager = CLLocationManager()
     var selectedRow: Int?
     

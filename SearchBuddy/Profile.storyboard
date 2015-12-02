@@ -70,7 +70,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zaa-Us-2G0">
-                                        <rect key="frame" x="279" y="125.5" width="42" height="20.5"/>
+                                        <rect key="frame" x="279" y="125" width="42" height="20.5"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="8hd-X2-w2L"/>
@@ -79,16 +79,25 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LlI-my-VQc" userLabel="viewImagemEdit">
+                                        <rect key="frame" x="250" y="15" width="100" height="100"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.28235294119999998" green="0.42352941179999998" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="LlI-my-VQc" firstAttribute="width" secondItem="pxW-UR-qdx" secondAttribute="width" id="13c-Lh-dHn"/>
                                     <constraint firstItem="oat-Gg-dE8" firstAttribute="top" secondItem="pxW-UR-qdx" secondAttribute="bottom" constant="10" id="3Xa-Gv-TTE"/>
                                     <constraint firstItem="pxW-UR-qdx" firstAttribute="top" secondItem="Tl8-tQ-c1f" secondAttribute="top" constant="15" id="5aS-tZ-xID"/>
+                                    <constraint firstItem="LlI-my-VQc" firstAttribute="height" secondItem="pxW-UR-qdx" secondAttribute="height" id="5sI-TV-Eh3"/>
                                     <constraint firstItem="oat-Gg-dE8" firstAttribute="width" secondItem="pxW-UR-qdx" secondAttribute="width" id="9YU-SZ-Ji2"/>
                                     <constraint firstItem="pxW-UR-qdx" firstAttribute="centerX" secondItem="Tl8-tQ-c1f" secondAttribute="centerX" id="C1I-Aj-x7b"/>
                                     <constraint firstItem="Zaa-Us-2G0" firstAttribute="centerX" secondItem="Tl8-tQ-c1f" secondAttribute="centerX" id="OVy-cp-yb4"/>
                                     <constraint firstItem="oat-Gg-dE8" firstAttribute="centerX" secondItem="pxW-UR-qdx" secondAttribute="centerX" id="R1l-H4-TUU"/>
+                                    <constraint firstItem="LlI-my-VQc" firstAttribute="centerX" secondItem="Tl8-tQ-c1f" secondAttribute="centerX" id="S7W-uq-kxu"/>
+                                    <constraint firstItem="LlI-my-VQc" firstAttribute="top" secondItem="Tl8-tQ-c1f" secondAttribute="top" constant="15" id="Yvt-ft-bLc"/>
                                     <constraint firstItem="Zaa-Us-2G0" firstAttribute="top" secondItem="pxW-UR-qdx" secondAttribute="bottom" constant="10" id="Zx6-1y-w4h"/>
                                     <constraint firstItem="pxW-UR-qdx" firstAttribute="centerX" secondItem="Tl8-tQ-c1f" secondAttribute="centerX" id="bfO-RK-bHv"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="Zaa-Us-2G0" secondAttribute="bottom" constant="10" id="fkb-Qw-hVG"/>
@@ -257,6 +266,7 @@
                         <outlet property="telefoneDonoLb" destination="Wjz-6D-G7Y" id="Bty-3e-9Ts"/>
                         <outlet property="telefoneTF" destination="9Ut-Tj-Ke8" id="32J-vd-VER"/>
                         <outlet property="userPicture" destination="pxW-UR-qdx" id="Ibq-5N-mwQ"/>
+                        <outlet property="viewPhotoEdit" destination="LlI-my-VQc" id="zLr-mV-1Y2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tG3-kq-0Kf" userLabel="First Responder" sceneMemberID="firstResponder"/>
