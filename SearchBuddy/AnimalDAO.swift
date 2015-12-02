@@ -51,34 +51,41 @@ class AnimalDAO: SBDAO {
 //        query?.whereKey("autor", equalTo: usuario)
         query.orderByDescending("createdAt")
         
+        let queryStatus = StatusAnimal.query()
+        queryStatus!.whereKey("objectId", equalTo: "06cg0yLSSl")
         
-        
-        
-        query.includeKey("animalStatus")
-        query.includeKey("animalType")
-        query.includeKey("animalOwner")
-        
-        
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        queryStatus!.findObjectsInBackgroundWithBlock { (status, error) -> Void in
+            query.whereKey("animalStatus", containedIn: status!)
             
-            query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
-                for animal in animals!{
-                    animal.fetchIfNeededInBackground()
-                }
-                
-                
+            query.includeKey("animalStatus")
+            query.includeKey("animalType")
+            query.includeKey("animalOwner")
             
-                if let animalsNN = animals as? Array<Animal> {
-                    AnimalDAO.sharedInstance().animalsArray = animalsNN
-                    completion(animalsNN, error: error)
+            
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                
+                query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
+                    for animal in animals!{
+                        animal.fetchIfNeededInBackground()
+                    }
                     
-                }else{
-                    completion(nil, error: error)
-                }
-            })
-            
-            
+                    
+                    
+                    if let animalsNN = animals as? Array<Animal> {
+                        AnimalDAO.sharedInstance().animalsArray = animalsNN
+                        completion(animalsNN, error: error)
+                        
+                    }else{
+                        completion(nil, error: error)
+                    }
+                })
+                
+                
+            }
         }
+        
+        
+        
     }
     
     
