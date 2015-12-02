@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import MapKit
+import MBProgressHUD
 
 class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ShowUserInProfileView{
 
@@ -29,7 +30,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     
     @IBOutlet weak var atualizarLocation: UIButton!
     
-    var locationManager : CLLocationManager!
+    var locationManager = CLLocationManager()
     var selectedRow: Int?
     
     var userProfile: User?
@@ -42,7 +43,6 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
             if User.currentUser() != nil{
                 if User.currentUser()?.locationUser == nil{
                     // Location Manager
-                    self.locationManager = CLLocationManager()
                     self.locationManager.delegate = self
                     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
                     self.locationManager.requestAlwaysAuthorization()
@@ -177,10 +177,19 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
         User.currentUser()?.name = self.nomeTF.text
         
         UserDAO.salvarUserUpdate()
+        
+        self.view.resignFirstResponder()
     }
     
     @IBAction func atualizaLocation(sender: AnyObject) {
-        print("ATUALiZA")
+        print("ATUALIZAR LOCALIZACAO")
+        let hub = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        hub.labelText = "Atualizando..."
+        
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -191,6 +200,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locationManager.stopUpdatingLocation()
+        
+        print("PASSOU AQUI")
         
         if isCurrentUserFlag == true{
             self.armazenaLocationUser(manager.location!)
@@ -209,6 +220,7 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
                     
                     User.currentUser()?.saveInBackgroundWithBlock({ (success, error) -> Void in
                         if success{
+                            MBProgressHUD.hideHUDForView(self.view, animated: true)
                             self.localizacaoDonoLb.text =  (User.currentUser()!.bairro! + ", " + User.currentUser()!.cidade!)
                         }
                     })
