@@ -84,11 +84,29 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         
         self.mkMap.removeAnnotations(self.mkMap.annotations)
         self.mkMap.addAnnotation(anot)
-        let geoPoint = PFGeoPoint()
-        geoPoint.latitude = self.ponto.latitude
-        geoPoint.longitude = self.ponto.longitude
-        self.animal.local = geoPoint
-        self.animal.saveInBackground()
+        
+        let alert = UIAlertController(title: "Deseja confirmar?", message: "Você tem certeza que essa é a localização do seu animal?", preferredStyle: .Alert)
+        let confirmAction = UIAlertAction(title: "Sim", style: .Default) { _ in
+            
+            let geoPoint = PFGeoPoint()
+            geoPoint.latitude = self.ponto.latitude
+            geoPoint.longitude = self.ponto.longitude
+            self.animal.local = geoPoint
+            self.animal.saveInBackground()
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            self.presentViewController(storyBoard!, animated: true, completion: nil)
+            
+            self.presentConclusionAlert(storyBoard!)
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .Default){ _ in
+            
+        }
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: {})
+
     }
     
     
@@ -168,6 +186,17 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func presentConclusionAlert(mainView: UIViewController){
+        let alert = UIAlertController(title: "Animal perdido cadastrado", message: "Você definiu que o \(self.animal.animalName!) foi perdido", preferredStyle: .Alert)
+        let confirmAction = UIAlertAction(title: "OK", style: .Default) { _ in
+            
+        }
+        alert.addAction(confirmAction)
+        mainView.presentViewController(alert, animated: true, completion: {})
+    }
+    
     
     
     /*
