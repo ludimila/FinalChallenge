@@ -14,6 +14,8 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView: UITableView!
     
     var selectedCellIndexPath: NSIndexPath?
+    var allIndex =  Array<NSIndexPath>()
+    
     
     override func viewDidLoad() {
         
@@ -32,6 +34,9 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 //self.tableviewIsEmptylb.hidden = false
             }
         }
+        
+        self.addEditButton()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,6 +70,8 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         })
         
         cell.label.text = animal.animalName
+        
+        allIndex.append(indexPath)
         
         return cell
 
@@ -101,7 +108,6 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         return LoseCellTableViewCell.defaultHeigth
     }
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "lostLocation"{
             
@@ -109,10 +115,17 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             let animal = AnimalDAO.sharedInstance().allAnimalsUser[(selectedCellIndexPath?.row)!]
             
             vc.animal = animal
-            
-            
         }
-            
-            
+    }
+    
+    func addEditButton(){
+        let rightBarButton = UIBarButtonItem(title: "Cancelar", style: .Plain, target: self, action: "cancelAction")
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func cancelAction(){
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
