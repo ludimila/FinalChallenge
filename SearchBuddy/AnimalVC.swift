@@ -24,6 +24,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     let animal = Animal()
     
     var animalsDescription = Array<String>()
+    var animalType = Array<TypeAnimal>()
 
     
     
@@ -38,6 +39,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         TypeAnimalDAO.getTypes({ (animalsType, error) -> Void in
             for animal in animalsType!{
                 self.animalsDescription.append(animal.typeDescription!)
+                self.animalType.append(animal)
             }
             self.tableView.reloadData()
         })
@@ -110,16 +112,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 self.animal.breed = i.dataTextField.text!
             case 2:
                 self.animal.vaccinated = self.returnVaccinated(i)
-            case 3:
-                
-              //  let game = PFObject(className:"Game")
-             //   game["createdBy"] = PFUser.currentUser()
-                
-                let type = PFObject(className: "AnimalType")
-                
-                type["typeDescription"] = self.selectType(i)
-                
-                self.animal.animalType = type as? TypeAnimal
+            case 3:                
+                self.animal.animalType = selectType(i)
                 
             case 4:
                 self.animal.animalDescription = i.dataTextField.text!
@@ -249,14 +243,14 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
 
     //verifica qual o tipo de animal
     
-    func selectType(cell: AnimalTableViewCell) -> String{
+    func selectType(cell: AnimalTableViewCell) -> TypeAnimal{
     
         if cell.segmentType.selectedSegmentIndex == 0 {
-            return self.animalsDescription[0]
+            return self.animalType[0]
         }else if cell.segmentType.selectedSegmentIndex == 1{
-            return self.animalsDescription[1]
+            return self.animalType[1]
         }else{
-            return self.animalsDescription[2]
+            return self.animalType[2]
         }
         
     }
