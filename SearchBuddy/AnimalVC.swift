@@ -19,10 +19,13 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var localizacao: String!
     
     
-    var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Status: ", "Descrição:"]
+    var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Descrição:"]
     var arrayCell = Array<AnimalTableViewCell>()
-    var arrayStatus = Array<StatusAnimal>()
     let animal = Animal()
+    
+    var animalsDescription = Array<String>()
+    var animalType = Array<TypeAnimal>()
+
     
     
     override func viewWillAppear(animated: Bool) {
@@ -32,6 +35,16 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             
             print("Ponto -> \(self.ponto)")
         }
+        
+        TypeAnimalDAO.getTypes({ (animalsType, error) -> Void in
+            for animal in animalsType!{
+                self.animalsDescription.append(animal.typeDescription!)
+                self.animalType.append(animal)
+            }
+            self.tableView.reloadData()
+        })
+        
+
     }
     
     override func viewDidLoad() {
@@ -42,8 +55,6 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animalPicture.layer.borderColor = UIColor.orangeColor().CGColor
         self.animalPicture.layer.cornerRadius = 60
         self.tableView.separatorColor = UIColor.orangeColor()
-        
-        self.getData()
         
     }
     
@@ -75,16 +86,12 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             cell.dataTextField.hidden = true
         }
         
-        if indexPath.row == 4{
-            cell.addSubview(cell.segmentStatus)
-            cell.items = self.arrayStatus
+        if indexPath.row == 3{
+            
             cell.dataTextField.hidden = true
-        }
-        
-        
-        if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
-            cell.layoutMargins = UIEdgeInsetsZero
-            cell.preservesSuperviewLayoutMargins = false
+            cell.arrayTypes = self.animalsDescription
+            cell.selectType()
+            cell.addSubview(cell.segmentType)
         }
         
         return cell
@@ -92,7 +99,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBAction func saveData(sender: AnyObject) {
         
-        let owner = UserDAO.getCurrentUser()
+        let owner = User.currentUser()
         animal["animalOwner"] = owner
         
         for i in self.arrayCell {
@@ -105,18 +112,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 self.animal.breed = i.dataTextField.text!
             case 2:
                 self.animal.vaccinated = self.returnVaccinated(i)
-            case 3:
-                
-                let type = TypeAnimal()
-                type.typeDescription = i.dataTextField.text!
-                self.animal.animalType = type
+            case 3:                
+                self.animal.animalType = selectType(i)
                 
             case 4:
-                let status = StatusAnimal()
-                status.situation = self.returnStatus(i)
-                self.animal.animalStatus = status
-                
-            case 5:
                 self.animal.animalDescription = i.dataTextField.text!
                 
             default:
@@ -133,11 +132,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
-        
-        
-        
         self.savaDataInParse()
-        
     }
     
     func savaDataInParse(){
@@ -145,13 +140,12 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
         
         if ( self.animal.animalName != "" && self.animal.breed != "" && self.animal.vaccinated != nil && self.animal.animalStatus?.situation != "" && self.animal.animalDescription != ""){
-            print("Animal nao ta vazio")
             
             AnimalDAO.signUpAnimal(animal) { (sucessed,error) -> Void in
                 if sucessed {
-                    print("salvou")
+                    print("sucess")
                 }else {
-                    print("nao salvou")
+                    print("error")
                 }
             }
         }else {
@@ -235,7 +229,9 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func returnVaccinated(cell:AnimalTableViewCell)-> Bool{
+    
+    //verifica se o animal esta vacinado
+    func returnVaccinated(cell:AnimalTableViewCell) -> Bool{
         
         if cell.switchVaccinated.on{
             return true
@@ -244,24 +240,20 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         }//fim if
     }//fim funcao
 
-func returnStatus(cell: AnimalTableViewCell) -> String{
+
+    //verifica qual o tipo de animal
     
-    if cell.segmentStatus.selectedSegmentIndex == 1{
-        return "Estou em casa"
-    }else{
-        return  "Estou perdido"
-    }
-}
+    func selectType(cell: AnimalTableViewCell) -> TypeAnimal{
     
-func getData(){
-        
-       StatusAnimalDAO.getStatus { (statusArray, error) -> Void in
-        self.arrayStatus = statusArray!
-        StatusAnimalDAO.sharedInstance().statusArray = self.arrayStatus
-        self.tableView.reloadData()
-        
+        if cell.segmentType.selectedSegmentIndex == 0 {
+            return self.animalType[0]
+        }else if cell.segmentType.selectedSegmentIndex == 1{
+            return self.animalType[1]
+        }else{
+            return self.animalType[2]
         }
 }
+
     
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
