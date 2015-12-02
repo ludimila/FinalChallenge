@@ -111,9 +111,15 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             case 2:
                 self.animal.vaccinated = self.returnVaccinated(i)
             case 3:
-                let type = TypeAnimal()
-                type.typeDescription = i.dataTextField.text!
-                self.animal.animalType = type
+                
+              //  let game = PFObject(className:"Game")
+             //   game["createdBy"] = PFUser.currentUser()
+                
+                let type = PFObject(className: "AnimalType")
+                
+                type["typeDescription"] = self.selectType(i)
+                
+                self.animal.animalType = type as? TypeAnimal
                 
             case 4:
                 self.animal.animalDescription = i.dataTextField.text!
@@ -229,7 +235,9 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func returnVaccinated(cell:AnimalTableViewCell)-> Bool{
+    
+    //verifica se o animal esta vacinado
+    func returnVaccinated(cell:AnimalTableViewCell) -> Bool{
         
         if cell.switchVaccinated.on{
             return true
@@ -239,7 +247,19 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     }//fim funcao
 
 
+    //verifica qual o tipo de animal
     
+    func selectType(cell: AnimalTableViewCell) -> String{
+    
+        if cell.segmentType.selectedSegmentIndex == 0 {
+            return self.animalsDescription[0]
+        }else if cell.segmentType.selectedSegmentIndex == 1{
+            return self.animalsDescription[1]
+        }else{
+            return self.animalsDescription[2]
+        }
+        
+    }
     
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
