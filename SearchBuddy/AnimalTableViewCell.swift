@@ -14,39 +14,21 @@ class AnimalTableViewCell: UITableViewCell {
     @IBOutlet weak var dataLabel: UILabel!
     
     var switchVaccinated = UISwitch()
-    var segmentStatus = UISegmentedControl()
-    var items = Array<StatusAnimal>()
+    var segmentType = UISegmentedControl()
+    var arrayTypes = Array<String>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.selectStatus()
         self.selectVaccinated()
         
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 
-    func selectStatus(){
-        
-        let itemSegment = ["Casa", "Não Casa"]
-        self.segmentStatus = UISegmentedControl(items: itemSegment)
-        
-        
-        // Set up Frame and SegmentedControl
-        let frame = UIScreen.mainScreen().bounds
-        self.segmentStatus.frame = CGRectMake(frame.midX, 10 ,frame.width/2, frame.height/20)
-        
-        // Style the Segmented Control
-        self.segmentStatus.layer.cornerRadius = 5.0  // Don't let background bleed
-        self.segmentStatus.backgroundColor = UIColor.orangeColor()
-        self.segmentStatus.tintColor = UIColor.whiteColor()
-    }
     
     func selectVaccinated(){
         
@@ -55,4 +37,20 @@ class AnimalTableViewCell: UITableViewCell {
         self.switchVaccinated.frame = CGRectMake(frame.midX+(frame.midX/2), 10 ,frame.width/2, frame.height/20)
     }
     
+    
+    func selectType(){
+        
+        let itemSegment = self.arrayTypes
+        self.segmentType = UISegmentedControl(items: itemSegment)
+        
+        
+        // Set up Frame and SegmentedControl
+        let frame = UIScreen.mainScreen().bounds
+        self.segmentType.frame = CGRectMake(frame.midX, 10 ,frame.width/2, frame.height/20)
+        
+        // Style the Segmented Control
+        self.segmentType.layer.cornerRadius = 5.0  // Don't let background bleed
+        self.segmentType.backgroundColor = UIColor.orangeColor()
+        self.segmentType.tintColor = UIColor.whiteColor()
+    }
 }

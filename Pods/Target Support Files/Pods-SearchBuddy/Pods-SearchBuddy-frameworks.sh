@@ -58,6 +58,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-SearchBuddy/FBSDKLoginKit.framework'
   install_framework 'Pods-SearchBuddy/FBSDKMessengerShareKit.framework'
   install_framework 'Pods-SearchBuddy/FBSDKShareKit.framework'
+  install_framework 'Pods-SearchBuddy/MBProgressHUD.framework'
   install_framework 'Pods-SearchBuddy/Parse.framework'
   install_framework 'Pods-SearchBuddy/ParseFacebookUtilsV4.framework'
 fi
@@ -68,6 +69,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-SearchBuddy/FBSDKLoginKit.framework'
   install_framework 'Pods-SearchBuddy/FBSDKMessengerShareKit.framework'
   install_framework 'Pods-SearchBuddy/FBSDKShareKit.framework'
+  install_framework 'Pods-SearchBuddy/MBProgressHUD.framework'
   install_framework 'Pods-SearchBuddy/Parse.framework'
   install_framework 'Pods-SearchBuddy/ParseFacebookUtilsV4.framework'
 fi

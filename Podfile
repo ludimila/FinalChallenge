@@ -12,6 +12,7 @@ target 'SearchBuddy' do
     pod 'ParseFacebookUtilsV4'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'MBProgressHUD'
 end
 
 target 'SearchBuddyTests' do

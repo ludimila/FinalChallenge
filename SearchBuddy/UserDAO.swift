@@ -72,18 +72,24 @@ class UserDAO: NSObject {
         PFUser.logOut()
     }
     
-    class func updateUserData(user: PFUser, data: Dictionary<String,String>)-> Void{
+    class func updateUserData(user: User, data: Dictionary<String,String>)-> Void{
         
         print(data)
-        
-        let user = self.getCurrentUser()
                 
-        user!["name"] = data["name"]
+        user.name = data["name"]
         
-        user!["email"] = data["email"]
+        user.email = data["email"]
         
-        user?.saveInBackground()
+        let url = NSURL(string: data["photoUrl"]!)
+        let urlRequest = NSURLRequest(URL: url!)
         
+        
+        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+            // Display the image
+            user.userPicture = PFFile(data: data!)
+            
+            user.saveInBackground()
+        }
     }
     
     class func signUpUser(user: User, completion: (sucessed:Bool, error:NSError?) -> Void){
@@ -92,6 +98,15 @@ class UserDAO: NSObject {
             completion(sucessed: succeeded,error:error)
         }
         
+    }
+    
+    class func salvarUserUpdate(){
+        User.currentUser()?.saveInBackgroundWithBlock({ (success, error) -> Void in
+            if success{
+            }else{
+                print(error?.description)
+            }
+        })
     }
     
 }

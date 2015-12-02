@@ -8,8 +8,10 @@
 
 import UIKit
 import Parse
+import MapKit
+import MBProgressHUD
 
-class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
+class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ShowUserInProfileView{
 
     @IBOutlet weak var tableviewIsEmptylb: UILabel!
     
@@ -17,16 +19,37 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var nome: UILabel!
-    @IBOutlet weak var ocupacao: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var userPicture: UIImageView!
     
     @IBOutlet weak var telefoneDonoLb: UILabel!
     @IBOutlet weak var localizacaoDonoLb: UILabel!
     
+    @IBOutlet weak var telefoneTF: UITextField!
+    @IBOutlet weak var nomeTF: UITextField!
+    
+    @IBOutlet weak var atualizarLocation: UIButton!
+    
+    var locationManager = CLLocationManager()
     var selectedRow: Int?
+    
+    var userProfile: User?
+    var isCurrentUserFlag: Bool?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if (isCurrentUserFlag == true) {
+            if User.currentUser() != nil{
+                if User.currentUser()?.locationUser == nil{
+                    // Location Manager
+                    self.locationManager.delegate = self
+                    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    self.locationManager.requestAlwaysAuthorization()
+                    self.locationManager.startUpdatingLocation()
+                }
+            }
+        }
         
         // Do any additional setup after loading the view.
         self.tableView.bounces = false
@@ -41,27 +64,46 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil"
         
+        
+        if (isCurrentUserFlag == true) {
+            self.userProfile = User.currentUser()
+            self.addEditButton()
+        }
+        
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
+        if self.userProfile!.userPicture != nil{
+            self.userProfile?.userPicture!.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                if error == nil {
+                    self.userPicture.image = UIImage(data: data!)
+                }
+            })
+        }else{
+           self.userPicture.image = UIImage(named: "FotoPerfilVazio")
+        }
         
-        if let nomeUsuario = UserDAO.getCurrentUser()?["name"] {
-            self.nome.text = nomeUsuario as? String
+        if let nomeUsuario = self.userProfile?.name {
+            self.nome.text = nomeUsuario
         }else{
             self.nome.text = "Sem nome"
         }
         
-        if let telefoneUsuario = UserDAO.getCurrentUser()!["userPhoneNumber"] {
-            self.telefoneDonoLb.text = telefoneUsuario as? String
+        if let telefoneUsuario = self.userProfile?.userPhoneNumber {
+            self.telefoneDonoLb.text = telefoneUsuario
         }else{
-            self.telefoneDonoLb.text = ""
+            self.telefoneDonoLb.text = "Indefinido"
         }
         
         
 //        Aqui pegara a cidade a respeito do cgpoint presente no user
-        self.localizacaoDonoLb.text = "Brasilia"
+        if self.userProfile?.locationUser != nil {
+            self.localizacaoDonoLb.text =  ((self.userProfile?.bairro!)! + ", " + (self.userProfile?.cidade!)!)
+        }else{
+            self.localizacaoDonoLb.text = "Indefinido"
+        }
         
         
-        AnimalDAO.getAnimalsFromUser { () -> Void in
+        AnimalDAO.getAnimalsFromUser(self.userProfile!, completion: { () -> Void in
             self.tableView.reloadData()
             
             if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
@@ -71,16 +113,127 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
                 self.tableView.hidden = true
                 self.tableviewIsEmptylb.hidden = false
             }
-        }
+        })
+            
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        Utilities.round(self.imageView, tamanhoBorda: 2)
-        self.imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        Utilities.round(self.userPicture, tamanhoBorda: 2)
+        self.userPicture.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
+//    MARK: Delegate do usuario 
+    
+    func isCurrentUser() {
+        self.isCurrentUserFlag = true
+    }
+    
+//    ---------------------------
+    
+    
+    func addEditButton(){
+        let rightBarButton = UIBarButtonItem(image: UIImage(named: "Editar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("isEdittingProfile"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func isEdittingProfile(){
+        let rightBarButton = UIBarButtonItem(title: "Ok", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneEditProfile"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        self.telefoneDonoLb.hidden = true
+        self.telefoneTF.text = self.telefoneDonoLb.text
+        self.telefoneTF.hidden = false
+        
+        self.nome.hidden = true
+        self.nomeTF.text = self.nome.text
+        self.nomeTF.hidden = false
+        
+        self.atualizarLocation.hidden = false
+    }
+    
+    func doneEditProfile(){
+        self.addEditButton()
+        
+        self.telefoneTF.hidden = true
+        self.telefoneDonoLb.text = self.telefoneTF.text
+        self.telefoneDonoLb.hidden = false
+        
+        self.nomeTF.hidden = true
+        self.nome.text = self.nomeTF.text
+        self.nome.hidden = false
+        
+        
+        self.atualizarLocation.hidden = true
+        
+        
+        User.currentUser()?.userPhoneNumber = self.telefoneTF.text
+        User.currentUser()?.name = self.nomeTF.text
+        
+        UserDAO.salvarUserUpdate()
+        
+        self.view.resignFirstResponder()
+    }
+    
+    @IBAction func atualizaLocation(sender: AnyObject) {
+        print("ATUALIZAR LOCALIZACAO")
+        let hub = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        hub.labelText = "Atualizando..."
+        
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+//    MARK: CLLocationManager
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.locationManager.stopUpdatingLocation()
+        
+        print("PASSOU AQUI")
+        
+        if isCurrentUserFlag == true{
+            self.armazenaLocationUser(manager.location!)
+        }
+        
+    }
+    
+    func armazenaLocationUser(location: CLLocation) {
+        User.currentUser()?.locationUser = ParseConvertion.getLocationUser(location)
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) { () -> Void in
+            CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) -> Void in
+                if let placemark = placemarks?[0]{
+                    User.currentUser()?.bairro = placemark.subLocality
+                    User.currentUser()?.cidade = placemark.locality
+                    
+                    User.currentUser()?.saveInBackgroundWithBlock({ (success, error) -> Void in
+                        if success{
+                            MBProgressHUD.hideHUDForView(self.view, animated: true)
+                            self.localizacaoDonoLb.text =  (User.currentUser()!.bairro! + ", " + User.currentUser()!.cidade!)
+                        }
+                    })
+                }
+            }
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Error while updating location " + error.localizedDescription)
+    }
+    
+//    ----------------------
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -129,8 +282,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if (segue.identifier == "addAnimal") {
-            var uVC = segue.destinationViewController as! UserVC
-            uVC = UserVC()
+//            var uVC = segue.destinationViewController as! UserVC
+//            uVC = UserVC()
             
             let pushQuery = PFInstallation.query()
             pushQuery?.whereKey("deviceType", equalTo: "ios")
