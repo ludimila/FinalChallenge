@@ -285,5 +285,66 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    
+    
+    //editar perfil do animal
+    
+    func addEditButton(){
+        let rightBarButton = UIBarButtonItem(image: UIImage(named: "Editar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("isEdittingProfile"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func isEdittingProfile(){
+        let rightBarButton = UIBarButtonItem(title: "Ok", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneEditProfile"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+//        self.telefoneDonoLb.hidden = true
+//        self.telefoneTF.text = self.telefoneDonoLb.text
+//        self.telefoneTF.hidden = false
+//        
+//        self.nome.hidden = true
+//        self.nomeTF.text = self.nome.text
+//        self.nomeTF.hidden = false
+//        
+//        self.atualizarLocation.hidden = false
+//        
+//        self.viewPhotoEdit.hidden = false
+//        self.buttonEditPhoto.hidden = false
+    }
+    
+    func doneEditProfile(){
+//        self.addEditButton()
+//        
+//        self.hideEditable()
+//        
+//        User.currentUser()?.userPhoneNumber = self.telefoneTF.text
+//        User.currentUser()?.name = self.nomeTF.text
+//        
+//        UserDAO.salvarUserUpdate()
+//        
+//        self.view.resignFirstResponder()
+    }
+    
+    func hideEditable(){
+//        self.telefoneTF.hidden = true
+//        self.telefoneDonoLb.text = self.telefoneTF.text
+//        self.telefoneDonoLb.hidden = false
+//        
+//        self.nomeTF.hidden = true
+//        self.nome.text = self.nomeTF.text
+//        self.nome.hidden = false
+//        
+//        
+//        self.atualizarLocation.hidden = true
+//        
+//        self.viewPhotoEdit.hidden = true
+//        self.buttonEditPhoto.hidden = true
+    }
+
 
 }//fim controller
