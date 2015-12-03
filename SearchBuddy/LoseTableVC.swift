@@ -21,7 +21,7 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.separatorColor = UIColor.orangeColor()
 
-        AnimalDAO.getAnimalsFromUser { () -> Void in
+        AnimalDAO.getAnimalsFromUser(User.currentUser()!) { () -> Void in
             self.tableView.reloadData()
             
             if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
@@ -32,7 +32,6 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 //self.tableviewIsEmptylb.hidden = false
             }
         }
-
     }
 
     override func didReceiveMemoryWarning() {

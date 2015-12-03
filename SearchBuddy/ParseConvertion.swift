@@ -15,4 +15,8 @@ class ParseConvertion: NSObject {
         return PFFile(data: UIImagePNGRepresentation(image)!)
     }
     
+    class func getLocationUser(location: CLLocation) -> PFGeoPoint{
+        return PFGeoPoint(location: location)
+    }
+    
 }
