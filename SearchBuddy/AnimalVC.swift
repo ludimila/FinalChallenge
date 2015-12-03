@@ -15,16 +15,16 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     
     @IBOutlet weak var animalPicture: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    
     var ponto: CLLocationCoordinate2D!
     var localizacao: String!
-    
     
     var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Descrição:"]
     var arrayCell = Array<AnimalTableViewCell>()
     let animal = Animal()
-    
     var animalsDescription = Array<String>()
     var animalType = Array<TypeAnimal>()
+    var animalStatus = Array<StatusAnimal>()
 
     
     
@@ -42,9 +42,15 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 self.animalType.append(animal)
             }
             self.tableView.reloadData()
-        })
+        })//fim get types
         
-
+        StatusAnimalDAO.getStatus ({ (animalStatus, error) -> Void in
+            for animal in animalStatus!{
+                self.animalStatus.append(animal)
+            }
+            self.tableView.reloadData()
+        })//fim getStatus
+        
     }
     
     override func viewDidLoad() {
@@ -102,6 +108,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         let owner = User.currentUser()
         animal["animalOwner"] = owner
         
+        self.animal.animalStatus = self.animalStatus[1]
+        
         for i in self.arrayCell {
             
             switch(i.dataTextField.tag){
@@ -132,7 +140,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
-        self.savaDataInParse()
+       // self.savaDataInParse()
     }
     
     func savaDataInParse(){

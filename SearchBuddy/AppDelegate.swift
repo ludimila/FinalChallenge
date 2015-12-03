@@ -8,8 +8,6 @@
 
 import UIKit
 import FBSDKCoreKit
-import Fabric
-import Crashlytics
 import Parse
 import MapKit
 
@@ -31,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
-        Fabric.with([Crashlytics.self])
         SBDAO.setupParse(launchOptions)
         
         
