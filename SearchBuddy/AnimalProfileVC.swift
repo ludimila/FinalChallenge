@@ -170,4 +170,22 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
 
     }
+    
+    
+    
+    
+    func addEditButton(){
+        let rightBarButton = UIBarButtonItem(image: UIImage(named: "Editar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("isEdittingProfile"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func isEdittingProfile(){
+        let rightBarButton = UIBarButtonItem(title: "Ok", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneEditProfile"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+    }
 }

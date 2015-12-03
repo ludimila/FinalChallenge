@@ -62,6 +62,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animalPicture.layer.cornerRadius = 60
         self.tableView.separatorColor = UIColor.orangeColor()
         
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+
     }
     
     
@@ -254,11 +256,11 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     func selectType(cell: AnimalTableViewCell) -> TypeAnimal{
     
         if cell.segmentType.selectedSegmentIndex == 0 {
-            return self.animalType[0]
+            return self.animalType[3]
         }else if cell.segmentType.selectedSegmentIndex == 1{
-            return self.animalType[1]
-        }else{
             return self.animalType[2]
+        }else{
+            return self.animalType[1]
         }
 }
 
@@ -288,63 +290,15 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
     
     
-    //editar perfil do animal
+    //cancelar cadastro
     
-    func addEditButton(){
-        let rightBarButton = UIBarButtonItem(image: UIImage(named: "Editar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("isEdittingProfile"))
+    @IBAction func cancelAdd(sender: AnyObject) {
         
-        rightBarButton.tintColor = UIColor.whiteColor()
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func isEdittingProfile(){
-        let rightBarButton = UIBarButtonItem(title: "Ok", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneEditProfile"))
-        
-        rightBarButton.tintColor = UIColor.whiteColor()
-        self.navigationItem.rightBarButtonItem = rightBarButton
-        
-//        self.telefoneDonoLb.hidden = true
-//        self.telefoneTF.text = self.telefoneDonoLb.text
-//        self.telefoneTF.hidden = false
-//        
-//        self.nome.hidden = true
-//        self.nomeTF.text = self.nome.text
-//        self.nomeTF.hidden = false
-//        
-//        self.atualizarLocation.hidden = false
-//        
-//        self.viewPhotoEdit.hidden = false
-//        self.buttonEditPhoto.hidden = false
-    }
     
-    func doneEditProfile(){
-//        self.addEditButton()
-//        
-//        self.hideEditable()
-//        
-//        User.currentUser()?.userPhoneNumber = self.telefoneTF.text
-//        User.currentUser()?.name = self.nomeTF.text
-//        
-//        UserDAO.salvarUserUpdate()
-//        
-//        self.view.resignFirstResponder()
-    }
-    
-    func hideEditable(){
-//        self.telefoneTF.hidden = true
-//        self.telefoneDonoLb.text = self.telefoneTF.text
-//        self.telefoneDonoLb.hidden = false
-//        
-//        self.nomeTF.hidden = true
-//        self.nome.text = self.nomeTF.text
-//        self.nome.hidden = false
-//        
-//        
-//        self.atualizarLocation.hidden = true
-//        
-//        self.viewPhotoEdit.hidden = true
-//        self.buttonEditPhoto.hidden = true
-    }
+
 
 
 }//fim controller
