@@ -49,4 +49,10 @@ class LoseCellTableViewCell: UITableViewCell {
         }
     }
     
+    deinit{
+        if self.observationInfo != nil {
+            removeObserver(self, forKeyPath: "frame")
+        }
+    }
+    
 }

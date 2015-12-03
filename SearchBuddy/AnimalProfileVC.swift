@@ -155,8 +155,8 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         let gradientPicture = UIImage(named: "gradiente")
         let gradient = UIImageView.init(image: gradientPicture)
-        let frame = UIScreen.mainScreen().bounds
-        gradient.frame = CGRectMake(0, 0 ,frame.width*(frame.width/10), frame.height/2)
+        let frame = self.animalPicture.frame
+        gradient.frame = CGRectMake(0,frame.height - (frame.height/2),frame.width*(frame.width/10), frame.height/2)
         self.animalPicture.addSubview(gradient)
     
         let name = UILabel()
@@ -165,6 +165,9 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         name.text = currentAnimal?.animalName
         breed.text = currentAnimal?.breed
         
+        
         self.view.insertSubview(name, aboveSubview: gradient)
+        
+
     }
 }

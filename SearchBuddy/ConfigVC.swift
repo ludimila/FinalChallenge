@@ -156,7 +156,6 @@ class ConfigVC: UITableViewController {
                     self.presentViewController(alert, animated: true, completion: {})
                     
                 }else{
-                    print("LOGUI IN")
                     performSegueWithIdentifier("toLogin", sender: self)
                 }
             case 1:
@@ -166,7 +165,6 @@ class ConfigVC: UITableViewController {
                     self.tableView!.reloadData()
                 }
                 let action2 = UIAlertAction(title: "Cancelar", style: .Default){ _ in
-                    print("cancela tudo carai")
                 }
                 alert.addAction(action)
                 alert.addAction(action2)

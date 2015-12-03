@@ -28,6 +28,14 @@ class AnimalDAO: SBDAO {
             return Array<Animal>(self.animalsUser)
         }
     }
+    
+    var lostAnimalsUser = Array<Animal>()
+    
+    var allLostAnimalsUser: Array<Animal>{
+        get {
+            return Array<Animal>(self.lostAnimalsUser)
+        }
+    }
 
     
     override init () {
@@ -61,16 +69,12 @@ class AnimalDAO: SBDAO {
             query.includeKey("animalType")
             query.includeKey("animalOwner")
             
-            
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 
                 query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
                     for animal in animals!{
                         animal.fetchIfNeededInBackground()
                     }
-                    
-                    
-                    
                     if let animalsNN = animals as? Array<Animal> {
                         AnimalDAO.sharedInstance().animalsArray = animalsNN
                         completion(animalsNN, error: error)
@@ -79,13 +83,8 @@ class AnimalDAO: SBDAO {
                         completion(nil, error: error)
                     }
                 })
-                
-                
             }
         }
-        
-        
-        
     }
     
     
@@ -108,19 +107,51 @@ class AnimalDAO: SBDAO {
                 for animal in animals!{
                     animal.fetchIfNeededInBackground()
                 }
-                
-                
                 AnimalDAO.sharedInstance().animalsUser = Array<Animal>()
                 for animal in animals! {
                     let animal = animal as! Animal
                     
                     AnimalDAO.sharedInstance().animalsUser.append(animal)
                 }
-                
                 completion()
             } else {
                 // Log details of the failure
                 print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+    }
+    
+    
+    class func getLostAnimalsFromUser(user: User, completion: () -> Void){
+        
+        let query = Animal.query()!
+        
+        let queryStatus = StatusAnimal.query()
+        queryStatus!.whereKey("objectId", equalTo: "m2WkU7UWDg")
+        queryStatus!.findObjectsInBackgroundWithBlock { (status, error) -> Void in
+            query.whereKey("animalStatus", containedIn: status!)
+            query.whereKey("animalOwner", equalTo: user)
+            
+            query.orderByDescending("createdAt")
+            query.includeKey("animalStatus")
+            query.includeKey("animalType")
+            query.includeKey("animalOwner")
+            
+            query.findObjectsInBackgroundWithBlock { (animals, error) -> Void in
+                if error == nil {
+                    for animal in animals!{
+                        animal.fetchIfNeededInBackground()
+                }
+                    AnimalDAO.sharedInstance().lostAnimalsUser = Array<Animal>()
+                    for animal in animals! {
+                        let animal = animal as! Animal
+                        AnimalDAO.sharedInstance().lostAnimalsUser.append(animal)
+                    }
+                    completion()
+                } else {
+                    // Log details of the failure
+                    print("Error: \(error!) \(error!.userInfo)")
+                }
             }
         }
     }
