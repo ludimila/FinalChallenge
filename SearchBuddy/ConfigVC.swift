@@ -140,7 +140,7 @@ class ConfigVC: UITableViewController {
                         let actionOk = UIAlertAction(title: "Ok", style: .Default) { _ in
                             
                             let tabBar = self.navigationController?.parentViewController as! UITabBarController
-                            tabBar.selectedIndex = 1
+                            tabBar.selectedIndex = 4
                             self.tableView.reloadData()
                         }
                         

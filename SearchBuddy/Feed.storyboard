@@ -67,7 +67,7 @@
                                                     <rect key="frame" x="0.0" y="580" width="600" height="73"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSt-P2-nm6">
-                                                            <rect key="frame" x="10" y="5" width="220" height="30"/>
+                                                            <rect key="frame" x="10" y="5" width="274" height="30"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="SzY-vS-qle"/>
@@ -76,22 +76,8 @@
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4t-ql-tUL">
-                                                            <rect key="frame" x="480" y="0.0" width="120" height="73"/>
-                                                            <animations/>
-                                                            <state key="normal" image="Phone"/>
-                                                            <variation key="widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="323" y="5" width="72" height="71"/>
-                                                            </variation>
-                                                            <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="324" y="5" width="71" height="71"/>
-                                                            </variation>
-                                                            <connections>
-                                                                <action selector="abrirContatoDono:" destination="z03-Ff-Nrc" eventType="touchUpInside" id="JcG-Wz-uQm"/>
-                                                            </connections>
-                                                        </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLx-8l-V27">
-                                                            <rect key="frame" x="240" y="0.0" width="120" height="73"/>
+                                                            <rect key="frame" x="294" y="0.0" width="102" height="73"/>
                                                             <animations/>
                                                             <state key="normal" image="Share"/>
                                                             <variation key="widthClass=compact" misplaced="YES">
@@ -105,7 +91,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syC-Gw-zzt">
-                                                            <rect key="frame" x="360" y="0.0" width="120" height="73"/>
+                                                            <rect key="frame" x="396" y="0.0" width="102" height="73"/>
                                                             <animations/>
                                                             <state key="normal" image="Chat"/>
                                                             <variation key="widthClass=compact" misplaced="YES">
@@ -119,15 +105,29 @@
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vj-jb-g5z">
-                                                            <rect key="frame" x="10" y="40" width="220" height="20"/>
+                                                            <rect key="frame" x="10" y="40" width="274" height="20"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="5dC-Ar-e7F"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4t-ql-tUL">
+                                                            <rect key="frame" x="498" y="0.0" width="102" height="73"/>
+                                                            <animations/>
+                                                            <state key="normal" image="Phone"/>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="323" y="5" width="72" height="71"/>
+                                                            </variation>
+                                                            <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="324" y="5" width="71" height="71"/>
+                                                            </variation>
+                                                            <connections>
+                                                                <action selector="abrirContatoDono:" destination="z03-Ff-Nrc" eventType="touchUpInside" id="JcG-Wz-uQm"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <animations/>
                                                     <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,7 +135,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="y4t-ql-tUL" secondAttribute="bottom" id="4bt-6z-rSL"/>
                                                         <constraint firstItem="vSt-P2-nm6" firstAttribute="leading" secondItem="qpd-T3-y0B" secondAttribute="leading" constant="10" id="7oN-ue-eMM"/>
                                                         <constraint firstItem="syC-Gw-zzt" firstAttribute="height" secondItem="y4t-ql-tUL" secondAttribute="height" id="DWM-Q7-rhX"/>
-                                                        <constraint firstItem="y4t-ql-tUL" firstAttribute="width" secondItem="qpd-T3-y0B" secondAttribute="width" multiplier="0.2" id="GVz-rU-vs1"/>
+                                                        <constraint firstItem="y4t-ql-tUL" firstAttribute="width" secondItem="qpd-T3-y0B" secondAttribute="width" multiplier="0.17" id="GVz-rU-vs1"/>
                                                         <constraint firstAttribute="bottom" secondItem="syC-Gw-zzt" secondAttribute="bottom" id="KIK-ne-DhD"/>
                                                         <constraint firstAttribute="bottom" secondItem="cLx-8l-V27" secondAttribute="bottom" id="NcT-y2-vn4"/>
                                                         <constraint firstItem="y4t-ql-tUL" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" id="P9o-95-R8U"/>
@@ -194,6 +194,7 @@
                                             <outlet property="nomeDono" destination="VBy-qI-mLB" id="XMV-1w-9Ae"/>
                                             <outlet property="phoneButton" destination="y4t-ql-tUL" id="eR1-VT-T9l"/>
                                             <outlet property="shareAnimalButton" destination="cLx-8l-V27" id="ltC-GW-3Ym"/>
+                                            <outlet property="ultimaVezVisto" destination="2vj-jb-g5z" id="WsV-rm-ZbW"/>
                                             <outlet property="viewBlur" destination="qpd-T3-y0B" id="Mtr-yK-arJ"/>
                                         </connections>
                                     </tableViewCell>

@@ -32,7 +32,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.tableView.estimatedRowHeight = 700
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.allowsSelection = false
@@ -113,6 +112,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             
             cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
             
+            cell.ultimaVezVisto.text = self.getDateDifference(currentAnimal.ultimaVezVisto!)
             
             cell.nameAnimal.text = currentAnimal.animalName
             
@@ -134,6 +134,45 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             self.tableView.reloadData()
         }
 
+    }
+    
+    func getDateDifference(dataUltimavez: NSDate) -> String{
+        
+        let start = "2010-09-01"
+        let end = "2010-09-05"
+        
+        
+        print("inicio \(dataUltimavez)")
+        print(NSDate())
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        
+        
+        let startDate = dataUltimavez
+        let endDate = NSDate()
+        
+        let cal = NSCalendar.currentCalendar()
+        
+        let componentsMonth = cal.components(NSCalendarUnit.Month, fromDate: startDate, toDate: endDate, options: NSCalendarOptions.WrapComponents)
+        let componentsMinute = cal.components(NSCalendarUnit.Minute, fromDate: startDate, toDate: endDate, options: NSCalendarOptions.WrapComponents)
+        
+        
+        var string = String()
+        
+        if (componentsMinute.minute/60) < 1{
+            string = "Perdido há \(componentsMinute.minute) minutos."
+        }else if (componentsMinute.minute/1440) < 1{
+            string = "Perdido há \((componentsMinute.minute/60)) hora(s)."
+        }else if componentsMonth.month < 1{
+            string = "Perdido há \((componentsMinute.minute/1440)) dia(s)."
+        }else{
+            string = "Perdido há \(componentsMonth.month) mes(es)."
+        }
+        
+        
+        return string
     }
     
     
@@ -180,23 +219,23 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 //        }
 //    }
     
-    @IBAction func compartilharAnimal(sender: AnyObject) {
-        print("Compartilhou o mano!!!!")
-        
-        let button = sender as! UIButton
-        let indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
-        
-        
-        //print(AnimalDAO.sharedInstance().allAnimals[indexPath.row])
-        
-    }
-    
-    
-    @IBAction func abrirChat(sender: AnyObject) {
-        print("Abrir chat com o dono do mano")
-    }
-    
-    @IBAction func abrirContatoDono(sender: AnyObject) {
-        print("Abrir contato do dono do mano")
-    }
+//    @IBAction func compartilharAnimal(sender: AnyObject) {
+//        print("Compartilhou o mano!!!!")
+//        
+//        let button = sender as! UIButton
+//        let indexPath = NSIndexPath(forRow: button.tag, inSection: 0)
+//        
+//        
+//        //print(AnimalDAO.sharedInstance().allAnimals[indexPath.row])
+//        
+//    }
+//    
+//    
+//    @IBAction func abrirChat(sender: AnyObject) {
+//        print("Abrir chat com o dono do mano")
+//    }
+//    
+//    @IBAction func abrirContatoDono(sender: AnyObject) {
+//        print("Abrir contato do dono do mano")
+//    }
 }
