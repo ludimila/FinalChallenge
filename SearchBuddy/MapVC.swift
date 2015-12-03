@@ -8,14 +8,16 @@
  
  import UIKit
  import MapKit
+ import CoreLocation
+ import Parse
  
- class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UISearchControllerDelegate, UITableViewDelegate {
+ 
+ class MapVC: UIViewController,MKMapViewDelegate,CLLocationManagerDelegate,UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource  {
     
+    @IBOutlet weak var tV: UITableView!
     @IBOutlet weak var map: MKMapView!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var Location: UILabel!
-    
-    @IBOutlet var searchDisplay: UISearchController!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // Variáveis do Mapa
     var pontoMapa: CLLocationCoordinate2D!
@@ -24,6 +26,10 @@
     var userLocation: CLLocationCoordinate2D!
     var pontoProximo: CLLocationCoordinate2D!
     var index: Int!
+    var animaisSearchResult = Array<Animal>()
+    
+    
+    var animalOwner: User?
     
     // View
     var vW: UIView!
@@ -34,10 +40,7 @@
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.index = 0
-        
-        // Animais do Singleton
         
         // Inicializa o geocoder
         self.geocoder = CLGeocoder()
@@ -49,33 +52,52 @@
         // Location Manager
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
+        // TableView Searchbar
+        self.tV.delegate = self
         
         //Personalizar searchBar
         self.searchBar.delegate = self
         self.searchBar.barStyle = UIBarStyle.BlackOpaque
         self.searchBar.barTintColor = UIColor(netHex: 0x1E7A8D)
-        self.searchBar.placeholder = "Animal";
+        self.searchBar.tintColor = UIColor.whiteColor()
         
         // Verifica a user location
         self.userLocation = self.locationManager.location?.coordinate
         if (self.userLocation == nil){
             self.userLocation = CLLocationCoordinate2D()
         }
-        
     }
     
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        self.tV.hidden = false
+        self.searchContent(self.searchBar.text!)
+        self.tV.reloadData()
+        return true
+    }
+    
+    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
+        self.tV.hidden = true
+        
+        return true
+    }
+    
+    
     // Método do SearchController
-    
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.animaisSearchResult.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -88,12 +110,32 @@
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: tableItem)
         }
         
-        cell?.textLabel?.text = "TESTE"
-        cell?.detailTextLabel?.text = "Xablau"
+        let animal = self.animaisSearchResult[indexPath.row]
+        
+        cell?.textLabel?.text = animal.animalName
+        cell?.detailTextLabel?.text = animal.animalDescription
         
         return cell!
     }
     
+    func searchContent(searchText: String) {
+        self.animaisSearchResult = Array<Animal>()
+        for index in self.animals {
+            if ( (index.animalName?.uppercaseString)?.rangeOfString(searchText.uppercaseString) != nil ){
+                
+                if (self.animaisSearchResult.count > 0){
+                    for index2 in self.animaisSearchResult {
+                        if (index.animalName != index2.animalName){
+                            self.animaisSearchResult.append(index)
+                        }
+                    }
+                }else{
+                    self.animaisSearchResult.append(index)
+                }
+                
+            }
+        }
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //implementar aproximação da localidade
@@ -101,60 +143,73 @@
         var myRegion = MKCoordinateRegion()
         var span = MKCoordinateSpan()
         var center = CLLocationCoordinate2D()
+        let animal = self.animaisSearchResult[indexPath.row]
         
-        span.latitudeDelta = 0.05
-        span.longitudeDelta = 0.01
+        if (animal.local != nil) {
+            center.latitude = (animal.local?.latitude)!
+            center.longitude = (animal.local?.longitude)!
+            
+            span.latitudeDelta = 0.05
+            span.longitudeDelta = 0.01
+            
+            myRegion.span = span
+            myRegion.center = center
+            
+            self.map.setRegion(myRegion, animated: true)
+        }
         
-        myRegion.span = span
-        myRegion.center = center
-        
-        self.searchDisplay.active = false
-        self.map.setRegion(myRegion, animated: true)
-        
-        
+        self.searchBar.endEditing(true)
+        self.tV.hidden = true
     }
     
     // ========================================================
     
-    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if User.currentUser() != nil{
+            if User.currentUser()?.locationUser == nil{
+                User.currentUser()?.locationUser = ParseConvertion.getLocationUser(manager.location!)
+                
+                
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) { () -> Void in
+                    CLGeocoder().reverseGeocodeLocation(manager.location!) { (placemarks, error) -> Void in
+                        if let placemark = placemarks?[0]{
+                            User.currentUser()?.bairro = placemark.subLocality
+                            User.currentUser()?.cidade = placemark.locality
+                            
+                            User.currentUser()?.saveInBackground()
+                        }
+                    }
+                }
+            }
+        }
+        
         getAddresFromLatitude()
     }
     
-    func addRadiusCircle(location: CLLocation){
-        let circle = MKCircle(centerCoordinate: location.coordinate, radius: 150 as CLLocationDistance)
-        map.addOverlay(circle)
+    func addRadiusOverlayForGeotification(anot: Annotation) {
+        map?.addOverlay(MKCircle(centerCoordinate: anot.coordinate, radius: anot.radius))
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        
         if overlay is MKCircle {
-            
             let circle = MKCircleRenderer(overlay: overlay)
-            circle.strokeColor = UIColor.blackColor()
-            circle.fillColor = UIColor(red: 255, green: 0, blue: 155, alpha: 0.1)
-            circle.lineWidth = 1
+            circle.lineWidth = 1.0
+            circle.strokeColor = UIColor.purpleColor()
+            circle.fillColor = UIColor.purpleColor().colorWithAlphaComponent(0.4)
             return circle
-            
-        } else {
-            
-            return nil
         }
+        return nil
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-        print(AnimalDAO.sharedInstance().animalsArray)
-        
         self.animals = AnimalDAO.sharedInstance().animalsArray
-        
-        
         self.navigationController?.navigationBar.topItem?.title = "Mapa"
-        
         self.animals = AnimalDAO.sharedInstance().animalsArray
         self.map.removeAnnotations(self.map.annotations)
         
-        var lat  = -15.863500
-        var long = -48.028995
+        var lat  = -15.863866
+        var long = -48.029272
         
         for index in self.animals {
             
@@ -163,27 +218,24 @@
                 pontoMapa.latitude = (index.local?.latitude)!
                 pontoMapa.longitude = (index.local?.longitude)!
             } else {
-                
                 pontoMapa = randomPositions(lat, long: long)
-                
                 lat = lat + 1;
                 long = long + 1;
             }
             
             // Pino
-            let myAnn = Annotation(coordinate: pontoMapa, title: "teste", subtitle: "testando")
-            myAnn.title = index.animalName
-            myAnn.subtitle = index.animalDescription
+            let myAnn = Annotation(coordinate: pontoMapa, radius: 150, title: index.animalName!, eventType: EventType.OnEntry)
             map.addAnnotation(myAnn)
             
-            let location : CLLocation = CLLocation(latitude: pontoMapa.latitude, longitude: pontoMapa.longitude)
+            let location : CLLocation = CLLocation(latitude: myAnn.coordinate.latitude, longitude: myAnn.coordinate.longitude)
             if let locationTeste : CLLocation = location {
-                addRadiusCircle(locationTeste)
+                addRadiusOverlayForGeotification(myAnn)
+                startMonitoringAnnotation(myAnn)
+                
             }
             
-            
-            
         }
+        
     }
     
     // Método para adicionar Pins no mapa
@@ -242,6 +294,9 @@
             
             if ((view.annotation?.title)! == animal.animalName){
                 
+                self.animalOwner = animal.animalOwner
+                
+                
                 self.vW = UIView(frame: CGRectMake(10, self.view.frame.height, 300, 300))
                 //self.vW.backgroundColor = UIColor.blackColor()
                 self.vW.backgroundColor = UIColor(netHex: 0x41B6CF)
@@ -277,7 +332,8 @@
                 self.vW.addSubview(botaoPr)
                 
                 botaoPr.addTarget(self, action: "profileVC", forControlEvents: UIControlEvents.TouchUpInside)
-                
+                let anot = view.annotation as! Annotation
+                //stopMonitoringGeotification(anot)
                 
             }
         }
@@ -295,9 +351,10 @@
         let sb = UIStoryboard(name: "Profile", bundle: nil)
         let profileVC = sb.instantiateViewControllerWithIdentifier("profileVC") as! ProfileVC
         
+        profileVC.userProfile = self.animalOwner
+//        profileVC.userProfile?.fetchIfNeededInBackground()
+        
         self.navigationController?.pushViewController(profileVC, animated: true)
-        
-        
     }
     
     
@@ -388,16 +445,122 @@
         return imageView
     }
     
+    // ----------------------------------------------------------------------
+    // Metódos para funcionar Geofencing
     
+    func regionWithAnnotation(annotation: Annotation) -> CLCircularRegion{
+        
+        //1
+        let region = CLCircularRegion(center: annotation.coordinate, radius: annotation.radius, identifier: annotation.title!)
+        
+        //2
+        region.notifyOnEntry = true
+        region.notifyOnExit = true
+        
+        return region
+    }
+    
+    func startMonitoringAnnotation(annotation: Annotation) {
+        
+        //1
+        if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+            print("Geofencing não funciona nesse device")
+            return
+        }
+        
+        //2
+        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+            print("Sua notificação ta salva, porem só vai funcionar caso garanta que esteja autorizado no device")
+        }
+        
+        //3
+        let region = regionWithAnnotation(annotation)
+        self.locationManager.startMonitoringForRegion(region)
+    }
     
     /*
+    func stopMonitoringGeotification(annotation: Annotation) {
+    for region in locationManager.monitoredRegions {
+    if let circularRegion = region as? CLCircularRegion {
+    if circularRegion.identifier == annotation.title {
+    locationManager.stopMonitoringForRegion(circularRegion)
+    }
+    }
+    }
+    }
+    */
+    
+    func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
+        
+        if state == CLRegionState.Unknown{
+            print("Region Desconhecida!")
+            
+        }else if state == CLRegionState.Inside {
+            print("Estou dentro da region -> \(region.identifier)")
+            
+        }else {
+            print("Estou fora da region  -> \(region.identifier)")
+        }
+        
+    }
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        
+        
+        let pushQuery = PFInstallation.query()
+        pushQuery?.whereKey("deviceType", equalTo: "ios")
+        
+        PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "\(region.identifier) está próximo a você se atente." )
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didStartMonitoringForRegion region: CLRegion) {
+        //print("Monitorando -> \(region.identifier)")
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+        //print("Sai desse lugar -> \(region.identifier)")
+    }
+    
+    // Método para verificar raio
+    func radiusForRegion(region: MKCoordinateRegion, location: CLLocationCoordinate2D) {
+        
+        
+        let regionR = MKCoordinateRegion(center: region.center , span: region.span)
+        
+        let localizacao = location as! CLLocationCoordinate2D
+        let center = regionR.center
+        var northWestCorner = CLLocationCoordinate2D()
+        var southEastCorner = CLLocationCoordinate2D()
+        
+        
+        northWestCorner.latitude = center.latitude - (regionR.span.latitudeDelta / 2.0)
+        northWestCorner.longitude = center.longitude - (regionR.span.longitudeDelta / 2.0)
+        southEastCorner.latitude = center.latitude + (regionR.span.latitudeDelta / 2.0)
+        southEastCorner.longitude = center.longitude + (regionR.span.longitudeDelta / 2.0)
+        
+        if (localizacao.latitude >= northWestCorner.latitude && localizacao.latitude <= southEastCorner.latitude && localizacao.longitude >= northWestCorner.longitude && localizacao.longitude <= southEastCorner.longitude ) {
+            
+            // To dentro desse infeliz eu acho!
+            print("Center \(regionR.center.latitude) \(regionR.center.longitude) span \(regionR.span.latitudeDelta) \(regionR.span.longitudeDelta) user: \(localizacao.latitude) \(localizacao.longitude)| IN!")
+        }else {
+            
+            print("Center \(regionR.center.latitude) \(regionR.center.longitude) span \(regionR.span.latitudeDelta) \(regionR.span.longitudeDelta) user: \(localizacao.latitude) \(localizacao.longitude)| OUT!")
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        print("ENTROU NO PREPRARE")
+//    }
+// 
     
  }

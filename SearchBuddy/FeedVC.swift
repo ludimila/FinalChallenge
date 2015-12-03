@@ -8,10 +8,12 @@
 //
 
 import UIKit
+import MapKit
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     var teste = Int()
+    
     
     @IBOutlet weak var tableView: UITableView!
 //    var animalsArray = Array<Animal>()
@@ -30,30 +32,25 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.tableView.estimatedRowHeight = 700
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
-        
         self.tableView.allowsSelection = false
+        
         self.refreshTableView!.addTarget(self, action: "reloadTableView", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshTableView!)
         
         loadCustomRefreshContent()
         
-        
         if Reachability.testConnection(){
             getData()
-            print("Com conexao")
-        }else{
-            print("Sem conexao")
         }
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     
     func reloadTableView() {
         
@@ -61,9 +58,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 
         if Reachability.testConnection(){
             getData()
-            print("Com conexao")
-        }else{
-            print("Sem conexao")
         }
     }
     
@@ -102,9 +96,19 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
                 }
             })
             
-            cell.fotoPerfilDono.image = UIImage(named: "dog")
-            Utilities.round(cell.fotoPerfilDono, tamanhoBorda: 1)
             
+            
+            if currentAnimal.animalOwner!.userPicture != nil{
+                currentAnimal.animalOwner!.userPicture!.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                    if error == nil {
+                        cell.fotoPerfilDono.image = UIImage(data: data!)
+                    }
+                })
+            }else{
+                cell.fotoPerfilDono.image = UIImage(named: "FotoPerfilVazio")
+            }
+            
+            Utilities.round(cell.fotoPerfilDono, tamanhoBorda: 1)
             cell.fotoPerfilDono.layer.borderColor = UIColor(red: 0.42, green: 0.26, blue: 0.13, alpha: 1).CGColor
             
             cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
@@ -127,11 +131,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     
     func getData(){
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
-//            self.animalsArray = animalsArray!
-//            AnimalDAO.sharedInstance().animalsArray = animalsArray!
-            print("ANTES DO RELOAD")
             self.tableView.reloadData()
-            print("Passou")
         }
 
     }

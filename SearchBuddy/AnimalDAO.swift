@@ -51,46 +51,50 @@ class AnimalDAO: SBDAO {
 //        query?.whereKey("autor", equalTo: usuario)
         query.orderByDescending("createdAt")
         
+        let queryStatus = StatusAnimal.query()
+        queryStatus!.whereKey("objectId", equalTo: "06cg0yLSSl")
         
-        
-        
-        query.includeKey("animalStatus")
-        query.includeKey("animalType")
-        query.includeKey("animalOwner")
-        
-        
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        queryStatus!.findObjectsInBackgroundWithBlock { (status, error) -> Void in
+            query.whereKey("animalStatus", containedIn: status!)
             
-            query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
-                for animal in animals!{
-                    try! animal.fetchIfNeeded()
-
-                }
+            query.includeKey("animalStatus")
+            query.includeKey("animalType")
+            query.includeKey("animalOwner")
+            
+            
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                
+                query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
+                    for animal in animals!{
+                        animal.fetchIfNeededInBackground()
+                    }
+                    
+                    
+                    
+                    if let animalsNN = animals as? Array<Animal> {
+                        AnimalDAO.sharedInstance().animalsArray = animalsNN
+                        completion(animalsNN, error: error)
+                        
+                    }else{
+                        completion(nil, error: error)
+                    }
+                })
                 
                 
-            
-                if let animalsNN = animals as? Array<Animal> {
-                    print("ENTROU NO IF")
-                    
-                    print(animalsNN)
-                    completion(animalsNN, error: error)
-                    
-                }else{
-                    print("ENTROU NO ELSE")
-                    completion(nil, error: error)
-                }
-            })
-            
-            
+            }
         }
+        
+        
+        
     }
     
     
-    class func getAnimalsFromUser(completion: () -> Void){
+    class func getAnimalsFromUser(user: User, completion: () -> Void){
         
         let query = Animal.query()!
         
-        query.whereKey("animalOwner", equalTo: UserDAO.getCurrentUser()!)
+        
+        query.whereKey("animalOwner", equalTo: user)
         
         query.orderByDescending("createdAt")
         
@@ -102,22 +106,16 @@ class AnimalDAO: SBDAO {
         query.findObjectsInBackgroundWithBlock { (animals, error) -> Void in
             if error == nil {
                 for animal in animals!{
-                    try! animal.fetchIfNeeded()
-
+                    animal.fetchIfNeededInBackground()
                 }
                 
                 
-                print("Successfully retrieved \(animals!.count) scores.")
-                    AnimalDAO.sharedInstance().animalsUser = Array<Animal>()
-                    for animal in animals! {
-                        let animal = animal as! Animal
-                        
-                      
-                        
-                        AnimalDAO.sharedInstance().animalsUser.append(animal)
-                    }
-                
-//                print(AnimalDAO.sharedInstance().animalsUser)
+                AnimalDAO.sharedInstance().animalsUser = Array<Animal>()
+                for animal in animals! {
+                    let animal = animal as! Animal
+                    
+                    AnimalDAO.sharedInstance().animalsUser.append(animal)
+                }
                 
                 completion()
             } else {

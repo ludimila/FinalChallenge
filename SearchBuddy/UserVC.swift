@@ -30,7 +30,7 @@ class UserVC: UIViewController, UIImagePickerControllerDelegate,UITextFieldDeleg
     
     @IBAction func tirarFoto(sender: AnyObject) {
         
-        var imagePicker = UIImagePickerController()
+        let imagePicker = UIImagePickerController()
         
         if ( UIImagePickerController.isSourceTypeAvailable(.Camera)){
             imagePicker.sourceType = .Camera

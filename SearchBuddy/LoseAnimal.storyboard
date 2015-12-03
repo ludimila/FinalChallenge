@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XdK-Ot-fh5">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Selecione o animal perdido-->
+        <scene sceneID="yg2-Ka-e6E">
+            <objects>
+                <viewController storyboardIdentifier="loseVC" title="Selecione o animal perdido" id="NV3-dF-Pxv" customClass="LoseTableVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tgp-UF-pYF"/>
+                        <viewControllerLayoutGuide type="bottom" id="jld-JL-ayX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S0z-bZ-2bz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fundo" translatesAutoresizingMaskIntoConstraints="NO" id="QzS-fX-7lP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ezx-dg-5cQ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="130" id="MjG-Kj-gMI" customClass="LoseCellTableViewCell" customModule="SearchBuddy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="130"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MjG-Kj-gMI" id="zne-I2-fR2">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X3C-5f-ENj">
+                                                    <rect key="frame" x="18" y="12" width="55" height="55"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="55" id="fFR-0l-Wh0"/>
+                                                        <constraint firstAttribute="width" constant="55" id="jgx-Jl-glR"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojY-gR-iY7">
+                                                    <rect key="frame" x="92" y="29" width="42" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtr-6O-CB5">
+                                                    <rect key="frame" x="232" y="84" width="137" height="30"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Perdi esse bicho vei"/>
+                                                    <connections>
+                                                        <segue destination="mAG-PF-Yb9" kind="show" identifier="lostLocation" id="gRV-Tx-dsD"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wtr-6O-CB5" secondAttribute="bottom" constant="8" id="0E8-Gm-GfI"/>
+                                                <constraint firstItem="ojY-gR-iY7" firstAttribute="top" secondItem="zne-I2-fR2" secondAttribute="topMargin" constant="21" id="AhR-NY-KYm"/>
+                                                <constraint firstItem="wtr-6O-CB5" firstAttribute="centerX" secondItem="zne-I2-fR2" secondAttribute="centerX" id="Aol-9p-vlV"/>
+                                                <constraint firstItem="ojY-gR-iY7" firstAttribute="leading" secondItem="X3C-5f-ENj" secondAttribute="trailing" constant="19" id="MRz-FB-xLn"/>
+                                                <constraint firstItem="X3C-5f-ENj" firstAttribute="top" secondItem="zne-I2-fR2" secondAttribute="topMargin" constant="4" id="hpX-xf-Scr"/>
+                                                <constraint firstItem="X3C-5f-ENj" firstAttribute="leading" secondItem="zne-I2-fR2" secondAttribute="leadingMargin" constant="10" id="uSe-iB-MKC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="img" destination="X3C-5f-ENj" id="og9-Dg-pEP"/>
+                                            <outlet property="label" destination="ojY-gR-iY7" id="j1H-ME-Ink"/>
+                                            <outlet property="loseButton" destination="wtr-6O-CB5" id="1Gq-IM-XOO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="NV3-dF-Pxv" id="vJC-ub-R5H"/>
+                                    <outlet property="delegate" destination="NV3-dF-Pxv" id="yiL-DC-MKg"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QzS-fX-7lP" firstAttribute="centerX" secondItem="S0z-bZ-2bz" secondAttribute="centerX" id="JGA-FB-xeS"/>
+                            <constraint firstItem="ezx-dg-5cQ" firstAttribute="top" secondItem="Tgp-UF-pYF" secondAttribute="bottom" id="WEV-6E-hr5"/>
+                            <constraint firstItem="jld-JL-ayX" firstAttribute="top" secondItem="ezx-dg-5cQ" secondAttribute="bottom" id="WJO-aF-TJX"/>
+                            <constraint firstItem="QzS-fX-7lP" firstAttribute="height" secondItem="S0z-bZ-2bz" secondAttribute="height" id="ZdW-6i-H1g"/>
+                            <constraint firstItem="QzS-fX-7lP" firstAttribute="centerY" secondItem="S0z-bZ-2bz" secondAttribute="centerY" id="g4N-pl-GAN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ezx-dg-5cQ" secondAttribute="trailing" constant="-20" id="gDL-J9-72K"/>
+                            <constraint firstItem="jld-JL-ayX" firstAttribute="top" secondItem="ezx-dg-5cQ" secondAttribute="bottom" id="mpE-wY-dTc"/>
+                            <constraint firstItem="ezx-dg-5cQ" firstAttribute="leading" secondItem="S0z-bZ-2bz" secondAttribute="leadingMargin" constant="-20" id="xC6-am-aDj"/>
+                            <constraint firstItem="QzS-fX-7lP" firstAttribute="width" secondItem="S0z-bZ-2bz" secondAttribute="width" id="xyw-g0-CpY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Selecione o animal perdido" id="zSt-Fo-jTy"/>
+                    <connections>
+                        <outlet property="tableView" destination="ezx-dg-5cQ" id="oHS-E2-5pB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rxN-qf-yrq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1819" y="92"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jxM-nY-iX4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XdK-Ot-fh5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5dd-bX-4pZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NV3-dF-Pxv" kind="relationship" relationship="rootViewController" id="sbX-Jh-FdF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uqD-oa-zto" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1007" y="92"/>
+        </scene>
+        <!--Selecione a ultima localização-->
+        <scene sceneID="XRO-NP-pyy">
+            <objects>
+                <viewController id="mAG-PF-Yb9" customClass="BuscaLocalVC" customModule="SearchBuddy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J9O-PT-swW"/>
+                        <viewControllerLayoutGuide type="bottom" id="NVa-fB-gFs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eGY-o9-zRM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ub6-qf-xHT">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </mapView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ub6-qf-xHT" firstAttribute="height" secondItem="eGY-o9-zRM" secondAttribute="height" id="RPj-26-2xP"/>
+                            <constraint firstItem="ub6-qf-xHT" firstAttribute="centerX" secondItem="eGY-o9-zRM" secondAttribute="centerX" id="b01-fs-wwc"/>
+                            <constraint firstItem="ub6-qf-xHT" firstAttribute="width" secondItem="eGY-o9-zRM" secondAttribute="width" id="rWa-gw-Wcd"/>
+                            <constraint firstItem="ub6-qf-xHT" firstAttribute="centerY" secondItem="eGY-o9-zRM" secondAttribute="centerY" id="y6C-Be-zaX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Selecione a ultima localização" id="8de-VQ-lbZ"/>
+                    <connections>
+                        <outlet property="mkMap" destination="ub6-qf-xHT" id="3GX-iL-jRc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7iE-1d-HLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2494" y="92"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Fundo" width="375" height="667"/>
+    </resources>
+</document>

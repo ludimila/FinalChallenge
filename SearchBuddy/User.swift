@@ -11,11 +11,12 @@ import Parse
 
 class User: PFUser {
     
-    @NSManaged var userPicture: UIImage?
+    @NSManaged var userPicture: PFFile?
     @NSManaged var userPhoneNumber: String?
     @NSManaged var name: String?
-    @NSManaged var state: String?
-    @NSManaged var city: String?
+    @NSManaged var bairro: String?
+    @NSManaged var cidade: String?
+    @NSManaged var locationUser: PFGeoPoint?
     
     override class func initialize() {
         struct Static {

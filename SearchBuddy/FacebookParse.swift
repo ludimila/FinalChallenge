@@ -16,6 +16,11 @@ class FacebookParse: NSObject {
     var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
     let fileManager = NSFileManager.defaultManager()
     
+    
+//    class func getProfilePhoto(idProfile: String) -> UIImage{
+//        return UIImage()
+//    }
+    
     class func unlinkUserToFacebook(user: PFUser){
         PFFacebookUtils.unlinkUserInBackground(user, block: {
             (succeeded: Bool, error: NSError?) -> Void in
@@ -46,12 +51,16 @@ FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name,
                 if error == nil {
                     userData["name"] = result.objectForKey("name") as? String
                     userData["email"] = result.objectForKey("email") as? String
+                    userData["id"] = result.objectForKey("id") as? String
                     
-                    print(userData)
+                    
                     
                     let picture = result.objectForKey("picture") as! NSDictionary
                     let dataImage = picture.objectForKey("data") as! NSDictionary
                     let url = dataImage.objectForKey("url") as! String
+                    
+                    
+                    
                     userData["photoUrl"] = url
                     
                     

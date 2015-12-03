@@ -135,9 +135,18 @@ class ConfigVC: UITableViewController {
                     let actionYes = UIAlertAction(title: "Sim", style: .Default) { _ in
                         UserDAO.userLogout()
                         
-                        let tabBar = self.navigationController?.parentViewController as! UITabBarController
-                        tabBar.selectedIndex = 1
-                        self.tableView.reloadData()
+                        let alertConfirmation = UIAlertController(title: "Sair", message: "Logout efetuado com sucesso.", preferredStyle: .Alert)
+                        
+                        let actionOk = UIAlertAction(title: "Ok", style: .Default) { _ in
+                            
+                            let tabBar = self.navigationController?.parentViewController as! UITabBarController
+                            tabBar.selectedIndex = 1
+                            self.tableView.reloadData()
+                        }
+                        
+                        alertConfirmation.addAction(actionOk)
+                        
+                        self.presentViewController(alertConfirmation, animated: true, completion: nil)
                     }
                     let actionNo = UIAlertAction(title: "Não", style: .Default, handler: nil)
                     

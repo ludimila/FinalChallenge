@@ -8,9 +8,16 @@
 
 import UIKit
 
+// Protocolo para saber qual usuário é pra mostrar no perfil
+protocol ShowUserInProfileView{
+    func isCurrentUser()
+}
+
 class MainTabBarVC: UITabBarController {
     
     var clicked = false
+    
+    var delegateUserProfile: ShowUserInProfileView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +28,18 @@ class MainTabBarVC: UITabBarController {
         
         addCenterButtonWithImage(buttonImage!, highlightImage: nil)
         
+        let nvc = self.viewControllers![3] as! UINavigationController
+        let vc = nvc.viewControllers[0] as! ProfileVC
+        
+        self.delegateUserProfile = vc
+    }
+    
+    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        let index = tabBar.items?.indexOf(item)
+        if index == 3{
+            self.delegateUserProfile?.isCurrentUser()
         }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,9 +55,7 @@ class MainTabBarVC: UITabBarController {
         button.addTarget(self, action: "buttonEvent", forControlEvents: UIControlEvents.TouchUpInside)
         
         let heightDifference: CGFloat = buttonImage.size.height - self.tabBar.frame.size.height
-        
-        print("CENTER TAB = \(self.tabBar.frame.size.height) ------ CENTER IMAGE = \(buttonImage.size.height) --------- DIFERENÇA = \(heightDifference)")
-        
+                
         if (heightDifference < 0){
             button.center = self.tabBar.center
         }else{
@@ -61,17 +77,18 @@ class MainTabBarVC: UITabBarController {
     }
     
     func addButtons(){
-        let buttonImage = UIImage(named: "patinha")
+        let buttonImage = UIImage(named: "addPet")
         let button = UIButton(type: .Custom) as UIButton
         button.frame = CGRectMake(0, 0, (buttonImage?.size.width)!, (buttonImage?.size.height)!)
            button.addTarget(self, action: "addAnimal", forControlEvents: UIControlEvents.TouchUpInside)
         button.setBackgroundImage(buttonImage, forState: .Normal)
         button.tag = 1
       
-        let buttonImage2 = UIImage(named: "Lupa")
+        let buttonImage2 = UIImage(named: "losePet")
         let button2 = UIButton(type: .Custom) as UIButton
         button2.frame = CGRectMake(0, 0, (buttonImage2?.size.width)!, (buttonImage2?.size.height)!)
         button2.setBackgroundImage(buttonImage2, forState: .Normal)
+        button2.addTarget(self, action: "lostEvent", forControlEvents: UIControlEvents.TouchUpInside)
         button2.tag = 2
         
         button.center = self.tabBar.center
@@ -102,7 +119,13 @@ class MainTabBarVC: UITabBarController {
             }
         }
     }
-
+    
+    func lostEvent(){
+        let sb = UIStoryboard(name: "LoseAnimal", bundle: nil)
+        let lostVC = sb.instantiateInitialViewController()
+        self.presentViewController(lostVC!, animated: true, completion: nil)
+        
+    }
     
     func initTabBar(){
        
