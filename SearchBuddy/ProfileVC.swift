@@ -11,7 +11,7 @@ import Parse
 import MapKit
 import MBProgressHUD
 
-class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ShowUserInProfileView{
+class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ShowUserInProfileView{
 
     @IBOutlet weak var tableviewIsEmptylb: UILabel!
     
@@ -31,6 +31,9 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     @IBOutlet weak var atualizarLocation: UIButton!
     
     @IBOutlet weak var viewPhotoEdit: UIView!
+    @IBOutlet weak var buttonEditPhoto: UIButton!
+    
+    var imagePicker = UIImagePickerController()
     
     var locationManager = CLLocationManager()
     var selectedRow: Int?
@@ -41,6 +44,12 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//    Mexer nas views de edição da photo do perfil
+        Utilities.round(self.viewPhotoEdit, tamanhoBorda: 0)
+        self.buttonEditPhoto.alpha = 1
+        self.viewPhotoEdit.alpha = 0.6
+        
         if (isCurrentUserFlag == true) {
             if User.currentUser() != nil{
                 if User.currentUser()?.locationUser == nil{
@@ -158,11 +167,25 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
         self.nomeTF.hidden = false
         
         self.atualizarLocation.hidden = false
+        
+        self.viewPhotoEdit.hidden = false
+        self.buttonEditPhoto.hidden = false
     }
     
     func doneEditProfile(){
         self.addEditButton()
         
+        self.hideEditable()
+        
+        User.currentUser()?.userPhoneNumber = self.telefoneTF.text
+        User.currentUser()?.name = self.nomeTF.text
+        
+        UserDAO.salvarUserUpdate()
+        
+        self.view.resignFirstResponder()
+    }
+    
+    func hideEditable(){
         self.telefoneTF.hidden = true
         self.telefoneDonoLb.text = self.telefoneTF.text
         self.telefoneDonoLb.hidden = false
@@ -174,14 +197,84 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
         
         self.atualizarLocation.hidden = true
         
+        self.viewPhotoEdit.hidden = true
+        self.buttonEditPhoto.hidden = true
+    }
+    
+//    MARK: ATUALIZAR FOTO
+    
+    @IBAction func atualizaPhoto(sender: AnyObject) {
+        print("PASSOU AQUI")
         
-        User.currentUser()?.userPhoneNumber = self.telefoneTF.text
-        User.currentUser()?.name = self.nomeTF.text
+        let optionMenu = UIAlertController(title: nil, message:nil, preferredStyle: .ActionSheet)
+        
+        
+        let deletePhotoAction = UIAlertAction(title: "Apagar Foto", style: .Destructive, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            self.userPicture.image = UIImage(named: "FotoPerfilVazio")
+            User.currentUser()?.userPicture = nil
+            
+            UserDAO.salvarUserUpdate()
+            print("APAGAR FOTO")
+        })
+        
+        let takePhotoAction = UIAlertAction(title: "Tirar Foto", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            self.takePhoto()
+            self.hideEditable()
+            print("TIRAR FOTO")
+        })
+        
+        let choosePhotoAction = UIAlertAction(title: "Escolher Foto", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.takePhotoInLibrary()
+            self.hideEditable()
+            print("Escolher FOTO")
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        optionMenu.addAction(deletePhotoAction)
+        optionMenu.addAction(takePhotoAction)
+        optionMenu.addAction(choosePhotoAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    func takePhoto(){
+        self.imagePicker.delegate = self
+        self.imagePicker.sourceType = .Camera
+        self.imagePicker.allowsEditing = true
+        
+        presentViewController(self.imagePicker, animated: true, completion: nil)
+    }
+    
+    func takePhotoInLibrary(){
+        self.imagePicker.delegate = self
+        self.imagePicker.sourceType = .PhotoLibrary
+        self.imagePicker.allowsEditing = true
+        
+        presentViewController(self.imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        self.userPicture.image = info[UIImagePickerControllerEditedImage] as? UIImage
+        
+        if let imageData = UIImagePNGRepresentation(self.userPicture.image!){
+            User.currentUser()?.userPicture = PFFile(data: imageData)
+        }
         
         UserDAO.salvarUserUpdate()
-        
-        self.view.resignFirstResponder()
     }
+  
+//    -------------------------------------------------------
     
     @IBAction func atualizaLocation(sender: AnyObject) {
         print("ATUALIZAR LOCALIZACAO")
@@ -202,8 +295,6 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locationManager.stopUpdatingLocation()
-        
-        print("PASSOU AQUI")
         
         if isCurrentUserFlag == true{
             self.armazenaLocationUser(manager.location!)
