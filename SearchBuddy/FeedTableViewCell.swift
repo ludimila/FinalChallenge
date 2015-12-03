@@ -27,6 +27,7 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var viewBlur: UIView!
     
+    @IBOutlet weak var ultimaVezVisto: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
