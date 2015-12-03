@@ -69,16 +69,12 @@ class AnimalDAO: SBDAO {
             query.includeKey("animalType")
             query.includeKey("animalOwner")
             
-            
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 
                 query.findObjectsInBackgroundWithBlock ({ (animals, error) -> Void in
                     for animal in animals!{
                         animal.fetchIfNeededInBackground()
                     }
-                    
-                    
-                    
                     if let animalsNN = animals as? Array<Animal> {
                         AnimalDAO.sharedInstance().animalsArray = animalsNN
                         completion(animalsNN, error: error)
@@ -87,13 +83,8 @@ class AnimalDAO: SBDAO {
                         completion(nil, error: error)
                     }
                 })
-                
-                
             }
         }
-        
-        
-        
     }
     
     
@@ -116,15 +107,12 @@ class AnimalDAO: SBDAO {
                 for animal in animals!{
                     animal.fetchIfNeededInBackground()
                 }
-                
-                
                 AnimalDAO.sharedInstance().animalsUser = Array<Animal>()
                 for animal in animals! {
                     let animal = animal as! Animal
                     
                     AnimalDAO.sharedInstance().animalsUser.append(animal)
                 }
-                
                 completion()
             } else {
                 // Log details of the failure
@@ -148,7 +136,6 @@ class AnimalDAO: SBDAO {
             query.includeKey("animalStatus")
             query.includeKey("animalType")
             query.includeKey("animalOwner")
-            
             
             query.findObjectsInBackgroundWithBlock { (animals, error) -> Void in
                 if error == nil {

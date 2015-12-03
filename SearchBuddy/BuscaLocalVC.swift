@@ -92,6 +92,7 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
             geoPoint.latitude = self.ponto.latitude
             geoPoint.longitude = self.ponto.longitude
             self.animal.local = geoPoint
+            self.animal.ultimaVezVisto = NSDate()
             
             let queryStatus = StatusAnimal.query()
             queryStatus!.whereKey("objectId", equalTo: "06cg0yLSSl")
@@ -120,7 +121,6 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
 
     }
     
-    
     func getAdress(){
         
         let currentLocation = CLLocation(latitude: self.ponto.latitude, longitude: self.ponto.longitude)
@@ -145,7 +145,6 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         locationManager.stopUpdatingLocation()
         
     }
-    
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         
