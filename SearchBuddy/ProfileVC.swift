@@ -33,6 +33,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     @IBOutlet weak var viewPhotoEdit: UIView!
     @IBOutlet weak var buttonEditPhoto: UIButton!
     
+    @IBOutlet weak var naoLogadoView: UIView!
+    
     var imagePicker = UIImagePickerController()
     
     var locationManager = CLLocationManager()
@@ -75,57 +77,64 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil"
         
-        
-        if (isCurrentUserFlag == true) {
-            self.userProfile = User.currentUser()
-            self.addEditButton()
-        }
-        
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
-        
-        if self.userProfile!.userPicture != nil{
-            self.userProfile?.userPicture!.getDataInBackgroundWithBlock({ (data, error) -> Void in
-                if error == nil {
-                    self.userPicture.image = UIImage(data: data!)
+        if User.currentUser() == nil && isCurrentUserFlag == true{
+            naoLogadoView.hidden = false
+        }else{
+            naoLogadoView.hidden = true
+            
+            
+            if (isCurrentUserFlag == true) {
+                self.userProfile = User.currentUser()
+                self.addEditButton()
+            }
+            
+            self.tableView.tableFooterView = UIView(frame: CGRectZero)
+            
+            if self.userProfile!.userPicture != nil{
+                self.userProfile?.userPicture!.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                    if error == nil {
+                        self.userPicture.image = UIImage(data: data!)
+                    }
+                })
+            }else{
+                self.userPicture.image = UIImage(named: "FotoPerfilVazio")
+            }
+            
+            if let nomeUsuario = self.userProfile?.name {
+                self.nome.text = nomeUsuario
+            }else{
+                self.nome.text = "Sem nome"
+            }
+            
+            if let telefoneUsuario = self.userProfile?.userPhoneNumber {
+                self.telefoneDonoLb.text = telefoneUsuario
+            }else{
+                self.telefoneDonoLb.text = "Indefinido"
+            }
+            
+            
+            //        Aqui pegara a cidade a respeito do cgpoint presente no user
+            if self.userProfile?.locationUser != nil {
+                self.localizacaoDonoLb.text =  ((self.userProfile?.bairro!)! + ", " + (self.userProfile?.cidade!)!)
+            }else{
+                self.localizacaoDonoLb.text = "Indefinido"
+            }
+            
+            
+            AnimalDAO.getAnimalsFromUser(self.userProfile!, completion: { () -> Void in
+                self.tableView.reloadData()
+                
+                if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
+                    self.tableView.hidden = false
+                    self.tableviewIsEmptylb.hidden = true
+                }else{
+                    self.tableView.hidden = true
+                    self.tableviewIsEmptylb.hidden = false
                 }
             })
-        }else{
-           self.userPicture.image = UIImage(named: "FotoPerfilVazio")
+
+        
         }
-        
-        if let nomeUsuario = self.userProfile?.name {
-            self.nome.text = nomeUsuario
-        }else{
-            self.nome.text = "Sem nome"
-        }
-        
-        if let telefoneUsuario = self.userProfile?.userPhoneNumber {
-            self.telefoneDonoLb.text = telefoneUsuario
-        }else{
-            self.telefoneDonoLb.text = "Indefinido"
-        }
-        
-        
-//        Aqui pegara a cidade a respeito do cgpoint presente no user
-        if self.userProfile?.locationUser != nil {
-            self.localizacaoDonoLb.text =  ((self.userProfile?.bairro!)! + ", " + (self.userProfile?.cidade!)!)
-        }else{
-            self.localizacaoDonoLb.text = "Indefinido"
-        }
-        
-        
-        AnimalDAO.getAnimalsFromUser(self.userProfile!, completion: { () -> Void in
-            self.tableView.reloadData()
-            
-            if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
-                self.tableView.hidden = false
-                self.tableviewIsEmptylb.hidden = true
-            }else{
-                self.tableView.hidden = true
-                self.tableviewIsEmptylb.hidden = false
-            }
-        })
-            
         
     }
     
@@ -399,6 +408,10 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
         }
     }
     
+    @IBAction func toLoginScreen(sender: AnyObject) {
+        let tabBar = self.navigationController?.parentViewController as! UITabBarController
+        tabBar.selectedIndex = 4
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
