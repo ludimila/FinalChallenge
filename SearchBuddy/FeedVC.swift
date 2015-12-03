@@ -137,19 +137,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     }
     
     func getDateDifference(dataUltimavez: NSDate) -> String{
-        
-        let start = "2010-09-01"
-        let end = "2010-09-05"
-        
-        
-        print("inicio \(dataUltimavez)")
-        print(NSDate())
-        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        
-        
+
         let startDate = dataUltimavez
         let endDate = NSDate()
         

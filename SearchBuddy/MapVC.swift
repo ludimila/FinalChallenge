@@ -546,7 +546,7 @@
         
         let regionR = MKCoordinateRegion(center: region.center , span: region.span)
         
-        let localizacao = location as! CLLocationCoordinate2D
+        let localizacao = location
         let center = regionR.center
         var northWestCorner = CLLocationCoordinate2D()
         var southEastCorner = CLLocationCoordinate2D()
