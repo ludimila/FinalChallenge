@@ -332,7 +332,8 @@
                 self.vW.addSubview(botaoPr)
                 
                 botaoPr.addTarget(self, action: "profileVC", forControlEvents: UIControlEvents.TouchUpInside)
-                let anot = view.annotation as! Annotation
+                
+                //let anot = view.annotation as! Annotation
                 //stopMonitoringGeotification(anot)
                 
             }
@@ -352,7 +353,7 @@
         let profileVC = sb.instantiateViewControllerWithIdentifier("profileVC") as! ProfileVC
         
         profileVC.userProfile = self.animalOwner
-//        profileVC.userProfile?.fetchIfNeededInBackground()
+        //        profileVC.userProfile?.fetchIfNeededInBackground()
         
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
@@ -480,36 +481,53 @@
     
     /*
     func stopMonitoringGeotification(annotation: Annotation) {
-    for region in locationManager.monitoredRegions {
-    if let circularRegion = region as? CLCircularRegion {
-    if circularRegion.identifier == annotation.title {
-    locationManager.stopMonitoringForRegion(circularRegion)
+         for region in locationManager.monitoredRegions {
+             if let circularRegion = region as? CLCircularRegion {
+                if circularRegion.identifier == annotation.title {
+                  locationManager.stopMonitoringForRegion(circularRegion)
+                 }
+             }
+          }
     }
-    }
-    }
-    }
-    */
+ 
     
     func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
         
         if state == CLRegionState.Unknown{
+            
             print("Region Desconhecida!")
             
         }else if state == CLRegionState.Inside {
+            
             print("Estou dentro da region -> \(region.identifier)")
             
         }else {
+            
             print("Estou fora da region  -> \(region.identifier)")
+            
         }
         
     }
+    */
+    
+    
     func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
+        let userQuery: PFQuery = PFUser.query()!
+        userQuery.whereKey("objectId", equalTo: "anyqr0RIQL") // The user I am logged in with
         
-        let pushQuery = PFInstallation.query()
-        pushQuery?.whereKey("deviceType", equalTo: "ios")
+        let pushQuery: PFQuery = PFInstallation.query()!
+        pushQuery.whereKey("user", matchesQuery: userQuery)
         
-        PFPush.sendPushMessageToQueryInBackground(pushQuery!, withMessage: "\(region.identifier) está próximo a você se atente." )
+        //print(pushQuery)
+        
+        do{
+            try PFPush.sendPushMessageToChannel((User.currentUser()?.objectId)!, withMessage: "\(region.identifier) está próximo a você se atente.")
+        }catch{
+            
+        }
+        
+        //PFPush.sendPushMessageToQueryInBackground(pushQuery, withMessage: "\(region.identifier) está próximo a você se atente." )
         
     }
     
@@ -551,16 +569,12 @@
         
     }
     
-    
-    
-    
-    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        print("ENTROU NO PREPRARE")
-//    }
-// 
+    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //        print("ENTROU NO PREPRARE")
+    //    }
+    //
     
  }

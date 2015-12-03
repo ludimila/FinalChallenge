@@ -207,6 +207,10 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         mainView.presentViewController(alert, animated: true, completion: {})
     }
     
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Error -> \(error)")
+    }
+    
     
     
     /*

@@ -48,7 +48,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let currentInstalation = PFInstallation.currentInstallation()
         
         currentInstalation.setDeviceTokenFromData(deviceToken)
-        currentInstalation.channels = ["globals"]
+        
+        if let user = User.currentUser()  {
+         
+            currentInstalation.channels = [user.objectId!]
+            
+        }
+        
         currentInstalation.saveInBackground()
     }
     
