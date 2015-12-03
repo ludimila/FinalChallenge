@@ -14,8 +14,6 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView: UITableView!
     
     var selectedCellIndexPath: NSIndexPath?
-    var allIndex =  Array<NSIndexPath>()
-    
     
     override func viewDidLoad() {
         
@@ -23,10 +21,9 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.separatorColor = UIColor.orangeColor()
 
-        AnimalDAO.getAnimalsFromUser(User.currentUser()!) { () -> Void in
+        AnimalDAO.getLostAnimalsFromUser(User.currentUser()!) { () -> Void in
             self.tableView.reloadData()
-            
-            if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
+            if AnimalDAO.sharedInstance().allLostAnimalsUser.count > 0{
                 self.tableView.hidden = false
                 //self.tableviewIsEmptylb.hidden = true
             }else{
@@ -34,9 +31,7 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 //self.tableviewIsEmptylb.hidden = false
             }
         }
-        
         self.addEditButton()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,11 +48,11 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return AnimalDAO.sharedInstance().allAnimalsUser.count
+        return AnimalDAO.sharedInstance().allLostAnimalsUser.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let animal = AnimalDAO.sharedInstance().allAnimalsUser[indexPath.row]
+        let animal = AnimalDAO.sharedInstance().allLostAnimalsUser[indexPath.row]
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! LoseCellTableViewCell
         
@@ -70,8 +65,6 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         })
         
         cell.label.text = animal.animalName
-        
-        allIndex.append(indexPath)
         
         return cell
 
@@ -112,7 +105,7 @@ class LoseTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         if segue.identifier == "lostLocation"{
             
             let vc = segue.destinationViewController as! BuscaLocalVC
-            let animal = AnimalDAO.sharedInstance().allAnimalsUser[(selectedCellIndexPath?.row)!]
+            let animal = AnimalDAO.sharedInstance().allLostAnimalsUser[(selectedCellIndexPath?.row)!]
             
             vc.animal = animal
         }

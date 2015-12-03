@@ -92,12 +92,23 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
             geoPoint.latitude = self.ponto.latitude
             geoPoint.longitude = self.ponto.longitude
             self.animal.local = geoPoint
-            self.animal.saveInBackground()
             
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            self.presentViewController(storyBoard!, animated: true, completion: nil)
+            let queryStatus = StatusAnimal.query()
+            queryStatus!.whereKey("objectId", equalTo: "06cg0yLSSl")
             
-            self.presentConclusionAlert(storyBoard!)
+            queryStatus?.findObjectsInBackgroundWithBlock({ (status, error) -> Void in
+                if error == nil{
+                    let statusAnimal = status as! Array<StatusAnimal>
+                    self.animal.animalStatus = statusAnimal.first
+                    self.animal.saveInBackground()
+
+                }
+            })
+            
+            self.dismissViewControllerAnimated(true){
+//                let storyBoard = self.tabBarController
+//                self.presentConclusionAlert(storyBoard!)
+            }
             
         }
         let cancelAction = UIAlertAction(title: "Cancelar", style: .Default){ _ in
