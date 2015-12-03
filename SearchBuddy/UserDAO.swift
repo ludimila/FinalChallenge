@@ -62,6 +62,20 @@ class UserDAO: NSObject {
     
     class func deleteCurrentUser(completion: (sucessed:Bool,error:NSError?) -> Void){
         let user = self.getCurrentUser()
+        
+        let animalsUser = Animal.query()
+        animalsUser?.whereKey("animalOwner", equalTo: user!)
+        
+
+        animalsUser?.findObjectsInBackgroundWithBlock({ (animalsResult, error) -> Void in
+            if animalsResult?.count > 0{
+                for animal in animalsResult!{
+                    animal.deleteInBackground()
+                }
+            }
+            
+        })
+        
                 
         user?.deleteInBackgroundWithBlock{ (success: Bool, error: NSError?) -> Void in
             completion(sucessed: success, error: error)
