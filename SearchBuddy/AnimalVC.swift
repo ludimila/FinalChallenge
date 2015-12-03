@@ -140,7 +140,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
-        self.savaDataInParse()
+       // self.savaDataInParse()
     }
     
     func savaDataInParse(){

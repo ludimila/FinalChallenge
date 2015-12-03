@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -27,7 +28,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="700"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Qs-AS-nDe" id="xUv-dO-dNZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="699.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wHj-CS-TRf" userLabel="fotoPerfilDono">
@@ -63,10 +64,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpd-T3-y0B" userLabel="ViewInformacoes">
-                                                    <rect key="frame" x="0.0" y="533" width="600" height="120"/>
+                                                    <rect key="frame" x="0.0" y="580" width="600" height="73"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSt-P2-nm6">
-                                                            <rect key="frame" x="10" y="8" width="220" height="30"/>
+                                                            <rect key="frame" x="10" y="5" width="220" height="30"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="SzY-vS-qle"/>
@@ -76,7 +77,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4t-ql-tUL">
-                                                            <rect key="frame" x="480" y="0.0" width="120" height="120"/>
+                                                            <rect key="frame" x="480" y="0.0" width="120" height="73"/>
                                                             <animations/>
                                                             <state key="normal" image="Phone"/>
                                                             <variation key="widthClass=compact" misplaced="YES">
@@ -89,18 +90,8 @@
                                                                 <action selector="abrirContatoDono:" destination="z03-Ff-Nrc" eventType="touchUpInside" id="JcG-Wz-uQm"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vj-jb-g5z">
-                                                            <rect key="frame" x="10" y="48" width="220" height="20"/>
-                                                            <animations/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="5dC-Ar-e7F"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLx-8l-V27">
-                                                            <rect key="frame" x="240" y="0.0" width="120" height="120"/>
+                                                            <rect key="frame" x="240" y="0.0" width="120" height="73"/>
                                                             <animations/>
                                                             <state key="normal" image="Share"/>
                                                             <variation key="widthClass=compact" misplaced="YES">
@@ -114,7 +105,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syC-Gw-zzt">
-                                                            <rect key="frame" x="360" y="0.0" width="120" height="120"/>
+                                                            <rect key="frame" x="360" y="0.0" width="120" height="73"/>
                                                             <animations/>
                                                             <state key="normal" image="Chat"/>
                                                             <variation key="widthClass=compact" misplaced="YES">
@@ -127,6 +118,16 @@
                                                                 <action selector="abrirChat:" destination="z03-Ff-Nrc" eventType="touchUpInside" id="1s3-mH-QOJ"/>
                                                             </connections>
                                                         </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vj-jb-g5z">
+                                                            <rect key="frame" x="10" y="40" width="220" height="20"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="5dC-Ar-e7F"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <animations/>
                                                     <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -145,11 +146,12 @@
                                                         <constraint firstItem="y4t-ql-tUL" firstAttribute="leading" secondItem="syC-Gw-zzt" secondAttribute="trailing" id="Z21-rA-Uj9"/>
                                                         <constraint firstItem="syC-Gw-zzt" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" id="dje-1N-hfS"/>
                                                         <constraint firstItem="cLx-8l-V27" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" id="eD7-CB-ewL"/>
-                                                        <constraint firstItem="2vj-jb-g5z" firstAttribute="top" secondItem="vSt-P2-nm6" secondAttribute="bottom" constant="10" id="gd0-gg-sgA"/>
+                                                        <constraint firstItem="2vj-jb-g5z" firstAttribute="top" secondItem="vSt-P2-nm6" secondAttribute="bottom" constant="5" id="gd0-gg-sgA"/>
                                                         <constraint firstItem="cLx-8l-V27" firstAttribute="leading" secondItem="vSt-P2-nm6" secondAttribute="trailing" constant="10" id="hVO-Wz-f8n"/>
                                                         <constraint firstItem="cLx-8l-V27" firstAttribute="width" secondItem="y4t-ql-tUL" secondAttribute="width" id="iWv-iW-wnn"/>
                                                         <constraint firstItem="2vj-jb-g5z" firstAttribute="leading" secondItem="qpd-T3-y0B" secondAttribute="leading" constant="10" id="r3g-pW-kFw"/>
-                                                        <constraint firstItem="vSt-P2-nm6" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" constant="8" id="wkO-xP-FKQ"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="2vj-jb-g5z" secondAttribute="bottom" constant="5" id="rWM-ep-Abj"/>
+                                                        <constraint firstItem="vSt-P2-nm6" firstAttribute="top" secondItem="qpd-T3-y0B" secondAttribute="top" constant="5" id="wkO-xP-FKQ"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -176,6 +178,7 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="pSS-xe-1I4"/>
+                                                    <exclude reference="QDf-QV-4xP"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
