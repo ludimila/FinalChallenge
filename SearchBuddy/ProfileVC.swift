@@ -33,6 +33,8 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     @IBOutlet weak var viewPhotoEdit: UIView!
     @IBOutlet weak var buttonEditPhoto: UIButton!
     
+    @IBOutlet weak var naoLogadoView: UIView!
+    
     var imagePicker = UIImagePickerController()
     
     var locationManager = CLLocationManager()
@@ -75,57 +77,66 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil"
         
+        self.tableView.reloadData()
         
-        if (isCurrentUserFlag == true) {
-            self.userProfile = User.currentUser()
-            self.addEditButton()
-        }
-        
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
-        
-        if self.userProfile!.userPicture != nil{
-            self.userProfile?.userPicture!.getDataInBackgroundWithBlock({ (data, error) -> Void in
-                if error == nil {
-                    self.userPicture.image = UIImage(data: data!)
+        if User.currentUser() == nil && isCurrentUserFlag == true{
+            naoLogadoView.hidden = false
+        }else{
+            naoLogadoView.hidden = true
+            
+            
+            if (isCurrentUserFlag == true) {
+                self.userProfile = User.currentUser()
+                self.addEditButton()
+            }
+            
+            self.tableView.tableFooterView = UIView(frame: CGRectZero)
+            
+            if self.userProfile!.userPicture != nil{
+                self.userProfile?.userPicture!.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                    if error == nil {
+                        self.userPicture.image = UIImage(data: data!)
+                    }
+                })
+            }else{
+                self.userPicture.image = UIImage(named: "FotoPerfilVazio")
+            }
+            
+            if let nomeUsuario = self.userProfile?.name {
+                self.nome.text = nomeUsuario
+            }else{
+                self.nome.text = "Sem nome"
+            }
+            
+            if let telefoneUsuario = self.userProfile?.userPhoneNumber {
+                self.telefoneDonoLb.text = telefoneUsuario
+            }else{
+                self.telefoneDonoLb.text = "Indefinido"
+            }
+            
+            
+            //        Aqui pegara a cidade a respeito do cgpoint presente no user
+            if self.userProfile?.locationUser != nil {
+                self.localizacaoDonoLb.text =  ((self.userProfile?.bairro!)! + ", " + (self.userProfile?.cidade!)!)
+            }else{
+                self.localizacaoDonoLb.text = "Indefinido"
+            }
+            
+            
+            AnimalDAO.getAnimalsFromUser(self.userProfile!, completion: { () -> Void in
+                self.tableView.reloadData()
+                
+                if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
+                    self.tableView.hidden = false
+                    self.tableviewIsEmptylb.hidden = true
+                }else{
+                    self.tableView.hidden = true
+                    self.tableviewIsEmptylb.hidden = false
                 }
             })
-        }else{
-           self.userPicture.image = UIImage(named: "FotoPerfilVazio")
+
+        
         }
-        
-        if let nomeUsuario = self.userProfile?.name {
-            self.nome.text = nomeUsuario
-        }else{
-            self.nome.text = "Sem nome"
-        }
-        
-        if let telefoneUsuario = self.userProfile?.userPhoneNumber {
-            self.telefoneDonoLb.text = telefoneUsuario
-        }else{
-            self.telefoneDonoLb.text = "Indefinido"
-        }
-        
-        
-//        Aqui pegara a cidade a respeito do cgpoint presente no user
-        if self.userProfile?.locationUser != nil {
-            self.localizacaoDonoLb.text =  ((self.userProfile?.bairro!)! + ", " + (self.userProfile?.cidade!)!)
-        }else{
-            self.localizacaoDonoLb.text = "Indefinido"
-        }
-        
-        
-        AnimalDAO.getAnimalsFromUser(self.userProfile!, completion: { () -> Void in
-            self.tableView.reloadData()
-            
-            if AnimalDAO.sharedInstance().allAnimalsUser.count > 0{
-                self.tableView.hidden = false
-                self.tableviewIsEmptylb.hidden = true
-            }else{
-                self.tableView.hidden = true
-                self.tableviewIsEmptylb.hidden = false
-            }
-        })
-            
         
     }
     
@@ -204,7 +215,6 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
 //    MARK: ATUALIZAR FOTO
     
     @IBAction func atualizaPhoto(sender: AnyObject) {
-        print("PASSOU AQUI")
         
         let optionMenu = UIAlertController(title: nil, message:nil, preferredStyle: .ActionSheet)
         
@@ -216,7 +226,6 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
             User.currentUser()?.userPicture = nil
             
             UserDAO.salvarUserUpdate()
-            print("APAGAR FOTO")
         })
         
         let takePhotoAction = UIAlertAction(title: "Tirar Foto", style: .Default, handler: {
@@ -224,19 +233,16 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
             
             self.takePhoto()
             self.hideEditable()
-            print("TIRAR FOTO")
         })
         
         let choosePhotoAction = UIAlertAction(title: "Escolher Foto", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             self.takePhotoInLibrary()
             self.hideEditable()
-            print("Escolher FOTO")
         })
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
-            print("Cancelled")
         })
         
         optionMenu.addAction(deletePhotoAction)
@@ -277,7 +283,6 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
 //    -------------------------------------------------------
     
     @IBAction func atualizaLocation(sender: AnyObject) {
-        print("ATUALIZAR LOCALIZACAO")
         let hub = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         hub.labelText = "Atualizando..."
         
@@ -323,7 +328,6 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Error while updating location " + error.localizedDescription)
     }
     
 //    ----------------------
@@ -358,7 +362,11 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
             }
         })
         
+        cell.findedButton.tag = indexPath.row
+        
         cell.label.text = animal.animalName
+        
+        cell.findedButton.hidden = isLost(animal)
         
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
@@ -399,6 +407,39 @@ class ProfileVC: UIViewController,UITableViewDataSource, UITableViewDelegate, CL
         }
     }
     
+    func isLost(animal: Animal)->Bool{
+        var isLost = true
+        if animal.animalStatus?.objectId == "06cg0yLSSl"{
+            isLost = false
+        }
+        return isLost
+    }
+    
+    @IBAction func isFinded(sender: AnyObject) {
+        
+        let animal = AnimalDAO.sharedInstance().allAnimalsUser[sender.tag]
+        let queryStatus = StatusAnimal.query()
+        queryStatus!.whereKey("objectId", equalTo: "m2WkU7UWDg")
+        
+        queryStatus?.findObjectsInBackgroundWithBlock({ (status, error) -> Void in
+            if error == nil{
+                let statusAnimal = status as! Array<StatusAnimal>
+                animal.animalStatus = statusAnimal.first
+                animal.ultimaVezVisto = nil
+                animal.local = nil
+                animal.saveInBackgroundWithBlock({ (success, error) -> Void in
+                    self.tableView.reloadData()
+                })
+                self.tableView.reloadData()
+            }
+        })
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func toLoginScreen(sender: AnyObject) {
+        let tabBar = self.navigationController?.parentViewController as! UITabBarController
+        tabBar.selectedIndex = 4
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -64,6 +64,7 @@ class MainTabBarVC: UITabBarController {
             button.center = center
         }
         self.view.addSubview(button)
+
     }
     
     func buttonEvent() {
@@ -107,6 +108,10 @@ class MainTabBarVC: UITabBarController {
         
         self.view.addSubview(button2)
         self.view.addSubview(button)
+        if (User.currentUser() == nil){
+            button2.enabled = false
+            button.enabled = false
+        }
     }
     
     func removeButtons(){

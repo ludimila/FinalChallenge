@@ -30,21 +30,21 @@ class ConfigVC: UITableViewController {
         super.viewDidLoad()
         
         self.enableText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
-        self.enableText.text = "Enable Notification"
+        self.enableText.text = "Em breve"
         self.enableCell.addSubview(self.enableText)
-        self.enableCell.addSubview(self.isEnableControl)
+//        self.enableCell.addSubview(self.isEnableControl)
         self.enableCell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        self.addConstraintsToEnableCell()
+//        self.addConstraintsToEnableCell()
 
         
         self.rangeText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
-        self.rangeText.text = "Edit range"
-        self.rangeCell.addSubview(self.rangeSlider)
+        self.rangeText.text = "Em breve"
+//        self.rangeCell.addSubview(self.rangeSlider)
         self.rangeCell.addSubview(self.rangeText)
         self.rangeCell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        self.addConstraintsToRangeCell()
+//        self.addConstraintsToRangeCell()
 
         
         self.loginText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
@@ -86,7 +86,6 @@ class ConfigVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print(indexPath.row)
         switch (indexPath.section){
         case 0:
             switch(indexPath.row){
@@ -140,7 +139,7 @@ class ConfigVC: UITableViewController {
                         let actionOk = UIAlertAction(title: "Ok", style: .Default) { _ in
                             
                             let tabBar = self.navigationController?.parentViewController as! UITabBarController
-                            tabBar.selectedIndex = 1
+                            tabBar.selectedIndex = 4
                             self.tableView.reloadData()
                         }
                         
@@ -196,7 +195,6 @@ class ConfigVC: UITableViewController {
                 self.presentViewController(alert, animated: true, completion: {})
                 
             }else{
-                print(error)
                 let alert = UIAlertController(title: "Erro", message: "O seu usuário não foi deletado devido a um error", preferredStyle: .Alert)
                 let action = UIAlertAction(title: "OK", style: .Default) { _ in
                     self.tableView!.reloadData()
