@@ -27,9 +27,6 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var registrarBt: UIButton!
     @IBOutlet weak var entrarBt: UIButton!
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -43,8 +40,9 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
         }
         
         config()
-        configurePageControl()
-        load()
+        
+        //configurePageControl()
+        //load()
         
     }
     
@@ -94,9 +92,9 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
     func config() {
         
         self.view.layer.zPosition = 1
-        bg.layer.zPosition = 1
-        registrarBt.layer.zPosition = 10
-        entrarBt.layer.zPosition = 10
+        bg.layer.zPosition = 30
+        registrarBt.layer.zPosition = 30
+        entrarBt.layer.zPosition = 30
         
     }
     
@@ -112,7 +110,10 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
         self.pageControl.pageIndicatorTintColor = UIColor(white: 1, alpha: 1)
         self.pageControl.currentPageIndicatorTintColor = UIColor.orangeColor()
         
-        self.bg.addSubview(self.pageControl)
+        
+        load()
+        
+        self.view.insertSubview(self.scrollView, belowSubview: self.pageControl)
     }
     
     // ScrollView
@@ -125,7 +126,7 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
         self.scrollView.pagingEnabled = true
         self.scrollView.backgroundColor = UIColor.clearColor()
         self.scrollView.layer.zPosition = 2
-        self.bg.addSubview(self.scrollView)
+        self.view.insertSubview(self.scrollView, belowSubview: self.bg)
         
         var tamanho = CGFloat()
         

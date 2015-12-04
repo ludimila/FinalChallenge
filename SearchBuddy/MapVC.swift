@@ -301,10 +301,12 @@
                 //self.vW.backgroundColor = UIColor.blackColor()
                 self.vW.backgroundColor = UIColor(netHex: 0x41B6CF)
                 self.vW.alpha = 0.9
+                self.vW.layer.borderColor = UIColor.orangeColor().CGColor
+                self.vW.layer.borderWidth = 2.0
                 
-                self.vW.addSubview(makeLabel(animal.animalName!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.4, size: 28))
-                self.vW.addSubview(makeLabel(animal.animalDescription!, x: self.vW.frame.width * 0.1, y: self.vW.frame.height * 0.5, size: 17))
-                self.vW.addSubview(makeImage("sadPuppy", x: self.vW.frame.width * 0.4, y: self.vW.frame.height * 0.1))
+                self.vW.addSubview(makeLabel(animal.animalName!, x: self.vW.frame.width * 0.35, y: self.vW.frame.height * 0.4, size: 28))
+                self.vW.addSubview(makeLabel(animal.animalDescription!, x: self.vW.frame.width * 0.37, y: self.vW.frame.height * 0.5, size: 17))
+                self.vW.addSubview(makeImage("sadPuppy", x: self.vW.frame.width * 0.38, y: self.vW.frame.height * 0.1))
                 
                 // Botão
                 
@@ -316,7 +318,10 @@
                 botao.frame.size.height = 60
                 botao.center.x = self.vW.frame.width * 0.2
                 botao.center.y = self.vW.frame.height * 0.8
-                botao.addSubview(makeLabel("Voltar", x: 0, y: 0 ,size: 28))
+                botao.layer.borderWidth = 0.5
+                botao.layer.borderColor = UIColor.whiteColor().CGColor
+                
+                botao.addSubview(makeLabel("Voltar", x: botao.frame.size.width * 0.15, y: 0 ,size: 28))
                 self.vW.addSubview(botao)
                 
                 botao.addTarget(self, action: "dismissView", forControlEvents: UIControlEvents.TouchUpInside)
@@ -328,7 +333,10 @@
                 botaoPr.frame.size.height = 60
                 botaoPr.center.x = self.vW.frame.width * 0.8
                 botaoPr.center.y = self.vW.frame.height * 0.8
-                botaoPr.addSubview(makeLabel("Dono", x: 0, y: 0 ,size: 28))
+                botaoPr.layer.borderWidth = 0.5
+                botaoPr.layer.borderColor = UIColor.whiteColor().CGColor
+                
+                botaoPr.addSubview(makeLabel("Dono", x: botao.frame.size.width * 0.17, y: 0 ,size: 28))
                 self.vW.addSubview(botaoPr)
                 
                 botaoPr.addTarget(self, action: "profileVC", forControlEvents: UIControlEvents.TouchUpInside)
@@ -481,32 +489,32 @@
     
     /*
     func stopMonitoringGeotification(annotation: Annotation) {
-         for region in locationManager.monitoredRegions {
-             if let circularRegion = region as? CLCircularRegion {
-                if circularRegion.identifier == annotation.title {
-                  locationManager.stopMonitoringForRegion(circularRegion)
-                 }
-             }
-          }
+    for region in locationManager.monitoredRegions {
+    if let circularRegion = region as? CLCircularRegion {
+    if circularRegion.identifier == annotation.title {
+    locationManager.stopMonitoringForRegion(circularRegion)
     }
- 
+    }
+    }
+    }
+    
     
     func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion) {
-        
-        if state == CLRegionState.Unknown{
-            
-            print("Region Desconhecida!")
-            
-        }else if state == CLRegionState.Inside {
-            
-            print("Estou dentro da region -> \(region.identifier)")
-            
-        }else {
-            
-            print("Estou fora da region  -> \(region.identifier)")
-            
-        }
-        
+    
+    if state == CLRegionState.Unknown{
+    
+    print("Region Desconhecida!")
+    
+    }else if state == CLRegionState.Inside {
+    
+    print("Estou dentro da region -> \(region.identifier)")
+    
+    }else {
+    
+    print("Estou fora da region  -> \(region.identifier)")
+    
+    }
+    
     }
     */
     
@@ -521,10 +529,12 @@
         
         //print(pushQuery)
         
-        do{
-            try PFPush.sendPushMessageToChannel((User.currentUser()?.objectId)!, withMessage: "\(region.identifier) está próximo a você se atente.")
-        }catch{
-            
+        if User.currentUser() != nil {
+            do{
+                try PFPush.sendPushMessageToChannel((User.currentUser()?.objectId)!, withMessage: "\(region.identifier) está próximo a você se atente.")
+            }catch{
+                
+            }
         }
         
         //PFPush.sendPushMessageToQueryInBackground(pushQuery, withMessage: "\(region.identifier) está próximo a você se atente." )

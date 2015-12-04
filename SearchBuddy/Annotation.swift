@@ -33,7 +33,7 @@ class Annotation: NSObject,MKAnnotation {
     
     var subtitle: String? {
         //let eventTypeString = eventType == .OnEntry ? "Ao entrar":"Ao sair"
-        return "Em um raio de:\(radius)m"
+        return "Em um raio de - \(radius)m"
     }
     
     

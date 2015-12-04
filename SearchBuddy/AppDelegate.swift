@@ -15,13 +15,13 @@ import MapKit
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
-    let locationManager = CLLocationManager()
+    //let locationManager = CLLocationManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
         
-        locationManager.delegate = self                // Add this line
-        locationManager.requestAlwaysAuthorization()   // And this one
+        //locationManager.delegate = self                // Add this line
+        //locationManager.requestAlwaysAuthorization()   // And this one
         
         let userNotificationTypes: UIUserNotificationType = [.Alert, .Badge, .Sound]
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
-        SBDAO.setupParse(launchOptions)
         
+        SBDAO.setupParse(launchOptions)
         
         User.registerSubclass()
         StatusAnimal.registerSubclass()
@@ -46,13 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
         let currentInstalation = PFInstallation.currentInstallation()
-        
         currentInstalation.setDeviceTokenFromData(deviceToken)
-        
         if let user = User.currentUser()  {
-         
             currentInstalation.channels = [user.objectId!]
-            
         }
         
         currentInstalation.saveInBackground()

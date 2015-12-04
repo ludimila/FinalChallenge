@@ -45,6 +45,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         if Reachability.testConnection(){
             getData()
         }
+        
+        
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
