@@ -86,7 +86,6 @@ class ConfigVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print(indexPath.row)
         switch (indexPath.section){
         case 0:
             switch(indexPath.row){
@@ -196,7 +195,6 @@ class ConfigVC: UITableViewController {
                 self.presentViewController(alert, animated: true, completion: {})
                 
             }else{
-                print(error)
                 let alert = UIAlertController(title: "Erro", message: "O seu usuário não foi deletado devido a um error", preferredStyle: .Alert)
                 let action = UIAlertAction(title: "OK", style: .Default) { _ in
                     self.tableView!.reloadData()
