@@ -118,7 +118,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             
             cell.descricao.text = currentAnimal.animalDescription
             
-            cell.shareAnimalButton.tag = indexPath.row
+//            cell.shareAnimalButton.tag = indexPath.row
+            cell.phoneButton.tag = indexPath.row
+//            cell.chatButton.tag = indexPath.row
         }
         
         if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
@@ -225,7 +227,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 //        print("Abrir chat com o dono do mano")
 //    }
 //    
-//    @IBAction func abrirContatoDono(sender: AnyObject) {
-//        print("Abrir contato do dono do mano")
-//    }
+    @IBAction func abrirContatoDono(sender: AnyObject) {
+        let animal = AnimalDAO.sharedInstance().allAnimals[sender.tag]
+        let phoneNumber = animal.animalOwner?.userPhoneNumber
+        
+        let string = "tel://\(phoneNumber!)"
+        
+        print(string)
+        let url:NSURL = NSURL(string: string)!
+        UIApplication.sharedApplication().openURL(url)
+    }
 }
