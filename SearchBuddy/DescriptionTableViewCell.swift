@@ -10,8 +10,11 @@ import UIKit
 
 class DescriptionTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var descriptionX: UILabel!
 
+    @IBOutlet weak var descriptionAnimal: UITextField!
+
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

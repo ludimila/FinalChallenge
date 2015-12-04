@@ -21,7 +21,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fundo" translatesAutoresizingMaskIntoConstraints="NO" id="6fi-wh-Hq4">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadPuppy" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-0l-wBJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FotoPerfilVazio" translatesAutoresizingMaskIntoConstraints="NO" id="3qT-0l-wBJ">
                                 <rect key="frame" x="239" y="84" width="122" height="122"/>
                                 <animations/>
                                 <constraints>
@@ -168,7 +168,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fundo" translatesAutoresizingMaskIntoConstraints="NO" id="eA9-Aa-4AL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="22j-SM-YFu" userLabel="TableProfile">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="22j-SM-YFu" userLabel="TableProfile">
                                 <rect key="frame" x="0.0" y="331" width="600" height="269"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -284,27 +284,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="272.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descrição" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yD-It-TVY">
-                                                    <rect key="frame" x="17" y="14" width="77" height="21"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="wqx-pe-VAk"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Descrição" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X4T-hC-OnX">
+                                                    <rect key="frame" x="10" y="0.0" width="580" height="272.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="gwZ-sc-1dh" id="FZp-EZ-iXK"/>
+                                                    </connections>
+                                                </textField>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="2yD-It-TVY" firstAttribute="top" secondItem="A4O-sk-Z18" secondAttribute="topMargin" constant="6" id="J8P-wq-Wnw"/>
-                                                <constraint firstItem="2yD-It-TVY" firstAttribute="leading" secondItem="A4O-sk-Z18" secondAttribute="leadingMargin" constant="9" id="Ktc-Zr-55G"/>
+                                                <constraint firstAttribute="trailing" secondItem="X4T-hC-OnX" secondAttribute="trailing" constant="10" id="0Ha-PY-1Wf"/>
+                                                <constraint firstItem="X4T-hC-OnX" firstAttribute="leading" secondItem="A4O-sk-Z18" secondAttribute="leading" constant="10" id="MV0-ZR-tN0"/>
+                                                <constraint firstItem="X4T-hC-OnX" firstAttribute="top" secondItem="A4O-sk-Z18" secondAttribute="top" id="OaU-Gy-3kh"/>
+                                                <constraint firstAttribute="bottom" secondItem="X4T-hC-OnX" secondAttribute="bottom" id="djP-B7-aS5"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="descriptionX" destination="2yD-It-TVY" id="U8S-g7-JTG"/>
+                                            <outlet property="descriptionAnimal" destination="X4T-hC-OnX" id="CCW-eq-BoP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -398,9 +399,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="FotoPerfilVazio" width="125" height="125"/>
         <image name="Fundo" width="375" height="667"/>
         <image name="pin" width="24" height="29"/>
-        <image name="sadPuppy" width="1920" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="m8t-H6-8YQ"/>

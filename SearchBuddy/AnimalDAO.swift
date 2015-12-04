@@ -138,5 +138,15 @@ class AnimalDAO: SBDAO {
             self.animalsArray = animals!
         }
     }
+    
+    func updateAnimal(animal: Animal){
+        animal.saveInBackgroundWithBlock { (success, error) -> Void in
+            if success{
+                print("Deu certo")
+            }else{
+                print(error?.description)
+            }
+        }
+    }
 
 }

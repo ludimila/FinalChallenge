@@ -142,7 +142,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
-       // self.savaDataInParse()
+        self.savaDataInParse()
     }
     
     func savaDataInParse(){
@@ -256,11 +256,11 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     func selectType(cell: AnimalTableViewCell) -> TypeAnimal{
     
         if cell.segmentType.selectedSegmentIndex == 0 {
-            return self.animalType[3]
-        }else if cell.segmentType.selectedSegmentIndex == 1{
             return self.animalType[2]
-        }else{
+        }else if cell.segmentType.selectedSegmentIndex == 1{
             return self.animalType[1]
+        }else{
+            return self.animalType[0]
         }
 }
 

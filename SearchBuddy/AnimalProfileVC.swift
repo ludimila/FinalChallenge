@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UITextFieldDelegate {
     
     
     //scroll
@@ -29,6 +29,8 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()        
+        
+        
         
         self.loadScroll()
         self.configuraPageControl()
@@ -63,7 +65,13 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! AnimalLocationTableViewCell
             
-            cell.lastLocation.text = String(currentAnimal?.local)
+            if currentAnimal.animalStatus?.situation == "Estou perdido!"{
+                cell.lastLocation.text = String(currentAnimal?.local)
+
+            }else{
+                cell.lastLocation.text = currentAnimal.animalStatus?.situation
+            }
+            
 
             return cell
         }
@@ -84,8 +92,7 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("descriptionCell", forIndexPath: indexPath) as! DescriptionTableViewCell
             
-
-            cell.descriptionX.text = currentAnimal?.animalDescription
+            cell.descriptionAnimal.text = currentAnimal.animalDescription
     
             return cell
         }
@@ -171,21 +178,26 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 
     }
     
-    
-    
-    
-    func addEditButton(){
-        let rightBarButton = UIBarButtonItem(image: UIImage(named: "Editar"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("isEdittingProfile"))
-        
-        rightBarButton.tintColor = UIColor.whiteColor()
-        self.navigationItem.rightBarButtonItem = rightBarButton
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.isEdittingProfile()
     }
     
+    
+    
     func isEdittingProfile(){
-        let rightBarButton = UIBarButtonItem(title: "Ok", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneEditProfile"))
+        let rightBarButton = UIBarButtonItem(title: "Concluir", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneEditProfile"))
         
         rightBarButton.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = rightBarButton
         
+    }
+    
+    func doneEditProfile(){
+        let indexpath = NSIndexPath(forRow: 3, inSection: 0)
+        let cell = self.tableView.cellForRowAtIndexPath(indexpath) as! DescriptionTableViewCell
+        
+        self.currentAnimal.animalDescription = cell.descriptionAnimal.text
+        
+        AnimalDAO.sharedInstance().updateAnimal(self.currentAnimal)
     }
 }
