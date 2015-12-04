@@ -61,6 +61,7 @@
 		BBBD4A9F1BD67C760038E54D /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBD4A9E1BD67C760038E54D /* RegisterVC.swift */; };
 		BBD7480B1BFE49D300A68DE4 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD7480A1BFE49D300A68DE4 /* Config.storyboard */; };
 		BBF1A0171C12226A0033C281 /* videoAbertura.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = BBF1A0161C12226A0033C281 /* videoAbertura.mp4 */; };
+		BBF1A0191C1229480033C281 /* GrandHotel-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BBF1A0181C1229480033C281 /* GrandHotel-Regular.otf */; };
 		BBFA97B61BDAB6EF00A7897D /* PresentationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFA97B51BDAB6EF00A7897D /* PresentationVC.swift */; };
 		BBFF571D1BC59A4F00DBCEE6 /* FacebookParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF571C1BC59A4F00DBCEE6 /* FacebookParse.swift */; };
 		BBFF571F1BC59BC900DBCEE6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF571E1BC59BC900DBCEE6 /* LoginVC.swift */; };
@@ -150,6 +151,7 @@
 		BBBD4A9E1BD67C760038E54D /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		BBD7480A1BFE49D300A68DE4 /* Config.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Config.storyboard; sourceTree = "<group>"; };
 		BBF1A0161C12226A0033C281 /* videoAbertura.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = videoAbertura.mp4; sourceTree = "<group>"; };
+		BBF1A0181C1229480033C281 /* GrandHotel-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GrandHotel-Regular.otf"; sourceTree = "<group>"; };
 		BBFA97B51BDAB6EF00A7897D /* PresentationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationVC.swift; sourceTree = "<group>"; };
 		BBFF571C1BC59A4F00DBCEE6 /* FacebookParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookParse.swift; sourceTree = "<group>"; };
 		BBFF571E1BC59BC900DBCEE6 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 		199721A51BF517BB00C649AE /* images/media */ = {
 			isa = PBXGroup;
 			children = (
+				BBF1A0181C1229480033C281 /* GrandHotel-Regular.otf */,
 				BBF1A0161C12226A0033C281 /* videoAbertura.mp4 */,
 				190ED4A01BED323C0067C1FB /* add.png */,
 				199721A61BF517D600C649AE /* dogA.ico */,
@@ -512,6 +515,7 @@
 				199721A71BF517D600C649AE /* dogA.ico in Resources */,
 				418E76DA1BE3D89600FDA20B /* RefreshContents.xib in Resources */,
 				190ED4A11BED323C0067C1FB /* add.png in Resources */,
+				BBF1A0191C1229480033C281 /* GrandHotel-Regular.otf in Resources */,
 				9373E0FC1BDFE8B700795EC6 /* AnimalProfile.storyboard in Resources */,
 				19665D601BEA7E6000BC81E0 /* arches-945495_1920.jpg in Resources */,
 				BB66764F1BBF0DDA00F3D7F9 /* Feed.storyboard in Resources */,
