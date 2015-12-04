@@ -57,7 +57,7 @@ class AnimalDAO: SBDAO {
     class func getLostAnimals(completion: (Array<Animal>?, error: NSError?) -> Void){
         let query = Animal.query()!
 //        query?.whereKey("autor", equalTo: usuario)
-        query.orderByDescending("createdAt")
+        query.orderByDescending("ultimaVezVisto")
         
         let queryStatus = StatusAnimal.query()
         queryStatus!.whereKey("objectId", equalTo: "06cg0yLSSl")
