@@ -142,10 +142,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
-        self.savaDataInParse()
+        self.saveDataInParse()
     }
     
-    func savaDataInParse(){
+    func saveDataInParse(){
         
         self.animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
         

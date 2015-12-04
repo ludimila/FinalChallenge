@@ -17,6 +17,8 @@ class DescriptionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.descriptionAnimal.tintColor = UIColor.blackColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

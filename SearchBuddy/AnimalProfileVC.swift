@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UITextFieldDelegate {
+class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     //scroll
@@ -33,13 +33,15 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         
         self.loadScroll()
-        self.configuraPageControl()
+       // self.configuraPageControl()
         
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.separatorColor = UIColor.orangeColor()
     
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        self.isEdittingPhoto()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -105,36 +107,47 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     func loadScroll(){
         
         
-        self.scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
-        self.scrollView.delegate = self
-        self.scrollView.showsHorizontalScrollIndicator = false
-        self.scrollView.pagingEnabled = true
-        self.view.addSubview(self.scrollView)
+//        self.scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
+//        self.scrollView.delegate = self
+//        self.scrollView.showsHorizontalScrollIndicator = false
+//        self.scrollView.pagingEnabled = true
+//        self.view.addSubview(self.scrollView)
         
-        var tamanho = CGFloat()
+      //  var tamanho = CGFloat()
         
-        for var i = 1; i <= 3; i++ {
+        //for var i = 1; i <= 3; i++ {
            
        
-            self.scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/2)
-            self.scrollView.bounces = false
-            
-            if i == 1{
+//            self.scrollView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/2)
+//            self.scrollView.bounces = false
+//            
+//            if i == 1{
                 self.animalPicture = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/2))
-                tamanho = tamanho + self.animalPicture.frame.size.width
-            }else{
-                self.animalPicture = UIImageView(frame: CGRectMake(tamanho, 0, self.view.frame.width, self.view.frame.height/2))
-                tamanho = tamanho + self.animalPicture.frame.size.width
-            }//fim else
+//                tamanho = tamanho + self.animalPicture.frame.size.width
+//            }else{
+//                self.animalPicture = UIImageView(frame: CGRectMake(tamanho, 0, self.view.frame.width, self.view.frame.height/2))
+//                tamanho = tamanho + self.animalPicture.frame.size.width
+//            }//fim else
             
             
-            self.animalPicture.contentMode = .ScaleAspectFit
-            self.animalPicture.image = UIImage(named:"animal"+String(i))
-            self.configuraGradiente()
-            self.scrollView.addSubview(self.animalPicture)
+            self.animalPicture.contentMode = .ScaleToFill
+            
+            currentAnimal.animalPicture?.getDataInBackgroundWithBlock({ (dataPhoto, error) -> Void in
+                if dataPhoto != nil{
+                    self.animalPicture.image = UIImage(data: dataPhoto!)
+                }
+            })
 
-        }//fim for
-        self.scrollView.contentSize = CGSizeMake(tamanho , self.scrollView.frame.size.height)
+            
+            self.configuraGradiente()
+            self.view.addSubview(self.animalPicture)
+            
+            
+            
+            
+
+        //}//fim for
+       // self.scrollView.contentSize = CGSizeMake(tamanho , self.scrollView.frame.size.height)
     }//fim funcao
     
     
@@ -152,11 +165,11 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        let pagina = floor((self.scrollView.contentOffset.x - self.scrollView.frame.size.width/2)/self.scrollView.frame.width)+1
-        self.pageControl.currentPage = Int(pagina)
-        
-    }
+//    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+//        let pagina = floor((self.scrollView.contentOffset.x - self.scrollView.frame.size.width/2)/self.scrollView.frame.width)+1
+//        self.pageControl.currentPage = Int(pagina)
+//        
+//    }
 
     func configuraGradiente(){
         
@@ -165,17 +178,101 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let frame = self.animalPicture.frame
         gradient.frame = CGRectMake(0,frame.height - (frame.height/2),frame.width*(frame.width/10), frame.height/2)
         self.animalPicture.addSubview(gradient)
+        
     
-        let name = UILabel()
-        let breed = UILabel()
-        
-        name.text = currentAnimal?.animalName
-        breed.text = currentAnimal?.breed
-        
-        
-        self.view.insertSubview(name, aboveSubview: gradient)
-        
+        self.animalPicture.addSubview(gradient)
 
+        
+    }
+    
+    
+    func isEdittingPhoto(){
+        let rightBarButton = UIBarButtonItem(title: "Editar", style: UIBarButtonItemStyle.Done, target: self, action: Selector("editarPhoto"))
+        
+        rightBarButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+    }
+    
+    func editarPhoto(){
+    
+        //criando AlertController
+        let actionSheetController: UIAlertController = UIAlertController(title: "Foto", message: "Selecione a opção", preferredStyle: .ActionSheet)
+        
+        //cancelar a ação
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancelar", style: .Cancel) { action -> Void in
+            
+        }
+        actionSheetController.addAction(cancelAction)
+        
+        //chama a funcao tirar foto
+        let takePictureAction: UIAlertAction = UIAlertAction(title: "Tirar Foto", style: .Default) { action -> Void in
+            self.takePicture()
+        }
+        actionSheetController.addAction(takePictureAction)
+        
+        //chama funcao escolher da biblioteca
+        let choosePictureAction: UIAlertAction = UIAlertAction(title: "Escolher da biblioteca", style: .Default) { action -> Void in
+            self.chooseLibrary()
+        }
+        actionSheetController.addAction(choosePictureAction)
+        
+        //Present the AlertController
+        self.presentViewController(actionSheetController, animated: true, completion: nil)
+    
+    }
+    
+    
+    
+    //tirar foto
+    func takePicture(){
+        
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.Camera){
+            
+            imagePicker.sourceType = .Camera;
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true //permitir a edição
+        }
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    //escolher foto da biblioteca
+    func chooseLibrary() {
+        
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
+            
+            imagePicker.sourceType = .PhotoLibrary
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true //permitir a edição
+        }
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    //seleciona a foto capturada e coloca na image view
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        
+        self.animalPicture.image = image;
+        
+        //self.currentAnimal.animalPicture = ParseConvertion.imageToPFFile(image)
+
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        self.isEdittingProfile()
+        
+        self.view.endEditing(true)
+
+    }
+
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -198,6 +295,16 @@ class AnimalProfileVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         self.currentAnimal.animalDescription = cell.descriptionAnimal.text
         
+        self.currentAnimal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
+
         AnimalDAO.sharedInstance().updateAnimal(self.currentAnimal)
+        
+        self.view.endEditing(true)
+
     }
+    
+    
+    
+    
+    
 }
