@@ -30,21 +30,21 @@ class ConfigVC: UITableViewController {
         super.viewDidLoad()
         
         self.enableText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
-        self.enableText.text = "Enable Notification"
+        self.enableText.text = "Em breve"
         self.enableCell.addSubview(self.enableText)
-        self.enableCell.addSubview(self.isEnableControl)
+//        self.enableCell.addSubview(self.isEnableControl)
         self.enableCell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        self.addConstraintsToEnableCell()
+//        self.addConstraintsToEnableCell()
 
         
         self.rangeText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
-        self.rangeText.text = "Edit range"
-        self.rangeCell.addSubview(self.rangeSlider)
+        self.rangeText.text = "Em breve"
+//        self.rangeCell.addSubview(self.rangeSlider)
         self.rangeCell.addSubview(self.rangeText)
         self.rangeCell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        self.addConstraintsToRangeCell()
+//        self.addConstraintsToRangeCell()
 
         
         self.loginText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
