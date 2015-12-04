@@ -304,8 +304,11 @@
                 self.vW.layer.borderColor = UIColor.orangeColor().CGColor
                 self.vW.layer.borderWidth = 2.0
                 
-                self.vW.addSubview(makeLabel(animal.animalName!, x: self.vW.frame.width * 0.35, y: self.vW.frame.height * 0.4, size: 28))
-                self.vW.addSubview(makeLabel(animal.animalDescription!, x: self.vW.frame.width * 0.37, y: self.vW.frame.height * 0.5, size: 17))
+                let sizeTitle: CGFloat = 28
+//                let sizeDescription: CGFloat = 17
+                
+                self.vW.addSubview(makeLabel(animal.animalName!, x: self.vW.frame.width/2 - sizeTitle, y: self.vW.frame.height/2-30, size: 28))
+//                self.vW.addSubview(makeLabel(animal.animalDescription!, x: self.vW.frame.width/2 - sizeDescription / 2, y: self.vW.frame.height * 0.5, size: 17))
                 self.vW.addSubview(makeImage("sadPuppy", x: self.vW.frame.width * 0.38, y: self.vW.frame.height * 0.1))
                 
                 // Botão
