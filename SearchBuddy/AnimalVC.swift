@@ -62,6 +62,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.animalPicture.layer.cornerRadius = 60
         self.tableView.separatorColor = UIColor.orangeColor()
         
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+
     }
     
     
@@ -140,10 +142,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
-       // self.savaDataInParse()
+        self.saveDataInParse()
     }
     
-    func savaDataInParse(){
+    func saveDataInParse(){
         
         self.animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
         
@@ -254,11 +256,11 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     func selectType(cell: AnimalTableViewCell) -> TypeAnimal{
     
         if cell.segmentType.selectedSegmentIndex == 0 {
-            return self.animalType[0]
+            return self.animalType[2]
         }else if cell.segmentType.selectedSegmentIndex == 1{
             return self.animalType[1]
         }else{
-            return self.animalType[2]
+            return self.animalType[0]
         }
 }
 
@@ -285,5 +287,18 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    
+    
+    //cancelar cadastro
+    
+    @IBAction func cancelAdd(sender: AnyObject) {
+        
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+
+
 
 }//fim controller

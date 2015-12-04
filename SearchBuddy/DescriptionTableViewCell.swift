@@ -10,10 +10,15 @@ import UIKit
 
 class DescriptionTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var descriptionX: UILabel!
 
+    @IBOutlet weak var descriptionAnimal: UITextField!
+
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.descriptionAnimal.tintColor = UIColor.blackColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

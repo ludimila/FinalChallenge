@@ -40,7 +40,7 @@ class AnimalTableViewCell: UITableViewCell {
     
     func selectType(){
         
-        let itemSegment = self.arrayTypes
+        let itemSegment = ["Cachorro", "Gato", "Outros"]
         self.segmentType = UISegmentedControl(items: itemSegment)
         
         
