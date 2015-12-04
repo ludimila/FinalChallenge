@@ -24,7 +24,7 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
     var titulo: UILabel!
     var texto: UILabel!
     @IBOutlet weak var bg: UIView!
-    @IBOutlet weak var registrarBt: UIButton!
+//    @IBOutlet weak var registrarBt: UIButton!
     @IBOutlet weak var entrarBt: UIButton!
     
     
@@ -95,7 +95,7 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
         
         self.view.layer.zPosition = 1
         bg.layer.zPosition = 1
-        registrarBt.layer.zPosition = 10
+//        registrarBt.layer.zPosition = 10
         entrarBt.layer.zPosition = 10
         
     }
