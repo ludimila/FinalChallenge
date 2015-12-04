@@ -53,8 +53,8 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
     
     private func playVideo() throws {
         
-        guard let path = NSBundle.mainBundle().pathForResource("video", ofType: "mp4") else {
-            throw AppError.InvalidResource("video","mp4")
+        guard let path = NSBundle.mainBundle().pathForResource("videoAbertura", ofType: "mp4") else {
+            throw AppError.InvalidResource("videoAbertura","mp4")
         }
         
         let pathURL = NSURL.fileURLWithPath(path)
