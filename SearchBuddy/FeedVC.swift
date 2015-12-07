@@ -23,6 +23,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     var customView: UIView!
     var labelsArray: Array<UILabel> = []
     
+    var singleTap: UITapGestureRecognizer?
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Feed"
@@ -31,6 +32,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+
+        self.singleTap = UITapGestureRecognizer(target: self, action:"tapDetected:")
+        singleTap!.numberOfTapsRequired = 1
         
         self.tableView.estimatedRowHeight = 700
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -73,6 +79,18 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 //        self.refreshTableView!.addSubview(self.customView)
     }
     
+    @IBAction func abreMapaLocationAnimal(sender: AnyObject) {
+        if let currentAnimal : Animal = AnimalDAO.sharedInstance().allAnimals[sender.tag]{
+            let sb = UIStoryboard(name: "Map", bundle: nil)
+            let mapVC = sb.instantiateViewControllerWithIdentifier("mapVC") as! MapVC
+            
+            
+            mapVC.flag = true
+            mapVC.animalFromFeed = currentAnimal
+            
+            self.navigationController?.pushViewController(mapVC, animated: true)
+        }
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -85,16 +103,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
+        cell.photoAnimal.tag = indexPath.row
+        
+        
         if let currentAnimal : Animal = AnimalDAO.sharedInstance().allAnimals[indexPath.row]{
             
             currentAnimal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
                 if error == nil{
-                    cell.fotoAnimal.image = UIImage(data: data!)
+                    cell.photoAnimal.setBackgroundImage(UIImage(data: data!), forState: .Normal)
                 }else{
                     print(error?.description)
                 }
             })
             
+//            cell.fotoAnimal.userInteractionEnabled = true
+//            cell.fotoAnimal.addGestureRecognizer(singleTap!)
+//            
             
             
             if currentAnimal.animalOwner!.userPicture != nil{
@@ -130,6 +154,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         return cell
     }
+    
+    
     
     func getData(){
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
