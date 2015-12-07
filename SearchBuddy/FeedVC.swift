@@ -33,11 +33,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-
-        self.singleTap = UITapGestureRecognizer(target: self, action:"tapDetected:")
-        singleTap!.numberOfTapsRequired = 1
-        
         self.tableView.estimatedRowHeight = 700
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.allowsSelection = false
@@ -92,6 +87,18 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         }
     }
     
+    @IBAction func abreProfileFromAnimal(sender: AnyObject) {
+        if let owner : User = AnimalDAO.sharedInstance().allAnimals[sender.tag].animalOwner{
+            let sb = UIStoryboard(name: "Profile", bundle: nil)
+            let profileVC = sb.instantiateViewControllerWithIdentifier("profileVC") as! ProfileVC
+        
+            profileVC.userProfile = owner
+            //        profileVC.userProfile?.fetchIfNeededInBackground()
+        
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -104,6 +111,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
         cell.photoAnimal.tag = indexPath.row
+        cell.buttonOwner.tag = indexPath.row
         
         
         if let currentAnimal : Animal = AnimalDAO.sharedInstance().allAnimals[indexPath.row]{
@@ -134,8 +142,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             Utilities.round(cell.fotoPerfilDono, tamanhoBorda: 1)
             cell.fotoPerfilDono.layer.borderColor = UIColor(red: 0.42, green: 0.26, blue: 0.13, alpha: 1).CGColor
             
-            cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
-            
+            cell.buttonOwner.setTitle(String(currentAnimal.animalOwner!["name"]), forState: .Normal)
             cell.ultimaVezVisto.text = self.getDateDifference(currentAnimal.ultimaVezVisto!)
             
             cell.nameAnimal.text = currentAnimal.animalName
