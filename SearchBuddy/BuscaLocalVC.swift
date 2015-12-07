@@ -133,10 +133,12 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
                     
                     self.placemarks = placemarks?.last
 
+                    print("Endereço -> \(self.placemarks.thoroughfare!)")
                     self.local = self.placemarks.thoroughfare!
                     
                     
                 }else {
+                    print("Deu ruim fi")
                 }
             })
         }

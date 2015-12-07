@@ -23,8 +23,11 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
     var titulo: UILabel!
     var texto: UILabel!
     @IBOutlet weak var bg: UIView!
-    @IBOutlet weak var registrarBt: UIButton!
+//    @IBOutlet weak var registrarBt: UIButton!
     @IBOutlet weak var entrarBt: UIButton!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +42,6 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
         }
         
         config()
-        
         //configurePageControl()
         //load()
         
@@ -52,8 +54,8 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
     
     private func playVideo() throws {
         
-        guard let path = NSBundle.mainBundle().pathForResource("video", ofType: "mp4") else {
-            throw AppError.InvalidResource("video","mp4")
+        guard let path = NSBundle.mainBundle().pathForResource("videoAbertura", ofType: "mp4") else {
+            throw AppError.InvalidResource("videoAbertura","mp4")
         }
         
         let pathURL = NSURL.fileURLWithPath(path)
@@ -91,9 +93,9 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
     func config() {
         
         self.view.layer.zPosition = 1
-        bg.layer.zPosition = 30
-        registrarBt.layer.zPosition = 30
-        entrarBt.layer.zPosition = 30
+        bg.layer.zPosition = 1
+//        registrarBt.layer.zPosition = 10
+        entrarBt.layer.zPosition = 10
         
     }
     
@@ -109,10 +111,7 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
         self.pageControl.pageIndicatorTintColor = UIColor(white: 1, alpha: 1)
         self.pageControl.currentPageIndicatorTintColor = UIColor.orangeColor()
         
-        
-        load()
-        
-        self.view.insertSubview(self.scrollView, belowSubview: self.pageControl)
+        self.bg.addSubview(self.pageControl)
     }
     
     // ScrollView
@@ -125,7 +124,7 @@ class PresentationVC: UIViewController,UIScrollViewDelegate {
         self.scrollView.pagingEnabled = true
         self.scrollView.backgroundColor = UIColor.clearColor()
         self.scrollView.layer.zPosition = 2
-        self.view.insertSubview(self.scrollView, belowSubview: self.bg)
+        self.bg.addSubview(self.scrollView)
         
         var tamanho = CGFloat()
         

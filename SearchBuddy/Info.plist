@@ -31,6 +31,10 @@
 	<string>1</string>
 	<key>FacebookAppID</key>
 	<string>900059710071516</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>GrandHotel-Regular.otf</string>
+	</array>
 	<key>FacebookDisplayName</key>
 	<string>FinalChallenger</string>
 	<key>LSApplicationQueriesSchemes</key>

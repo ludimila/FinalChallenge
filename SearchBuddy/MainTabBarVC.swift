@@ -155,9 +155,9 @@ class MainTabBarVC: UITabBarController {
         
         let sb = UIStoryboard(name: "AnimalProfile", bundle: nil)
 
-       let animalVC = sb.instantiateInitialViewController() as! AnimalVC
+       let animalVC = sb.instantiateInitialViewController()
         
-        self.presentViewController(animalVC, animated: true, completion: nil)
+        self.presentViewController(animalVC!, animated: true, completion: nil)
         
         
     }
