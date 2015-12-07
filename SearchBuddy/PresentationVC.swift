@@ -11,7 +11,6 @@ import MediaPlayer
 
 class PresentationVC: UIViewController,UIScrollViewDelegate {
     
-    
     // AVPlayer
     var item : AVPlayerItem!
     var player : AVPlayer!
