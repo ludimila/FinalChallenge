@@ -27,6 +27,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var animalStatus = Array<StatusAnimal>()
 
     
+    @IBOutlet weak var constraintBottonTableView: NSLayoutConstraint!
+    var previousConstant: CGFloat?
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil Animal"
@@ -56,6 +58,9 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    
         self.animalPicture.layer.borderWidth = 2.0
         self.animalPicture.layer.masksToBounds = true
         self.animalPicture.layer.borderColor = UIColor.orangeColor().CGColor
@@ -63,8 +68,36 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         self.tableView.separatorColor = UIColor.orangeColor()
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 50.0
+        self.tableView.allowsSelection = false
 
     }
+    
+//    MARK: SUBIR TABLEVIEW COM KEYBOARD
+    func keyboardWillShow(notification : NSNotification) {
+        
+        let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size
+        
+        self.previousConstant = self.constraintBottonTableView.constant
+        self.constraintBottonTableView.constant = keyboardSize!.height - 34
+        
+        print(self.constraintBottonTableView.constant)
+        print(keyboardSize)
+        
+        
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.tableView.layoutIfNeeded()
+        }
+        
+    }
+    
+    func keyboardWillHide(notification : NSNotification) {
+        
+        self.constraintBottonTableView.constant = self.previousConstant!
+        self.tableView.layoutIfNeeded()
+    }
+//    ----------------------------------------------------
     
     
     override func didReceiveMemoryWarning() {
@@ -100,6 +133,11 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             cell.arrayTypes = self.animalsDescription
             cell.selectType()
             cell.addSubview(cell.segmentType)
+        }
+        
+        if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.preservesSuperviewLayoutMargins = false
         }
         
         return cell
