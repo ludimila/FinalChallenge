@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e5n-e3-27U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e5n-e3-27U">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="GrandHotel-Regular.otf">
+            <string>GrandHotel-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Apresentação-->
         <scene sceneID="pfA-Ye-NBv">
@@ -20,13 +25,24 @@
                         <subviews>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Do4-kN-miZ">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <animations/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bd5-u2-hga">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AchôPet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee0-F1-ZtG">
+                                        <rect key="frame" x="192" y="93" width="216" height="102"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="216" id="jH1-bZ-b7B"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GrandHotel-Regular" family="Grand Hotel" pointSize="75"/>
+                                        <color key="textColor" red="0.90980392160000001" green="0.41176470590000003" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZ9-ON-pdH">
-                                        <rect key="frame" x="0.0" y="539" width="300" height="41"/>
+                                        <rect key="frame" x="150" y="484" width="300" height="41"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.90980392160000001" green="0.41176470590000003" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -40,44 +56,24 @@
                                             <segue destination="lIl-Ac-sIA" kind="show" id="Fyi-lR-Tb3"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SearchBuddy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee0-F1-ZtG">
-                                        <rect key="frame" x="202" y="100" width="196" height="39.5"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="6Rc-i1-elR"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                        <color key="textColor" red="0.25490196079999999" green="0.71372549019999998" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwf-xv-QLZ">
-                                        <rect key="frame" x="300" y="539" width="300" height="41"/>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.25490196079999999" green="0.71372549019999998" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="41" id="kf2-He-k0X"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Registrar">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="7aT-p4-Ecs" kind="show" id="n2U-Jj-4e8"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="vwf-xv-QLZ" firstAttribute="leading" secondItem="gZ9-ON-pdH" secondAttribute="trailing" id="2wt-Yo-wKo"/>
-                                    <constraint firstAttribute="bottom" secondItem="vwf-xv-QLZ" secondAttribute="bottom" id="f5k-95-dwH"/>
-                                    <constraint firstItem="Ee0-F1-ZtG" firstAttribute="top" secondItem="bd5-u2-hga" secondAttribute="top" constant="100" id="iN9-mY-c1w"/>
-                                    <constraint firstAttribute="trailing" secondItem="vwf-xv-QLZ" secondAttribute="trailing" id="igJ-Uu-Uci"/>
-                                    <constraint firstItem="gZ9-ON-pdH" firstAttribute="width" secondItem="bd5-u2-hga" secondAttribute="width" multiplier="0.5" id="kbM-ag-03n"/>
+                                    <constraint firstItem="gZ9-ON-pdH" firstAttribute="width" secondItem="bd5-u2-hga" secondAttribute="width" multiplier="0.5" id="Hh4-52-GPe"/>
+                                    <constraint firstItem="gZ9-ON-pdH" firstAttribute="centerX" secondItem="bd5-u2-hga" secondAttribute="centerX" id="Hva-yK-ZXB"/>
+                                    <constraint firstItem="Ee0-F1-ZtG" firstAttribute="top" secondItem="bd5-u2-hga" secondAttribute="top" constant="93" id="iN9-mY-c1w"/>
+                                    <constraint firstItem="gZ9-ON-pdH" firstAttribute="width" secondItem="bd5-u2-hga" secondAttribute="width" multiplier="0.5" constant="300" id="kbM-ag-03n"/>
                                     <constraint firstItem="Ee0-F1-ZtG" firstAttribute="centerX" secondItem="bd5-u2-hga" secondAttribute="centerX" id="ohk-E5-FoQ"/>
                                     <constraint firstItem="gZ9-ON-pdH" firstAttribute="leading" secondItem="bd5-u2-hga" secondAttribute="leading" id="sxq-wN-HBf"/>
-                                    <constraint firstAttribute="bottom" secondItem="gZ9-ON-pdH" secondAttribute="bottom" id="xz0-Zb-nai"/>
+                                    <constraint firstAttribute="bottom" secondItem="gZ9-ON-pdH" secondAttribute="bottom" constant="55" id="xz0-Zb-nai"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kbM-ag-03n"/>
+                                        <exclude reference="sxq-wN-HBf"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <animations/>
@@ -98,7 +94,6 @@
                     <connections>
                         <outlet property="bg" destination="bd5-u2-hga" id="ayQ-OV-KmI"/>
                         <outlet property="entrarBt" destination="gZ9-ON-pdH" id="QBE-6k-ZiG"/>
-                        <outlet property="registrarBt" destination="vwf-xv-QLZ" id="5eD-gj-thq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Obd-TX-Ym8" userLabel="First Responder" sceneMemberID="firstResponder"/>

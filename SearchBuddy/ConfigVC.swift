@@ -15,13 +15,14 @@ class ConfigVC: UITableViewController {
     var loginCell: UITableViewCell = UITableViewCell()
     var logoutCell: UITableViewCell = UITableViewCell()
     var deleteCell: UITableViewCell = UITableViewCell()
+    var partCell: UITableViewCell = UITableViewCell()
     
     var loginText: UILabel = UILabel()
     var logoutText: UILabel = UILabel()
     var deleteText: UILabel = UILabel()
     var rangeText: UILabel = UILabel()
     var enableText: UILabel = UILabel()
-    
+    var partText: UILabel = UILabel()
     
     var isEnableControl: UISwitch = UISwitch()
     var rangeSlider : UISlider = UISlider()
@@ -37,6 +38,12 @@ class ConfigVC: UITableViewController {
         
 //        self.addConstraintsToEnableCell()
 
+        // Parcerias -> implementações futuras
+        self.partText = UILabel(frame: CGRectInset(self.partCell.contentView.bounds,15,0))
+        self.partText.text = "Parcerias"
+        self.partCell.addSubview(self.partText)
+        self.partCell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         
         self.rangeText = UILabel(frame: CGRectInset(self.loginCell.contentView.bounds, 15, 0))
         self.rangeText.text = "Em breve"
@@ -51,8 +58,6 @@ class ConfigVC: UITableViewController {
         self.loginText.text = "Login"
         self.loginCell.addSubview(self.loginText)
         self.loginCell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        
-        
         
         self.logoutText = UILabel(frame: CGRectInset(self.logoutCell.contentView.bounds, 15, 0))
         self.logoutText.text = "Logout"
@@ -86,6 +91,7 @@ class ConfigVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print(indexPath.row)
         switch (indexPath.section){
         case 0:
             switch(indexPath.row){
@@ -111,7 +117,6 @@ class ConfigVC: UITableViewController {
                     self.deleteCell.hidden = false
                 }
                 return deleteCell
-                
             default: fatalError("Unknown row in section 1")
             }
             
@@ -195,6 +200,7 @@ class ConfigVC: UITableViewController {
                 self.presentViewController(alert, animated: true, completion: {})
                 
             }else{
+                print(error)
                 let alert = UIAlertController(title: "Erro", message: "O seu usuário não foi deletado devido a um error", preferredStyle: .Alert)
                 let action = UIAlertAction(title: "OK", style: .Default) { _ in
                     self.tableView!.reloadData()

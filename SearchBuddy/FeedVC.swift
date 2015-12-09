@@ -23,6 +23,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     var customView: UIView!
     var labelsArray: Array<UILabel> = []
     
+    var singleTap: UITapGestureRecognizer?
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Feed"
@@ -44,12 +45,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         if Reachability.testConnection(){
             getData()
         }
-        
-        
-        
-        
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,6 +74,30 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 //        self.refreshTableView!.addSubview(self.customView)
     }
     
+    @IBAction func abreMapaLocationAnimal(sender: AnyObject) {
+        if let currentAnimal : Animal = AnimalDAO.sharedInstance().allAnimals[sender.tag]{
+            let sb = UIStoryboard(name: "Map", bundle: nil)
+            let mapVC = sb.instantiateViewControllerWithIdentifier("mapVC") as! MapVC
+            
+            
+            mapVC.flag = true
+            mapVC.animalFromFeed = currentAnimal
+            
+            self.navigationController?.pushViewController(mapVC, animated: true)
+        }
+    }
+    
+    @IBAction func abreProfileFromAnimal(sender: AnyObject) {
+        if let owner : User = AnimalDAO.sharedInstance().allAnimals[sender.tag].animalOwner{
+            let sb = UIStoryboard(name: "Profile", bundle: nil)
+            let profileVC = sb.instantiateViewControllerWithIdentifier("profileVC") as! ProfileVC
+        
+            profileVC.userProfile = owner
+            //        profileVC.userProfile?.fetchIfNeededInBackground()
+        
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -91,16 +110,23 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FeedTableViewCell
         
+        cell.photoAnimal.tag = indexPath.row
+        cell.buttonOwner.tag = indexPath.row
+        
+        
         if let currentAnimal : Animal = AnimalDAO.sharedInstance().allAnimals[indexPath.row]{
             
             currentAnimal.animalPicture?.getDataInBackgroundWithBlock({ (data, error) -> Void in
                 if error == nil{
-                    cell.fotoAnimal.image = UIImage(data: data!)
+                    cell.photoAnimal.setBackgroundImage(UIImage(data: data!), forState: .Normal)
                 }else{
                     print(error?.description)
                 }
             })
             
+//            cell.fotoAnimal.userInteractionEnabled = true
+//            cell.fotoAnimal.addGestureRecognizer(singleTap!)
+//            
             
             
             if currentAnimal.animalOwner!.userPicture != nil{
@@ -116,15 +142,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
             Utilities.round(cell.fotoPerfilDono, tamanhoBorda: 1)
             cell.fotoPerfilDono.layer.borderColor = UIColor(red: 0.42, green: 0.26, blue: 0.13, alpha: 1).CGColor
             
-            cell.nomeDono.text =  String(currentAnimal.animalOwner!["name"])
-            
+            cell.buttonOwner.setTitle(String(currentAnimal.animalOwner!["name"]), forState: .Normal)
             cell.ultimaVezVisto.text = self.getDateDifference(currentAnimal.ultimaVezVisto!)
             
             cell.nameAnimal.text = currentAnimal.animalName
             
             cell.descricao.text = currentAnimal.animalDescription
             
-            cell.shareAnimalButton.tag = indexPath.row
+//            cell.shareAnimalButton.tag = indexPath.row
+            cell.phoneButton.tag = indexPath.row
+//            cell.chatButton.tag = indexPath.row
         }
         
         if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
@@ -134,6 +161,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
         
         return cell
     }
+    
+    
     
     func getData(){
         AnimalDAO.getLostAnimals { (animalsArray, error) -> Void in
@@ -231,7 +260,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISc
 //        print("Abrir chat com o dono do mano")
 //    }
 //    
-//    @IBAction func abrirContatoDono(sender: AnyObject) {
-//        print("Abrir contato do dono do mano")
-//    }
+    @IBAction func abrirContatoDono(sender: AnyObject) {
+        let animal = AnimalDAO.sharedInstance().allAnimals[sender.tag]
+        let phoneNumber = animal.animalOwner?.userPhoneNumber
+        
+        let string = "tel://\(phoneNumber!)"
+        
+        print(string)
+        let url:NSURL = NSURL(string: string)!
+        UIApplication.sharedApplication().openURL(url)
+    }
 }

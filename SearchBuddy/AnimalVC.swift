@@ -19,18 +19,20 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var ponto: CLLocationCoordinate2D!
     var localizacao: String!
     
-    var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Descrição:"]
+    var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Descrição:","Raio de busca: "]
     var arrayCell = Array<AnimalTableViewCell>()
     let animal = Animal()
     var animalsDescription = Array<String>()
     var animalType = Array<TypeAnimal>()
     var animalStatus = Array<StatusAnimal>()
-
     
+    
+    @IBOutlet weak var constraintBottonTableView: NSLayoutConstraint!
+    var previousConstant: CGFloat?
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Perfil Animal"
-
+        
         if ( self.ponto != nil) {
             
             print("Ponto -> \(self.ponto)")
@@ -56,13 +58,48 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        
         self.animalPicture.layer.borderWidth = 2.0
         self.animalPicture.layer.masksToBounds = true
         self.animalPicture.layer.borderColor = UIColor.orangeColor().CGColor
         self.animalPicture.layer.cornerRadius = 60
         self.tableView.separatorColor = UIColor.orangeColor()
         
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 50.0
+        self.tableView.allowsSelection = false
+        
     }
+    
+    //    MARK: SUBIR TABLEVIEW COM KEYBOARD
+    func keyboardWillShow(notification : NSNotification) {
+        
+        let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size
+        
+        self.previousConstant = self.constraintBottonTableView.constant
+        self.constraintBottonTableView.constant = keyboardSize!.height - 34
+        
+        print(self.constraintBottonTableView.constant)
+        print(keyboardSize)
+        
+        
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.tableView.layoutIfNeeded()
+        }
+        
+    }
+    
+    func keyboardWillHide(notification : NSNotification) {
+        
+        if ( self.previousConstant != nil){
+            self.constraintBottonTableView.constant = self.previousConstant!
+            self.tableView.layoutIfNeeded()
+        }
+    }
+    //    ----------------------------------------------------
     
     
     override func didReceiveMemoryWarning() {
@@ -100,6 +137,11 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             cell.addSubview(cell.segmentType)
         }
         
+        if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        
         return cell
     }
     
@@ -120,7 +162,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 self.animal.breed = i.dataTextField.text!
             case 2:
                 self.animal.vaccinated = self.returnVaccinated(i)
-            case 3:                
+            case 3:
                 self.animal.animalType = selectType(i)
                 
             case 4:
@@ -138,10 +180,10 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
-       // self.savaDataInParse()
+        self.saveDataInParse()
     }
     
-    func savaDataInParse(){
+    func saveDataInParse(){
         
         self.animal.animalPicture = ParseConvertion.imageToPFFile(self.animalPicture.image!)
         
@@ -245,31 +287,31 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             return false
         }//fim if
     }//fim funcao
-
-
+    
+    
     //verifica qual o tipo de animal
     
     func selectType(cell: AnimalTableViewCell) -> TypeAnimal{
-    
+        
         if cell.segmentType.selectedSegmentIndex == 0 {
-            return self.animalType[0]
+            return self.animalType[2]
         }else if cell.segmentType.selectedSegmentIndex == 1{
             return self.animalType[1]
         }else{
-            return self.animalType[2]
+            return self.animalType[0]
         }
-}
-
+    }
     
-override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showAnimalProfile"{
             if let animalProfile = segue.destinationViewController as? AnimalProfileVC{
                 animalProfile.currentAnimal = self.animal
             }
             
-        if (segue.identifier == "saveAnimal") {
-            
+            if (segue.identifier == "saveAnimal") {
+                
                 let aProfileVC = segue.destinationViewController as! AnimalProfileVC
                 
                 print("Local -> \(self.localizacao)")
@@ -278,10 +320,23 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             }
         }
     }
-
+    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-
+    
+    
+    
+    //cancelar cadastro
+    
+    @IBAction func cancelAdd(sender: AnyObject) {
+        
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
+    
+    
 }//fim controller
