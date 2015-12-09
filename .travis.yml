@@ -13,5 +13,4 @@ notifications:
   slack: animaisperdidos:jsTvrCAuf8Re3Er8mfYsv96M
 
 script:
-- xcodebuild clean build -project SearchBuddy.xcworkspace -scheme
- SearchBuddyTests
+- xcodebuild clean build -project SearchBuddy.xcodeproj -scheme SearchBuddyTests
