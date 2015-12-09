@@ -129,10 +129,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             default:
                 print("nada")
                 
-            }//fim swicth
-            
-        }//fim for
-        
+            }
+        }
         
         if ( self.ponto != nil ){
             
