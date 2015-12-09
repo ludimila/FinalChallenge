@@ -29,6 +29,9 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var ultimaVezVisto: UILabel!
     
+    @IBOutlet weak var photoAnimal: UIButton!
+    @IBOutlet weak var buttonOwner: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

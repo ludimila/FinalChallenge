@@ -28,7 +28,8 @@
     var index: Int!
     var animaisSearchResult = Array<Animal>()
     
-    
+    var animalFromFeed: Animal?
+    var flag = false
     var animalOwner: User?
     
     // View
@@ -70,6 +71,10 @@
         if (self.userLocation == nil){
             self.userLocation = CLLocationCoordinate2D()
         }
+        
+        
+        zoom(userLocation.latitude, longitude: userLocation.longitude)
+        
     }
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
@@ -202,7 +207,48 @@
         
     }
     
+    
+    func zoom(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
+        
+        var region = MKCoordinateRegion() as MKCoordinateRegion!
+        var span = MKCoordinateSpan() as MKCoordinateSpan!
+        
+        span.latitudeDelta = 0.005
+        span.longitudeDelta = 0.005
+        var location = CLLocationCoordinate2D()
+        location.latitude =  latitude //(self.animalFromFeed?.local?.latitude)!
+        location.longitude = longitude //(self.animalFromFeed?.local?.longitude)!
+        region.span = span
+        region.center = location
+        
+        self.map.setRegion(region, animated: true)
+        
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
+        if self.flag == true{
+            self.flag = false
+            
+            
+            /*
+            var region = MKCoordinateRegion() as MKCoordinateRegion!
+            var span = MKCoordinateSpan() as MKCoordinateSpan!
+            
+            span.latitudeDelta = 0.005
+            span.longitudeDelta = 0.005
+            var location = CLLocationCoordinate2D()
+            location.latitude =  (self.animalFromFeed?.local?.latitude)!
+            location.longitude = (self.animalFromFeed?.local?.longitude)!
+            region.span = span
+            region.center = location
+            
+            self.map.setRegion(region, animated: true)
+            */
+            
+            zoom((self.animalFromFeed?.local?.latitude)!, longitude: (self.animalFromFeed?.local?.longitude)!)
+        }
+        
         self.animals = AnimalDAO.sharedInstance().animalsArray
         self.navigationController?.navigationBar.topItem?.title = "Mapa"
         self.animals = AnimalDAO.sharedInstance().animalsArray
@@ -273,7 +319,7 @@
     }
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        
+        /*
         var region = MKCoordinateRegion() as MKCoordinateRegion!
         var span = MKCoordinateSpan() as MKCoordinateSpan!
         
@@ -286,6 +332,7 @@
         region.center = location
         
         mapView.setRegion(region, animated: true)
+       */
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
