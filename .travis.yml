@@ -4,13 +4,13 @@ branches:
  only:
  - master
 
-xcode_project: SearchBuddy.xcworkspace
-xcode_scheme: SearchBuddyTests
-osx_image: xcode7
-xcode_sdk: iphonesimulator8.3 
+osx_image: xcode7.1
+xcode_sdk: iphonesimulator9.0 
 
 notifications:
   slack: animaisperdidos:jsTvrCAuf8Re3Er8mfYsv96M
 
 script:
-- xcodebuild clean build -project SearchBuddy.xcodeproj -scheme SearchBuddyTests
+- xcodebuild clean -workspace SearchBuddy.xcworkspace -scheme "SearchBuddy iOS" -destination "platform=iOS Simulator,name=iPhone 6" test
+
+
