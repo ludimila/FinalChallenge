@@ -831,13 +831,14 @@
 			baseConfigurationReference = 431F059C386E18A89FCF4BCE /* Pods-SearchBuddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matheus Godinho (27CXV7JQ2F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matheus Godinho (27CXV7JQ2F)";
 				INFOPLIST_FILE = SearchBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gh.SearchBuddy;
+				PRODUCT_BUNDLE_IDENTIFIER = achoPet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "84e31255-4d5c-41e5-aa0e-357e4ba34370";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -846,13 +847,14 @@
 			baseConfigurationReference = D01E436DB98E83578F0B791A /* Pods-SearchBuddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matheus Godinho (27CXV7JQ2F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matheus Godinho (27CXV7JQ2F)";
 				INFOPLIST_FILE = SearchBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = gh.SearchBuddy;
+				PRODUCT_BUNDLE_IDENTIFIER = achoPet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "84e31255-4d5c-41e5-aa0e-357e4ba34370";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

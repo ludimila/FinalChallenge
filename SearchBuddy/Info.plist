@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>gh.SearchBuddy</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -31,10 +31,6 @@
 	<string>1</string>
 	<key>FacebookAppID</key>
 	<string>900059710071516</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>GrandHotel-Regular.otf</string>
-	</array>
 	<key>FacebookDisplayName</key>
 	<string>FinalChallenger</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -86,6 +82,10 @@
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>GrandHotel-Regular.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
