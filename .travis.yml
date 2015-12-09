@@ -9,5 +9,8 @@ xcode_scheme: SearchBuddyTests
 osx_image: xcode7
 xcode_sdk: iphonesimulator8.3 
 
+notifications:
+  slack: animaisperdidos:jsTvrCAuf8Re3Er8mfYsv96M
+
 script:
 - xcodebuild clean build -project Swifternalization.xcodeproj -scheme SwifternalizationTests
