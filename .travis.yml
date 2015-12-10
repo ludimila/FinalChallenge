@@ -11,7 +11,7 @@ notifications:
   slack: animaisperdidos:jsTvrCAuf8Re3Er8mfYsv96M
 
 script:
-- xcodebuild clean -workspace SearchBuddy.xcworkspace -scheme "SearchBuddy" -destination "platform=iOS Simulator,name=iPhone 6" test
+- xcodebuild clean -workspace SearchBuddy.xcworkspace -scheme "SearchBuddy" -destination "platform=iOS Simulator,name=iPhone 6"
 
 
 
