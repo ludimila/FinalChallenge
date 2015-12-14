@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e5n-e3-27U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e5n-e3-27U">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -7,6 +7,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="GrandHotel-Regular.otf">
+            <string>GrandHotel-Regular</string>
             <string>GrandHotel-Regular</string>
         </mutableArray>
     </customFonts>
@@ -41,14 +42,14 @@
                                         <color key="textColor" red="0.90980392160000001" green="0.41176470590000003" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZ9-ON-pdH">
-                                        <rect key="frame" x="150" y="484" width="300" height="41"/>
+                                    <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZ9-ON-pdH">
+                                        <rect key="frame" x="0.0" y="484" width="600" height="41"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.90980392160000001" green="0.41176470590000003" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="srz-Bn-QTj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="GrandHotel-Regular" family="Grand Hotel" pointSize="28"/>
                                         <state key="normal" title="Entrar">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -60,7 +61,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="gZ9-ON-pdH" firstAttribute="width" secondItem="bd5-u2-hga" secondAttribute="width" multiplier="0.5" id="Hh4-52-GPe"/>
+                                    <constraint firstItem="gZ9-ON-pdH" firstAttribute="width" secondItem="bd5-u2-hga" secondAttribute="width" multiplier="0.5" constant="300" id="Hh4-52-GPe"/>
                                     <constraint firstItem="gZ9-ON-pdH" firstAttribute="centerX" secondItem="bd5-u2-hga" secondAttribute="centerX" id="Hva-yK-ZXB"/>
                                     <constraint firstItem="Ee0-F1-ZtG" firstAttribute="top" secondItem="bd5-u2-hga" secondAttribute="top" constant="93" id="iN9-mY-c1w"/>
                                     <constraint firstItem="gZ9-ON-pdH" firstAttribute="width" secondItem="bd5-u2-hga" secondAttribute="width" multiplier="0.5" constant="300" id="kbM-ag-03n"/>

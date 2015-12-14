@@ -43,6 +43,17 @@ class Annotation: NSObject,MKAnnotation {
         self.title = title
         self.eventType = eventType
     }
+
+    
+    /*
+    override init(){
+        self.radius = 0
+        self.coordinate = coordinate
+        self.title = title
+        self.eventType = eventType
+
+    }
+    */
     
     
 }

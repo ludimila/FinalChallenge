@@ -112,7 +112,6 @@
 		19229D5D1BBDC6D900143F81 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		19229D5F1BBF024400143F81 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		19229D611BBF02A300143F81 /* MainTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
-		195F7C111BE13B08008AF749 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
 		195F7C151BE29182008AF749 /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		19665D5F1BEA7E6000BC81E0 /* arches-945495_1920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "arches-945495_1920.jpg"; sourceTree = "<group>"; };
 		199721A61BF517D600C649AE /* dogA.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = dogA.ico; sourceTree = "<group>"; };
@@ -343,7 +342,6 @@
 				BBF1A0161C12226A0033C281 /* videoAbertura.mp4 */,
 				190ED4A01BED323C0067C1FB /* add.png */,
 				199721A61BF517D600C649AE /* dogA.ico */,
-				195F7C111BE13B08008AF749 /* dog.jpg */,
 				19665D5F1BEA7E6000BC81E0 /* arches-945495_1920.jpg */,
 			);
 			name = images/media;
@@ -473,7 +471,6 @@
 					19229D1A1BBDA55600143F81 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 6BD69EF9D7;
-
 					};
 					19229D2E1BBDA55600143F81 = {
 						CreatedOnToolsVersion = 7.0;
@@ -831,13 +828,13 @@
 			baseConfigurationReference = 431F059C386E18A89FCF4BCE /* Pods-SearchBuddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Matheus Godinho (27CXV7JQ2F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matheus Godinho (27CXV7JQ2F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SearchBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = achoPet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "84e31255-4d5c-41e5-aa0e-357e4ba34370";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -847,13 +844,13 @@
 			baseConfigurationReference = D01E436DB98E83578F0B791A /* Pods-SearchBuddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Matheus Godinho (27CXV7JQ2F)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matheus Godinho (27CXV7JQ2F)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SearchBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = achoPet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "84e31255-4d5c-41e5-aa0e-357e4ba34370";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

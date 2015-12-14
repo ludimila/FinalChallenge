@@ -19,12 +19,13 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
     var ponto: CLLocationCoordinate2D!
     var localizacao: String!
     
-    var data = ["Nome: ", "Raça: ","Vacinado: ", "Tipo: ", "Descrição:","Raio de busca: "]
+    var data = ["Nome: ", "Raio de busca: ","Vacinado: ", "Tipo: ", "Descrição:","Raça: "]
     var arrayCell = Array<AnimalTableViewCell>()
     let animal = Animal()
     var animalsDescription = Array<String>()
     var animalType = Array<TypeAnimal>()
     var animalStatus = Array<StatusAnimal>()
+    var radius : Float = 0.0
     
     
     @IBOutlet weak var constraintBottonTableView: NSLayoutConstraint!
@@ -44,15 +45,13 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
                 self.animalType.append(animal)
             }
             self.tableView.reloadData()
-        })//fim get types
-        
+        })
         StatusAnimalDAO.getStatus ({ (animalStatus, error) -> Void in
             for animal in animalStatus!{
                 self.animalStatus.append(animal)
             }
             self.tableView.reloadData()
-        })//fim getStatus
-        
+        })
     }
     
     override func viewDidLoad() {
@@ -92,6 +91,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
     }
     
+    
     func keyboardWillHide(notification : NSNotification) {
         
         if ( self.previousConstant != nil){
@@ -99,8 +99,7 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             self.tableView.layoutIfNeeded()
         }
     }
-    //    ----------------------------------------------------
-    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -124,6 +123,15 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
         
         cell.dataTextField.tag = indexPath.row
         
+        
+        if indexPath.row == 1 {
+            
+            cell.dataTextField.hidden = true
+            cell.selectRadius()
+            cell.addSubview(cell.segmentRadius)
+        }
+
+        
         if indexPath.row == 2 {
             cell.addSubview(cell.switchVaccinated)
             cell.dataTextField.hidden = true
@@ -136,6 +144,8 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             cell.selectType()
             cell.addSubview(cell.segmentType)
         }
+        
+        
         
         if (cell.respondsToSelector("setPreservesSuperviewLayoutMargins:")){
             cell.layoutMargins = UIEdgeInsetsZero
@@ -168,18 +178,24 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             case 4:
                 self.animal.animalDescription = i.dataTextField.text!
                 
+            case 5:
+                self.animal.animalRadius = selectRadius(i)
+                
             default:
                 print("nada")
                 
             }
         }
-        
+        /*
         if ( self.ponto != nil ){
             
             self.animal.local = PFGeoPoint()
             self.animal.local!.longitude = self.ponto.longitude
             self.animal.local!.latitude = self.ponto.latitude
         }
+        */
+        
+        
         self.saveDataInParse()
     }
     
@@ -299,6 +315,17 @@ class AnimalVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UI
             return self.animalType[1]
         }else{
             return self.animalType[0]
+        }
+    }
+    
+    func selectRadius(cell: AnimalTableViewCell) -> Float{
+        
+        if cell.segmentRadius.selectedSegmentIndex == 0 {
+            return 1
+        }else if cell.segmentRadius.selectedSegmentIndex == 1{
+            return 2
+        }else{
+            return 3
         }
     }
     

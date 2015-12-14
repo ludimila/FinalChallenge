@@ -76,7 +76,6 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
             return
         }
         
-        
         let touchPoint = sender.locationInView(self.mkMap)
         self.ponto = self.mkMap.convertPoint(touchPoint, toCoordinateFromView: self.mkMap)
         
@@ -107,9 +106,7 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
             })
             
             self.dismissViewControllerAnimated(true){
-//                let storyBoard = self.tabBarController
-//                self.presentConclusionAlert(storyBoard!)
-            }
+           }
             
         }
         let cancelAction = UIAlertAction(title: "Cancelar", style: .Default){ _ in
@@ -181,11 +178,8 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         if (segue.identifier == "saveLoc" ){
             
             getAdress()
-            
             let animalPVC = segue.destinationViewController as! AnimalVC
-            
             animalPVC.ponto = CLLocationCoordinate2D(latitude: self.ponto.latitude, longitude: self.ponto.longitude)
-            
             
         }
         
@@ -211,16 +205,5 @@ class BuscaLocalVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelega
         print("Error -> \(error)")
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
 }
